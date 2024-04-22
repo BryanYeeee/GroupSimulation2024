@@ -43,6 +43,7 @@ public class MyWorld extends World
     private Library library;
     private Woodwork woodwork;
     private Metalwork metalwork;
+    private StatusBar statBar;
 
     private int actCount;
 
@@ -100,6 +101,8 @@ public class MyWorld extends World
         addObject(new Clock("7:00"), 68, 50);
         eventDisplay = new EventDisplay("ROLLCALL");
         addObject(eventDisplay, 68, 94);
+        statBar = new StatusBar();
+        addObject(statBar, 600, 762);
 
         // Initialize the prison's rooms
         rollCall = new RollCall(new int[]{64,65,66,67,68,59,60,61,62,63,55,56,57,50,51,52}, new int[]{69,70,71}, new int[]{213,243});

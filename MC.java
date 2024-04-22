@@ -11,6 +11,7 @@ public class MC extends Prisoner
     private MyWorld world;
     private ArrayList<Item> heldItems;
     
+    private String name;
     private String specialty;
     private String currentAction;
     
@@ -19,6 +20,8 @@ public class MC extends Prisoner
         //this.strength = 11;
         this.world = world;
         this.specialty = specialty;
+        this.name = name;
+        name = "MC"; // temp
         heldItems = new ArrayList<Item>();
         if(specialty.equals("Thief")) {
             this.speed = 3.8;
@@ -55,6 +58,10 @@ public class MC extends Prisoner
     
     public void useItem(int i) {
         heldItems.get(i).useItem(world, this);
+    }
+    
+    public String getName(){
+        return name;
     }
     
     

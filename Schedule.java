@@ -98,6 +98,7 @@ public class Schedule
             case 0: // Beginning roll call, act 0
                 world.updateEventDisplay("ROLL CALL");
                 currentEvent = "ROLL CALL";
+                StatusBar.setUpdate(true);
                 Action.doRollCall(world);
                 System.out.println("STARTING SIMULATION");
                 //System.out.println(x + ": " + Person.noFights);
@@ -111,12 +112,14 @@ public class Schedule
             case 10*60: // Breakfast, act 600
                 world.updateEventDisplay("BREAKFAST");
                 currentEvent = "DINING HALL";
+                StatusBar.setUpdate(true);
                 Action.doDiningHall(world);
                 //System.out.println(x + ": " + Person.noFights);
                 break;
             case 25*60: // Workout, act 1200
                 world.updateEventDisplay("GYM TIME");
                 currentEvent = "GYM TIME";
+                StatusBar.setUpdate(true);
                 Action.doGym(world); 
                 //System.out.println(x + ": " + Person.noFights);
                 //actCount = 0;
@@ -124,30 +127,35 @@ public class Schedule
             case 45*60:
                 world.updateEventDisplay("JOB TIME");
                 currentEvent = "JOB TIME";
+                StatusBar.setUpdate(true);
                 Action.doJob(world);
                 //System.out.println(x + ": " + Person.noFights);
                 break;
             case 65*60:
                 world.updateEventDisplay("ROLL CALL");
                 currentEvent = "ROLL CALL";
+                StatusBar.setUpdate(true);
                 Action.doRollCall(world);
                 //System.out.println(x + ": " + Person.noFights);
                 break;
             case 80*60:
                 world.updateEventDisplay("FREE TIME");
                 currentEvent = "FREE TIME";
+                StatusBar.setUpdate(true);
                 Action.doFreeTime(world);
                 //System.out.println(x + ": " + Person.noFights);
                 break;
             case 100*60:
                 world.updateEventDisplay("DINNER");
                 currentEvent = "DINING HALL";
+                StatusBar.setUpdate(true);
                 Action.doDiningHall(world);
                 //System.out.println(x + ": " + Person.noFights);
                 break;
             case 120*60:
                 world.updateEventDisplay("ROLL CALL");
                 currentEvent = "ROLL CALL";
+                StatusBar.setUpdate(true);
                 Action.doRollCall(world);
                 //System.out.println(x + ": " + Person.noFights);
                 break;
