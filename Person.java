@@ -108,6 +108,7 @@ public abstract class Person extends Entity
         if(inFight) {
             if (actCount % 30 == 0) {
                 curHp -= opponentStrength;
+                StatusBar.setUpdate(true);
                 opponentHealth -= strength;
                 if (opponentHealth <= 0 || curHp <= 0) {
                     if(curHp<=0) curHp = 0;
@@ -347,15 +348,18 @@ public abstract class Person extends Entity
         curHp+=healAmount;
         if (curHp > maxHp) curHp = maxHp;
         healthBar.update(curHp);
+        StatusBar.setUpdate(true);
     }
 
     public void addIntel(int intelAmount) {
         intel+=intelAmount;
+        StatusBar.setUpdate(true);
     }
 
     public void addStrength(int strengthAmount) {
         if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute"))strengthAmount++;
         strength+=strengthAmount;
+        StatusBar.setUpdate(true);
     }
     public void setStrength(int s) {
         strength = s;
