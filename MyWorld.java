@@ -59,7 +59,6 @@ public class MyWorld extends World
         initalizeFont();
         Sprite.init();
         setBackground(backgroundImg);
-        
         // Initialize the people in the prison (MCs, prisoners, guards)
         prisonerCount = 12;
         guardCount = 3;

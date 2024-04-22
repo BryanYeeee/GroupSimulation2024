@@ -19,7 +19,7 @@ public class Accessory extends Entity
     private int yOffset=-11;
     private int accessoryIndex=0;
     private static final Map<String, Integer> offsetValues = initializeOffsetValues();
-    
+
     private static Map<String, Integer> initializeOffsetValues() {
         Map<String, Integer> values = new HashMap<>();
         values.put("idleD0", 0);
@@ -67,6 +67,18 @@ public class Accessory extends Entity
         values.put("walkU9", -1);
         values.put("walkU10", -1);
         values.put("walkU11", 1);
+        values.put("attackL0", -2);
+        values.put("attackL1", -2);
+        values.put("attackL2", -1);
+        values.put("attackL3", -1);
+        values.put("attackD0", -2);
+        values.put("attackD1", 10);
+        values.put("attackD2", 12);
+        values.put("attackD3", 10);
+        values.put("attackU0", 3);
+        values.put("attackU1", 2);
+        values.put("attackU2", 1);
+        values.put("attackU3", 2);
         return values;
     }
 
@@ -77,23 +89,26 @@ public class Accessory extends Entity
 
     public void act()
     {
-        if(origin.getDirChar()=='R'){
-            yOffset=originalYOffset+(int)offsetValues.get(origin.getAction()+'L'+origin.getImageIndex());
-        }
-        else{
-            yOffset=originalYOffset+(int)offsetValues.get(origin.getAction()+origin.getDirChar()+origin.getImageIndex());
+        try {
+            if (origin.getDirChar() == 'R') {
+                yOffset = originalYOffset + (int)offsetValues.get(origin.getAction() + 'L' + origin.getImageIndex());
+            } else {
+                yOffset = originalYOffset + (int)offsetValues.get(origin.getAction() + origin.getDirChar() + origin.getImageIndex());
+            }
+        } catch (NullPointerException | ClassCastException e) {
+            yOffset = originalYOffset; 
         }
         if(origin.getDirChar()=='L'){
-             xOffset=1;
+            xOffset=1;
         }
         else if(origin.getDirChar()=='R'){
-             xOffset=-1;
+            xOffset=-1;
         }
         else{
             xOffset=0;
         }
-        
-        GreenfootImage currentImage = new GreenfootImage("images/inmate-accessories/"+accessoryIndex+origin.getDirChar()+".png");
+
+        GreenfootImage currentImage = new GreenfootImage("images/accessories/"+accessoryIndex+origin.getDirChar()+".png");
         currentImage.scale(32, 32);
         setImage(currentImage);
         setLocation(origin.getX()+xOffset,origin.getY()+yOffset);
