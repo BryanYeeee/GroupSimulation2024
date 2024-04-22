@@ -92,6 +92,7 @@ public class MyWorld extends AllWorld
             mainPrisoners[i] = new MC(i + 12, "", 0, 0, 0, 0, "");
             mainPrisoners[i].deserializeState(savedData[i]);
         }
+        //specialty section?
         
         addObject(mainPrisoners[0], 100, 100);
         addObject(mainPrisoners[1], 100, 200);

@@ -13,6 +13,7 @@ public class Prisoner extends Person
     protected String jobTitle;
     public Prisoner(int i) {
         super(i);
+        this.jobTitle = "None";
         /*
         if(!jobList.isEmpty()) {
             jobTitle = jobList.get(Greenfoot.getRandomNumber(jobList.size()));
@@ -49,6 +50,7 @@ public class Prisoner extends Person
     public static void setJobList(String[] jobs) {
         jobList = new ArrayList<String>(Arrays.asList(jobs));
     }
+    */
     
     public String getJob() {
         return jobTitle;
@@ -57,5 +59,5 @@ public class Prisoner extends Person
     public boolean hasJob() {
         return !jobTitle.equals("");
     }
-    */
+    
 }

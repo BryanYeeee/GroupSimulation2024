@@ -79,6 +79,7 @@ public class Action
     public static void doJob(MyWorld w) {
         Person[] getPeople = w.getPeople();
         for (Person p : getPeople) {
+            /*
             if(p instanceof Guard) {
                 continue;
             }
@@ -88,6 +89,13 @@ public class Action
             }
             //System.out.println(((Prisoner)p).getJob());
             Action.goToJob(w, p, ((Prisoner)p).getJob());
+            */
+           
+            if(p instanceof MC) {
+                if(!((MC)p).hasJob()) continue;
+                System.out.println(((MC)p).getJob());
+                Action.goToJob(w, p, ((MC)p).getJob());
+            }
         }
     }
     public static void goToJob(MyWorld w, Person p, String jobTitle) {

@@ -99,14 +99,6 @@ public class MC extends Prisoner
         jobTitle = parts[5];
     }
     
-    public String getJob() {
-        return jobTitle;
-    }
-    
-    public boolean hasJob() {
-        return !jobTitle.equals("None");
-    }
-    
     public String getSpecialty() {
         return specialty;
     }

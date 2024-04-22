@@ -10,7 +10,6 @@ import java.io.Serializable;
 public class SavedPrisoner extends Actor {
     
     private double str, maxStr;
-    private double hp, maxHp;
     private double intel, maxIntel;
     private double luc, maxLuc;
     private double spd, maxSpd;
@@ -36,9 +35,8 @@ public class SavedPrisoner extends Actor {
      * @param initialIntelligence       sets an initial intelligence stat
      */
     public SavedPrisoner(String name, double initialStrength, double initialSpeed, double initialLuck, double initialIntelligence, String job) {
+        
         maxStr = 10;
-        hp = 100;
-        maxHp = 200;
         maxIntel = 10;
         maxLuc = 10;
         maxSpd = 3;
@@ -49,6 +47,7 @@ public class SavedPrisoner extends Actor {
         luck = new StatSetter(initialLuck, false);
         intelligence = new StatSetter(initialIntelligence, false);
         this.job = job;
+        
     }
     
     /**
@@ -172,13 +171,13 @@ public class SavedPrisoner extends Actor {
         //yes = Double.parseDouble(parts[0]);
         name = parts[0];
         strength.setValue(Double.parseDouble(parts[1]));
-        addStr(Double.parseDouble(parts[1]));
+        //addStr(Double.parseDouble(parts[1]));
         speed.setValue(Double.parseDouble(parts[2]));
-        addSpeed(Double.parseDouble(parts[2]));
+        //addSpeed(Double.parseDouble(parts[2]));
         luck.setValue(Double.parseDouble(parts[3]));
-        addLuck(Double.parseDouble(parts[3]));
+        //addLuck(Double.parseDouble(parts[3]));
         intelligence.setValue(Double.parseDouble(parts[4]));
-        addIntel(Double.parseDouble(parts[4]));
+        //addIntel(Double.parseDouble(parts[4]));
         job = parts[5];
     }
     
@@ -189,15 +188,6 @@ public class SavedPrisoner extends Actor {
      */
     public void addStr(double addStrength) {
         str = str + addStrength > maxStr ? maxStr: str + addStrength;
-    }
-    
-    /**
-     * Adds hp
-     * 
-     * @param addHp
-     */
-    public void addHp(double addHp) {
-        hp = hp + addHp > maxHp ? maxHp: hp + addHp;
     }
     
     /**
