@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=PathFinder
+comment0.text=\r\n\ The\ PathFinder\ class\ will\ store\ the\ nodes\ for\ each\ coordinate\ that\ the\ people\ will\ walk\ on.\r\n\ \r\n\ @author\ Bryan\ Y\ \r\n\ @version\ April\ 2024\r\n
+comment1.params=w
+comment1.target=PathFinder(MyWorld)
+comment2.params=startNodeIndex\ endNodeIndex
+comment2.target=void\ findPath(int,\ int)
+comment2.text=\r\n\ This\ method\ will\ print\ the\ pathfinder's\ path\ from\ one\ node\ to\ another\ (only\ used\ for\ debugging).\r\n\ \r\n\ @param\ int\ index\ of\ the\ starting\ node\r\n\ @param\ int\ index\ of\ the\ ending\ node\r\n
+comment3.params=p\ startNode\ endNodeIndex
+comment3.target=void\ goToNode(Person,\ Node,\ int)
+comment3.text=\r\n\ Using\ the\ A*\ algorithm,\ this\ method\ will\ find\ the\ optimal\ path\ from\ one\ node\ to\ another.\ It\ will\ then\ add\ the\ series\ nodes\ into\ the\ person's\ path\r\n\ \r\n\ @param\ Person\ the\ person\ that\ will\ be\ following\ the\ calculated\ path\r\n\ @param\ Node\ starting\ node\r\n\ @param\ int\ index\ of\ the\ ending\ node\r\n
+comment4.params=nodeIndex
+comment4.target=Node\ getNode(int)
+numComments=5
