@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=NextButton
+comment0.text=\n\ Write\ a\ description\ of\ class\ NextButton\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=theImage
+comment1.target=NextButton(java.lang.String)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=boolean\ getSwitchWorld()
+comment4.params=
+comment4.target=void\ resetSwitchWorld()
+numComments=5

@@ -14,7 +14,7 @@ import java.util.List;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World
+public class MyWorld extends AllWorld
 {
     public final static boolean SHOW_NODES = true;
     public final static int WORLD_WIDTH = 1200;
@@ -50,7 +50,7 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
-    public MyWorld()
+    public MyWorld(List<String> serializedDataList)
     {    
         // Create a new world with 1200x850 cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
@@ -64,7 +64,8 @@ public class MyWorld extends World
         prisonerCount = 12;
         guardCount = 3;
         people = new Person[prisonerCount+guardCount+4];
-        Prisoner.setJobList(jobs);
+        //Prisoner.setJobList(jobs);
+        /*
         
         mainPrisoners = new MC[4];
         mainPrisoners[0] = new MC(0, this, "Janitor", "Scientist");
@@ -72,6 +73,31 @@ public class MyWorld extends World
         //mainPrisoners[2] = new MC(2+12, this, "Cook", "Mafia");
         mainPrisoners[2] = new MC(2, this, "", "Brute");
         mainPrisoners[3] = new MC(3, this, "Metalworker", "Weapons Dealer");
+        */
+       
+        mainPrisoners = new MC[4];
+        String[] savedData = new String[4];
+        
+        int index = 0;
+        for(String serializedData : serializedDataList) {
+            if(index < 5) {
+                savedData[index] = serializedData;
+                index++;
+            } else {
+                break;
+            }
+        }
+       
+        for(int i = 0; i < 4; i++) {
+            mainPrisoners[i] = new MC(i + 12, "", 0, 0, 0, 0, "");
+            mainPrisoners[i].deserializeState(savedData[i]);
+        }
+        
+        addObject(mainPrisoners[0], 100, 100);
+        addObject(mainPrisoners[1], 100, 200);
+        addObject(mainPrisoners[2], 100, 300);
+        addObject(mainPrisoners[3], 100, 400);
+        
         for (int i = 0; i < 4; i++) {
             people[i] = mainPrisoners[i];
             addObject(mainPrisoners[i], 0, 0);

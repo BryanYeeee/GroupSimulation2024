@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=StatButton
+comment0.text=\n\ StatButton\ class\ that\ is\ used\ to\ generate\ arrow\ images\n\ that\ can\ edit\ a\ stat\ by\ decreasing\ or\ increasing\n\ \n\ @author\ Ainson\n\ @version\ April\ 2024\n
+comment1.params=statSetter\ increase
+comment1.target=StatButton(StatSetter,\ boolean)
+comment1.text=\n\ Constructer\ of\ the\ button\n\ \n\ @param\ statSetter\ \ \ \ \ \ \ \ \ \ \ \ specifies\ which\ stats\ should\ be\ modified\n\ @param\ increase\ \ \ \ \ \ \ \ \ \ \ \ \ \ boolean\ determines\ whether\ the\ button\ is\ used\ to\ increase\ or\ decrease\n
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\n\ Act\ method\n\ On\ mouse\ click\ increase\ or\ decrease\ stat\n
+numComments=3

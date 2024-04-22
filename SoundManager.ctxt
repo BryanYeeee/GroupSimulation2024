@@ -1,16 +1,16 @@
 #BlueJ class context
 comment0.target=SoundManager
-comment0.text=\r\n\ SoundManager\ is\ a\ class\ that\ stores\ and\ controls\ the\ sound\ files.\r\n\ \r\n\ @author\ Bryan\ Yee\ (with\ tips\ from\ Dawson\ Li)\r\n\ @version\ March\ 2024\r\n
+comment0.text=\n\ SoundManager\ is\ a\ class\ that\ stores\ and\ controls\ the\ sound\ files.\n\ \n\ @author\ Bryan\ Yee\ (with\ tips\ from\ Dawson\ Li)\n\ @version\ March\ 2024\n
 comment1.params=
 comment1.target=void\ initSounds()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ SoundManager\r\n
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ SoundManager\n
 comment2.params=sound
 comment2.target=void\ playSound(java.lang.String)
-comment2.text=\r\n\ Method\ to\ play\ a\ sound\ or\ a\ sound\ loop\r\n
+comment2.text=\n\ Method\ to\ play\ a\ sound\ or\ a\ sound\ loop\n
 comment3.params=
 comment3.target=void\ pauseSounds()
-comment3.text=\r\n\ Method\ to\ pause\ all\ the\ currently\ playing\ sounds\r\n
+comment3.text=\n\ Method\ to\ pause\ all\ the\ currently\ playing\ sounds\n
 comment4.params=
 comment4.target=void\ resumeSounds()
-comment4.text=\r\n\ Method\ to\ resume\ all\ the\ currently\ paused\ sounds\r\n
+comment4.text=\n\ Method\ to\ resume\ all\ the\ currently\ paused\ sounds\n
 numComments=5

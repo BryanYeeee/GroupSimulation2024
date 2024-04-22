@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=StatSetter
+comment0.text=\n\ Used\ to\ take\ in\ a\ certain\ stat\ and\ have\ that\ stat's\ stats\ increased\ or\ decreased\n\ \n\ @author\ Ainson\n\ @version\ April\ 2024\n
+comment1.params=initialValue\ isSpeedStat
+comment1.target=StatSetter(double,\ boolean)
+comment1.text=\n\ Used\ to\ create\ an\ initial\ value\ for\ a\ stat\n\ \n\ @param\ intitalValue\n
+comment2.params=
+comment2.target=double\ getValue()
+comment2.text=\n\ \n
+comment3.params=newValue
+comment3.target=void\ setValue(double)
+comment4.params=
+comment4.target=void\ increaseValue()
+comment5.params=
+comment5.target=void\ decreaseValue()
+numComments=6
