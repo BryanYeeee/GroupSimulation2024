@@ -352,7 +352,7 @@ public abstract class Person extends Entity
     }
 
     public void addStrength(int strengthAmount) {
-        if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute"))strengthAmount++;
+        if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute") && actCount % 720 == 0)strengthAmount++;
         strength+=strengthAmount;
     }
     public void setStrength(int s) {

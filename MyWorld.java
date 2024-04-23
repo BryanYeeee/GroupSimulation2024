@@ -70,7 +70,7 @@ public class MyWorld extends World
         mainPrisoners[0] = new MC(0, this, "Janitor", "Scientist");
         mainPrisoners[1] = new MC(1, this, "Librarian", "Thief");
         //mainPrisoners[2] = new MC(2+12, this, "Cook", "Mafia");
-        mainPrisoners[2] = new MC(2, this, "", "Brute");
+        mainPrisoners[2] = new MC(2, this, "", "Mafia");
         mainPrisoners[3] = new MC(3, this, "Metalworker", "Weapons Dealer");
         for (int i = 0; i < 4; i++) {
             people[i] = mainPrisoners[i];

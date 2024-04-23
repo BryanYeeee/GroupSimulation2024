@@ -156,7 +156,7 @@ public class Action
             // return;
         // }
         if(p instanceof Prisoner) {
-            switch (((Prisoner)p).hasJob() ? 4 :Greenfoot.getRandomNumber(4)) {
+            switch (Greenfoot.getRandomNumber(4)+ (((Prisoner)p).hasJob()?1:0)) {
                 case 3:
             //System.out.println(p.getIndex() + ": LIB");
                     if(Action.goToLibrary(w, p)) break;
