@@ -98,6 +98,7 @@ public class Accessory extends Entity
         } catch (NullPointerException | ClassCastException e) {
             yOffset = originalYOffset; 
         }
+
         if(origin.getDirChar()=='L'){
             xOffset=1;
         }
@@ -110,6 +111,20 @@ public class Accessory extends Entity
 
         GreenfootImage currentImage = new GreenfootImage("images/accessories/"+accessoryIndex+origin.getDirChar()+".png");
         currentImage.scale(32, 32);
+        if(origin.getAction().equals("sleep")){
+            yOffset=2;
+            if(origin.getDirChar() == 'R'){
+                setRotation(-90);
+                xOffset=-15;
+            }
+            else {
+                setRotation(90);
+                xOffset=15;
+            }
+        }
+        else{
+            setRotation(0);
+        }
         setImage(currentImage);
         setLocation(origin.getX()+xOffset,origin.getY()+yOffset);
 

@@ -14,8 +14,6 @@ public class Ladder extends Item
         super("ladder");
     }
 
-    
     public void useItem(MyWorld w, MC p) {
-        
     }
 }

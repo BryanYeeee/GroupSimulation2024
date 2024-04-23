@@ -54,7 +54,7 @@ public class Sprite
                     else if(dirIndex == 3){
                         dirChar = 'U';
                     }
-                    for(int imageIndex = 0; imageIndex < 2; imageIndex++){
+                    for(int imageIndex = 0; imageIndex < 3; imageIndex++){
                         action = "idle";
                         String key = personType + "_" + sex + "_" + skinTone + "_" + action + "_" + dirChar + "_" + imageIndex;
                         frames.put(key, new GreenfootImage("images/" + personType + "/" + sex + "_" + skinTone + "/" + action + "/" + dirChar + imageIndex + ".png"));
@@ -68,6 +68,13 @@ public class Sprite
                         action = "attack";
                         String key = personType + "_" + sex + "_" + skinTone + "_" + action + "_" + dirChar + "_" + imageIndex;
                         frames.put(key, new GreenfootImage("images/" + personType + "/" + sex + "_" + skinTone + "/" + action + "/" + dirChar + imageIndex + ".png"));
+                    }
+                    if(dirChar == 'L' || dirChar == 'R'){
+                        for(int imageIndex = 0; imageIndex < 2; imageIndex++){
+                            action="sleep";
+                            String key = personType + "_" + sex + "_" + skinTone + "_" + action + "_" + dirChar + "_" + imageIndex;
+                            frames.put(key, new GreenfootImage("images/" + personType + "/" + sex + "_" + skinTone + "/" + action + "/" + dirChar + imageIndex + ".png"));
+                        }
                     }
                 }
             }

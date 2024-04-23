@@ -54,7 +54,7 @@ public class MyWorld extends World
     {    
         // Create a new world with 1200x850 cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
-        setPaintOrder(BannerIcon.class,  Banner.class, Clock.class, EventDisplay.class, NightTime.class, SuperStatBar.class, WallCover.class,Accessory.class, Person.class, Underglow.class, Tile.class, Room.class);
+        setPaintOrder(BannerIcon.class,  Banner.class, Clock.class, EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, WallCover.class,Accessory.class, Person.class, Underglow.class, Tile.class, Room.class);
         pf = new PathFinder(this); // Initialize this first
         initalizeFont();
         Sprite.init();
@@ -196,17 +196,28 @@ public void doFree() {
     }
     public void doNight(){
                 schedule.doNight();
-    }    
+    }  
+    
+    public int getWidth(){
+        return WORLD_WIDTH;
+    }
+    public int getHeight(){
+        return WORLD_HEIGHT;
+    }
+    /**
+     * zSort from Vehicle Simulator but modified slightly
+     */
+    
     public void zSort() {
-        List<Entity> rawEntities = getObjects(Entity.class); // This will return a List<Vehicle>
+        List<Entity> rawEntities = getObjects(Entity.class); 
         ArrayList<ActorContent> acList = new ArrayList<ActorContent>();
-        for (Entity entity : rawEntities) { // No need for the instanceof check now
+        for (Entity entity : rawEntities) { 
             acList.add(new ActorContent(entity, entity.getX(), entity.getY()));
         }
         Collections.sort(acList);
         for (ActorContent ac : acList) {
             Entity entity = (Entity) ac.getActor();
-            removeObject(entity); // remove and re-add to sort the paint order
+            removeObject(entity); 
             addObject(entity, ac.getX(), ac.getY());
         }
     }
@@ -245,9 +256,6 @@ public void doFree() {
         return this.getY() - a.getY();
     }
     
-    /**
-     * JEFF
-     **/
     }
     
 }

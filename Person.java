@@ -97,6 +97,19 @@ public abstract class Person extends Entity
     {   
         actCount++;
         if(isDead) {
+            action="sleep";
+            if(dirChar != 'L' && dirChar != 'R'){
+                if (Greenfoot.getRandomNumber(2) == 0) {
+                    dirChar='L';
+                } else {
+                    dirChar='R';
+                }
+            }
+            String key = personType + "_" + sex + "_" + skinTone + "_sleep_" + dirChar + "_1";
+            GreenfootImage currentImage = Sprite.getFrame(key);
+            currentImage.scale(48, 32);
+            setImage(currentImage);
+            
             if (actCount % 15 == 0) {
                 healHp(1);
                 if (curHp == maxHp) setDead(false);
@@ -161,8 +174,10 @@ public abstract class Person extends Entity
             curPath.clear();
             speed = 0;
         }
+        if(!inFight && !isDead){
+            animate();
 
-        animate();
+        }
     }
 
     /**
@@ -332,30 +347,27 @@ public abstract class Person extends Entity
             animationLength = 2;
 
         }
-        //JEFF
         else if(action.equals("attack")){
             animationLength = 4;
         }
         if(!action.equals("attack")){
             if (dir == 1 && movingVertical) {
-            dirChar = 'D';
-        } else if (dir == -1 && movingVertical) {
-            dirChar = 'U';
-        } else if (dir == 1 && !movingVertical) {
-            dirChar = 'R';
-        } else if (dir == -1 && !movingVertical) {
-            dirChar = 'L';
+                dirChar = 'D';
+            } else if (dir == -1 && movingVertical) {
+                dirChar = 'U';
+            } else if (dir == 1 && !movingVertical) {
+                dirChar = 'R';
+            } else if (dir == -1 && !movingVertical) {
+                dirChar = 'L';
+            }
+            else{
+                dirChar = 'D';
+            }
         }
-        else{
-            dirChar = 'D';
-        }
-        }
-        
-        //JEFF CHANGED THIS CODE (
+
         imageIndex = (imageIndex + 1) % animationLength;
         String key = personType + "_" + sex + "_" + skinTone + "_" + action + "_" + dirChar + "_" + imageIndex;
         GreenfootImage currentImage = Sprite.getFrame(key);
-        //) JEFF CHANGED THIS CODE
         currentImage.scale(32, 48);
         setImage(currentImage);
     }
