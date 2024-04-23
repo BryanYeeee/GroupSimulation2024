@@ -46,6 +46,11 @@ public class MC extends Prisoner
     }
     
     public void giveItem(Item item) {
+        for(Item i : heldItems) {
+            if(i.getClass() == item.getClass()) {
+                return;
+            }
+        }
         this.heldItems.add(item);
     }
     
@@ -57,6 +62,9 @@ public class MC extends Prisoner
         heldItems.get(i).useItem(world, this);
     }
     
+    public ArrayList<Item> getItems() {
+        return heldItems;
+    }
     
     public ArrayList<Integer> getAccessories(){
         ArrayList<Integer> result = new ArrayList<>();

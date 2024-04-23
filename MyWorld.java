@@ -92,8 +92,8 @@ public class MyWorld extends World
             addObject(guards[i], 0, 0);
         }
         // Test prisoner
-        //g = new Prisoner(17);
-        //addObject(g,0,0);
+        g = new Prisoner(17);
+        addObject(g,0,0);
         
         // Initialize schedule and GUI
         schedule = new Schedule(this);
