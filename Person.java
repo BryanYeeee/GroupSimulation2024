@@ -32,6 +32,8 @@ public abstract class Person extends Entity
     public static int noFights = 0;
     protected int opponentStrength;
     protected int opponentHealth;
+    protected int opponentX;
+    protected int opponentY;
     protected boolean inFight;
 
     // Person Stats
@@ -44,7 +46,7 @@ public abstract class Person extends Entity
     protected SuperStatBar healthBar;
 
     //Animation Variables
-    private String personType = "inmate";
+    protected String personType = "inmate";
     private String sex = "male";
     private String skinTone;
     private String action = "walk";
@@ -106,6 +108,9 @@ public abstract class Person extends Entity
         }
 
         if(inFight) {
+            action="attack";
+            animationDelay=10;
+            animate();
             if (actCount % 30 == 0) {
                 curHp -= opponentStrength;
                 opponentHealth -= strength;
@@ -258,6 +263,21 @@ public abstract class Person extends Entity
             opponentHealth = opponent.getHealth();
             opponentStrength = opponent.getStrength();
             getWorld().addObject(healthBar, 0, 0);
+            int dx = opponent.getX() - getX();
+            int dy = opponent.getY() - getY();
+            if (Math.abs(dx) > Math.abs(dy)) {
+                if (dx > 0) {
+                    dirChar = 'R'; 
+                } else {
+                    dirChar = 'L'; 
+                }
+            } else {
+                if (dy > 0) {
+                    dirChar = 'D'; 
+                } else {
+                    dirChar = 'U'; 
+                }
+            }
         } else { // If ending a fight, then hide the healthBar and reset opponent's data
             onGoingFights--;
             opponentHealth = 0;
@@ -306,25 +326,29 @@ public abstract class Person extends Entity
             return;
         }
         if (action.equals("walk")) {
+            animationDelay = 7;
             animationLength = 12;
         } else if (action.equals("idle")) {
+            animationDelay = 50;
             animationLength = 2;
         }
         //JEFF
-        else if(action.equals("punch")){
+        else if(action.equals("attack")){
             animationLength = 4;
         }
-        if (dir == 1 && movingVertical) {
-            dirChar = 'D';
-        } else if (dir == -1 && movingVertical) {
-            dirChar = 'U';
-        } else if (dir == 1 && !movingVertical) {
-            dirChar = 'R';
-        } else if (dir == -1 && !movingVertical) {
-            dirChar = 'L';
-        }
-        else{
-            dirChar = 'D';
+        if(!action.equals("attack")){
+            if (dir == 1 && movingVertical) {
+                dirChar = 'D';
+            } else if (dir == -1 && movingVertical) {
+                dirChar = 'U';
+            } else if (dir == 1 && !movingVertical) {
+                dirChar = 'R';
+            } else if (dir == -1 && !movingVertical) {
+                dirChar = 'L';
+            }
+            else{
+                dirChar = 'D';
+            }
         }
         //JEFF CHANGED THIS CODE (
         imageIndex = (imageIndex + 1) % animationLength;
