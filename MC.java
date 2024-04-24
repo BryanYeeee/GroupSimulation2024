@@ -59,6 +59,7 @@ public class MC extends Prisoner
             }
         }
         this.heldItems.add(item);
+        StatusBar.setUpdate(true);
     }
     
     // public void removeItem(Item item) {
@@ -74,6 +75,7 @@ public class MC extends Prisoner
             if(i.isMaterial()) {
                 i.useItem(world, this);
                 heldItems.remove(i);
+                StatusBar.setUpdate(true);
                 return false;
             };
         }

@@ -10,6 +10,8 @@ public class Escape
     private ArrayList<String> possibleEscapes = new ArrayList<>();
     private MC[] mcs;
     private Guard[] guards;
+    
+    private String chosenEscape;
 
     /**
      * Constructor for objects of class Escape
@@ -32,15 +34,19 @@ public class Escape
                 }
             }
         }
-        if(totalStrength >= 70) {
-            possibleEscapes.add("Beat Cops");
-        }
-        if(totalStrength >= 90) {
-            possibleEscapes.add("Beat Cops");
-        }
+        // if(totalStrength >= 70) {
+            // possibleEscapes.add("Beat Cops");
+        // }
+        // if(totalStrength >= 90) {
+            // possibleEscapes.add("Beat Cops");
+        // }
         if(forkMC != null) {
             possibleEscapes.add("Break Wall");
         }
+    }
+    
+    public void act() {
+        
     }
 
 }

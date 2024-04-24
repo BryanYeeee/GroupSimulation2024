@@ -100,8 +100,8 @@ public class MyWorld extends World
             addObject(guards[i], 0, 0);
         }
         // Test prisoner
-        g = new Prisoner(17);
-        addObject(g,0,0);
+        // g = new Prisoner(17);
+        // addObject(g,0,0);
         
         // Initialize schedule and GUI
         schedule = new Schedule(this);
@@ -152,6 +152,11 @@ public class MyWorld extends World
 
     public void act() {
         schedule.act();
+        
+        if (escapeTime) {
+            escape.act();
+        }
+        
         actCount++;
         zSort();
     }
@@ -164,10 +169,15 @@ public class MyWorld extends World
         escapingMcs++;
         if (escapingMcs == 4) { // All prisoners are ready to escape
             escape = new Escape(this);
+            escapeTime = true;
             return true;
         } else {
             return false;
         }
+    }
+    
+    public boolean isEscapeTime() {
+        return escapeTime;
     }
     
     private void initalizeFont(){
