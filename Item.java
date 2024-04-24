@@ -17,22 +17,24 @@ public abstract class Item extends SuperSmoothMover
     protected int size = originalSize;
     protected int pickupActs;
     protected boolean collecting = false;
-    protected int slotX=100;
-    protected int slotY=100;
+    protected int slotX;
+    protected int slotY;
     protected double deltaY;
     protected double hoverSpeed=0.51;
     protected double speed=0;
     protected boolean isMaterial;
     protected String itemName;
     protected GreenfootImage image;
+    protected MC origin;
     public Item(String itemName){
         this.itemName = itemName;
         try {
-        image = new GreenfootImage("images/"+itemName+".png");
-    
-        setImage(image);
-    }catch(Exception e) {
-    }
+            image = new GreenfootImage("images/items/"+itemName+".png");
+
+            setImage(image);
+        }catch(Exception e) {
+            System.out.println("image not found: "+"images/items/"+itemName+".png");
+        }
         setStaticRotation(true);
         pickupActs=-1;
     }
@@ -41,6 +43,12 @@ public abstract class Item extends SuperSmoothMover
     {
 
         if(pickupActs==-1){
+            if (isTouching(MC.class)) {
+                MC touchingMC = (MC) getOneIntersectingObject(MC.class);
+                if (touchingMC != null) {
+                    pickup(touchingMC);
+                }
+            }
             hover(actCount);
         }
         if(pickupActs>0){
@@ -48,7 +56,7 @@ public abstract class Item extends SuperSmoothMover
                 setSize(originalSize);
                 size+=1;
                 setSize(size);
-                setLocation(getX(), getY()-5);
+                setLocation(origin.getX(), getY()-3);
             }
             if(pickupActs==1){
                 collect();
@@ -57,12 +65,15 @@ public abstract class Item extends SuperSmoothMover
         }
         if(collecting ){
             if(distanceFrom(slotX,slotY)>=speed){
-                deltaY=distanceFrom(slotX,slotY)/3;
+                deltaY=distanceFrom(slotX,slotY)/4;
                 turnTowards(slotX,slotY+(int)Math.round(deltaY));
                 move(speed);
                 speed+=0.5;
             }
-
+            else{
+                setLocation(slotX,slotY);
+                setSize(48);
+            }
         }
         actCount++;
     }
@@ -77,12 +88,24 @@ public abstract class Item extends SuperSmoothMover
         setImage(image);
     }
 
-    public void pickup(){
-        pickupActs=50;
+    public void pickup(MC origin){
+        this.origin=origin;
+        if(origin.getItemCount()<=1){
+            if(origin.getItemCount()==0){
+                slotX= 170 + (300 * origin.getIndex());
+            }
+            else{
+                slotX= 245 + (300 * origin.getIndex());
+            }
+            slotY= 780;
+            pickupActs=50;
+            origin.addItem(this);
+        }
+
+        return;
     }
 
-    public void collect(){
-
+    public void collect(){ 
         collecting=true;
     }
 
