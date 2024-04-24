@@ -23,6 +23,9 @@ public class Action
     private final static int WOODWORKER_NODE = 4;
     private final static int METALWORKER_NODE = 118;
     
+    private final static int CELL_1 = 133;
+    private final static int CELL_2 = 136;
+    
     public static void doRollCall(MyWorld w) {
         Person[] getPeople = w.getPeople();
         for (Person p : getPeople) {
@@ -252,6 +255,18 @@ public class Action
         if (p instanceof Prisoner && !(p instanceof MC)) {
             p.clearPath();
             p.goToNode(Person.STARTING_NODE_INDEX);
+        }
+        if (p instanceof MC) {
+            switch(p.getIndex()) {
+                case 0:
+                case 1:
+                    p.goToNode(CELL_1);
+                    break;
+                case 2:
+                case 3:
+                    p.goToNode(CELL_2);
+                    break;
+            }
         }
     }
 

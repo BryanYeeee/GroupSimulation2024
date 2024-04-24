@@ -12,6 +12,7 @@ public class Fork extends Item
     public Fork()
     {
         super("fork");
+        isMaterial = false;
     }
 
     

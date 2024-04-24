@@ -43,8 +43,15 @@ public class MyWorld extends World
     private Library library;
     private Woodwork woodwork;
     private Metalwork metalwork;
+    private JailCell cell1;
+    private JailCell cell2;
     
     private int actCount;
+        
+    private Escape escape;
+    private boolean escapeTime;
+    private int escapingMcs;
+
 
     /**
      * Constructor for objects of class MyWorld.
@@ -120,6 +127,11 @@ public class MyWorld extends World
         metalwork = new Metalwork(new int[]{122,121}, new int[]{123,153});
         addObject(metalwork, 728, 598);
         
+        cell1 = new JailCell(new int[]{132,134}, new int[]{95,125},1);
+        addObject(cell1, 469, 583);
+        cell2 = new JailCell(new int[]{135,137}, new int[]{95,125},2);
+        addObject(cell2, 591, 583);
+        
         // Add the wall covers to the world
         addObject(new WallCover("images/WallCover/cover1.png"),317,323);
         addObject(new WallCover("images/WallCover/cover2.png"),409,299);
@@ -144,6 +156,16 @@ public class MyWorld extends World
     
     public void updateEventDisplay(String event){
         eventDisplay.update(event);
+    }
+    
+    public boolean doEscape() {
+        escapingMcs++;
+        if (escapingMcs == 4) { // All prisoners are ready to escape
+            escape = new Escape(this);
+            return true;
+        } else {
+            return false;
+        }
     }
     
     private void initalizeFont(){

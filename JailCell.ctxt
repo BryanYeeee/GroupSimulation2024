@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=JailCell
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ RollCall\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=prisonerPosIndexes\ dimensions\ index
+comment1.target=JailCell(int[],\ int[],\ int)
+comment2.params=p
+comment2.target=void\ doEffect(Person)
+comment3.params=p
+comment3.target=boolean\ checkEffectCondition(Person)
+numComments=4

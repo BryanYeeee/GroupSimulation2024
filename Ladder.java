@@ -12,6 +12,7 @@ public class Ladder extends Item
     public Ladder()
     {
         super("ladder");
+        isMaterial = false;
     }
 
     

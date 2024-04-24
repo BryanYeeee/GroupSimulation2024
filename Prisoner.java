@@ -29,6 +29,9 @@ public class Prisoner extends Person
     public void act() {
         super.act();
         
+        // Conditions for when a fight should not start: 1.curNode is the spawn 2: Prisoner removed from world 3: Currently in LIGHTS OUT
+        if(curNode.getIndex() == STARTING_NODE_INDEX || getWorld() == null || ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) return;
+        
         // Fight intersecting prisoners at random
         if (getWorld()!= null && onGoingFights <= MAX_FIGHTS && curRoom == null && !inFight && !isDead) {
             Prisoner p = (Prisoner)getOneIntersectingObject(Prisoner.class);

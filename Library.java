@@ -32,6 +32,7 @@ public class Library extends Room
         peopleInLibrary++;
     }
     
+    // if a guy dies before he enters the library and never enters, then the static variable will never deplete <bug
     public void exitRoom (Person p, int roomPosition) {
         peopleInLibrary--;
         super.exitRoom(p, roomPosition);

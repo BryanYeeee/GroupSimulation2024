@@ -12,6 +12,7 @@ public class Sword extends Item
     public Sword()
     {
         super("sword");
+        isMaterial = false;
     }
 
     
