@@ -79,11 +79,10 @@ public class Schedule
     
     public void act()
     {
-        // if(actCount==0) {
-                // world.updateEventDisplay("GYM TIME");
-                // currentEvent = "GYM TIME";
-                // Action.doGym(world); 
-        // }
+        if(actCount==10) {
+           actCount=135*60;
+           world.getMainPrisoners()[0].giveItem(new Fork());
+        }
         // if(actCount==20*60) {
         // }
         // actCount++;

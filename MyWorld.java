@@ -146,14 +146,14 @@ public class MyWorld extends World
         /**
          * DEMO
          */
-        addObject(new Potion(),400, 299);
-        addObject(new Metal(),420, 299);
-        addObject(new Ladder(),440, 299);
-        addObject(new Sword(),460, 299);
-        addObject(new Keycard(),480, 299);
-        addObject(new Metal(),500, 299);
-        addObject(new Keycard(),360, 299);
-        addObject(new Wood(),380, 299);
+        // addObject(new Potion(),400, 299);
+        // addObject(new Metal(),420, 299);
+        // addObject(new Ladder(),440, 299);
+        // addObject(new Sword(),460, 299);
+        // addObject(new Keycard(),480, 299);
+        // addObject(new Metal(),500, 299);
+        // addObject(new Keycard(),360, 299);
+        // addObject(new Wood(),380, 299);
     }
 
     public void started(){
