@@ -1,20 +1,22 @@
 /**
- * Write a description of class Ladder here.
+ * Write a description of class Fork here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Ladder extends Item 
+public class Fork extends Item 
 {
     /**
      * Constructor for objects of class Ladder
      */
-    public Ladder()
+    public Fork()
     {
-        super("ladder");
+        super("fork");
         isMaterial = false;
     }
 
+    
     public void useItem(MyWorld w, MC p) {
+        
     }
 }

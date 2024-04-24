@@ -53,17 +53,36 @@ public class MC extends Prisoner
     }
     
     public void giveItem(Item item) {
+        for(Item i : heldItems) {
+            if(i.getClass() == item.getClass()) {
+                return;
+            }
+        }
         this.heldItems.add(item);
     }
     
-    public void removeItem(Item item) {
-        this.heldItems.remove(item);
+    // public void removeItem(Item item) {
+        // this.heldItems.remove(item);
+    // }
+    /**
+     * This method will craft the next material item in heldItems
+     * 
+     * @return boolean returns true if there are no more materials in heldItems
+     */
+    public boolean craftItem() {
+        for(Item i : heldItems) {
+            if(i.isMaterial()) {
+                i.useItem(world, this);
+                heldItems.remove(i);
+                return false;
+            };
+        }
+        return true;
     }
     
-    public void useItem(int i) {
-        heldItems.get(i).useItem(world, this);
+    public ArrayList<Item> getItems() {
+        return heldItems;
     }
-    
     
     public ArrayList<Integer> getAccessories(){
         ArrayList<Integer> result = new ArrayList<>();
