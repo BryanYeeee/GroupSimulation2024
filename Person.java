@@ -100,7 +100,9 @@ public abstract class Person extends Entity
     {   
         actCount++;
         if(isDead) {
-            action="sleep";
+            action="sleep"; 
+            
+            //Sets a random direction L or R if person is not horizontal
             if(dirChar != 'L' && dirChar != 'R'){
                 if (Greenfoot.getRandomNumber(2) == 0) {
                     dirChar='L';
@@ -123,7 +125,7 @@ public abstract class Person extends Entity
         if(inFight) {
             action="attack";
             animationDelay=10;
-            animate();
+            animate(); //Call animate before return 
             if (actCount % 30 == 0) {
                 curHp -= opponentStrength;
                 opponentHealth -= strength;
@@ -144,6 +146,7 @@ public abstract class Person extends Entity
         } else{
             action ="idle";
             animationDelay = 50;
+            //Idle is slower so longer animationDelay
         }
 
         Room r = (Room)getOneObjectAtOffset(0,-SPRITE_OFFSET,Room.class);
@@ -277,6 +280,8 @@ public abstract class Person extends Entity
             opponentHealth = opponent.getHealth();
             opponentStrength = opponent.getStrength();
             getWorld().addObject(healthBar, 0, 0);
+            
+            //When fighting, set dirChar to face the opponent
             int dx = opponent.getX() - getX();
             int dy = opponent.getY() - getY();
             if (Math.abs(dx) > Math.abs(dy)) {
@@ -336,9 +341,12 @@ public abstract class Person extends Entity
     }
 
     public void animate() {
+        //frames only change at intervals of animationDelay
         if (actCount % animationDelay != 0) {
             return;
         }
+        
+        //Preset animationLengths per action, and delay
         if (action.equals("walk")) {
             animationDelay = 7;
             animationLength = 12;
@@ -349,6 +357,8 @@ public abstract class Person extends Entity
         else if(action.equals("attack")){
             animationLength = 4;
         }
+        
+        //Attacking does not mean they are facing the direction of movement
         if(!action.equals("attack")){
             if (dir == 1 && movingVertical) {
                 dirChar = 'D';

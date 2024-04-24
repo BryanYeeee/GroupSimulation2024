@@ -65,7 +65,7 @@ public class Schedule
                 currentEvent = "JOB TIME";
                 Action.doJob(world);
     }
-    public void doroll(){
+    public void doRoll(){
                 world.updateEventDisplay("ROLL CALL");
                 currentEvent = "ROLL CALL";
                 Action.doRollCall(world);

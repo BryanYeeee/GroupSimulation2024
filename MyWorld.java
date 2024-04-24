@@ -55,7 +55,7 @@ public class MyWorld extends World
     {    
         // Create a new world with 1200x850 cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
-        setPaintOrder(BannerIcon.class,  Banner.class, Clock.class, EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, WallCover.class,Accessory.class, Person.class, Underglow.class, Tile.class, Room.class);
+        setPaintOrder(Item.class,BannerIcon.class,  Banner.class, Clock.class, EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, WallCover.class,Accessory.class, Person.class, Underglow.class, Tile.class, Room.class);
         pf = new PathFinder(this); // Initialize this first
         SimulationFont.initalizeFont();
         Sprite.init();
@@ -126,8 +126,23 @@ public class MyWorld extends World
         addObject(new WallCover("images/WallCover/SpawnCover.png"), 363, 79);
         addObject(new WallCover("images/WallCover/WoodworkCover.png"), 319, 600);
         addObject(new WallCover("images/WallCover/MetalworkCover.png"), 728, 601);
+        
+        /**
+         * DEMO
+         */
+        addObject(new Potion(),400, 299);
+        addObject(new Metal(),420, 299);
+        addObject(new Ladder(),440, 299);
+        addObject(new Sword(),460, 299);
+        addObject(new Keycard(),480, 299);
+        addObject(new Metal(),500, 299);
+        addObject(new Keycard(),360, 299);
+        addObject(new Wood(),380, 299);
     }
 
+    public void started(){
+        Greenfoot.setSpeed(50);
+    }
     public void debug() {
         for (Prisoner p : prisoners) {
             p.offsetPos = -20;

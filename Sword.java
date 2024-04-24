@@ -11,7 +11,7 @@ public class Sword extends Item
      */
     public Sword()
     {
-        super("sword");
+        super("screwdriver");
     }
 
     
