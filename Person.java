@@ -35,11 +35,13 @@ public abstract class Person extends Entity
     protected int opponentX;
     protected int opponentY;
     protected boolean inFight;
+
     // Person Stats
     protected int maxHp;
     protected int curHp;
     protected int strength;
     protected int intel;
+    protected int luck;
     protected boolean isDead;
     protected SuperStatBar healthBar;
 
@@ -62,6 +64,7 @@ public abstract class Person extends Entity
         maxHp = Greenfoot.getRandomNumber(25)+75;
         curHp = Greenfoot.getRandomNumber(10)+maxHp-10;
         strength = Greenfoot.getRandomNumber(5)+5;
+        luck = Greenfoot.getRandomNumber(4) + 1;
         intel = 40;
         if(Greenfoot.getRandomNumber(2)==0){
             skinTone = "black";
@@ -89,7 +92,7 @@ public abstract class Person extends Entity
                 addUnderglow();
             }
             isNew=false;
-
+            
         }
     }
 
@@ -136,11 +139,11 @@ public abstract class Person extends Entity
 
         if (!curPath.isEmpty()) {
             action ="walk";
-            animationDelay=7;
+            animationDelay = 7;
             move();
         } else{
             action ="idle";
-            animationDelay=50;
+            animationDelay = 50;
         }
 
         Room r = (Room)getOneObjectAtOffset(0,-SPRITE_OFFSET,Room.class);
@@ -168,15 +171,15 @@ public abstract class Person extends Entity
         if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
             Action.walkAround(this, true);
         }
-
+        
         if(curNode.getIndex() == STARTING_NODE_INDEX && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
             //getWorld().removeObject(this);
             curPath.clear();
             speed = 0;
         }
+
         if(!inFight && !isDead){
             animate();
-
         }
     }
 
@@ -185,9 +188,9 @@ public abstract class Person extends Entity
      */
     public void goToNode(int nodeIndex) {
         // if(isWalkingAround && !(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("FREE TIME") || ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("JOB TIME"))) {
-
+            
         // System.out.println(((MyWorld)getWorld()).getSchedule().getCurrentEvent());curPath.clear();
-        // isWalkingAround = false;
+            // isWalkingAround = false;
         // }
         if(MyWorld.pf.getNode(nodeIndex).hasPerson() || inFight || isDead) return; // If spot is already occupied or person is occupied
         if(!curPath.isEmpty()) { // If not starting from stationary, calculate the path starting from the last node in curPath
@@ -273,9 +276,7 @@ public abstract class Person extends Entity
             onGoingFights++;
             opponentHealth = opponent.getHealth();
             opponentStrength = opponent.getStrength();
-
             getWorld().addObject(healthBar, 0, 0);
-
             int dx = opponent.getX() - getX();
             int dy = opponent.getY() - getY();
             if (Math.abs(dx) > Math.abs(dy)) {
@@ -311,7 +312,7 @@ public abstract class Person extends Entity
         }
         //System.out.println("FIGHT: " +onGoingFights);
     }
-
+    
     public int getIndex() {
         return index;
     }
@@ -321,15 +322,15 @@ public abstract class Person extends Entity
         result.add(0);
         return result;
     }
-
+    
     public void setWalking(boolean walking) {
         isWalkingAround = walking;
     }
-
+    
     public boolean isWalking() {
         return isWalkingAround;
     }
-
+    
     public void addUnderglow(){
         getWorld().addObject(new Underglow(this), getX(), getY());
     }
@@ -341,11 +342,9 @@ public abstract class Person extends Entity
         if (action.equals("walk")) {
             animationDelay = 7;
             animationLength = 12;
-
         } else if (action.equals("idle")) {
             animationDelay = 50;
             animationLength = 2;
-
         }
         else if(action.equals("attack")){
             animationLength = 4;
@@ -364,7 +363,6 @@ public abstract class Person extends Entity
                 dirChar = 'D';
             }
         }
-
         imageIndex = (imageIndex + 1) % animationLength;
         String key = personType + "_" + sex + "_" + skinTone + "_" + action + "_" + dirChar + "_" + imageIndex;
         GreenfootImage currentImage = Sprite.getFrame(key);
@@ -394,7 +392,6 @@ public abstract class Person extends Entity
         if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute"))strengthAmount++;
         strength+=strengthAmount;
     }
-
     public void setStrength(int s) {
         strength = s;
     }
@@ -445,6 +442,14 @@ public abstract class Person extends Entity
 
     public int getStrength() {
         return strength;
+    }
+    
+    public int getIntel(){
+        return intel;
+    }
+    
+    public int getLuck(){
+        return luck;
     }
 
     public Node getCurNode() {
