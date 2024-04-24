@@ -20,12 +20,16 @@ comment5.target=void\ setAction(java.lang.String)
 comment6.params=item
 comment6.target=void\ giveItem(Item)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e00fa4a41c4bd85e504da1a66a6327927b1755cb
 comment7.params=
 comment7.target=boolean\ craftItem()
 comment7.text=\r\n\ This\ method\ will\ craft\ the\ next\ material\ item\ in\ heldItems\r\n\ \r\n\ @return\ boolean\ returns\ true\ if\ there\ are\ no\ more\ materials\ in\ heldItems\r\n
 comment8.params=
 comment8.target=java.util.ArrayList\ getItems()
 comment9.params=
+<<<<<<< HEAD
 comment9.target=java.util.ArrayList\ getAccessories()
 numComments=10
 =======
@@ -37,3 +41,7 @@ comment9.params=
 comment9.target=int\ getIndex()
 numComments=13
 >>>>>>> 5a4abf8534d9c7fb3662984a6a7f4acffb3198fb
+=======
+comment9.target=int\ getIndex()
+numComments=13
+>>>>>>> e00fa4a41c4bd85e504da1a66a6327927b1755cb

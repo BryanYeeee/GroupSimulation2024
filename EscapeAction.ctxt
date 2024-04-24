@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=EscapeAction
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ EscapeAction\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=w\ forkMC\ followers\ step
+comment1.target=boolean\ breakWall(MyWorld,\ MC,\ MC[],\ int)
+comment2.params=mcs\ chosenEscapes\ index
+comment2.target=MC[]\ filterMC(MC[],\ java.lang.String[],\ int)
+numComments=3

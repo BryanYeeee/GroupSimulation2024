@@ -7,22 +7,27 @@ import java.util.ArrayList;
  */
 public class Escape  
 {
+    private MyWorld world;
     private ArrayList<String> possibleEscapes = new ArrayList<>();
     private MC[] mcs;
     private Guard[] guards;
     
-    private String chosenEscape;
+    private String[] chosenEscapes;
+    private int[] escapeSteps;
 
+    private MC forkMC;
     /**
      * Constructor for objects of class Escape
      */
     public Escape(MyWorld w)
     {
+        world = w;
         mcs = w.getMainPrisoners();   
         guards = w.getGuards();
+        chosenEscapes = new String[4];
+        escapeSteps = new int[4];
         
         int totalStrength = 0;
-        MC forkMC = null;
         MC ladderMC = null;
         for(MC mc : mcs) {
             totalStrength+=mc.getStrength();
@@ -42,11 +47,18 @@ public class Escape
         // }
         if(forkMC != null) {
             possibleEscapes.add("Break Wall");
+            chosenEscapes[0] = "Break Wall";
+            chosenEscapes[1] = "Break Wall";
+            chosenEscapes[2] = "Break Wall";
+            chosenEscapes[3] = "Break Wall";
         }
     }
     
     public void act() {
-        
+        if(chosenEscapes[0].equals("Break Wall")) {
+            if(EscapeAction.breakWall(world, forkMC, 
+                EscapeAction.filterMC(mcs,chosenEscapes,0), escapeSteps[0])) escapeSteps[0]++;;
+        }
     }
 
 }
