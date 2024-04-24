@@ -12,17 +12,18 @@ public class StatusBar extends Actor
     // Background
     private GreenfootImage background;
 
-    // Colors
-    private Color bgColor = new Color (84,84,84);
-    private Color borderColor = Color.BLACK;
+    // Colors, 4th parameter = transparency from 0 (transparent) - 255 (opaque)
+    private Color bgColor = new Color(119, 136, 153, 200);
+    private Color borderColor = new Color(192, 192, 192);
     private Color transparentColor = new Color(0, 0, 0, 0);
-
+    private Color textColor = new Color(250, 249, 246); //Color.WHITE;
+    private Color boxColor = new Color(105, 105, 105);
+    
     // Visual values
     private int borderThickness = 8;
     private int lineThickness = 8;
     private int width = 1200;
     private int height = 175;
-    private int offset;
 
     // Get values from a method in the MC's themselves, For now will be preset
     private String[] names = new String[4];// = {"MC1", "MC2", "MC3", "MC4"};
@@ -49,13 +50,39 @@ public class StatusBar extends Actor
 
     // Tell me when to update status (after any value/stat change);
     private static boolean update = false;
-    int a = 0;
+    
+    // Array of MCs in the world
+    private MC[] MCs;
     public StatusBar(){
         redraw();
     }
 
     public void addedToWorld(World w){
         update = true;
+        // For character images, will only be done once as characters won't change
+        // Don't need to put in trackValues() method
+        MyWorld world = (MyWorld) getWorld();
+        MCs = world.getMainPrisoners();
+        int iteration = 0;
+        // Depending on specialty, have a different image for each MC
+        for(MC m : MCs){
+            if(m.getSpecialty().equals("Thief")){
+                // Need to create a class to hold this image with setImage()
+                // ImageHolder characterPhoto = new ImageHolder("thief");
+                // world.addObject(characterPhoto, x + (300 * iteration), y);
+            } else if (m.getSpecialty().equals("Brute")){
+                
+            } else if (m.getSpecialty().equals("Scientist")){
+                
+            } else if (m.getSpecialty().equals("Weapons Dealer")){
+                
+            } else if (m.getSpecialty().equals("Explosive Expert")){
+                
+            } else {
+                
+            }
+            iteration++;
+        }
     }    
 
     public void act()
@@ -76,37 +103,37 @@ public class StatusBar extends Actor
         // Loop through all 4 boxes in the status Bar
         for(int i = 0; i < 4; i++){
             // Character Images (TempBox for now)
-            TempBox characterBox = new TempBox(70, 80);
+            TempBox characterBox = new TempBox(70, 80, boxColor, borderColor, 3);
             getWorld().addObject(characterBox, 75 + (300 * i), 752);
 
             // Item Images (TempBox for now)
-            TempBox itemBox1 = new TempBox(50, 50);
-            TempBox itemBox2 = new TempBox(50, 50);
+            TempBox itemBox1 = new TempBox(50, 50, boxColor, borderColor, 3);
+            TempBox itemBox2 = new TempBox(50, 50, boxColor, borderColor, 3);
             getWorld().addObject(itemBox1, 170 + (300 * i), 780);
             getWorld().addObject(itemBox2, 245 + (300 * i), 780);
 
             // Names
-            displayNames[i] = new SuperTextBox(names[i], transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 100, 0, Color.BLACK); 
+            displayNames[i] = new SuperTextBox(names[i], transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 100, 0, Color.BLACK); 
             getWorld().addObject(displayNames[i], 75 + (300 * i), 695);
 
             // Character
-            displaySpecialties[i] = new SuperTextBox(specialties[i], transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 200, 0, Color.BLACK); 
+            displaySpecialties[i] = new SuperTextBox(specialties[i], transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 200, 0, Color.BLACK); 
             getWorld().addObject(displaySpecialties[i], 75 + (300 * i), 805);
 
             // HP
-            displayHPs[i] = new SuperTextBox("HP: " + currentHPs[i] + "/" + maxHPs[i], transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), false, 100, 0, Color.BLACK);
+            displayHPs[i] = new SuperTextBox("HP: " + currentHPs[i] + "/" + maxHPs[i], transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), false, 100, 0, Color.BLACK);
             getWorld().addObject(displayHPs[i], 189 + (300 * i), 695);
             
             // Int
-            displayInts[i] = new SuperTextBox("INT: " + intelligences[i], transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), false, 100, 0, Color.BLACK);
+            displayInts[i] = new SuperTextBox("INT: " + intelligences[i], transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), false, 100, 0, Color.BLACK);
             getWorld().addObject(displayInts[i], 187 + (300 * i), 710);
 
             // Str
-            displayStrs[i] = new SuperTextBox("STR: " + strs[i], transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), false, 100, 0, Color.BLACK);
+            displayStrs[i] = new SuperTextBox("STR: " + strs[i], transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), false, 100, 0, Color.BLACK);
             getWorld().addObject(displayStrs[i], 188 + (300 * i), 725);
             
             // Luck
-            displayLucks[i] = new SuperTextBox("Luck: " + lucks[i], transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), false, 100, 0, Color.BLACK);
+            displayLucks[i] = new SuperTextBox("Luck: " + lucks[i], transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), false, 100, 0, Color.BLACK);
             getWorld().addObject(displayLucks[i], 188 + (300 * i), 740);
             
 
@@ -114,7 +141,7 @@ public class StatusBar extends Actor
             MyWorld world = (MyWorld) getWorld();
             Schedule schedule = world.getSchedule();
             actions[i] = schedule.getCurrentEvent();
-            displayActions[i] = new SuperTextBox(actions[i], transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 200, 0, Color.BLACK);
+            displayActions[i] = new SuperTextBox(actions[i], transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 200, 0, Color.BLACK);
             getWorld().addObject(displayActions[i], 150 + (300 * i), 825);
             
         }
@@ -171,4 +198,5 @@ public class StatusBar extends Actor
             getWorld().removeObject(text);
         }
     }
+    
 }
