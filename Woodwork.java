@@ -42,8 +42,12 @@ public class Woodwork extends Room
         }
     }
     
+    
+    
     public boolean checkEffectCondition (Person p) { // If person is at its assigned room position
         //return p.getCurNode().getIndex() == p.getCurRoom().getPositionIndex(p, p.getRoomPosition());
         return true;
     }
+    
+    
 }

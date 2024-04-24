@@ -14,6 +14,7 @@ public class MC extends Prisoner
     private String name;
     private String specialty;
     private String currentAction;
+    private Item[] items = new Item[2];
     
     public MC (int i, MyWorld world, String jobTitle, String specialty) {
         super(i, jobTitle);
@@ -31,10 +32,7 @@ public class MC extends Prisoner
         }
         System.out.println(specialty + ": " + strength);
     }
-    /**
-     * Act - do whatever the MC wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+
     public void act()
     {
         super.act();
@@ -86,6 +84,10 @@ public class MC extends Prisoner
         return heldItems;
     }
     
+    public int getIndex(){
+        return index;
+    }
+    
     public ArrayList<Integer> getAccessories(){
         ArrayList<Integer> result = new ArrayList<>();
         if(specialty.equals("Scientist")){ 
@@ -104,4 +106,26 @@ public class MC extends Prisoner
         System.out.println(result);
         return result; 
     }
+    
+    public void addItem(Item item) {
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] == null) {  // Check if the slot is empty
+                items[i] = item;  
+                System.out.println("Item added to slot " + i);
+                return;  
+            }
+        }
+        System.out.println("Inventory is full. Cannot add item.");
+    }
+    
+    public int getItemCount() {
+        int count = 0;
+        for (Item item : items) {
+            if (item != null) {
+                count++;  // Increment count for each non-null item found
+            }
+        }
+        return count;  // Return the total count of items
+    }
+    
 }

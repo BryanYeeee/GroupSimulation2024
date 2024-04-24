@@ -13,10 +13,15 @@ comment12.target=Schedule\ getSchedule()
 comment13.params=
 comment13.target=greenfoot.Font\ getFont()
 comment14.params=
+<<<<<<< HEAD
 comment14.target=void\ doFree()
+=======
+comment14.target=void\ doRoll()
+>>>>>>> 5a4abf8534d9c7fb3662984a6a7f4acffb3198fb
 comment15.params=
 comment15.target=void\ doJob()
 comment16.params=
+<<<<<<< HEAD
 comment16.target=void\ doRoll()
 comment17.params=
 comment17.target=void\ doNight()
@@ -28,12 +33,23 @@ comment2.params=
 comment2.target=void\ debug()
 comment20.params=
 comment20.target=void\ zSort()
+=======
+
+comment16.target=int\ getWidth()
+comment17.params=
+comment17.target=int\ getHeight()
+comment18.params=
+comment18.target=void\ zSort()
+comment18.text=\r\n\ zSort\ from\ Vehicle\ Simulator\ but\ modified\ slightly\r\n
+comment2.params=
+comment2.target=void\ started()
+>>>>>>> 5a4abf8534d9c7fb3662984a6a7f4acffb3198fb
 comment3.params=
-comment3.target=void\ act()
-comment4.params=event
-comment4.target=void\ updateEventDisplay(java.lang.String)
-comment5.params=
-comment5.target=boolean\ doEscape()
+comment3.target=void\ debug()
+comment4.params=
+comment4.target=void\ act()
+comment5.params=event
+comment5.target=void\ updateEventDisplay(java.lang.String)
 comment6.params=
 comment6.target=boolean\ isEscapeTime()
 comment7.params=
@@ -41,5 +57,10 @@ comment7.target=void\ initalizeFont()
 comment8.params=
 comment8.target=Person[]\ getPeople()
 comment9.params=
+<<<<<<< HEAD
 comment9.target=MC[]\ getMainPrisoners()
 numComments=21
+=======
+comment9.target=Prisoner[]\ getPrisoners()
+numComments=18
+>>>>>>> 5a4abf8534d9c7fb3662984a6a7f4acffb3198fb
