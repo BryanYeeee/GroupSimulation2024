@@ -67,12 +67,17 @@ dependency18.from=MyWorld
 dependency18.to=Entity
 dependency18.type=UsesDependency
 dependency19.from=MyWorld
+<<<<<<< HEAD
 dependency19.to=BannerIcon
+=======
+dependency19.to=Alarm
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 dependency19.type=UsesDependency
 dependency2.from=MyWorld
 dependency2.to=Prisoner
 dependency2.type=UsesDependency
 dependency20.from=MyWorld
+<<<<<<< HEAD
 dependency20.to=Banner
 dependency20.type=UsesDependency
 dependency21.from=MyWorld
@@ -101,11 +106,42 @@ dependency28.to=Person
 dependency28.type=UsesDependency
 dependency29.from=Person
 dependency29.to=Node
+=======
+dependency20.to=NightTime
+dependency20.type=UsesDependency
+dependency21.from=MyWorld
+dependency21.to=SuperStatBar
+dependency21.type=UsesDependency
+dependency22.from=MyWorld
+dependency22.to=Accessory
+dependency22.type=UsesDependency
+dependency23.from=MyWorld
+dependency23.to=Underglow
+dependency23.type=UsesDependency
+dependency24.from=MyWorld
+dependency24.to=Tile
+dependency24.type=UsesDependency
+dependency25.from=MyWorld
+dependency25.to=Room
+dependency25.type=UsesDependency
+dependency26.from=MyWorld
+dependency26.to=Sprite
+dependency26.type=UsesDependency
+dependency27.from=Accessory
+dependency27.to=Person
+dependency27.type=UsesDependency
+dependency28.from=Person
+dependency28.to=Node
+dependency28.type=UsesDependency
+dependency29.from=Person
+dependency29.to=Room
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 dependency29.type=UsesDependency
 dependency3.from=MyWorld
 dependency3.to=EventDisplay
 dependency3.type=UsesDependency
 dependency30.from=Person
+<<<<<<< HEAD
 dependency30.to=Room
 dependency30.type=UsesDependency
 dependency31.from=Person
@@ -119,6 +155,21 @@ dependency33.to=MC
 dependency33.type=UsesDependency
 dependency34.from=Person
 dependency34.to=MyWorld
+=======
+dependency30.to=SuperStatBar
+dependency30.type=UsesDependency
+dependency31.from=Person
+dependency31.to=Accessory
+dependency31.type=UsesDependency
+dependency32.from=Person
+dependency32.to=MC
+dependency32.type=UsesDependency
+dependency33.from=Person
+dependency33.to=MyWorld
+dependency33.type=UsesDependency
+dependency34.from=Person
+dependency34.to=Underglow
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 dependency34.type=UsesDependency
 dependency35.from=Person
 dependency35.to=Underglow
@@ -126,6 +177,7 @@ dependency35.type=UsesDependency
 dependency36.from=Person
 dependency36.to=Action
 dependency36.type=UsesDependency
+<<<<<<< HEAD
 dependency37.from=Person
 dependency37.to=Sprite
 dependency37.type=UsesDependency
@@ -134,10 +186,21 @@ dependency38.to=MC
 dependency38.type=UsesDependency
 dependency39.from=MC
 dependency39.to=MyWorld
+=======
+dependency37.from=Prisoner
+dependency37.to=MC
+dependency37.type=UsesDependency
+dependency38.from=MC
+dependency38.to=MyWorld
+dependency38.type=UsesDependency
+dependency39.from=MC
+dependency39.to=Item
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 dependency39.type=UsesDependency
 dependency4.from=MyWorld
 dependency4.to=Schedule
 dependency4.type=UsesDependency
+<<<<<<< HEAD
 dependency40.from=MC
 dependency40.to=Item
 dependency40.type=UsesDependency
@@ -167,10 +230,42 @@ dependency48.to=MyWorld
 dependency48.type=UsesDependency
 dependency49.from=Sword
 dependency49.to=MC
+=======
+dependency40.from=Item
+dependency40.to=MyWorld
+dependency40.type=UsesDependency
+dependency41.from=Item
+dependency41.to=MC
+dependency41.type=UsesDependency
+dependency42.from=Metal
+dependency42.to=MyWorld
+dependency42.type=UsesDependency
+dependency43.from=Metal
+dependency43.to=MC
+dependency43.type=UsesDependency
+dependency44.from=Metal
+dependency44.to=Sword
+dependency44.type=UsesDependency
+dependency45.from=Sword
+dependency45.to=MyWorld
+dependency45.type=UsesDependency
+dependency46.from=Sword
+dependency46.to=MC
+dependency46.type=UsesDependency
+dependency47.from=Wood
+dependency47.to=MyWorld
+dependency47.type=UsesDependency
+dependency48.from=Wood
+dependency48.to=MC
+dependency48.type=UsesDependency
+dependency49.from=Wood
+dependency49.to=Ladder
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 dependency49.type=UsesDependency
 dependency5.from=MyWorld
 dependency5.to=DiningHall
 dependency5.type=UsesDependency
+<<<<<<< HEAD
 dependency50.from=Wood
 dependency50.to=MyWorld
 dependency50.type=UsesDependency
@@ -200,11 +295,43 @@ dependency58.to=Prisoner
 dependency58.type=UsesDependency
 dependency59.from=Room
 dependency59.to=MyWorld
+=======
+dependency50.from=Concoction
+dependency50.to=MyWorld
+dependency50.type=UsesDependency
+dependency51.from=Concoction
+dependency51.to=MC
+dependency51.type=UsesDependency
+dependency52.from=Ladder
+dependency52.to=MyWorld
+dependency52.type=UsesDependency
+dependency53.from=Ladder
+dependency53.to=MC
+dependency53.type=UsesDependency
+dependency54.from=Room
+dependency54.to=Person
+dependency54.type=UsesDependency
+dependency55.from=Room
+dependency55.to=Node
+dependency55.type=UsesDependency
+dependency56.from=Room
+dependency56.to=Guard
+dependency56.type=UsesDependency
+dependency57.from=Room
+dependency57.to=Prisoner
+dependency57.type=UsesDependency
+dependency58.from=Room
+dependency58.to=MyWorld
+dependency58.type=UsesDependency
+dependency59.from=RollCall
+dependency59.to=Person
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 dependency59.type=UsesDependency
 dependency6.from=MyWorld
 dependency6.to=RollCall
 dependency6.type=UsesDependency
 dependency60.from=RollCall
+<<<<<<< HEAD
 dependency60.to=Person
 dependency60.type=UsesDependency
 dependency61.from=RollCall
@@ -233,10 +360,41 @@ dependency68.to=Person
 dependency68.type=UsesDependency
 dependency69.from=JailCell
 dependency69.to=MC
+=======
+dependency60.to=Prisoner
+dependency60.type=UsesDependency
+dependency61.from=RollCall
+dependency61.to=Guard
+dependency61.type=UsesDependency
+dependency62.from=Metalwork
+dependency62.to=Person
+dependency62.type=UsesDependency
+dependency63.from=Metalwork
+dependency63.to=MC
+dependency63.type=UsesDependency
+dependency64.from=Metalwork
+dependency64.to=Metal
+dependency64.type=UsesDependency
+dependency65.from=Gym
+dependency65.to=Person
+dependency65.type=UsesDependency
+dependency66.from=Woodwork
+dependency66.to=Person
+dependency66.type=UsesDependency
+dependency67.from=DiningHall
+dependency67.to=Person
+dependency67.type=UsesDependency
+dependency68.from=DiningHall
+dependency68.to=MyWorld
+dependency68.type=UsesDependency
+dependency69.from=DiningHall
+dependency69.to=Prisoner
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 dependency69.type=UsesDependency
 dependency7.from=MyWorld
 dependency7.to=Gym
 dependency7.type=UsesDependency
+<<<<<<< HEAD
 dependency70.from=JailCell
 dependency70.to=MyWorld
 dependency70.type=UsesDependency
@@ -266,11 +424,43 @@ dependency78.to=BannerIcon
 dependency78.type=UsesDependency
 dependency79.from=Action
 dependency79.to=MyWorld
+=======
+dependency70.from=Library
+dependency70.to=Person
+dependency70.type=UsesDependency
+dependency71.from=Tile
+dependency71.to=MyWorld
+dependency71.type=UsesDependency
+dependency72.from=Banner
+dependency72.to=BannerIcon
+dependency72.type=UsesDependency
+dependency73.from=Action
+dependency73.to=MyWorld
+dependency73.type=UsesDependency
+dependency74.from=Action
+dependency74.to=Person
+dependency74.type=UsesDependency
+dependency75.from=Action
+dependency75.to=Node
+dependency75.type=UsesDependency
+dependency76.from=Action
+dependency76.to=MC
+dependency76.type=UsesDependency
+dependency77.from=Action
+dependency77.to=DiningHall
+dependency77.type=UsesDependency
+dependency78.from=Action
+dependency78.to=Gym
+dependency78.type=UsesDependency
+dependency79.from=Action
+dependency79.to=Guard
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 dependency79.type=UsesDependency
 dependency8.from=MyWorld
 dependency8.to=Library
 dependency8.type=UsesDependency
 dependency80.from=Action
+<<<<<<< HEAD
 dependency80.to=Person
 dependency80.type=UsesDependency
 dependency81.from=Action
@@ -299,10 +489,41 @@ dependency88.to=Woodwork
 dependency88.type=UsesDependency
 dependency89.from=Action
 dependency89.to=Metalwork
+=======
+dependency80.to=Prisoner
+dependency80.type=UsesDependency
+dependency81.from=Action
+dependency81.to=Library
+dependency81.type=UsesDependency
+dependency82.from=Action
+dependency82.to=Woodwork
+dependency82.type=UsesDependency
+dependency83.from=Action
+dependency83.to=Metalwork
+dependency83.type=UsesDependency
+dependency84.from=SoundManager
+dependency84.to=Sound
+dependency84.type=UsesDependency
+dependency85.from=Escape
+dependency85.to=MyWorld
+dependency85.type=UsesDependency
+dependency86.from=Escape
+dependency86.to=MC
+dependency86.type=UsesDependency
+dependency87.from=PathFinder
+dependency87.to=MyWorld
+dependency87.type=UsesDependency
+dependency88.from=PathFinder
+dependency88.to=Node
+dependency88.type=UsesDependency
+dependency89.from=PathFinder
+dependency89.to=Tile
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 dependency89.type=UsesDependency
 dependency9.from=MyWorld
 dependency9.to=Woodwork
 dependency9.type=UsesDependency
+<<<<<<< HEAD
 dependency90.from=SoundManager
 dependency90.to=Sound
 dependency90.type=UsesDependency
@@ -339,6 +560,41 @@ editor.fx.0.x=1528
 editor.fx.0.y=-648
 height=1056
 package.numDependencies=107
+=======
+dependency90.from=PathFinder
+dependency90.to=Person
+dependency90.type=UsesDependency
+dependency91.from=Schedule
+dependency91.to=MyWorld
+dependency91.type=UsesDependency
+dependency92.from=Schedule
+dependency92.to=NightTime
+dependency92.type=UsesDependency
+dependency93.from=Schedule
+dependency93.to=MC
+dependency93.type=UsesDependency
+dependency94.from=Schedule
+dependency94.to=Person
+dependency94.type=UsesDependency
+dependency95.from=Schedule
+dependency95.to=Prisoner
+dependency95.type=UsesDependency
+dependency96.from=Schedule
+dependency96.to=Announcement
+dependency96.type=UsesDependency
+dependency97.from=Schedule
+dependency97.to=Dialogue
+dependency97.type=UsesDependency
+dependency98.from=Schedule
+dependency98.to=Action
+dependency98.type=UsesDependency
+editor.fx.0.height=1048
+editor.fx.0.width=1936
+editor.fx.0.x=-8
+editor.fx.0.y=-8
+height=1048
+package.numDependencies=98
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 package.numTargets=43
 project.charset=UTF-8
 publish.hasSource=false
@@ -353,7 +609,11 @@ readme.name=@README
 readme.width=49
 readme.x=10
 readme.y=10
+<<<<<<< HEAD
 simulation.speed=56
+=======
+simulation.speed=49
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 target1.height=70
 target1.name=Entity
 target1.showInterface=false
@@ -530,7 +790,11 @@ target31.width=120
 target31.x=0
 target31.y=0
 target32.height=70
+<<<<<<< HEAD
 target32.name=PathFinder
+=======
+target32.name=Concoction
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 target32.showInterface=false
 target32.type=ClassTarget
 target32.width=120
@@ -544,28 +808,44 @@ target33.width=120
 target33.x=0
 target33.y=0
 target34.height=70
+<<<<<<< HEAD
 target34.name=JailCell
+=======
+target34.name=Ladder
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 target34.showInterface=false
 target34.type=ClassTarget
 target34.width=120
 target34.x=0
 target34.y=0
 target35.height=70
+<<<<<<< HEAD
 target35.name=Ladder
+=======
+target35.name=DiningHall
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 target35.showInterface=false
 target35.type=ClassTarget
 target35.width=120
 target35.x=0
 target35.y=0
 target36.height=70
+<<<<<<< HEAD
 target36.name=DiningHall
+=======
+target36.name=Schedule
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 target36.showInterface=false
 target36.type=ClassTarget
 target36.width=120
 target36.x=0
 target36.y=0
 target37.height=70
+<<<<<<< HEAD
 target37.name=Schedule
+=======
+target37.name=Alarm
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 target37.showInterface=false
 target37.type=ClassTarget
 target37.width=120
@@ -655,7 +935,11 @@ target9.type=ClassTarget
 target9.width=120
 target9.x=0
 target9.y=0
+<<<<<<< HEAD
 version=3.0.0
+=======
+version=3.1.0
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 width=1936
 world.lastInstantiated=MyWorld
 xPosition=1528

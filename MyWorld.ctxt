@@ -17,9 +17,18 @@ comment14.target=void\ doJob()
 comment15.params=
 comment15.target=void\ doroll()
 comment16.params=
+<<<<<<< HEAD
 comment16.target=void\ doNight()
 comment17.params=
 comment17.target=void\ zSort()
+=======
+comment16.target=int\ getWidth()
+comment17.params=
+comment17.target=int\ getHeight()
+comment18.params=
+comment18.target=void\ zSort()
+comment18.text=\r\n\ zSort\ from\ Vehicle\ Simulator\ but\ modified\ slightly\r\n
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae
 comment2.params=
 comment2.target=void\ debug()
 comment3.params=
@@ -35,5 +44,10 @@ comment7.target=Person[]\ getPeople()
 comment8.params=
 comment8.target=MC[]\ getMainPrisoners()
 comment9.params=
+<<<<<<< HEAD
 comment9.target=Prisoner[]\ getPrisoners()
 numComments=18
+=======
+comment9.target=Guard[]\ getGuards()
+numComments=19
+>>>>>>> 9259a7182bc90066f5e66725346e468fff3ca3ae

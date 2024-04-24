@@ -26,35 +26,56 @@ public class Sprite
     }
 
     public static void init(){
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i<2; i++){
             if(i==0){
-                skinTone = "black";   
+                personType = "guard";   
             }
             else{
-                skinTone = "white";
-            }
-            for(int dirIndex = 0; dirIndex < 4; dirIndex++){ 
-                if(dirIndex == 0){
-                    dirChar = 'D';
+                personType = "inmate";
+            } 
+
+            for(int j = 0; j < 2; j++){
+                if(j==0){
+                    skinTone = "black";   
                 }
-                else if(dirIndex == 1){
-                    dirChar = 'L';
+                else{
+                    skinTone = "white";
                 }
-                else if(dirIndex == 2){
-                    dirChar = 'R';
-                }
-                else if(dirIndex == 3){
-                    dirChar = 'U';
-                }
-                for(int imageIndex = 0; imageIndex < 2; imageIndex++){
-                    action = "idle";
-                    String key = personType + "_" + sex + "_" + skinTone + "_" + action + "_" + dirChar + "_" + imageIndex;
-                    frames.put(key, new GreenfootImage("images/" + personType + "/" + sex + "_" + skinTone + "/" + action + "/" + dirChar + imageIndex + ".png"));
-                }
-                for(int imageIndex = 0; imageIndex < 12; imageIndex++){
-                    action = "walk";
-                    String key = personType + "_" + sex + "_" + skinTone + "_" + action + "_" + dirChar + "_" + imageIndex;
-                    frames.put(key, new GreenfootImage("images/" + personType + "/" + sex + "_" + skinTone + "/" + action + "/" + dirChar + imageIndex + ".png"));
+                for(int dirIndex = 0; dirIndex < 4; dirIndex++){ 
+                    if(dirIndex == 0){
+                        dirChar = 'D';
+                    }
+                    else if(dirIndex == 1){
+                        dirChar = 'L';
+                    }
+                    else if(dirIndex == 2){
+                        dirChar = 'R';
+                    }
+                    else if(dirIndex == 3){
+                        dirChar = 'U';
+                    }
+                    for(int imageIndex = 0; imageIndex < 3; imageIndex++){
+                        action = "idle";
+                        String key = personType + "_" + sex + "_" + skinTone + "_" + action + "_" + dirChar + "_" + imageIndex;
+                        frames.put(key, new GreenfootImage("images/" + personType + "/" + sex + "_" + skinTone + "/" + action + "/" + dirChar + imageIndex + ".png"));
+                    }
+                    for(int imageIndex = 0; imageIndex < 12; imageIndex++){
+                        action = "walk";
+                        String key = personType + "_" + sex + "_" + skinTone + "_" + action + "_" + dirChar + "_" + imageIndex;
+                        frames.put(key, new GreenfootImage("images/" + personType + "/" + sex + "_" + skinTone + "/" + action + "/" + dirChar + imageIndex + ".png"));
+                    }     
+                    for(int imageIndex = 0; imageIndex < 4; imageIndex++){
+                        action = "attack";
+                        String key = personType + "_" + sex + "_" + skinTone + "_" + action + "_" + dirChar + "_" + imageIndex;
+                        frames.put(key, new GreenfootImage("images/" + personType + "/" + sex + "_" + skinTone + "/" + action + "/" + dirChar + imageIndex + ".png"));
+                    }
+                    if(dirChar == 'L' || dirChar == 'R'){
+                        for(int imageIndex = 0; imageIndex < 2; imageIndex++){
+                            action="sleep";
+                            String key = personType + "_" + sex + "_" + skinTone + "_" + action + "_" + dirChar + "_" + imageIndex;
+                            frames.put(key, new GreenfootImage("images/" + personType + "/" + sex + "_" + skinTone + "/" + action + "/" + dirChar + imageIndex + ".png"));
+                        }
+                    }
                 }
             }
         }

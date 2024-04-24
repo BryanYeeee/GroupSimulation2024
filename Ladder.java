@@ -15,8 +15,6 @@ public class Ladder extends Item
         isMaterial = false;
     }
 
-    
     public void useItem(MyWorld w, MC p) {
-        
     }
 }
