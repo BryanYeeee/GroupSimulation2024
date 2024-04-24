@@ -22,6 +22,7 @@ public abstract class Item extends SuperSmoothMover
     protected double deltaY;
     protected double hoverSpeed=0.51;
     protected double speed=0;
+    protected boolean isMaterial;
     protected String itemName;
     protected GreenfootImage image;
     protected MC origin;
@@ -75,6 +76,10 @@ public abstract class Item extends SuperSmoothMover
             }
         }
         actCount++;
+    }
+    
+    public boolean isMaterial() {
+        return isMaterial;
     }
 
     public void setSize(int size){

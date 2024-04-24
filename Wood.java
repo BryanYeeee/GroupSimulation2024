@@ -12,10 +12,10 @@ public class Wood extends Item
     public Wood()
     {
         super("wood");
+        isMaterial = true;
     }
 
     public void useItem(MyWorld w, MC p) {
         p.giveItem(new Ladder());
-        p.removeItem(this);
     }
 }

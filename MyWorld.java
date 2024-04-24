@@ -44,9 +44,17 @@ public class MyWorld extends World
     private Library library;
     private Woodwork woodwork;
     private Metalwork metalwork;
+    private JailCell cell1;
+    private JailCell cell2;
+    
     private StatusBar statBar;
 
     private int actCount;
+        
+    private Escape escape;
+    private boolean escapeTime;
+    private int escapingMcs;
+
 
     /**
      * Constructor for objects of class MyWorld.
@@ -91,7 +99,10 @@ public class MyWorld extends World
             people[i + prisonerCount + 4] = guards[i];
             addObject(guards[i], 0, 0);
         }
-
+        // Test prisoner
+        g = new Prisoner(17);
+        addObject(g,0,0);
+        
         // Initialize schedule and GUI
         schedule = new Schedule(this);
         addObject(new Clock("7:00"), 68, 50);
@@ -118,7 +129,12 @@ public class MyWorld extends World
 
         metalwork = new Metalwork(new int[]{122, 121}, new int[]{123, 153});
         addObject(metalwork, 728, 598);
-
+        
+        cell1 = new JailCell(new int[]{132,134}, new int[]{95,125},1);
+        addObject(cell1, 469, 583);
+        cell2 = new JailCell(new int[]{135,137}, new int[]{95,125},2);
+        addObject(cell2, 591, 583);
+        
         // Add the wall covers to the world
         addObject(new WallCover("images/WallCover/cover1.png"), 317, 323);
         addObject(new WallCover("images/WallCover/cover2.png"), 409, 299);
@@ -158,7 +174,38 @@ public class MyWorld extends World
     public void updateEventDisplay(String event) {
         eventDisplay.update(event);
     }
+    
+    public boolean doEscape() {
+        escapingMcs++;
+        if (escapingMcs == 4) { // All prisoners are ready to escape
+            escape = new Escape(this);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    private void initalizeFont(){
+        File f = new File("VT323-Regular.ttf");
+        try {
+            FileInputStream in = new FileInputStream(f);
+            Font dynamicFont, dynamicFont32;
 
+            dynamicFont = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(f));
+            dynamicFont32 = dynamicFont.deriveFont(26f);
+
+            java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(dynamicFont32);
+            pixelFont = new greenfoot.Font(dynamicFont32.getName(), dynamicFont32.getStyle() % 2 == 1, dynamicFont32.getStyle() / 2 == 1, dynamicFont32.getSize());
+            in.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public Person[] getPeople() {
         return people;
     }
