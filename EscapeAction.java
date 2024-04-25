@@ -7,6 +7,7 @@
 public class EscapeAction extends Action 
 {
     private final static int BREAK_WALL_NODE = 71;
+    private final static int BREAK_WALL_ESCAPE_NODE = 138;
     
     private static int[] startActs = new int[4];
     
@@ -19,6 +20,19 @@ public class EscapeAction extends Action
                     startActs[forkMC.getIndex()] = forkMC.getActCount();
                 }
                 break;
+            case 1:
+                if(w.getBreakable(0).isBroken()) return true;
+                if(!w.getBreakable(0).isBreaking()) {
+                    forkMC.setDirection(-1);
+                    forkMC.setMovingVertical(true);
+                    w.getBreakable(0).beginBreak();
+                }
+                break;
+            case 2:
+                if(!forkMC.isMoving()) {
+                    forkMC.goToNode(BREAK_WALL_ESCAPE_NODE);
+                }
+
         }
         return false;
     }

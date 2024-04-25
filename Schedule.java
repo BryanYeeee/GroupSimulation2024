@@ -18,10 +18,10 @@ public class Schedule
     private MyWorld world;
     {
         messageTimings = new HashMap<>();
-        // // Beginning roll call
-        // messageTimings.put(0, "ATTENTION ALL INMATES,");
-        // messageTimings.put(120, "IT IS 730 HOURS.");
-        // messageTimings.put(240, "PROCEED TO THE MAIN HALL FOR ROLL CALL.");
+        // Beginning roll call
+        messageTimings.put(0, "ATTENTION ALL INMATES,");
+        messageTimings.put(120, "IT IS 730 HOURS.");
+        messageTimings.put(240, "PROCEED TO THE MAIN HALL FOR ROLL CALL.");
         // // Breakfast
         // messageTimings.put(10*60, "IT IS 930 HOURS.");
         // messageTimings.put(820, "PROCEED TO THE DINING ROOM FOR BREAKFAST");
@@ -79,10 +79,10 @@ public class Schedule
     
     public void act()
     {
-        if(actCount==10) {
-           actCount=135*60;
-           world.getMainPrisoners()[0].giveItem(new Fork());
-        }
+        // if(actCount==10) {
+           // actCount=135*60;
+           // world.getMainPrisoners()[0].giveItem(new Fork());
+        // }
         // if(actCount==20*60) {
         // }
         // actCount++;

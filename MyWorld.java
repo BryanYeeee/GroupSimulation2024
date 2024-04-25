@@ -47,6 +47,8 @@ public class MyWorld extends World
     private JailCell cell1;
     private JailCell cell2;
     
+    private Breakable[] breakables;
+    
     private StatusBar statBar;
 
     private int actCount;
@@ -63,11 +65,17 @@ public class MyWorld extends World
     {    
         // Create a new world with 1200x850 cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
-        setPaintOrder(Item.class,BannerIcon.class,  Banner.class, Clock.class, EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, WallCover.class,Accessory.class, Person.class, Underglow.class, Tile.class, Room.class);
+        setPaintOrder(Item.class, BannerIcon.class,  Banner.class, Clock.class, 
+        EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, 
+        WallCover.class, Accessory.class, Person.class, Underglow.class, Tile.class, 
+        Breakable.class, Room.class);
+        
         pf = new PathFinder(this); // Initialize this first
         SimulationFont.initalizeFont();
         Sprite.init();
-        setBackground(backgroundImg);
+        
+        //TEMPP
+        //setBackground(backgroundImg);
 
         // Initialize the people in the prison (MCs, prisoners, guards)
         prisonerCount = 12;
@@ -143,6 +151,12 @@ public class MyWorld extends World
         addObject(new WallCover("images/WallCover/WoodworkCover.png"), 319, 600);
         addObject(new WallCover("images/WallCover/MetalworkCover.png"), 728, 601);
         
+        // Breakables
+        breakables = new Breakable[3];
+        breakables[0] = new Breakable("images/Breakable/RollCallWall.png",100, 100);
+        addObject(breakables[0], 558, 188);
+        
+        
         /**
          * DEMO
          */
@@ -193,6 +207,10 @@ public class MyWorld extends World
     
     public boolean isEscapeTime() {
         return escapeTime;
+    }
+    
+    public Breakable getBreakable(int index) {
+        return breakables[index];
     }
     
     private void initalizeFont(){
