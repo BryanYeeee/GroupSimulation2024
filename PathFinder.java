@@ -67,7 +67,9 @@ public class PathFinder
                           "123 713 603","124 744 603",
             // Janitor
             // MC Cells (connected to node 36 38):
-            "132 438 569","133 469 569","134 500 569","135 559 569","136 591 569","137 621 569"
+            "132 438 569","133 469 569","134 500 569","135 559 569","136 591 569","137 621 569",
+            // Escape
+            "138 560 0"
         };
         String[] nodeConnections = new String[] {
             // Hallway:
@@ -120,7 +122,9 @@ public class PathFinder
                      "123 119","124 120",
             // Janitor
             // MC Cells (connected to node 36 38):
-            "132 133","133 134","133 36","135 136","136 137","136 38"
+            "132 133","133 134","133 36","135 136","136 137","136 38",
+            // Escape
+            "138 71"
         };
                
         nodes = new Node[nodeConfig.length]; 

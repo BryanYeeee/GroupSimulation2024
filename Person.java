@@ -148,7 +148,14 @@ public abstract class Person extends Entity
             animationDelay = 50;
             //Idle is slower so longer animationDelay
         }
-
+        
+        if(!inFight && !isDead){
+            animate();
+        }
+        
+        // If currently escaping, don't do additional effects, like rooms or free roam
+        if(((MyWorld)getWorld()).isEscapeTime()) return;
+        
         Room r = (Room)getOneObjectAtOffset(0,-SPRITE_OFFSET,Room.class);
         if (curRoom != r) { // Changed current room
             if (curRoom != null) { // Leaving a room
@@ -179,10 +186,6 @@ public abstract class Person extends Entity
             //getWorld().removeObject(this);
             curPath.clear();
             speed = 0;
-        }
-
-        if(!inFight && !isDead){
-            animate();
         }
     }
 
@@ -392,15 +395,18 @@ public abstract class Person extends Entity
         curHp+=healAmount;
         if (curHp > maxHp) curHp = maxHp;
         healthBar.update(curHp);
+        if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
     public void addIntel(int intelAmount) {
         intel+=intelAmount;
+        if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
     public void addStrength(int strengthAmount) {
         if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute") && actCount % 720 == 0)strengthAmount++;
         strength+=strengthAmount;
+        if(this instanceof MC)  StatusBar.setUpdate(true);
     }
     public void setStrength(int s) {
         strength = s;
