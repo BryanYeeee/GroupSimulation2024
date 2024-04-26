@@ -15,7 +15,6 @@ public class Escape
     private String[] chosenEscapes;
     private int[] escapeSteps;
 
-    private MC forkMC;
     /**
      * Constructor for objects of class Escape
      */
@@ -28,37 +27,49 @@ public class Escape
         escapeSteps = new int[4];
         
         int totalStrength = 0;
-        MC ladderMC = null;
+        MC strongestMC = null, forkMC = null;
         for(MC mc : mcs) {
             totalStrength+=mc.getStrength();
+            if(!mc.getSpecialty().equals("Thief") && strongestMC == null || strongestMC.getStrength() < mc.getStrength()) {
+                strongestMC = mc;
+            }
             for(Item i : mc.getItems()) {
                 if(i instanceof Fork) {
                     forkMC = mc;
-                } else if(i instanceof Ladder) {
-                    ladderMC = mc;
                 }
             }
         }
-        // if(totalStrength >= 70) {
-            // possibleEscapes.add("Beat Cops");
-        // }
         // if(totalStrength >= 90) {
             // possibleEscapes.add("Beat Cops");
         // }
+            chosenEscapes[1] = "?Break Wall";
+            chosenEscapes[0] = "?Break Wall";
+            chosenEscapes[2] = "?Break Wall";
+            chosenEscapes[3] = "?Break Wall";
+        if(totalStrength >= 70 || true /*temp*/) {
+            possibleEscapes.add("Car");
+            chosenEscapes[strongestMC.getIndex()] = "Car";
+        }
         if(forkMC != null) {
             possibleEscapes.add("Break Wall");
-            chosenEscapes[0] = "Break Wall";
-            chosenEscapes[1] = "Break Wall";
-            chosenEscapes[2] = "Break Wall";
-            chosenEscapes[3] = "Break Wall";
+            chosenEscapes[forkMC.getIndex()] = "Break Wall";
         }
     }
     
     public void act() {
-        if(chosenEscapes[0].equals("Break Wall")) {
-            if(EscapeAction.breakWall(world, forkMC, 
-                EscapeAction.filterMC(mcs,chosenEscapes,0), escapeSteps[0])) escapeSteps[0]++;;
+        for(int i = 0; i < 4; i++) {
+            if(chosenEscapes[i].charAt(0) == '?') continue; // Following another MC's escape method
+            switch(chosenEscapes[i]) {
+                case "Break Wall":
+                    if(EscapeAction.breakWall(world, mcs[i], EscapeAction.filterMC(mcs,chosenEscapes,i), escapeSteps[i])) escapeSteps[i]++;
+                    break;
+                case "Car":
+                    if(EscapeAction.driveCar(world, mcs[i], EscapeAction.filterMC(mcs,chosenEscapes,i), escapeSteps[i])) escapeSteps[i]++;
+                    break;
+            }
         }
+            if(chosenEscapes[0].equals("Break Wall")) {
+            }
     }
 
 }

@@ -250,6 +250,9 @@ public class Action
         for (Person p : getPeople) {
             Action.goToLightsOut(w,p);
         }
+        Guard keycardGuard = new Guard(18);
+        w.addObject(keycardGuard, 0, 0);
+        keycardGuard.goToNode(110);
     }
     public static void goToLightsOut(MyWorld w, Person p) {
         if (p instanceof Prisoner && !(p instanceof MC)) {

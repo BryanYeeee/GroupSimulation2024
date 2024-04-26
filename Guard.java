@@ -18,14 +18,6 @@ public class Guard extends Person
     public void act() {
         super.act();
         if(((MyWorld)getWorld()).isEscapeTime()) {
-            if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
-                Action.walkAround(this, false);
-            }
-    
-            if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
-                Action.walkAround(this, true);
-            }
-            
             // Fight intersecting MCs
             if (!inFight && !isDead) {
                 MC mc = (MC)getOneIntersectingObject(MC.class);
@@ -35,6 +27,16 @@ public class Guard extends Person
                     //curPath.clear();
                     noFights++;
                 }
+            }
+        }
+        if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
+            
+            if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
+                Action.walkAround(this, false);
+            }
+    
+            if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
+                Action.walkAround(this, true);
             }
         }
     }

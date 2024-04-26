@@ -154,7 +154,9 @@ public abstract class Person extends Entity
         }
         
         // If currently escaping, don't do additional effects, like rooms or free roam
-        if(((MyWorld)getWorld()).isEscapeTime()) return;
+        // if(((MyWorld)getWorld()).isEscapeTime()) return;
+        if(this instanceof MC && ((MyWorld)getWorld()).isEscapeTime()) return;
+        if(this instanceof Guard && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) return;
         
         Room r = (Room)getOneObjectAtOffset(0,-SPRITE_OFFSET,Room.class);
         if (curRoom != r) { // Changed current room
@@ -182,7 +184,7 @@ public abstract class Person extends Entity
             Action.walkAround(this, true);
         }
         
-        if(curNode.getIndex() == STARTING_NODE_INDEX && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
+        if(this instanceof Prisoner && !(this instanceof MC) && curNode.getIndex() == STARTING_NODE_INDEX && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
             //getWorld().removeObject(this);
             curPath.clear();
             speed = 0;
@@ -259,7 +261,7 @@ public abstract class Person extends Entity
             if(healthBar.getWorld() == null) getWorld().addObject(healthBar, 0, 0);
         } else { // If alive then hide the healthbar, and return to the current event's actions
             getWorld().removeObject(healthBar);
-            //if(isWalkingAround) return;
+            if(((MyWorld)getWorld()).isEscapeTime()) return;
             Node nextNode = curPath.peek();
             boolean nextAxis = movingVertical;
             int nextOffset = offsetPos;
@@ -305,6 +307,7 @@ public abstract class Person extends Entity
             opponentHealth = 0;
             opponentStrength = 0;
             getWorld().removeObject(healthBar);
+            if(((MyWorld)getWorld()).isEscapeTime()) return;
             Node nextNode = curPath.peek();
             boolean nextAxis = movingVertical;
             int nextOffset = offsetPos;
