@@ -35,6 +35,7 @@ public abstract class Person extends Entity
     protected int opponentX;
     protected int opponentY;
     protected boolean inFight;
+    protected static boolean inIntro = false;
 
     // Person Stats
     protected int maxHp;
@@ -47,16 +48,35 @@ public abstract class Person extends Entity
 
     //Animation Variables
     protected String personType = "inmate";
-    private String sex = "male";
-    private String skinTone;
-    private String action = "walk";
-    private char dirChar = 'D';
+    protected String sex = "male";
+    protected String skinTone;
+    protected String action = "walk";
+    protected char dirChar = 'D';
     private int imageIndex = 0;
     private int animationLength = 2;
     private int animationDelay = 7;
     protected int actCount;
 
     protected ArrayList<Integer> accessoryIndices; //JEFF
+    // For cutscene/intro world
+    public Person(int i, boolean intro){
+        this.index = i;
+        inIntro = intro;
+        roomPosition = -1;
+        maxHp = Greenfoot.getRandomNumber(25)+75;
+        curHp = Greenfoot.getRandomNumber(10)+maxHp-10;
+        strength = Greenfoot.getRandomNumber(5)+5;
+        luck = Greenfoot.getRandomNumber(4) + 1;
+        intel = 40;
+        if(Greenfoot.getRandomNumber(2)==0){
+            skinTone = "black";
+        }
+        else{
+            skinTone = "white";
+        }
+
+    }
+    
     public Person(int i) {
         this.index = i;
         curNode = MyWorld.pf.getNode(STARTING_NODE_INDEX);
@@ -78,111 +98,115 @@ public abstract class Person extends Entity
      * Set the location to the a random position on the starting node when added to the world
      */
     public void addedToWorld(World w) {
-        if(isNew){
+        if(isNew && !inIntro){
             setLocation(curNode.getX()+curNode.getOffset(false), curNode.getY() + SPRITE_OFFSET+curNode.getOffset(true));
-            accessoryIndices=getAccessories();
-            if (accessoryIndices != null) {
-                for (Integer i : accessoryIndices) {
-                    getWorld().addObject(new Accessory(this, i), getX(), getY());
-                }
-            }
-
-            healthBar = new SuperStatBar(maxHp, curHp, this, 40, 6, 36, Color.GREEN, Color.RED, false, Color.BLACK, 2);
-            if(this instanceof MC){
-                addUnderglow();
-            }
-            isNew=false;
-            
         }
+        accessoryIndices=getAccessories();
+        if (accessoryIndices != null) {
+            for (Integer i : accessoryIndices) {
+                getWorld().addObject(new Accessory(this, i), getX(), getY());
+            }
+        }
+
+        healthBar = new SuperStatBar(maxHp, curHp, this, 40, 6, 36, Color.GREEN, Color.RED, false, Color.BLACK, 2);
+        if(this instanceof MC){
+            addUnderglow();
+        }
+        isNew=false;
     }
+            
 
     public void act()
     {   
         actCount++;
-        if(isDead) {
-            action="sleep"; 
-            
-            //Sets a random direction L or R if person is not horizontal
-            if(dirChar != 'L' && dirChar != 'R'){
-                if (Greenfoot.getRandomNumber(2) == 0) {
-                    dirChar='L';
-                } else {
-                    dirChar='R';
+        if(!inIntro){
+            if(isDead) {
+                action="sleep"; 
+                
+                //Sets a random direction L or R if person is not horizontal
+                if(dirChar != 'L' && dirChar != 'R'){
+                    if (Greenfoot.getRandomNumber(2) == 0) {
+                        dirChar='L';
+                    } else {
+                        dirChar='R';
+                    }
+                }
+                String key = personType + "_" + sex + "_" + skinTone + "_sleep_" + dirChar + "_1";
+                GreenfootImage currentImage = Sprite.getFrame(key);
+                currentImage.scale(48, 32);
+                setImage(currentImage);
+                
+                if (actCount % 15 == 0) {
+                    healHp(1);
+                    if (curHp == maxHp) setDead(false);
+                }
+                return;
+            }
+
+            if(inFight) {
+                action="attack";
+                animationDelay=10;
+                animate(); //Call animate before return 
+                if (actCount % 30 == 0) {
+                    curHp -= opponentStrength;
+                    opponentHealth -= strength;
+                    if (opponentHealth <= 0 || curHp <= 0) {
+                        if(curHp<=0) curHp = 0;
+                        setInFight(this, false);
+                        setDead(curHp <= 0);
+                    }
+                    healthBar.update(curHp);
+                }
+                return;
+            }
+
+            if (!curPath.isEmpty()) {
+                action ="walk";
+                animationDelay = 7;
+                move();
+            } else{
+                action ="idle";
+                animationDelay = 50;
+                //Idle is slower so longer animationDelay
+            }
+
+            Room r = (Room)getOneObjectAtOffset(0,-SPRITE_OFFSET,Room.class);
+            if (curRoom != r) { // Changed current room
+                if (curRoom != null) { // Leaving a room
+                    curRoom.exitRoom(this, roomPosition);
+                    curRoom = null;
+                    roomPosition = -1;
+                } else if(curPath.isEmpty()) { // Landed in a room
+                    curRoom = r;
+                    roomPosition = curRoom.enterRoom(this);
+                    //if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("DINING HALL"))System.out.println(roomPosition);
                 }
             }
-            String key = personType + "_" + sex + "_" + skinTone + "_sleep_" + dirChar + "_1";
-            GreenfootImage currentImage = Sprite.getFrame(key);
-            currentImage.scale(48, 32);
-            setImage(currentImage);
+
+        //if(!inIntro){
+            // If in room, and it has an effect that can occur, do effect
+            if (curRoom != null && curRoom.checkEffectCondition(this)) {
+                curRoom.doEffect(this);
+            }
+    
+            if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
+                Action.walkAround(this, false);
+            }
+
+            if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
+                Action.walkAround(this, true);
+            }
             
-            if (actCount % 15 == 0) {
-                healHp(1);
-                if (curHp == maxHp) setDead(false);
+            if(curNode.getIndex() == STARTING_NODE_INDEX && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
+                //getWorld().removeObject(this);
+                curPath.clear();
+                speed = 0;
             }
-            return;
-        }
-
-        if(inFight) {
-            action="attack";
-            animationDelay=10;
-            animate(); //Call animate before return 
-            if (actCount % 30 == 0) {
-                curHp -= opponentStrength;
-                opponentHealth -= strength;
-                if (opponentHealth <= 0 || curHp <= 0) {
-                    if(curHp<=0) curHp = 0;
-                    setInFight(this, false);
-                    setDead(curHp <= 0);
-                }
-                healthBar.update(curHp);
+        //}
+    
+            if(!inFight && !isDead){
+                animate();
             }
-            return;
-        }
-
-        if (!curPath.isEmpty()) {
-            action ="walk";
-            animationDelay = 7;
-            move();
-        } else{
-            action ="idle";
-            animationDelay = 50;
-            //Idle is slower so longer animationDelay
-        }
-
-        Room r = (Room)getOneObjectAtOffset(0,-SPRITE_OFFSET,Room.class);
-        if (curRoom != r) { // Changed current room
-            if (curRoom != null) { // Leaving a room
-                curRoom.exitRoom(this, roomPosition);
-                curRoom = null;
-                roomPosition = -1;
-            } else if(curPath.isEmpty()) { // Landed in a room
-                curRoom = r;
-                roomPosition = curRoom.enterRoom(this);
-                //if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("DINING HALL"))System.out.println(roomPosition);
-            }
-        }
-
-        // If in room, and it has an effect that can occur, do effect
-        if (curRoom != null && curRoom.checkEffectCondition(this)) {
-            curRoom.doEffect(this);
-        }
-
-        if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
-            Action.walkAround(this, false);
-        }
-
-        if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
-            Action.walkAround(this, true);
-        }
-        
-        if(curNode.getIndex() == STARTING_NODE_INDEX && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
-            //getWorld().removeObject(this);
-            curPath.clear();
-            speed = 0;
-        }
-
-        if(!inFight && !isDead){
-            animate();
         }
     }
 
@@ -436,6 +460,10 @@ public abstract class Person extends Entity
 
     public boolean isDead() {
         return isDead;
+    }
+    
+    public static void setIntro(boolean intro){
+        inIntro = intro;
     }
 
     public int getActCount() {

@@ -55,6 +55,7 @@ public class IntroWorld extends World
     // MCs
     //int MCs[];  // track which MCs were selected by the user
     private int[] MCs = {1,3,4,6}; //temp
+    //MCs[] MCs;
     
     // Dialogue, Speaker, General Text
     // 9 lines + 4 lines (one special line per chosen MC)
@@ -81,7 +82,8 @@ public class IntroWorld extends World
         // Initalize font so the text isn't displayed as default font
         SimulationFont.initalizeFont();
         
-        //displayCharacters();
+        
+        displayCharacters();
         fillSpeakersAndDialogue();
         
         guideMessage = new SuperTextBox("Click to start & advance dialogue", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 54), true, 768, 5, borderColor);
@@ -179,17 +181,23 @@ public class IntroWorld extends World
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 14){ //once world clicked, proceed to main simulation
             addObject(speakers[0], 512, 400);
+            Person.setIntro(false);
             MyWorld simulationWorld = new MyWorld();
             Greenfoot.setWorld(simulationWorld);
         }
     }
-    /* needs a method from character select world that returns some indicator of what MCs the user chose
+    // needs a method from character select world that returns some indicator of what MCs the user chose
     private void displayCharacters(){
         // This will be the int[] of MC's that the user chooses, assuming it is getMCs() method returning int[]
         // int[] MCs = getMCs()
         int[] xCoords = {200, 300, 400, 500}; // temp
         int[] yCoords = {200, 300, 400, 500}; // temp
-
+        MC[] MCs = {new MC(0, true, "Thief"),new MC(1, true, "Scientist"), new MC(2, true, "Brute"), new MC(3, true, "Weapons Dealer")};
+        
+        for(int i = 0; i < 4; i++){
+            addObject(MCs[i], xCoords[i], yCoords[i]);
+        }
+        /*
         for(int i = 0; i < 4; i++){
             int characterNumber = MCs[i]; 
             if(characterNumber == 1){
@@ -212,8 +220,9 @@ public class IntroWorld extends World
                 addObject(mc6, xCoords[i], yCoords[i]);
             }
         }
+        */
     }
-    */
+    
     
     private void fillSpeakersAndDialogue(){
         // Fill dialogues array with preset dialogue
