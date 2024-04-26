@@ -10,16 +10,17 @@ import java.io.Serializable;
 public class SavedPrisoner extends Actor {
     
     private double str, maxStr;
+    private double hp, maxHp;
     private double intel, maxIntel;
-    private double luc, maxLuc;
     private double spd, maxSpd;
     
+    private GreenfootImage image;
     private String name;
     private StatSetter strength;
     private StatSetter speed;
-    private StatSetter luck;
     private StatSetter intelligence;
-    private String job;
+    private String jobTitle;
+    private String specialty;
     
     //private GreenfootImage inmate;
     
@@ -34,20 +35,45 @@ public class SavedPrisoner extends Actor {
      * @param initialLuck               sets an initial luck stat
      * @param initialIntelligence       sets an initial intelligence stat
      */
-    public SavedPrisoner(String name, double initialStrength, double initialSpeed, double initialLuck, double initialIntelligence, String job) {
-        
+    public SavedPrisoner(String name, String jobTitle, double initialStrength, double initialSpeed, double initialIntelligence, String specialty) {
         maxStr = 10;
+        hp = 100;
+        maxHp = 200;
         maxIntel = 10;
-        maxLuc = 10;
         maxSpd = 3;
         
         this.name = name;
+        this.jobTitle = jobTitle;
         strength = new StatSetter(initialStrength, false);
         speed = new StatSetter(initialSpeed, true);
-        luck = new StatSetter(initialLuck, false);
         intelligence = new StatSetter(initialIntelligence, false);
-        this.job = job;
+        this.specialty = specialty;
         
+        /*
+        if(name.equals("Brute")) {
+            job = "Brute";
+            //image = new GreenfootImage("");
+        } else if(name.equals("Thief")) {
+            job = "Thief";
+            //image = new GreenfootImage("");
+        } else if(name.equals("Weapondealer")) {
+            job = "Weapondealer";
+            //image = new GreenfootImage("");
+        } else if(name.equals("Scientist")) {
+            job = "Scientist";
+            //image = new GreenfootImage("");
+        } else if(name.equals("Explosiveexpert")) {
+            job = "Explosiveexpert";
+            //image = new GreenfootImage("");
+        } else if(name.equals("Builder")) {
+            job = "Builder";
+            //image = new GreenfootImage("");
+        }
+        */
+    }
+    
+    public String getSpecialty() {
+        return specialty;
     }
     
     /**
@@ -78,15 +104,6 @@ public class SavedPrisoner extends Actor {
     }
 
     /**
-     * Method to get prisoner's luck
-     * 
-     * @return luck
-     */
-    public StatSetter getLuck() {
-        return luck;
-    }
-
-    /**
      * Method to get prisoner's intelligence
      * 
      * @return intelligence
@@ -95,15 +112,13 @@ public class SavedPrisoner extends Actor {
         return intelligence;
     }
     
-    
     public void setJob(String newJob) {
-        job = newJob;
+        jobTitle = newJob;
     }
 
     public String getJob() {
-        return job;
+        return jobTitle;
     }
-    
     
     /**
      * Creates stat's increase and decrease buttons, and text to show stat
@@ -128,26 +143,13 @@ public class SavedPrisoner extends Actor {
         getWorld().addObject(decreaseSpeedButton, x, y + 50);
         getWorld().addObject(speedTextbox, x - 55, y + 50);
 
-        // Luck controls
-        StatButton increaseLuckButton = new StatButton(luck, true);
-        StatButton decreaseLuckButton = new StatButton(luck, false);
-        Textbox luckTextbox = new Textbox("Luc", 70, luck);
-        getWorld().addObject(increaseLuckButton, x + 50, y + 100);
-        getWorld().addObject(decreaseLuckButton, x, y + 100);
-        getWorld().addObject(luckTextbox, x -55, y + 100);
-
         // Intelligence controls
         StatButton increaseIntelligenceButton = new StatButton(intelligence, true);
         StatButton decreaseIntelligenceButton = new StatButton(intelligence, false);
-        Textbox intelligenceTextbox = new Textbox("Int", 70 , intelligence);
-        getWorld().addObject(increaseIntelligenceButton, x + 50, y + 150);
-        getWorld().addObject(decreaseIntelligenceButton, x, y + 150);
-        getWorld().addObject(intelligenceTextbox, x - 55, y + 150);
-        
-        // Job controls
-        JobButton switchJobs = new JobButton(jobOptions, this);
-        getWorld().addObject(switchJobs, x, y + 200);
-        
+        Textbox intelligenceTextbox = new Textbox("Int", 70, intelligence);
+        getWorld().addObject(increaseIntelligenceButton, x + 50, y + 100);
+        getWorld().addObject(decreaseIntelligenceButton, x, y + 100);
+        getWorld().addObject(intelligenceTextbox, x -55, y + 100);
     }
     
     /**
@@ -157,7 +159,7 @@ public class SavedPrisoner extends Actor {
      */
     public String serializeState() {
         // Serialize the state into a string
-        return name + "," + strength.getValue() + "," + speed.getValue() + "," + luck.getValue() + "," + intelligence.getValue() + "," + job;
+        return name + "," + jobTitle + "," +strength.getValue() + "," + speed.getValue() + "," + intelligence.getValue() + "," + specialty;
     }
     
     /**
@@ -168,17 +170,12 @@ public class SavedPrisoner extends Actor {
     public void deserializeState(String serializedData) {
         // Deserialize the string and restore the state of the prisoner
         String[] parts = serializedData.split(",");
-        //yes = Double.parseDouble(parts[0]);
         name = parts[0];
-        strength.setValue(Double.parseDouble(parts[1]));
-        //addStr(Double.parseDouble(parts[1]));
-        speed.setValue(Double.parseDouble(parts[2]));
-        //addSpeed(Double.parseDouble(parts[2]));
-        luck.setValue(Double.parseDouble(parts[3]));
-        //addLuck(Double.parseDouble(parts[3]));
+        jobTitle = parts[1];
+        strength.setValue(Double.parseDouble(parts[2]));
+        speed.setValue(Double.parseDouble(parts[3]));
         intelligence.setValue(Double.parseDouble(parts[4]));
-        //addIntel(Double.parseDouble(parts[4]));
-        job = parts[5];
+        specialty = parts[5];
     }
     
     /**
@@ -191,6 +188,15 @@ public class SavedPrisoner extends Actor {
     }
     
     /**
+     * Adds hp
+     * 
+     * @param addHp
+     */
+    public void addHp(double addHp) {
+        hp = hp + addHp > maxHp ? maxHp: hp + addHp;
+    }
+    
+    /**
      * Adds intelligence
      * 
      * @param addIntel
@@ -198,16 +204,7 @@ public class SavedPrisoner extends Actor {
     public void addIntel(double addIntel) {
         intel = intel + addIntel> maxIntel ? maxIntel: intel + addIntel;
     }
-    
-    /**
-     * Adds luck
-     * 
-     * @param addLuc
-     */
-    public void addLuck(double addLuc) {
-        luc = luc + addLuc > maxLuc ? maxLuc: luc + addLuc;
-    }
-    
+
     /**
      * Adds speed
      * 
@@ -216,12 +213,4 @@ public class SavedPrisoner extends Actor {
     public void addSpeed(double addSpd) {
         spd = spd + addSpd > maxSpd ? maxSpd: spd + addSpd;
     }
-
-    /**
-     * Act method
-     */
-    public void act() {
-        //move();
-    }
-
 }

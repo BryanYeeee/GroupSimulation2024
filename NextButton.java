@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class NextButton extends Button
 {
     private GreenfootImage image;
-    private static boolean switchWorld;
+    private static boolean switchWorld = false;
     
     public NextButton(String theImage) {
         image = new GreenfootImage(theImage);

@@ -34,6 +34,7 @@ public class MyWorld extends AllWorld
     private Guard[] guards;
     
     private MC[] mainPrisoners;
+    private MC[] savedMainPrisoners;
     
     private EventDisplay eventDisplay;
     private Schedule schedule;
@@ -64,23 +65,14 @@ public class MyWorld extends AllWorld
         prisonerCount = 12;
         guardCount = 3;
         people = new Person[prisonerCount+guardCount+4];
-        //Prisoner.setJobList(jobs);
-        /*
-        
-        mainPrisoners = new MC[4];
-        mainPrisoners[0] = new MC(0, this, "Janitor", "Scientist");
-        mainPrisoners[1] = new MC(1, this, "Librarian", "Thief");
-        //mainPrisoners[2] = new MC(2+12, this, "Cook", "Mafia");
-        mainPrisoners[2] = new MC(2, this, "", "Brute");
-        mainPrisoners[3] = new MC(3, this, "Metalworker", "Weapons Dealer");
-        */
+        Prisoner.setJobList(jobs);
        
         mainPrisoners = new MC[4];
         String[] savedData = new String[4];
         
         int index = 0;
         for(String serializedData : serializedDataList) {
-            if(index < 5) {
+            if(index < 4) {
                 savedData[index] = serializedData;
                 index++;
             } else {
@@ -89,10 +81,14 @@ public class MyWorld extends AllWorld
         }
        
         for(int i = 0; i < 4; i++) {
-            mainPrisoners[i] = new MC(i + 12, "", 0, 0, 0, 0, "");
-            mainPrisoners[i].deserializeState(savedData[i]);
+            mainPrisoners[i] = new MC(i + 12, this, savedData[i].split(","));
         }
-        //specialty section?
+        
+        savedMainPrisoners = new MC[4];
+        savedMainPrisoners[0] = new MC(50, this, mainPrisoners[0].getJob());
+        savedMainPrisoners[1] = new MC(51, this, mainPrisoners[1].getJob());
+        savedMainPrisoners[2] = new MC(52, this, mainPrisoners[2].getJob());
+        savedMainPrisoners[3] = new MC(53, this, mainPrisoners[3].getJob());
         
         addObject(mainPrisoners[0], 100, 100);
         addObject(mainPrisoners[1], 100, 200);

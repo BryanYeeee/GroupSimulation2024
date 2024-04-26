@@ -37,7 +37,6 @@ public abstract class Person extends Entity
     // Person Stats
     protected final double MAX_STRENGTH = 10.0;
     protected final double MAX_INTEL = 10.0;
-    protected final double MAX_LUCK = 10.0;
     protected final double MAX_SPEED = 3.0;
     
     protected int maxHp;

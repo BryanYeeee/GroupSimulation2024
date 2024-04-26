@@ -11,28 +11,29 @@ public class MC extends Prisoner
     private MyWorld world;
     private ArrayList<Item> heldItems;
     
-    private String name;
-    
-    private String specialty;
     private String currentAction;
-    private String[] jobOptions = {"None", "Librarian", "Cook", "Woodwoker", "Metalworker", "Janitor"};
     
-    /*
-    public MC (int i, MyWorld world, String jobTitle, String specialty) {
+    private String name;
+    private StatSetter strength;
+    private StatSetter speed;
+    private StatSetter luck;
+    private StatSetter intelligence;
+    private String specialty;
+    
+    
+    public MC (int i, MyWorld world, String jobTitle) {
         super(i, jobTitle);
         //this.strength = 11;
         this.world = world;
-        this.specialty = specialty;
         heldItems = new ArrayList<Item>();
         if(specialty.equals("Thief")) {
-            this.speed = 3.8;
+            spd = 3.8;
         }
         if(specialty.equals("Brute")) {
-            this.strength = Greenfoot.getRandomNumber(3)+10;
+            str = Greenfoot.getRandomNumber(3)+10;
         }
-        System.out.println(specialty + ": " + strength);
     }
-    */
+    
     
     /**
      * Prisoner constructor
@@ -43,30 +44,37 @@ public class MC extends Prisoner
      * @param initialLuck               sets an initial luck stat
      * @param initialIntelligence       sets an initial intelligence stat
      */
-    public MC(int i, String name, double strength, double speed, double luck, double intelligence, String jobTitle) {
-        super(i);
+    public MC(int i, MyWorld world, String[] serializedData) {
+        super(i, serializedData[1]);
         this.name = name;
-        this.str = strength;
-        this.spd = speed;
-        this.luc = luck;
-        this.intel = intelligence;
-        this.jobTitle = jobTitle;
-        
-        
-        if(jobTitle.equals("Janitor")) {
-            specialty  = "Scientist";
-        } else if(jobTitle.equals("Librarian")) {
-            specialty = "Thief";
-        } else if(jobTitle.equals("Metalworker")) {
-            specialty = "Weapons Dealer";
-        } else if(jobTitle.equals("Woodworker")) {
-            specialty = "";
-        } else if(jobTitle.equals("Cook")) {
-            specialty = "";
-        } else if(jobTitle.equals("None")) {
-            specialty = "Brute";
+       
+        name = serializedData[0];
+        str = Double.parseDouble(serializedData[2]);
+        spd = Double.parseDouble(serializedData[3]);
+        intel = Double.parseDouble(serializedData[4]);
+        specialty = serializedData[5];
+
+        /*
+        if(name.equals("Brute")) {
+            jobTitle = "None";
+            //image = new GreenfootImage("");
+        } else if(name.equals("Thief")) {
+            jobTitle = "Librarian";
+            //image = new GreenfootImage("");
+        } else if(name.equals("Weapondealer")) {
+            jobTitle = "Metalworker";
+            //image = new GreenfootImage("");
+        } else if(name.equals("Scientist")) {
+            jobTitle = "Cook";
+            //image = new GreenfootImage("");
+        } else if(name.equals("Explosiveexpert")) {
+            jobTitle = "Janitor";
+            //image = new GreenfootImage("");
+        } else if(name.equals("Builder")) {
+            jobTitle = "Woodworker";
+            //image = new GreenfootImage("");
         }
-        
+        */
     }
     
     /**
@@ -78,7 +86,7 @@ public class MC extends Prisoner
         super.act();
     }
     
-    /**
+     /**
      * Method to deserialize and restore the state of the prisoner
      * 
      * help from ChatGPT
@@ -86,17 +94,12 @@ public class MC extends Prisoner
     public void deserializeState(String serializedData) {
         // Deserialize the string and restore the state of the prisoner
         String[] parts = serializedData.split(",");
-        //yes = Double.parseDouble(parts[0]);
         name = parts[0];
-        str = Double.parseDouble(parts[1]);
-        //addStr(Double.parseDouble(parts[1]));
-        spd = Double.parseDouble(parts[2]);
-        //addSpeed(Double.parseDouble(parts[2]));
-        luc = Double.parseDouble(parts[3]);
-        //addLuck(Double.parseDouble(parts[3]));
+        jobTitle = parts[1];
+        str = Double.parseDouble(parts[2]);
+        spd = Double.parseDouble(parts[3]);
         intel = Double.parseDouble(parts[4]);
-        //addIntel(Double.parseDouble(parts[4]));
-        jobTitle = parts[5];
+        specialty = parts[5];
     }
     
     public String getSpecialty() {
