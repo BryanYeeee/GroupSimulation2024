@@ -31,6 +31,12 @@ public class Guard extends Person
         }
         if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
             
+            if (curRoom != null) { // Leaving a room
+                curRoom.exitRoom(this, roomPosition);
+                curRoom = null;
+                roomPosition = -1;
+            } 
+            
             if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
                 Action.walkAround(this, false);
             }

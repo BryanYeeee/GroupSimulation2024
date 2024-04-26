@@ -158,7 +158,6 @@ public class MyWorld extends World
         breakables[1] = new Breakable("images/Breakable/VehicleDoor.png",5, 5);
         addObject(breakables[1], 256, 467);
         
-        
         /**
          * DEMO
          */

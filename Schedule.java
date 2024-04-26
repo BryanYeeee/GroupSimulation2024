@@ -79,10 +79,10 @@ public class Schedule
     
     public void act()
     {
-        if(actCount==10) {
-           actCount=135*60;
-           world.getMainPrisoners()[1].giveItem(new Fork());
-        }
+        // if(actCount==10) {
+           // actCount=135*60;
+           // world.getMainPrisoners()[1].giveItem(new Fork());
+        // }
         // if(actCount==20*60) {
         // }
         // actCount++;

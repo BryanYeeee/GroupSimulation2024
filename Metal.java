@@ -19,5 +19,6 @@ public class Metal extends Item
     public void useItem(MyWorld w, MC p) {
         p.giveItem(new Sword());
         p.addStrength(100);
+        StatusBar.setUpdate(true);
     }
 }

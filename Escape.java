@@ -61,6 +61,7 @@ public class Escape
             if(chosenEscapes[i].charAt(0) == '?') continue; // Following another MC's escape method
             switch(chosenEscapes[i]) {
                 case "Break Wall":
+                    System.out.println("BREAK WALL " + escapeSteps[i] + " " + i +" " + mcs[i].getSpecialty());
                     if(EscapeAction.breakWall(world, mcs[i], EscapeAction.filterMC(mcs,chosenEscapes,i), escapeSteps[i])) escapeSteps[i]++;
                     break;
                 case "Car":

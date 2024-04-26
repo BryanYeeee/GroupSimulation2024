@@ -18,6 +18,7 @@ public class EscapeAction extends Action
         switch(step) {
             case 0:
                 if(forkMC.getCurNode().getIndex() == BREAK_WALL_NODE) return true;
+                System.out.println(forkMC.isMoving());
                 if(!forkMC.isMoving()) {
                     forkMC.goToNode(BREAK_WALL_NODE);
                     startActs[forkMC.getIndex()] = forkMC.getActCount();

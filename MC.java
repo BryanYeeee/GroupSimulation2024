@@ -15,6 +15,7 @@ public class MC extends Prisoner
     private String specialty;
     private String currentAction;
     private Item[] items = new Item[2];
+    private boolean doneCrafting;
     
     public MC (int i, MyWorld world, String jobTitle, String specialty) {
         super(i, jobTitle);
@@ -36,6 +37,14 @@ public class MC extends Prisoner
     public void act()
     {
         super.act();
+    }
+    
+    public boolean isDoneCrafting() {
+        return doneCrafting;
+    }
+    
+    public void setDoneCrafting(boolean isCrafting) {
+        this.doneCrafting = isCrafting;
     }
     
     public String getSpecialty() {
@@ -72,8 +81,8 @@ public class MC extends Prisoner
         for(Item i : heldItems) {
             if(i.isMaterial()) {
                 i.useItem(world, this);
+                world.removeObject(i);
                 heldItems.remove(i);
-                StatusBar.setUpdate(true);
                 return false;
             };
         }
