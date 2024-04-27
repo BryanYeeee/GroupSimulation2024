@@ -67,13 +67,26 @@ public class IntroWorld extends World
     // Boxes
     private TempBox dialogueBox;
     private TempBox speakerBox;
+    
     // Counters
     private int dialogueCounter = 0;
+    
+    // Coordinates
+    int[] xCoords = {150, 275, 400, 525}; 
+    int[] yCoords = {615, 615, 615, 615}; 
     
     // Guard
     private Guard guard;
     private int actsLeft;
     Accessory tempAccessory;
+    
+    // Indicators
+    Indicator[] bubbles = {new Indicator(50, 50), new Indicator(50, 50), new Indicator(50, 50), new Indicator(50, 50)};
+
+    // InnerIcon
+    InnerIcon[] exclamationMarks = {new InnerIcon(0, 30, 30), new InnerIcon(0, 30, 30), new InnerIcon(0, 30, 30), new InnerIcon(0, 30, 30)}; 
+    InnerIcon[] questionMarks = {new InnerIcon(1, 30, 30), new InnerIcon(1, 30, 30), new InnerIcon(1, 30, 30), new InnerIcon(1, 30, 30)}; 
+
     public IntroWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -90,6 +103,8 @@ public class IntroWorld extends World
         
         displayCharacters();
         fillSpeakersAndDialogue();
+        
+        
         
         guideMessage = new SuperTextBox("Click to start & advance dialogue", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 54), true, 768, 5, borderColor);
         addObject(guideMessage, 600, 775);
@@ -109,12 +124,20 @@ public class IntroWorld extends World
             addObject(speakers[0], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 1){
+            for(int i = 0; i < 4; i++){ // add question marks
+                addObject(bubbles[i], xCoords[i], yCoords[i] - 100);
+                addObject(questionMarks[i], xCoords[i], yCoords[i] - 105);
+            }
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[0]);
             addObject(dialogues[dialogueCounter], 600, 775);
             addObject(speakers[1], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 2){
+            for(int i = 0; i < 4; i++){ // remove question marks
+                removeObject(bubbles[i]);
+                removeObject(questionMarks[i]);
+            }
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[1]);
             addObject(dialogues[dialogueCounter], 600, 775);
@@ -134,12 +157,20 @@ public class IntroWorld extends World
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 5){
             actsLeft = 60; // fade out the guard
+            for(int i = 0; i < 4; i++){ // add exclamation marks
+                addObject(bubbles[i], xCoords[i], yCoords[i] - 100);
+                addObject(exclamationMarks[i], xCoords[i], yCoords[i] - 105);
+            }
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[0]);
             addObject(dialogues[dialogueCounter], 600, 775);
             addObject(speakers[3], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 6){
+            for(int i = 0; i < 4; i++){ //remove exclamation marks
+                removeObject(bubbles[i]);
+                removeObject(exclamationMarks[i]);
+            }
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[3]);
             addObject(dialogues[dialogueCounter], 600, 775);
@@ -205,8 +236,6 @@ public class IntroWorld extends World
     private void displayCharacters(){
         // This will be the int[] of MC's that the user chooses, assuming it is getMCs() method returning int[]
         // int[] MCs = getMCs()
-        int[] xCoords = {150, 275, 400, 525}; 
-        int[] yCoords = {615, 615, 615, 615}; 
         MC[] MCs = {new MC(0, true, "Thief"),new MC(1, true, "Scientist"), new MC(2, true, "Brute"), new MC(3, true, "Weapons Dealer")};
         
         for(int i = 0; i < 4; i++){

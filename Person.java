@@ -68,12 +68,13 @@ public abstract class Person extends Entity
         strength = Greenfoot.getRandomNumber(5)+5;
         luck = Greenfoot.getRandomNumber(4) + 1;
         intel = 40;
+        /*
         if(Greenfoot.getRandomNumber(2)==0){
             skinTone = "black";
         }
         else{
             skinTone = "white";
-        }
+        }*/
 
     }
     
