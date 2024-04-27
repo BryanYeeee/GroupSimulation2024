@@ -44,6 +44,7 @@ public class MyWorld extends World
     private Library library;
     private Woodwork woodwork;
     private Metalwork metalwork;
+    private JanitorCloset janitorCloset;
     private JailCell cell1;
     private JailCell cell2;
     
@@ -67,8 +68,8 @@ public class MyWorld extends World
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
         setPaintOrder(Item.class, BannerIcon.class,  Banner.class, Clock.class, 
         EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, 
-        WallCover.class, Accessory.class, Person.class, Underglow.class, Tile.class, 
-        Breakable.class, Room.class);
+        WallCover.class, Vehicle.class, Accessory.class, Person.class, Underglow.class, 
+        Tile.class, Breakable.class, Room.class);
         
         pf = new PathFinder(this); // Initialize this first
         SimulationFont.initalizeFont();
@@ -86,7 +87,7 @@ public class MyWorld extends World
         mainPrisoners = new MC[4];
         mainPrisoners[0] = new MC(0, this, "Janitor", "Scientist");
         mainPrisoners[1] = new MC(1, this, "Librarian", "Thief");
-        mainPrisoners[2] = new MC(2, this, "", "Brute");
+        mainPrisoners[2] = new MC(2, this, "", "Brute");;
         mainPrisoners[3] = new MC(3, this, "Metalworker", "Weapons Dealer");
         for (int i = 0; i < 4; i++) {
             people[i] = mainPrisoners[i];
@@ -138,6 +139,9 @@ public class MyWorld extends World
         metalwork = new Metalwork(new int[]{122, 121}, new int[]{123, 153});
         addObject(metalwork, 728, 598);
         
+        janitorCloset = new JanitorCloset(new int[]{142}, new int[]{93,63});
+        addObject(janitorCloset, 773, 370);
+        
         cell1 = new JailCell(new int[]{132,134}, new int[]{95,125},1);
         addObject(cell1, 469, 583);
         cell2 = new JailCell(new int[]{135,137}, new int[]{95,125},2);
@@ -150,6 +154,7 @@ public class MyWorld extends World
         addObject(new WallCover("images/WallCover/SpawnCover.png"), 363, 79);
         addObject(new WallCover("images/WallCover/WoodworkCover.png"), 319, 600);
         addObject(new WallCover("images/WallCover/MetalworkCover.png"), 728, 601);
+        addObject(new WallCover("images/WallCover/VehicleDoorCover.png"), 257, 482);
         
         // Breakables
         breakables = new Breakable[3];
@@ -157,6 +162,11 @@ public class MyWorld extends World
         addObject(breakables[0], 558, 188);
         breakables[1] = new Breakable("images/Breakable/VehicleDoor.png",5, 5);
         addObject(breakables[1], 256, 467);
+        breakables[2] = new Breakable("images/Breakable/DiningRoomExplosion.png",1, 1);        
+        addObject(breakables[2], 184, 143);
+        
+        // Vehicles
+        addObject(new Vehicle("Car.png"), 150, 492);
         
         /**
          * DEMO

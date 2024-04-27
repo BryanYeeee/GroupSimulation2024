@@ -13,7 +13,7 @@ public abstract class Person extends Entity
 {
     public final static int STARTING_NODE_INDEX = 0;
     public final static int WALKING_NODE_INDEX = 128;
-    protected final static int SPRITE_OFFSET = -16; //JEFF
+    public final static int SPRITE_OFFSET = -16; //JEFF
     protected final static int MAX_FIGHTS = 4;
     protected int index;
     protected Deque<Node> curPath = new LinkedList<Node>();
@@ -254,6 +254,22 @@ public abstract class Person extends Entity
         dir = curPath.peek().getDirection(movingVertical, getX(), getY() - SPRITE_OFFSET);
         //DEBUG: System.out.println(offsetPos);
     }
+    
+    public void doCurrentEvent() {
+        if(this instanceof MC && ((MyWorld)getWorld()).isEscapeTime()) return;
+        Node nextNode = curPath.peek();
+        boolean nextAxis = movingVertical;
+        int nextOffset = offsetPos;
+        int nextDir = dir;
+        curPath.clear();
+        if(nextNode!=null) curPath.push(nextNode);
+        ((MyWorld)getWorld()).getSchedule().doCurrentEvent(this);
+        if(nextNode!=null) {
+            movingVertical = nextAxis;
+            offsetPos = nextOffset;
+            dir = nextDir;
+        }
+    }
 
     public void setDead(boolean isDead) {
         this.isDead = isDead;
@@ -261,20 +277,7 @@ public abstract class Person extends Entity
             if(healthBar.getWorld() == null) getWorld().addObject(healthBar, 0, 0);
         } else { // If alive then hide the healthbar, and return to the current event's actions
             getWorld().removeObject(healthBar);
-            if(this instanceof MC && ((MyWorld)getWorld()).isEscapeTime()) return;
-            Node nextNode = curPath.peek();
-            boolean nextAxis = movingVertical;
-            int nextOffset = offsetPos;
-            int nextDir = dir;
-            curPath.clear();
-            if(nextNode!=null) curPath.push(nextNode);
-            ((MyWorld)getWorld()).getSchedule().doCurrentEvent(this);
-            if(nextNode!=null) {
-                movingVertical = nextAxis;
-                offsetPos = nextOffset;
-                dir = nextDir;
-            }
-
+            doCurrentEvent();
         }
     }
 
@@ -307,19 +310,7 @@ public abstract class Person extends Entity
             opponentHealth = 0;
             opponentStrength = 0;
             getWorld().removeObject(healthBar);
-            if(this instanceof MC && ((MyWorld)getWorld()).isEscapeTime()) return;
-            Node nextNode = curPath.peek();
-            boolean nextAxis = movingVertical;
-            int nextOffset = offsetPos;
-            int nextDir = dir;
-            curPath.clear();
-            if(nextNode!=null) curPath.push(nextNode);
-            ((MyWorld)getWorld()).getSchedule().doCurrentEvent(this);
-            if(nextNode!=null) {
-                movingVertical = nextAxis;
-                offsetPos = nextOffset;
-                dir = nextDir;
-            }
+            doCurrentEvent();
         }
         //System.out.println("FIGHT: " +onGoingFights);
     }
@@ -413,6 +404,13 @@ public abstract class Person extends Entity
     }
     public void setStrength(int s) {
         strength = s;
+    }
+    
+    public double getSpeed() {
+        return speed;
+    }
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 
     public void setRoomPosition(int roomPosition) {

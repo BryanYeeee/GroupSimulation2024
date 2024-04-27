@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Woodwork here.
+ * Write a description of class Metalwork here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -44,18 +44,10 @@ public class Metalwork extends Room
 
     public void exitRoom(Person p, int roomPosition) {
         if (p instanceof MC) {
-            exitRoom((MC) p, roomPosition);
+            ((MC)p).giveItem(new Metal());
         } else {
             super.exitRoom(p, roomPosition);
         }
-    }
-
-    // Overloaded method specifically for MC
-    public void exitRoom(MC mc, int roomPosition) {
-        Item item = new Metal();
-        getWorld().addObject(item, mc.getX(), mc.getY());
-        item.pickup(mc);
-        super.exitRoom(mc, roomPosition);
     }
 
     public boolean checkEffectCondition (Person p) { // If person is at its assigned room position

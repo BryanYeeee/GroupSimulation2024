@@ -65,8 +65,9 @@ public class MC extends Prisoner
                 return;
             }
         }
+        getWorld().addObject(item, getX(), getY());
+        item.pickup(this);
         this.heldItems.add(item);
-        StatusBar.setUpdate(true);
     }
     
     // public void removeItem(Item item) {
@@ -80,9 +81,9 @@ public class MC extends Prisoner
     public boolean craftItem() {
         for(Item i : heldItems) {
             if(i.isMaterial()) {
-                i.useItem(world, this);
                 world.removeObject(i);
                 heldItems.remove(i);
+                i.useItem(world, this);
                 return false;
             };
         }

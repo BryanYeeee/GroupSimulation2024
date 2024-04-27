@@ -10,9 +10,19 @@ import java.util.ArrayList;
  */
 public class Guard extends Person
 {
+    private boolean specialGuard;
     public Guard(int i) {
         super(i);
         personType = "guard";
+    }
+    public Guard() {
+        this(-1);
+        specialGuard = true;
+    }
+    
+    public void doCurrentEvent() {
+        if(specialGuard) return;
+        super.doCurrentEvent();
     }
     
     public void act() {

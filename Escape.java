@@ -27,7 +27,7 @@ public class Escape
         escapeSteps = new int[4];
         
         int totalStrength = 0;
-        MC strongestMC = null, forkMC = null;
+        MC strongestMC = null, forkMC = null, bombMC = null;
         for(MC mc : mcs) {
             totalStrength+=mc.getStrength();
             if(!mc.getSpecialty().equals("Thief") && strongestMC == null || strongestMC.getStrength() < mc.getStrength()) {
@@ -36,6 +36,8 @@ public class Escape
             for(Item i : mc.getItems()) {
                 if(i instanceof Fork) {
                     forkMC = mc;
+                } else if(i instanceof Bomb) {
+                    bombMC = mc;
                 }
             }
         }
@@ -54,6 +56,10 @@ public class Escape
             possibleEscapes.add("Break Wall");
             chosenEscapes[forkMC.getIndex()] = "Break Wall";
         }
+        if(bombMC != null) {
+            possibleEscapes.add("Explode Wall");
+            chosenEscapes[bombMC.getIndex()] = "Explode Wall";
+        }
     }
     
     public void act() {
@@ -61,8 +67,10 @@ public class Escape
             if(chosenEscapes[i].charAt(0) == '?') continue; // Following another MC's escape method
             switch(chosenEscapes[i]) {
                 case "Break Wall":
-                    System.out.println("BREAK WALL " + escapeSteps[i] + " " + i +" " + mcs[i].getSpecialty());
                     if(EscapeAction.breakWall(world, mcs[i], EscapeAction.filterMC(mcs,chosenEscapes,i), escapeSteps[i])) escapeSteps[i]++;
+                    break;
+                case "Explode Wall":
+                    if(EscapeAction.explodeWall(world, mcs[i], EscapeAction.filterMC(mcs,chosenEscapes,i), escapeSteps[i])) escapeSteps[i]++;
                     break;
                 case "Car":
                     if(EscapeAction.driveCar(world, mcs[i], EscapeAction.filterMC(mcs,chosenEscapes,i), escapeSteps[i])) escapeSteps[i]++;
