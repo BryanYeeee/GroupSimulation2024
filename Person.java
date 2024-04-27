@@ -100,19 +100,19 @@ public abstract class Person extends Entity
     public void addedToWorld(World w) {
         if(isNew && !inIntro){
             setLocation(curNode.getX()+curNode.getOffset(false), curNode.getY() + SPRITE_OFFSET+curNode.getOffset(true));
+            healthBar = new SuperStatBar(maxHp, curHp, this, 40, 6, 36, Color.GREEN, Color.RED, false, Color.BLACK, 2);
+            if(this instanceof MC){
+                addUnderglow();
+            }
+            isNew=false;
         }
+        // Both intro and simulation world need accessories
         accessoryIndices=getAccessories();
         if (accessoryIndices != null) {
             for (Integer i : accessoryIndices) {
                 getWorld().addObject(new Accessory(this, i), getX(), getY());
             }
         }
-
-        healthBar = new SuperStatBar(maxHp, curHp, this, 40, 6, 36, Color.GREEN, Color.RED, false, Color.BLACK, 2);
-        if(this instanceof MC){
-            addUnderglow();
-        }
-        isNew=false;
     }
             
 
@@ -341,6 +341,14 @@ public abstract class Person extends Entity
         }
         //System.out.println("FIGHT: " +onGoingFights);
     }
+    
+    protected void fade (int timeLeft, int totalFadeTime){
+        double percent = timeLeft / (double)totalFadeTime;
+        if (percent > 1.00) return;
+        int newTranparency = (int)(percent * 255);
+        getImage().setTransparency (newTranparency);
+    }
+
     
     public int getIndex() {
         return index;

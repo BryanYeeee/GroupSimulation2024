@@ -21,7 +21,7 @@ public class MC extends Prisoner
         super(i, inIntro);
         this.specialty = specialty;
         GreenfootImage cutsceneImage = new GreenfootImage("images/inmate/male_white/idle/D0.png");
-        //cutsceneImage.scale(100, 100);
+        cutsceneImage.scale(120, 180);
         setImage(cutsceneImage);
     }
     

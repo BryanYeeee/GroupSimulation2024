@@ -69,6 +69,11 @@ public class IntroWorld extends World
     private TempBox speakerBox;
     // Counters
     private int dialogueCounter = 0;
+    
+    // Guard
+    private Guard guard;
+    private int actsLeft;
+    Accessory tempAccessory;
     public IntroWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -128,6 +133,7 @@ public class IntroWorld extends World
             addObject(speakers[0], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 5){
+            actsLeft = 60; // fade out the guard
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[0]);
             addObject(dialogues[dialogueCounter], 600, 775);
@@ -185,18 +191,30 @@ public class IntroWorld extends World
             MyWorld simulationWorld = new MyWorld();
             Greenfoot.setWorld(simulationWorld);
         }
+        if(actsLeft <= 60 && actsLeft > 0){
+            actsLeft--;
+            guard.fade(actsLeft, 60);
+            Accessory guardHat = guard.getAccessory();
+            guardHat.setActsLeft(actsLeft);
+            if(actsLeft == 0){
+                removeObject(guardHat);
+            }
+        }
     }
     // needs a method from character select world that returns some indicator of what MCs the user chose
     private void displayCharacters(){
         // This will be the int[] of MC's that the user chooses, assuming it is getMCs() method returning int[]
         // int[] MCs = getMCs()
-        int[] xCoords = {200, 300, 400, 500}; // temp
-        int[] yCoords = {200, 300, 400, 500}; // temp
+        int[] xCoords = {150, 275, 400, 525}; 
+        int[] yCoords = {615, 615, 615, 615}; 
         MC[] MCs = {new MC(0, true, "Thief"),new MC(1, true, "Scientist"), new MC(2, true, "Brute"), new MC(3, true, "Weapons Dealer")};
         
         for(int i = 0; i < 4; i++){
             addObject(MCs[i], xCoords[i], yCoords[i]);
         }
+        
+        guard = new Guard(0, true);
+        addObject(guard, 900, 615);
         /*
         for(int i = 0; i < 4; i++){
             int characterNumber = MCs[i]; 

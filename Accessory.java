@@ -13,11 +13,14 @@ public class Accessory extends Entity
      * Act - do whatever the Hair wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
+    GreenfootImage currentImage;
     private Person origin;
     private int xOffset=0;
     private int originalYOffset = -11;
     private int yOffset=-11;
     private int accessoryIndex=0;
+    private int actsLeft;
     private static final Map<String, Integer> offsetValues = initializeOffsetValues();
 
     private static Map<String, Integer> initializeOffsetValues() {
@@ -98,7 +101,7 @@ public class Accessory extends Entity
         } catch (NullPointerException | ClassCastException e) {
             yOffset = originalYOffset; 
         }
-
+        
         if(origin.getDirChar()=='L'){
             xOffset=1;
         }
@@ -109,8 +112,18 @@ public class Accessory extends Entity
             xOffset=0;
         }
 
-        GreenfootImage currentImage = new GreenfootImage("images/accessories/"+accessoryIndex+origin.getDirChar()+".png");
-        currentImage.scale(32, 32);
+        currentImage = new GreenfootImage("images/accessories/"+accessoryIndex+origin.getDirChar()+".png");
+        if(Person.inIntro){
+            currentImage.scale(120, 120);
+            yOffset = -40;
+        } else {
+            currentImage.scale(32, 32);
+        }
+        
+        if(actsLeft <= 60 && actsLeft > 0){
+            fade(actsLeft, 60);
+        } 
+        
         if(origin.getAction().equals("sleep")){
             yOffset=2;
             if(origin.getDirChar() == 'R'){
@@ -128,6 +141,17 @@ public class Accessory extends Entity
         setImage(currentImage);
         setLocation(origin.getX()+xOffset,origin.getY()+yOffset);
 
+    }
+    
+    public void setActsLeft(int acts){
+        actsLeft = acts;
+    }
+    
+    public void fade (int timeLeft, int totalFadeTime){
+        double percent = timeLeft / (double)totalFadeTime;
+        if (percent > 1.00) return;
+        int newTranparency = (int)(percent * 255);
+        currentImage.setTransparency (newTranparency);
     }
 
 }

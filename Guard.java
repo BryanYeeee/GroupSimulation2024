@@ -10,9 +10,22 @@ import java.util.ArrayList;
  */
 public class Guard extends Person
 {
+    // For cutscene/intro
+    public Guard(int i, boolean inIntro){
+        super(i, inIntro);
+        GreenfootImage cutsceneImage = new GreenfootImage("images/guard/male_white/idle/D0.png");
+        cutsceneImage.scale(120, 165);
+        setImage(cutsceneImage);
+        personType = "guard";
+    }
+    
     public Guard(int i) {
         super(i);
         personType = "guard";
+    }
+    
+    public Accessory getAccessory(){
+        return (Accessory) getOneIntersectingObject(Accessory.class);
     }
 
     public ArrayList<Integer> getAccessories(){
