@@ -71,7 +71,7 @@ public class EscapeAction extends Action
                 break;
             case 4:
                 if(mc.getCurNode().getIndex() == CAR_NODE) {
-                    mc.setSpeed(1.25);
+                    mc.setSpeed(1.6);
                     return true;
                 }
                 if(!mc.isMoving()) mc.goToNode(CAR_NODE);

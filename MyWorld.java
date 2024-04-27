@@ -151,19 +151,25 @@ public class MyWorld extends World
         addObject(new WallCover("images/WallCover/cover1.png"), 317, 323);
         addObject(new WallCover("images/WallCover/cover2.png"), 409, 299);
         addObject(new WallCover("images/WallCover/cover3.png"), 652, 299);
+        addObject(new WallCover("images/WallCover/cover4.png"), 834, 391);
         addObject(new WallCover("images/WallCover/SpawnCover.png"), 363, 79);
         addObject(new WallCover("images/WallCover/WoodworkCover.png"), 319, 600);
         addObject(new WallCover("images/WallCover/MetalworkCover.png"), 728, 601);
         addObject(new WallCover("images/WallCover/VehicleDoorCover.png"), 257, 482);
+        // addObject(new WallCover("images/WallCover/KitchenTunnel.png"), 84, 304);
         
         // Breakables
-        breakables = new Breakable[3];
+        breakables = new Breakable[5];
         breakables[0] = new Breakable("images/Breakable/RollCallWall.png",100, 100);
         addObject(breakables[0], 558, 188);
         breakables[1] = new Breakable("images/Breakable/VehicleDoor.png",5, 5);
         addObject(breakables[1], 256, 467);
         breakables[2] = new Breakable("images/Breakable/DiningRoomExplosion.png",1, 1);        
         addObject(breakables[2], 184, 143);
+        breakables[3] = new Breakable("images/Breakable/KitchenFloor.png",50, 50);        
+        addObject(breakables[3], 135, 323);
+        breakables[4] = new Breakable("images/Breakable/OutsideFloor.png",50, 50);        
+        addObject(breakables[4], 33, 323);
         
         // Vehicles
         addObject(new Vehicle("Car.png"), 150, 492);
