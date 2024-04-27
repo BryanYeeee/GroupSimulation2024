@@ -75,7 +75,7 @@ public class MyWorld extends World
         Sprite.init();
         
         //TEMPP
-        //setBackground(backgroundImg);
+        setBackground(backgroundImg);
 
         // Initialize the people in the prison (MCs, prisoners, guards)
         prisonerCount = 12;
@@ -156,10 +156,19 @@ public class MyWorld extends World
         breakables[0] = new Breakable("images/Breakable/RollCallWall.png",100, 100);
         addObject(breakables[0], 558, 188);
         
+        //Electric Fence
+        addObject(new ElectricFence(27),1077,360);
+        addObject(new ElectricFence(24),1077,320);
+        addObject(new ElectricFence(21),1077,280);
+        addObject(new ElectricFence(18),1077,240);
+        addObject(new ElectricFence(15),1077,200);
+        addObject(new ElectricFence(12,true),1040,160);
+        addObject(new ElectricFence(9,true),1000,160);
+        addObject(new ElectricFence(6,true),960,160);
+        addObject(new ElectricFence(3,true),920,160);
+        addObject(new ElectricFence(0,true),880,160);
         
-        /**
-         * DEMO
-         */
+        //Items
         // addObject(new Potion(),400, 299);
         // addObject(new Metal(),420, 299);
         // addObject(new Ladder(),440, 299);
