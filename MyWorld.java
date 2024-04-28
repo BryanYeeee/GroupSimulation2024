@@ -15,7 +15,7 @@ import java.util.List;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World
+public class MyWorld extends AllWorld
 {
     public final static boolean SHOW_NODES = true;
     public final static int WORLD_WIDTH = 1200;
@@ -35,7 +35,8 @@ public class MyWorld extends World
     private Guard[] guards;
 
     private MC[] mainPrisoners;
-
+    private MC[] savedMainPrisoners;
+    
     private EventDisplay eventDisplay;
     private Schedule schedule;
     private DiningHall diningHall;
@@ -61,7 +62,7 @@ public class MyWorld extends World
     /**
      * Constructor for objects of class MyWorld.
      */
-    public MyWorld()
+    public MyWorld(List<String> serializedDataList)
     {    
         // Create a new world with 1200x850 cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
@@ -87,12 +88,35 @@ public class MyWorld extends World
         guardCount = 3;
         people = new Person[prisonerCount + guardCount + 4];
         Prisoner.setJobList(jobs);
-        
+       
         mainPrisoners = new MC[4];
-        mainPrisoners[0] = new MC(0, this, "Janitor", "Scientist");
-        mainPrisoners[1] = new MC(1, this, "Librarian", "Thief");
-        mainPrisoners[2] = new MC(2, this, "", "Brute");
-        mainPrisoners[3] = new MC(3, this, "Metalworker", "Weapons Dealer");
+        String[] savedData = new String[4];
+        
+        int index = 0;
+        for(String serializedData : serializedDataList) {
+            if(index < 4) {
+                savedData[index] = serializedData;
+                index++;
+            } else {
+                break;
+            }
+        }
+       
+        for(int i = 0; i < 4; i++) {
+            mainPrisoners[i] = new MC(i + 12, this, savedData[i].split(","));
+        }
+        
+        savedMainPrisoners = new MC[4];
+        savedMainPrisoners[0] = new MC(50, this, mainPrisoners[0].getJob());
+        savedMainPrisoners[1] = new MC(51, this, mainPrisoners[1].getJob());
+        savedMainPrisoners[2] = new MC(52, this, mainPrisoners[2].getJob());
+        savedMainPrisoners[3] = new MC(53, this, mainPrisoners[3].getJob());
+        
+        addObject(mainPrisoners[0], 100, 100);
+        addObject(mainPrisoners[1], 100, 200);
+        addObject(mainPrisoners[2], 100, 300);
+        addObject(mainPrisoners[3], 100, 400);
+        
         for (int i = 0; i < 4; i++) {
             people[i] = mainPrisoners[i];
             addObject(mainPrisoners[i], 0, 0);

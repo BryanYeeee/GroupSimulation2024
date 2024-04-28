@@ -30,18 +30,22 @@ public abstract class Person extends Entity
 
     public static int onGoingFights = 0;
     public static int noFights = 0;
-    protected int opponentStrength;
-    protected int opponentHealth;
-    protected int opponentX;
-    protected int opponentY;
+    protected double opponentStrength;
+    protected double opponentHealth;
     protected boolean inFight;
     protected static boolean inIntro = false;
 
     // Person Stats
+    protected final double MAX_STRENGTH = 10.0;
+    protected final double MAX_INTEL = 10.0;
+    protected final double MAX_SPEED = 3.0;
+    
     protected int maxHp;
     protected int curHp;
-    protected int strength;
-    protected int intel;
+    protected double str;
+    protected double intel;
+    protected double luc;
+    protected double spd;
     protected boolean isDead;
     protected SuperStatBar healthBar;
 
@@ -74,7 +78,7 @@ public abstract class Person extends Entity
         roomPosition = -1;
         maxHp = Greenfoot.getRandomNumber(25)+75;
         curHp = Greenfoot.getRandomNumber(10)+maxHp-10;
-        strength = Greenfoot.getRandomNumber(5)+5;
+        str = Greenfoot.getRandomNumber(5)+5;
         intel = 40;
         if(Greenfoot.getRandomNumber(2)==0){
             skinTone = "black";
@@ -486,13 +490,12 @@ public abstract class Person extends Entity
     }
 
     public void addStrength(int strengthAmount) {
-        if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute") && actCount % 720 == 0)strengthAmount++;
-        strength+=strengthAmount;
-        if(this instanceof MC)  StatusBar.setUpdate(true);
+        if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute"))strengthAmount++;
+        str+=strengthAmount;
     }
 
     public void setStrength(int s) {
-        strength = s;
+        str = s;
     }
 
     public void setRoomPosition(int roomPosition) {
@@ -543,8 +546,8 @@ public abstract class Person extends Entity
         return curHp;
     }
 
-    public int getStrength() {
-        return strength;
+    public double getStrength() {
+        return str;
     }
 
     public int getIntel(){

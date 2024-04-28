@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=AllWorld
+comment0.text=\n\ Abstract\ class\ of\ all\ worlds\n\ \n\ @author\ Ainson\ \n\ @version\ April\ 2024\n
+comment1.params=width\ height\ cellSize
+comment1.target=AllWorld(int,\ int,\ int)
+comment1.text=\n\ Constructor\ for\ AllWorld\n
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\n\ Fade\ when\ going\ to\ another\ world\n
+comment3.params=w
+comment3.target=void\ goToWorld(greenfoot.World)
+comment3.text=\n\ Fades\ out\ of\ the\ current\ world\ into\ another\ world\n
+numComments=4
