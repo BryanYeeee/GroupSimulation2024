@@ -23,7 +23,6 @@ public class SoundManager
         // Map all the sounds to an array to access sound class by name
         sounds = new HashMap<String, Sound>();
         
-        /*
         sounds.put("bubbling", new Sound("bubbles.mp3",100,false));
         sounds.put("waves", new Sound("waves.mp3",75,true));
         sounds.put("chomp", new Sound("chomp.wav",75,false));
@@ -33,7 +32,6 @@ public class SoundManager
         sounds.put("shock", new Sound("tazer.mp3",65,false));
         sounds.put("storm", new Sound("storm.mp3",65,false));
         sounds.put("whale", new Sound("whale.mp3",55,false));
-        */
         
     }
     

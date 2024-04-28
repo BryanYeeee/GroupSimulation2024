@@ -20,18 +20,16 @@ public class Prisoner extends Person
         super(i);
         if(!jobList.isEmpty()) {
             jobTitle = jobList.get(Greenfoot.getRandomNumber(jobList.size()));
-            System.out.println(jobTitle);
+            //System.out.println(jobTitle);
             jobList.remove(jobTitle);
         }
-        System.out.println(jobList);
+            //System.out.println(jobList);
     }
     public Prisoner(int i, String jobTitle) {
         super(i);
         this.jobTitle = jobTitle;
         jobList.remove(jobTitle);
-        System.out.println(jobList);
     }
-
     
     public void act() {
         super.act();
@@ -52,7 +50,6 @@ public class Prisoner extends Person
         }
     }
     
-    
     public static void setJobList(String[] jobs) {
         jobList = new ArrayList<String>(Arrays.asList(jobs));
     }
@@ -62,6 +59,6 @@ public class Prisoner extends Person
     }
     
     public boolean hasJob() {
-        return !jobTitle.equals("None");
+        return !jobTitle.equals("");
     }
 }
