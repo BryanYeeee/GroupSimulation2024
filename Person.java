@@ -132,6 +132,23 @@ public abstract class Person extends Entity
                 }
                 return;
             }
+        if(isDead) {
+            action="sleep"; 
+
+            //Sets a random direction L or R if person is not horizontal
+            makeHorizontal();
+
+            String key = personType + "_" + sex + "_" + skinTone + "_sleep_" + dirChar + "_1";
+            GreenfootImage currentImage = Sprite.getFrame(key);
+            currentImage.scale(48, 32);
+            setImage(currentImage);
+
+            if (actCount % 15 == 0) {
+                healHp(1);
+                if (curHp == maxHp) setDead(false);
+            }
+            return;
+        }
 
             if(inFight) {
                 action="attack";
@@ -158,6 +175,26 @@ public abstract class Person extends Entity
                 action ="idle";
                 animationDelay = 50;
                 //Idle is slower so longer animationDelay
+            return;
+        }
+
+        if(!inFight && !isDead){
+            animate();
+        }
+
+        // If currently escaping, don't do additional effects, like rooms or free roam
+        if(((MyWorld)getWorld()).isEscapeTime()) return;
+
+        Room r = (Room)getOneObjectAtOffset(0,-SPRITE_OFFSET,Room.class);
+        if (curRoom != r) { // Changed current room
+            if (curRoom != null) { // Leaving a room
+                curRoom.exitRoom(this, roomPosition);
+                curRoom = null;
+                roomPosition = -1;
+            } else if(curPath.isEmpty()) { // Landed in a room
+                curRoom = r;
+                roomPosition = curRoom.enterRoom(this);
+                //if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("DINING HALL"))System.out.println(roomPosition);
             }
 
             Room r = (Room)getOneObjectAtOffset(0,-SPRITE_OFFSET,Room.class);
@@ -172,7 +209,6 @@ public abstract class Person extends Entity
                     //if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("DINING HALL"))System.out.println(roomPosition);
                 }
             }
-
         //if(!inIntro){
             // If in room, and it has an effect that can occur, do effect
             if (curRoom != null && curRoom.checkEffectCondition(this)) {
@@ -196,8 +232,54 @@ public abstract class Person extends Entity
     
             if(!inFight && !isDead){
                 animate();
+        if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
+            Action.walkAround(this, true);
+        }
+
+        if(curNode.getIndex() == STARTING_NODE_INDEX && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
+            //getWorld().removeObject(this);
+            curPath.clear();
+            speed = 0;
+        }
+
+        if (!curPath.isEmpty()) {
+            action ="walk";
+            animationDelay = 7;
+            move();
+        } else{
+            if(r instanceof DiningHall){
+                if(personType.equals( "inmate")){
+                    action = "eat";
+                    animationDelay = 20;
+                }
+                else{
+                    action="idle";
+                    animationDelay = 50;
+                }
+            }
+            else if(r instanceof Gym){
+                if(personType.equals( "inmate")){
+                    if((getX()>900)&&(getY()<600)){
+                        action = "walk";
+                        animationDelay = 7;
+                    }
+                    else{
+                        action="idle";
+                        animationDelay = 50;
+                    }
+                }
+                else{
+                    action="idle";
+                    animationDelay = 50;
+                }
+            }
+            else{
+                action ="idle";
+                animationDelay = 50;
             }
         }
+
+        //Idle is slower so longer animationDelay
     }
 
     /**
@@ -205,9 +287,9 @@ public abstract class Person extends Entity
      */
     public void goToNode(int nodeIndex) {
         // if(isWalkingAround && !(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("FREE TIME") || ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("JOB TIME"))) {
-            
+
         // System.out.println(((MyWorld)getWorld()).getSchedule().getCurrentEvent());curPath.clear();
-            // isWalkingAround = false;
+        // isWalkingAround = false;
         // }
         if(MyWorld.pf.getNode(nodeIndex).hasPerson() || inFight || isDead) return; // If spot is already occupied or person is occupied
         if(!curPath.isEmpty()) { // If not starting from stationary, calculate the path starting from the last node in curPath
@@ -287,6 +369,16 @@ public abstract class Person extends Entity
         }
     }
 
+    public void makeHorizontal(){
+        if(dirChar != 'L' && dirChar != 'R'){
+            if (Greenfoot.getRandomNumber(2) == 0) {
+                dirChar='L';
+            } else {
+                dirChar='R';
+            }
+        }
+    }
+
     public void setInFight(Person opponent, boolean inFight) {
         this.inFight = inFight;
         if (inFight) { // If starting fight then show healthBar and store the opponent's health and strength
@@ -294,7 +386,7 @@ public abstract class Person extends Entity
             opponentHealth = opponent.getHealth();
             opponentStrength = opponent.getStrength();
             getWorld().addObject(healthBar, 0, 0);
-            
+
             //When fighting, set dirChar to face the opponent
             int dx = opponent.getX() - getX();
             int dy = opponent.getY() - getY();
@@ -338,7 +430,6 @@ public abstract class Person extends Entity
         int newTranparency = (int)(percent * 255);
         getImage().setTransparency (newTranparency);
     }
-
     
     public int getIndex() {
         return index;
@@ -349,17 +440,21 @@ public abstract class Person extends Entity
         result.add(0);
         return result;
     }
-    
+
     public void setWalking(boolean walking) {
         isWalkingAround = walking;
     }
-    
+
     public boolean isWalking() {
         return isWalkingAround;
     }
-    
+
     public void addUnderglow(){
         getWorld().addObject(new Underglow(this), getX(), getY());
+    }
+
+    public void setAction(String action){
+        this.action=action;
     }
 
     public void animate() {
@@ -367,7 +462,7 @@ public abstract class Person extends Entity
         if (actCount % animationDelay != 0) {
             return;
         }
-        
+
         //Preset animationLengths per action, and delay
         if (action.equals("walk")) {
             animationDelay = 7;
@@ -379,9 +474,18 @@ public abstract class Person extends Entity
         else if(action.equals("attack")){
             animationLength = 4;
         }
-        
+        else if(action.equals("eat")){
+            animationLength = 4;
+            if(getX()<134||(195<getX()&&getX()<256)){
+                dirChar = 'R';
+            }
+            else{
+                dirChar = 'L';
+            }
+        }
+
         //Attacking does not mean they are facing the direction of movement
-        if(!action.equals("attack")){
+        if(!action.equals("attack")&&!action.equals("eat")){
             if (dir == 1 && movingVertical) {
                 dirChar = 'D';
             } else if (dir == -1 && movingVertical) {
@@ -394,11 +498,19 @@ public abstract class Person extends Entity
             else{
                 dirChar = 'D';
             }
+
         }
         imageIndex = (imageIndex + 1) % animationLength;
         String key = personType + "_" + sex + "_" + skinTone + "_" + action + "_" + dirChar + "_" + imageIndex;
         GreenfootImage currentImage = Sprite.getFrame(key);
-        currentImage.scale(32, 48);
+
+        try {
+            currentImage.scale(32, 48);
+        }
+        catch (NullPointerException e) {
+            System.out.println(key);
+        }
+
         setImage(currentImage);
     }
 
@@ -414,16 +526,20 @@ public abstract class Person extends Entity
         curHp+=healAmount;
         if (curHp > maxHp) curHp = maxHp;
         healthBar.update(curHp);
+        if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
     public void addIntel(int intelAmount) {
         intel+=intelAmount;
+        if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
     public void addStrength(int strengthAmount) {
         if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute") && actCount % 720 == 0)strengthAmount++;
         strength+=strengthAmount;
+        if(this instanceof MC)  StatusBar.setUpdate(true);
     }
+
     public void setStrength(int s) {
         strength = s;
     }
@@ -479,7 +595,7 @@ public abstract class Person extends Entity
     public int getStrength() {
         return strength;
     }
-    
+
     public int getIntel(){
         return intel;
     }

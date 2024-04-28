@@ -47,6 +47,8 @@ public class MyWorld extends World
     private JailCell cell1;
     private JailCell cell2;
     
+    private Breakable[] breakables;
+    
     private StatusBar statBar;
 
     private int actCount;
@@ -63,10 +65,16 @@ public class MyWorld extends World
     {    
         // Create a new world with 1200x850 cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
-        setPaintOrder(Item.class,BannerIcon.class,  Banner.class, Clock.class, EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, WallCover.class,Accessory.class, Person.class, Underglow.class, Tile.class, Room.class);
+        setPaintOrder(Item.class, BannerIcon.class,  Banner.class, Clock.class, 
+        EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, 
+        WallCover.class, Accessory.class, Person.class, Underglow.class, Tile.class, 
+        Breakable.class, Room.class);
+        
         pf = new PathFinder(this); // Initialize this first
         SimulationFont.initalizeFont();
         Sprite.init();
+        
+        //TEMPP
         setBackground(backgroundImg);
 
         // Initialize the people in the prison (MCs, prisoners, guards)
@@ -100,8 +108,8 @@ public class MyWorld extends World
             addObject(guards[i], 0, 0);
         }
         // Test prisoner
-        g = new Prisoner(17);
-        addObject(g,0,0);
+        // g = new Prisoner(17);
+        // addObject(g,0,0);
         
         // Initialize schedule and GUI
         schedule = new Schedule(this);
@@ -143,17 +151,32 @@ public class MyWorld extends World
         addObject(new WallCover("images/WallCover/WoodworkCover.png"), 319, 600);
         addObject(new WallCover("images/WallCover/MetalworkCover.png"), 728, 601);
         
-        /**
-         * DEMO
-         */
-        addObject(new Potion(),400, 299);
-        addObject(new Metal(),420, 299);
-        addObject(new Ladder(),440, 299);
-        addObject(new Sword(),460, 299);
-        addObject(new Keycard(),480, 299);
-        addObject(new Metal(),500, 299);
-        addObject(new Keycard(),360, 299);
-        addObject(new Wood(),380, 299);
+        // Breakables
+        breakables = new Breakable[3];
+        breakables[0] = new Breakable("images/Breakable/RollCallWall.png",100, 100);
+        addObject(breakables[0], 558, 188);
+        
+        //Electric Fence
+        addObject(new ElectricFence(27),1077,360);
+        addObject(new ElectricFence(24),1077,320);
+        addObject(new ElectricFence(21),1077,280);
+        addObject(new ElectricFence(18),1077,240);
+        addObject(new ElectricFence(15),1077,200);
+        addObject(new ElectricFence(12,true),1040,160);
+        addObject(new ElectricFence(9,true),1000,160);
+        addObject(new ElectricFence(6,true),960,160);
+        addObject(new ElectricFence(3,true),920,160);
+        addObject(new ElectricFence(0,true),880,160);
+        
+        //Items
+        // addObject(new Potion(),400, 299);
+        // addObject(new Metal(),420, 299);
+        // addObject(new Ladder(),440, 299);
+        // addObject(new Sword(),460, 299);
+        // addObject(new Keycard(),480, 299);
+        // addObject(new Metal(),500, 299);
+        // addObject(new Keycard(),360, 299);
+        // addObject(new Wood(),380, 299);
     }
 
     public void started(){
@@ -167,6 +190,11 @@ public class MyWorld extends World
 
     public void act() {
         schedule.act();
+        
+        if (escapeTime) {
+            escape.act();
+        }
+        
         actCount++;
         zSort();
     }
@@ -179,10 +207,19 @@ public class MyWorld extends World
         escapingMcs++;
         if (escapingMcs == 4) { // All prisoners are ready to escape
             escape = new Escape(this);
+            escapeTime = true;
             return true;
         } else {
             return false;
         }
+    }
+    
+    public boolean isEscapeTime() {
+        return escapeTime;
+    }
+    
+    public Breakable getBreakable(int index) {
+        return breakables[index];
     }
     
     private void initalizeFont(){
