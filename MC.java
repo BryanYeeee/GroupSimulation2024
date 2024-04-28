@@ -16,6 +16,16 @@ public class MC extends Prisoner
     private String currentAction;
     private Item[] items = new Item[2];
     
+    // For cutscene/intro world
+    public MC(int i, boolean inIntro, String specialty){
+        super(i, inIntro);
+        this.specialty = specialty;
+        GreenfootImage cutsceneImage = new GreenfootImage("images/inmate/male_white/idle/D0.png");
+        cutsceneImage.scale(120, 180);
+        setImage(cutsceneImage);
+    }
+    
+    // For main prisoner world
     public MC (int i, MyWorld world, String jobTitle, String specialty) {
         super(i, jobTitle);
         //this.strength = 11;

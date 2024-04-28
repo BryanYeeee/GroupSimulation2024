@@ -10,11 +10,19 @@ import java.util.ArrayList;
  */
 public class Guard extends Person
 {
+    // For cutscene/intro
+    public Guard(int i, boolean inIntro){
+        super(i, inIntro);
+        GreenfootImage cutsceneImage = new GreenfootImage("images/guard/male_white/idle/D0.png");
+        cutsceneImage.scale(120, 165);
+        setImage(cutsceneImage);
+        personType = "guard";
+    }
+    
     public Guard(int i) {
         super(i);
         personType = "guard";
     }
-    
     public void act() {
         super.act();
         if(((MyWorld)getWorld()).isEscapeTime()) {
@@ -25,7 +33,7 @@ public class Guard extends Person
             if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
                 Action.walkAround(this, true);
             }
-            
+          
             // Fight intersecting MCs
             if (!inFight && !isDead) {
                 MC mc = (MC)getOneIntersectingObject(MC.class);
@@ -44,4 +52,9 @@ public class Guard extends Person
         result.add(6);
         return result; 
     }
+    
+    public Accessory getAccessory(){
+        return (Accessory) getOneIntersectingObject(Accessory.class);
+    }
+    
 }
