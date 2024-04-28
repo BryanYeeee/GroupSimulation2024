@@ -21,6 +21,14 @@ public class MC extends Prisoner
     private StatSetter intelligence;
     private String specialty;
     
+    // For cutscene/intro world
+    public MC(int i, boolean inIntro, String specialty){
+        super(i, inIntro);
+        this.specialty = specialty;
+        GreenfootImage cutsceneImage = new GreenfootImage("images/inmate/male_white/idle/D0.png");
+        cutsceneImage.scale(120, 180);
+        setImage(cutsceneImage);
+    }
     
     public MC (int i, MyWorld world, String jobTitle) {
         super(i, jobTitle);

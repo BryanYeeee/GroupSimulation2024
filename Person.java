@@ -68,7 +68,7 @@ public abstract class Person extends Entity
         roomPosition = -1;
         maxHp = Greenfoot.getRandomNumber(25)+75;
         curHp = Greenfoot.getRandomNumber(10)+maxHp-10;
-        strength = Greenfoot.getRandomNumber(5)+5;
+        str = Greenfoot.getRandomNumber(5)+5;
         intel = 40;
     }
 
@@ -144,7 +144,7 @@ public abstract class Person extends Entity
                 animate(); //Call animate before return 
                 if (actCount % 30 == 0) {
                     curHp -= opponentStrength;
-                    opponentHealth -= strength;
+                    opponentHealth -= str;
                     if (opponentHealth <= 0 || curHp <= 0) {
                         if(curHp<=0) curHp = 0;
                         setInFight(this, false);
@@ -550,7 +550,7 @@ public abstract class Person extends Entity
         return str;
     }
 
-    public int getIntel(){
+    public double getIntel(){
         return intel;
     }
 

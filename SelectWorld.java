@@ -96,6 +96,7 @@ public class SelectWorld extends AllWorld
     
     public void transitionWorld() {
         serializedPrisonersState = saveSelectedPrisonersState();
+        System.out.println(serializedPrisonersState);
         Greenfoot.setWorld(new StatWorld(serializedPrisonersState));
     }
     

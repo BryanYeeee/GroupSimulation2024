@@ -25,6 +25,7 @@ public class StatWorld extends AllWorld
         String[] savedData = new String[4];
         
         int index = 0;
+        SelectWorld selectWorld = new SelectWorld();
         for(String serializedData : selectedPrisoners) {
             if(index < 4) {
                 savedData[index] = serializedData;
@@ -114,7 +115,6 @@ public class StatWorld extends AllWorld
      * saves all prisoner data and switches worlds
      */
     public void switchToWorld() {
-        List<String> serializedDataList = savePrisonersState();
-        Greenfoot.setWorld(new MyWorld(serializedDataList));
+        Greenfoot.setWorld(new IntroWorld());
     }
 }
