@@ -21,7 +21,7 @@ public class PathFinder
             "2 378 324 45 15 3 3",
             "3 378 474 45 15 43 18",
             
-            "36 463 474 0 0 43 18",
+            "36 469 474 0 0 43 18",
             "37 530 474 0 0 43 18",
             "38 591 474 0 0 43 18",
             "39 682 474 0 0 43 18",
@@ -64,7 +64,12 @@ public class PathFinder
             // Metalworking (connected to node 39):
             "118 682 554","121 713 554","122 744 554",
                           "119 713 565","120 744 565",
-                          "123 713 603","124 744 603"
+                          "123 713 603","124 744 603",
+            // Janitor
+            // MC Cells (connected to node 36 38):
+            "132 438 569","133 469 569","134 500 569","135 559 569","136 591 569","137 621 569",
+            // Escape
+            "138 560 0"
         };
         String[] nodeConnections = new String[] {
             // Hallway:
@@ -114,7 +119,12 @@ public class PathFinder
             // Metalworking (connected to node 39):
             "118 39","121 118","122 121",
                      "119 121","120 122",
-                     "123 119","124 120"
+                     "123 119","124 120",
+            // Janitor
+            // MC Cells (connected to node 36 38):
+            "132 133","133 134","133 36","135 136","136 137","136 38",
+            // Escape
+            "138 71"
         };
                
         nodes = new Node[nodeConfig.length]; 

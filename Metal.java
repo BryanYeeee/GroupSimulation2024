@@ -12,12 +12,12 @@ public class Metal extends Item
     public Metal()
     {
         super("metal");
+        isMaterial = true;
     }
 
     
     public void useItem(MyWorld w, MC p) {
         p.giveItem(new Sword());
-        p.removeItem(this);
         p.addStrength(100);
     }
 }

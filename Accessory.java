@@ -13,14 +13,19 @@ public class Accessory extends Entity
      * Act - do whatever the Hair wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
+    GreenfootImage currentImage;
     private Person origin;
     private int xOffset=0;
     private int originalYOffset = -11;
     private int yOffset=-11;
     private int accessoryIndex=0;
+    private int actsLeft;
     private static final Map<String, Integer> offsetValues = initializeOffsetValues();
     
+    
     private static Map<String, Integer> initializeOffsetValues() {
+        //These values correspond to the yOffset of different frames in animation
         Map<String, Integer> values = new HashMap<>();
         values.put("idleD0", 0);
         values.put("idleD1", 1);
@@ -67,6 +72,18 @@ public class Accessory extends Entity
         values.put("walkU9", -1);
         values.put("walkU10", -1);
         values.put("walkU11", 1);
+        values.put("attackL0", -2);
+        values.put("attackL1", -2);
+        values.put("attackL2", -1);
+        values.put("attackL3", -1);
+        values.put("attackD0", -2);
+        values.put("attackD1", 10);
+        values.put("attackD2", 12);
+        values.put("attackD3", 10);
+        values.put("attackU0", 3);
+        values.put("attackU1", 2);
+        values.put("attackU2", 1);
+        values.put("attackU3", 2);
         return values;
     }
 
@@ -77,27 +94,65 @@ public class Accessory extends Entity
 
     public void act()
     {
-        if(origin.getDirChar()=='R'){
-            yOffset=originalYOffset+(int)offsetValues.get(origin.getAction()+'L'+origin.getImageIndex());
+        try {
+            if (origin.getDirChar() == 'R') {
+                yOffset = originalYOffset + (int)offsetValues.get(origin.getAction() + 'L' + origin.getImageIndex());
+            } else {
+                yOffset = originalYOffset + (int)offsetValues.get(origin.getAction() + origin.getDirChar() + origin.getImageIndex());
+            }
+        } catch (NullPointerException | ClassCastException e) {
+            yOffset = originalYOffset; 
         }
-        else{
-            yOffset=originalYOffset+(int)offsetValues.get(origin.getAction()+origin.getDirChar()+origin.getImageIndex());
-        }
+        
         if(origin.getDirChar()=='L'){
-             xOffset=1;
+            xOffset=1;
         }
         else if(origin.getDirChar()=='R'){
-             xOffset=-1;
+            xOffset=-1;
         }
         else{
             xOffset=0;
         }
+
+        currentImage = new GreenfootImage("images/accessories/"+accessoryIndex+origin.getDirChar()+".png");
+        if(Person.inIntro){
+            currentImage.scale(120, 120);
+            yOffset = -40;
+        } else {
+            currentImage.scale(32, 32);
+        }
         
-        GreenfootImage currentImage = new GreenfootImage("images/inmate-accessories/"+accessoryIndex+origin.getDirChar()+".png");
-        currentImage.scale(32, 32);
+        if(actsLeft <= 60 && actsLeft > 0){
+            fade(actsLeft, 60);
+        } 
+        
+        if(origin.getAction().equals("sleep")){
+            yOffset=2;
+            if(origin.getDirChar() == 'R'){
+                setRotation(-90);
+                xOffset=-15;
+            }
+            else {
+                setRotation(90);
+                xOffset=15;
+            }
+        }
+        else{
+            setRotation(0);
+        }
         setImage(currentImage);
         setLocation(origin.getX()+xOffset,origin.getY()+yOffset);
-
+    }
+    
+    public void setActsLeft(int acts){
+        actsLeft = acts;
+    }
+    
+    public void fade (int timeLeft, int totalFadeTime){
+        double percent = timeLeft / (double)totalFadeTime;
+        if (percent > 1.00) return;
+        int newTranparency = (int)(percent * 255);
+        currentImage.setTransparency (newTranparency);
     }
 
 }

@@ -11,15 +11,15 @@ public class Metalwork extends Room
     private final int JOB_NODE_1 = 119;
     private final int JOB_NODE_2 = 123;
     private final int JOB_NODE_3 = 121;
-    
+
     private final int JOB_NODE_4 = 120;
     private final int JOB_NODE_5 = 124;
     private final int JOB_NODE_6 = 122;
-    
+
     public Metalwork (int[] prisonerPosIndexes, int[] dimensions) {
         super(prisonerPosIndexes, new int[]{}, dimensions);
     }
-    
+
     public void doEffect (Person p) {
         if (!p.isMoving() && p.getActCount() % 120 == 0) {
             //System.out.println(p.getCurNode().getIndex());
@@ -41,12 +41,23 @@ public class Metalwork extends Room
             }
         }
     }
-    
-    public void exitRoom (Person p, int roomPosition) {
-        if(p instanceof MC) ((MC)p).giveItem(new Metal());
-        super.exitRoom(p, roomPosition);
+
+    public void exitRoom(Person p, int roomPosition) {
+        if (p instanceof MC) {
+            exitRoom((MC) p, roomPosition);
+        } else {
+            super.exitRoom(p, roomPosition);
+        }
     }
-    
+
+    // Overloaded method specifically for MC
+    public void exitRoom(MC mc, int roomPosition) {
+        Item item = new Metal();
+        getWorld().addObject(item, mc.getX(), mc.getY());
+        item.pickup(mc);
+        super.exitRoom(mc, roomPosition);
+    }
+
     public boolean checkEffectCondition (Person p) { // If person is at its assigned room position
         //return p.getCurNode().getIndex() == p.getCurRoom().getPositionIndex(p, p.getRoomPosition());
         return true;

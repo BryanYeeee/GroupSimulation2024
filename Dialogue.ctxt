@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=Dialogue
-comment0.text=\n\ Write\ a\ description\ of\ class\ Announcement\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
-comment1.params=text\ seconds\ iconName
-comment1.target=Dialogue(java.lang.String,\ double,\ java.lang.String)
-comment2.params=
-comment2.target=void\ act()
-numComments=3

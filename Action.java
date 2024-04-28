@@ -9,19 +9,22 @@ import java.util.Arrays;
  */
 public class Action  
 {
-    private final static int DININGHALL_NODE = 14;
+    protected final static int DININGHALL_NODE = 14;
     
-    private final static int ROLLCALL_NODE_1 = 54;
-    private final static int ROLLCALL_NODE_2 = 72;
-    private final static int ROLLCALL_NODE_3 = 58;
+    protected final static int ROLLCALL_NODE_1 = 54;
+    protected final static int ROLLCALL_NODE_2 = 72;
+    protected final static int ROLLCALL_NODE_3 = 58;
     
-    private final static int GYM_NODE = 73;
+    protected final static int GYM_NODE = 73;
     
-    private final static int JANITOR_NODE = 43;
-    private final static int LIBRARIAN_NODE = 110;
-    private final static int COOK_NODE = 108;
-    private final static int WOODWORKER_NODE = 4;
-    private final static int METALWORKER_NODE = 118;
+    protected final static int JANITOR_NODE = 43;
+    protected final static int LIBRARIAN_NODE = 110;
+    protected final static int COOK_NODE = 108;
+    protected final static int WOODWORKER_NODE = 4;
+    protected final static int METALWORKER_NODE = 118;
+    
+    protected final static int CELL_1 = 133;
+    protected final static int CELL_2 = 136;
     
     public static void doRollCall(MyWorld w) {
         Person[] getPeople = w.getPeople();
@@ -164,7 +167,7 @@ public class Action
             // return;
         // }
         if(p instanceof Prisoner) {
-            switch (((Prisoner)p).hasJob() ? 4 :Greenfoot.getRandomNumber(4)) {
+            switch (Greenfoot.getRandomNumber(4)+ (((Prisoner)p).hasJob()?1:0)) {
                 case 3:
             //System.out.println(p.getIndex() + ": LIB");
                     if(Action.goToLibrary(w, p)) break;
@@ -260,6 +263,29 @@ public class Action
         if (p instanceof Prisoner && !(p instanceof MC)) {
             p.clearPath();
             p.goToNode(Person.STARTING_NODE_INDEX);
+        }
+        if (p instanceof MC) {
+            switch(p.getIndex()) {
+                case 0:
+                case 1:
+                    p.goToNode(CELL_1);
+                    break;
+                case 2:
+                case 3:
+                    p.goToNode(CELL_2);
+                    break;
+            }
+        }
+        if(p instanceof Guard) {
+            p.setWalking(true);
+            switch(Greenfoot.getRandomNumber(2)) {
+                case 0:
+                    p.goToNode(Person.STARTING_NODE_INDEX);
+                    break;
+                case 1:
+                    p.goToNode(Person.WALKING_NODE_INDEX);
+                    break;
+            }
         }
     }
 

@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=Tile
-comment0.text=\n\ Write\ a\ description\ of\ class\ Tile\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
-comment1.params=config
-comment1.target=Tile(java.lang.String[])
-comment2.params=
-comment2.target=void\ act()
-numComments=3

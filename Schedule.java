@@ -18,10 +18,10 @@ public class Schedule
     private MyWorld world;
     {
         messageTimings = new HashMap<>();
-        // // Beginning roll call
-        // messageTimings.put(0, "ATTENTION ALL INMATES,");
-        // messageTimings.put(120, "IT IS 730 HOURS.");
-        // messageTimings.put(240, "PROCEED TO THE MAIN HALL FOR ROLL CALL.");
+        // Beginning roll call
+        messageTimings.put(0, "ATTENTION ALL INMATES,");
+        messageTimings.put(120, "IT IS 730 HOURS.");
+        messageTimings.put(240, "PROCEED TO THE MAIN HALL FOR ROLL CALL.");
         // // Breakfast
         // messageTimings.put(10*60, "IT IS 930 HOURS.");
         // messageTimings.put(820, "PROCEED TO THE DINING ROOM FOR BREAKFAST");
@@ -65,7 +65,7 @@ public class Schedule
                 currentEvent = "JOB TIME";
                 Action.doJob(world);
     }
-    public void doroll(){
+    public void doRoll(){
                 world.updateEventDisplay("ROLL CALL");
                 currentEvent = "ROLL CALL";
                 Action.doRollCall(world);
@@ -79,10 +79,9 @@ public class Schedule
     
     public void act()
     {
-        // if(actCount==0) {
-                // world.updateEventDisplay("GYM TIME");
-                // currentEvent = "GYM TIME";
-                // Action.doGym(world); 
+        // if(actCount==10) {
+           // actCount=135*60;
+           // world.getMainPrisoners()[0].giveItem(new Fork());
         // }
         // if(actCount==20*60) {
         // }
@@ -152,18 +151,18 @@ public class Schedule
                 //System.out.println(x + ": " + Person.noFights);
                 break;
             case 135*60:
-                // world.addObject(new NightTime(),0,0);
-                // world.updateEventDisplay("LIGHTS OUT");
-                // Action.doLightsOut(world);
-                actCount = 1;
-                System.out.println("ENDING SIMULATION");
-                //System.out.println(x + ": " + Person.noFights);
-                mc = world.getMainPrisoners();
-                for(MC m : mc) {
-                    System.out.println(m.getSpecialty() +": "+m.getStrength());
-                    m.setStrength(Greenfoot.getRandomNumber(5)+5);
-                    if(m.getSpecialty().equals("Brute")) m.setStrength(Greenfoot.getRandomNumber(3)+10);
-                }
+                world.addObject(new NightTime(),0,0);
+                world.updateEventDisplay("LIGHTS OUT");
+                Action.doLightsOut(world);
+                // actCount = 1;
+                // System.out.println("ENDING SIMULATION");
+                // //System.out.println(x + ": " + Person.noFights);
+                // mc = world.getMainPrisoners();
+                // for(MC m : mc) {
+                    // System.out.println(m.getSpecialty() +": "+m.getStrength());
+                    // m.setStrength(Greenfoot.getRandomNumber(5)+5);
+                    // if(m.getSpecialty().equals("Brute")) m.setStrength(Greenfoot.getRandomNumber(3)+10);
+                // }
                 System.out.println("# of fights (npcs and mcs): " + Person.noFights);
                 System.out.println();
                 System.out.println();

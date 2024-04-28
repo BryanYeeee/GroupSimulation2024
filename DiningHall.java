@@ -53,6 +53,11 @@ public class DiningHall extends Room
     public void exitRoom (Person p, int roomPosition) {
         p.showHealthBar(false);
         if (roomPosition >= 0) super.exitRoom(p, roomPosition);
+        
+        // MAKE 1 to 3, ITS 1 FOR TESTING TO MAKE GARUNTEE
+        if(p instanceof MC && ((MC)p).getSpecialty().equals("Thief") && Greenfoot.getRandomNumber(1) == 0) {
+            ((MC)p).giveItem(new Fork());
+        }
     }
     
     public boolean checkEffectCondition (Person p) { // If person is at its assigned room position

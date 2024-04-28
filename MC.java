@@ -12,6 +12,7 @@ public class MC extends Prisoner
     private ArrayList<Item> heldItems;
     
     private String currentAction;
+    private Item[] items = new Item[2];
     
     private String name;
     private StatSetter strength;
@@ -106,22 +107,51 @@ public class MC extends Prisoner
         return specialty;
     }
     
+    public String getName(){
+        return name;
+    }
+    
     public void setAction(String action) {
         this.currentAction = action;
     }
     
     public void giveItem(Item item) {
+        for(Item i : heldItems) {
+            if(i.getClass() == item.getClass()) {
+                return;
+            }
+        }
         this.heldItems.add(item);
+        StatusBar.setUpdate(true);
     }
     
-    public void removeItem(Item item) {
-        this.heldItems.remove(item);
+    // public void removeItem(Item item) {
+        // this.heldItems.remove(item);
+    // }
+    /**
+     * This method will craft the next material item in heldItems
+     * 
+     * @return boolean returns true if there are no more materials in heldItems
+     */
+    public boolean craftItem() {
+        for(Item i : heldItems) {
+            if(i.isMaterial()) {
+                i.useItem(world, this);
+                heldItems.remove(i);
+                StatusBar.setUpdate(true);
+                return false;
+            };
+        }
+        return true;
     }
     
-    public void useItem(int i) {
-        heldItems.get(i).useItem(world, this);
+    public ArrayList<Item> getItems() {
+        return heldItems;
     }
     
+    public int getIndex(){
+        return index;
+    }
     
     public ArrayList<Integer> getAccessories(){
         ArrayList<Integer> result = new ArrayList<>();
@@ -141,4 +171,26 @@ public class MC extends Prisoner
         System.out.println(result);
         return result; 
     }
+    
+    public void addItem(Item item) {
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] == null) {  // Check if the slot is empty
+                items[i] = item;  
+                System.out.println("Item added to slot " + i);
+                return;  
+            }
+        }
+        System.out.println("Inventory is full. Cannot add item.");
+    }
+    
+    public int getItemCount() {
+        int count = 0;
+        for (Item item : items) {
+            if (item != null) {
+                count++;  // Increment count for each non-null item found
+            }
+        }
+        return count;  // Return the total count of items
+    }
+    
 }
