@@ -67,7 +67,7 @@ public abstract class Person extends Entity
         strength = Greenfoot.getRandomNumber(5)+5;
         intel = 40;
     }
-    
+
     public Person(int i) {
         this.index = i;
         curNode = MyWorld.pf.getNode(STARTING_NODE_INDEX);
@@ -104,15 +104,13 @@ public abstract class Person extends Entity
             }
         }
     }
-            
 
-    public void act()
-    {   
+    public void act(){   
         actCount++;
         if(!inIntro){
             if(isDead) {
                 action="sleep"; 
-                
+
                 //Sets a random direction L or R if person is not horizontal
                 if(dirChar != 'L' && dirChar != 'R'){
                     if (Greenfoot.getRandomNumber(2) == 0) {
@@ -125,31 +123,13 @@ public abstract class Person extends Entity
                 GreenfootImage currentImage = Sprite.getFrame(key);
                 currentImage.scale(48, 32);
                 setImage(currentImage);
-                
+
                 if (actCount % 15 == 0) {
                     healHp(1);
                     if (curHp == maxHp) setDead(false);
                 }
                 return;
             }
-        if(isDead) {
-            action="sleep"; 
-
-            //Sets a random direction L or R if person is not horizontal
-            makeHorizontal();
-
-            String key = personType + "_" + sex + "_" + skinTone + "_sleep_" + dirChar + "_1";
-            GreenfootImage currentImage = Sprite.getFrame(key);
-            currentImage.scale(48, 32);
-            setImage(currentImage);
-
-            if (actCount % 15 == 0) {
-                healHp(1);
-                if (curHp == maxHp) setDead(false);
-            }
-            return;
-        }
-
             if(inFight) {
                 action="attack";
                 animationDelay=10;
@@ -167,35 +147,12 @@ public abstract class Person extends Entity
                 return;
             }
 
-            if (!curPath.isEmpty()) {
-                action ="walk";
-                animationDelay = 7;
-                move();
-            } else{
-                action ="idle";
-                animationDelay = 50;
-                //Idle is slower so longer animationDelay
-            return;
-        }
-
-        if(!inFight && !isDead){
-            animate();
-        }
-
-        // If currently escaping, don't do additional effects, like rooms or free roam
-        if(((MyWorld)getWorld()).isEscapeTime()) return;
-
-        Room r = (Room)getOneObjectAtOffset(0,-SPRITE_OFFSET,Room.class);
-        if (curRoom != r) { // Changed current room
-            if (curRoom != null) { // Leaving a room
-                curRoom.exitRoom(this, roomPosition);
-                curRoom = null;
-                roomPosition = -1;
-            } else if(curPath.isEmpty()) { // Landed in a room
-                curRoom = r;
-                roomPosition = curRoom.enterRoom(this);
-                //if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("DINING HALL"))System.out.println(roomPosition);
+            if(!inFight && !isDead){
+                animate();
             }
+
+            // If currently escaping, don't do additional effects, like rooms or free roam
+            if(((MyWorld)getWorld()).isEscapeTime()) return;
 
             Room r = (Room)getOneObjectAtOffset(0,-SPRITE_OFFSET,Room.class);
             if (curRoom != r) { // Changed current room
@@ -209,12 +166,12 @@ public abstract class Person extends Entity
                     //if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("DINING HALL"))System.out.println(roomPosition);
                 }
             }
-        //if(!inIntro){
+
             // If in room, and it has an effect that can occur, do effect
             if (curRoom != null && curRoom.checkEffectCondition(this)) {
                 curRoom.doEffect(this);
             }
-    
+
             if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
                 Action.walkAround(this, false);
             }
@@ -222,46 +179,38 @@ public abstract class Person extends Entity
             if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
                 Action.walkAround(this, true);
             }
-            
+
             if(curNode.getIndex() == STARTING_NODE_INDEX && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
                 //getWorld().removeObject(this);
                 curPath.clear();
                 speed = 0;
             }
-        //}
-    
-            if(!inFight && !isDead){
-                animate();
-        if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
-            Action.walkAround(this, true);
-        }
 
-        if(curNode.getIndex() == STARTING_NODE_INDEX && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
-            //getWorld().removeObject(this);
-            curPath.clear();
-            speed = 0;
-        }
-
-        if (!curPath.isEmpty()) {
-            action ="walk";
-            animationDelay = 7;
-            move();
-        } else{
-            if(r instanceof DiningHall){
-                if(personType.equals( "inmate")){
-                    action = "eat";
-                    animationDelay = 20;
+            if (!curPath.isEmpty()) {
+                action ="walk";
+                animationDelay = 7;
+                move();
+            } else{
+                if(r instanceof DiningHall){
+                    if(personType.equals( "inmate")){
+                        action = "eat";
+                        animationDelay = 20;
+                    }
+                    else{
+                        action="idle";
+                        animationDelay = 50;
+                    }
                 }
-                else{
-                    action="idle";
-                    animationDelay = 50;
-                }
-            }
-            else if(r instanceof Gym){
-                if(personType.equals( "inmate")){
-                    if((getX()>900)&&(getY()<600)){
-                        action = "walk";
-                        animationDelay = 7;
+                else if(r instanceof Gym){
+                    if(personType.equals( "inmate")){
+                        if((getX()>900)&&(getY()<600)){
+                            action = "walk";
+                            animationDelay = 7;
+                        }
+                        else{
+                            action="idle";
+                            animationDelay = 50;
+                        }
                     }
                     else{
                         action="idle";
@@ -269,17 +218,13 @@ public abstract class Person extends Entity
                     }
                 }
                 else{
-                    action="idle";
+                    action ="idle";
                     animationDelay = 50;
                 }
             }
-            else{
-                action ="idle";
-                animationDelay = 50;
-            }
-        }
 
-        //Idle is slower so longer animationDelay
+            //Idle is slower so longer animationDelay
+        }
     }
 
     /**
@@ -423,14 +368,14 @@ public abstract class Person extends Entity
         }
         //System.out.println("FIGHT: " +onGoingFights);
     }
-    
+
     protected void fade (int timeLeft, int totalFadeTime){
         double percent = timeLeft / (double)totalFadeTime;
         if (percent > 1.00) return;
         int newTranparency = (int)(percent * 255);
         getImage().setTransparency (newTranparency);
     }
-    
+
     public int getIndex() {
         return index;
     }
@@ -575,7 +520,7 @@ public abstract class Person extends Entity
     public boolean isDead() {
         return isDead;
     }
-    
+
     public static void setIntro(boolean intro){
         inIntro = intro;
     }
@@ -603,7 +548,7 @@ public abstract class Person extends Entity
     public Node getCurNode() {
         return curNode;
     }
-    
+
     public Room getCurRoom() {
         return curRoom;
     }
