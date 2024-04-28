@@ -219,7 +219,9 @@ public class IntroWorld extends World
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 14){ //once world clicked, proceed to main simulation
             addObject(speakers[0], 512, 400);
             Person.setIntro(false);
-            MyWorld simulationWorld = new MyWorld();
+            SelectWorld selectWorld = new SelectWorld();
+            StatWorld statWorld = new StatWorld(selectWorld.saveSelectedPrisonersState());
+            MyWorld simulationWorld = new MyWorld(statWorld.savePrisonersState());
             Greenfoot.setWorld(simulationWorld);
         }
         if(actsLeft <= 60 && actsLeft > 0){
