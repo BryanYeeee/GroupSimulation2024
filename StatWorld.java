@@ -40,22 +40,12 @@ public class StatWorld extends AllWorld
             savedPrisoners[i].deserializeState(savedData[i]);
             
         }
-        
-        /*
-        //creation of the 5 main characters    
-        SavedPrisoner mc1 = new SavedPrisoner("Bob", 5, 1, 3, 6, "None");
-        SavedPrisoner mc2 = new SavedPrisoner("Alice", 5, 1, 3, 6, "None");
-        SavedPrisoner mc3 = new SavedPrisoner("Neo", 5, 1, 3, 6, "None");
-        SavedPrisoner mc4 = new SavedPrisoner("Hater", 5, 1, 3, 6, "None");
-        */
 
         //adding them to the world to edit their stats
         addObject(savedPrisoners[0], 100, 200);
         addObject(savedPrisoners[1], 100, 500);
         addObject(savedPrisoners[2], 450, 200);
         addObject(savedPrisoners[3], 450, 500);
-        
-        
 
         //creating stat menus
         savedPrisoners[0].createControls(275, 125);

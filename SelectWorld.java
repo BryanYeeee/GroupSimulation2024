@@ -14,6 +14,8 @@ public class SelectWorld extends AllWorld
     private List<SavedPrisoner> selectedPrisoners = new ArrayList<>();
     private List<String> serializedPrisonersState;
     
+    private GreenfootImage bgImage;
+    
     /**
      * Constructor for objects of class SelectWorld.
      * 
@@ -61,6 +63,9 @@ public class SelectWorld extends AllWorld
         
         NextButton next = new NextButton("NextButton.png");
         addObject(next, 1000, 800);
+        
+        bgImage = new GreenfootImage("PrisonBg2.png");
+        setBackground(bgImage);
     }
     
     
