@@ -49,27 +49,45 @@ public class SavedPrisoner extends Actor {
         intelligence = new StatSetter(initialIntelligence, false);
         this.specialty = specialty;
         
-        /*
+        
         if(name.equals("Brute")) {
-            job = "Brute";
-            //image = new GreenfootImage("");
+            image = new GreenfootImage("Brute.png");
         } else if(name.equals("Thief")) {
-            job = "Thief";
-            //image = new GreenfootImage("");
+            image = new GreenfootImage("Thief.png");
         } else if(name.equals("Weapondealer")) {
-            job = "Weapondealer";
-            //image = new GreenfootImage("");
+            image = new GreenfootImage("WeaponDealer.png");
         } else if(name.equals("Scientist")) {
-            job = "Scientist";
-            //image = new GreenfootImage("");
+            image = new GreenfootImage("MadScientist.png");
         } else if(name.equals("Explosiveexpert")) {
-            job = "Explosiveexpert";
-            //image = new GreenfootImage("");
+            image = new GreenfootImage("ExplosiveExpert.png");
         } else if(name.equals("Builder")) {
-            job = "Builder";
-            //image = new GreenfootImage("");
+            image = new GreenfootImage("Builder.png");
         }
-        */
+        if(image != null) {
+            image.scale(100, 100);
+        }
+        setImage(image);
+        
+    }
+    
+    public SavedPrisoner(String name) {
+        this.name = name;
+        
+        if(name.equals("Brute")) {
+            image = new GreenfootImage("Brute.png");
+        } else if(name.equals("Thief")) {
+            image = new GreenfootImage("Thief.png");
+        } else if(name.equals("Weapondealer")) {
+            image = new GreenfootImage("WeaponDealer.png");
+        } else if(name.equals("Scientist")) {
+            image = new GreenfootImage("MadScientist.png");
+        } else if(name.equals("Explosiveexpert")) {
+            image = new GreenfootImage("ExplosiveExpert.png");
+        } else if(name.equals("Builder")) {
+            image = new GreenfootImage("Builder.png");
+        }
+        image.scale(100, 100);
+        setImage(image);
     }
     
     public String getSpecialty() {
@@ -131,25 +149,25 @@ public class SavedPrisoner extends Actor {
         StatButton increaseStrengthButton = new StatButton(strength, true);
         StatButton decreaseStrengthButton = new StatButton(strength, false);
         Textbox strengthTextbox = new Textbox("Str", 70, strength);
-        getWorld().addObject(increaseStrengthButton, x + 50, y);
-        getWorld().addObject(decreaseStrengthButton, x, y);
-        getWorld().addObject(strengthTextbox, x - 55, y);
+        getWorld().addObject(increaseStrengthButton, x + 50, y + 20);
+        getWorld().addObject(decreaseStrengthButton, x, y + 20);
+        getWorld().addObject(strengthTextbox, x - 55, y + 20);
 
         // Speed controls
         StatButton increaseSpeedButton = new StatButton(speed, true);
         StatButton decreaseSpeedButton = new StatButton(speed, false);
         Textbox speedTextbox = new Textbox("Spd", 70, speed);
-        getWorld().addObject(increaseSpeedButton, x + 50, y + 50);
-        getWorld().addObject(decreaseSpeedButton, x, y + 50);
-        getWorld().addObject(speedTextbox, x - 55, y + 50);
+        getWorld().addObject(increaseSpeedButton, x + 50, y + 70);
+        getWorld().addObject(decreaseSpeedButton, x, y + 70);
+        getWorld().addObject(speedTextbox, x - 55, y + 70);
 
         // Intelligence controls
         StatButton increaseIntelligenceButton = new StatButton(intelligence, true);
         StatButton decreaseIntelligenceButton = new StatButton(intelligence, false);
         Textbox intelligenceTextbox = new Textbox("Int", 70, intelligence);
-        getWorld().addObject(increaseIntelligenceButton, x + 50, y + 100);
-        getWorld().addObject(decreaseIntelligenceButton, x, y + 100);
-        getWorld().addObject(intelligenceTextbox, x -55, y + 100);
+        getWorld().addObject(increaseIntelligenceButton, x + 50, y + 120);
+        getWorld().addObject(decreaseIntelligenceButton, x, y + 120);
+        getWorld().addObject(intelligenceTextbox, x -55, y + 120);
     }
     
     /**

@@ -17,10 +17,10 @@ public class SelectButton extends Button
     public SelectButton(SelectWorld selectWorld, SavedPrisoner savedPrisoner) {
         this.selectWorld = selectWorld;
         this.savedPrisoner = savedPrisoner;
-        selectedImage = new GreenfootImage("NextButton.png");
-        deselectedImage = new GreenfootImage("gameArrow.png");
-        selectedImage.scale(100, 50);
-        deselectedImage.scale(100, 50);
+        selectedImage = new GreenfootImage("DeselectButton.png");
+        deselectedImage = new GreenfootImage("SelectButton.png");
+        selectedImage.scale(150, 50);
+        deselectedImage.scale(150, 50);
         setImage(deselectedImage);
     }
     

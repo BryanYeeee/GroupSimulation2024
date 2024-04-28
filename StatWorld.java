@@ -12,6 +12,7 @@ public class StatWorld extends AllWorld
 {
     private GreenfootImage bgImage;
     private SavedPrisoner[] savedPrisoners;
+    private SavedPrisoner[] imageSavedPrisoners;
     
     /**
      * Constructor for StatWorld.
@@ -63,6 +64,18 @@ public class StatWorld extends AllWorld
         savedPrisoners[3].createControls(625, 425);
         
         
+        imageSavedPrisoners = new SavedPrisoner[4];
+        
+        imageSavedPrisoners[0] = new SavedPrisoner(savedPrisoners[0].getName());
+        imageSavedPrisoners[1] = new SavedPrisoner(savedPrisoners[1].getName());
+        imageSavedPrisoners[2] = new SavedPrisoner(savedPrisoners[2].getName());
+        imageSavedPrisoners[3] = new SavedPrisoner(savedPrisoners[3].getName());
+        
+        addObject(imageSavedPrisoners[0], 100, 200);
+        addObject(imageSavedPrisoners[1], 100, 500);
+        addObject(imageSavedPrisoners[2], 450, 200);
+        addObject(imageSavedPrisoners[3], 450, 500);
+        
 
         //Go to next world button
         NextButton next = new NextButton("NextButton.png");
@@ -78,11 +91,18 @@ public class StatWorld extends AllWorld
      */
     public List<String> savePrisonersState() {
         List<String> serializedDataList = new ArrayList<>();
+        /*
         for (Object object : getObjects(SavedPrisoner.class)) {
             SavedPrisoner mc = (SavedPrisoner) object;
             String serializedData = mc.serializeState();
             serializedDataList.add(serializedData);
         }
+        */
+        for (SavedPrisoner prisoner : savedPrisoners) {
+            String serializedData = prisoner.serializeState();
+            serializedDataList.add(serializedData);
+        }
+        
         return serializedDataList;
     }
     

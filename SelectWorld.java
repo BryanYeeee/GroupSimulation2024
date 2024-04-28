@@ -47,17 +47,17 @@ public class SelectWorld extends AllWorld
         */
        
         SelectButton button1 = new SelectButton(this, mc1);
-        addObject(button1, 150 + 100, 250);
+        addObject(button1, 150 + 150, 250);
         SelectButton button2 = new SelectButton(this, mc2);
-        addObject(button2, 150 + 100, 550);
+        addObject(button2, 150 + 150, 550);
         SelectButton button3 = new SelectButton(this, mc3);
-        addObject(button3, 500 + 100, 250);
+        addObject(button3, 500 + 150, 250);
         SelectButton button4 = new SelectButton(this, mc4);
-        addObject(button4, 500 + 100, 550);
+        addObject(button4, 500 + 150, 550);
         SelectButton button5 = new SelectButton(this, mc5);
-        addObject(button5, 850 + 100, 250);
+        addObject(button5, 850 + 150, 250);
         SelectButton button6 = new SelectButton(this, mc6);
-        addObject(button6, 850 + 100, 550);
+        addObject(button6, 850 + 150, 550);
         
         NextButton next = new NextButton("NextButton.png");
         addObject(next, 1000, 800);
