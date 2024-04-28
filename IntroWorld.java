@@ -100,7 +100,6 @@ public class IntroWorld extends World
         // Initalize font so the text isn't displayed as default font
         SimulationFont.initalizeFont();
         
-        
         displayCharacters();
         fillSpeakersAndDialogue();
         

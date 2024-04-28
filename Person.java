@@ -42,7 +42,6 @@ public abstract class Person extends Entity
     protected int curHp;
     protected int strength;
     protected int intel;
-    protected int luck;
     protected boolean isDead;
     protected SuperStatBar healthBar;
 
@@ -66,16 +65,7 @@ public abstract class Person extends Entity
         maxHp = Greenfoot.getRandomNumber(25)+75;
         curHp = Greenfoot.getRandomNumber(10)+maxHp-10;
         strength = Greenfoot.getRandomNumber(5)+5;
-        luck = Greenfoot.getRandomNumber(4) + 1;
         intel = 40;
-        /*
-        if(Greenfoot.getRandomNumber(2)==0){
-            skinTone = "black";
-        }
-        else{
-            skinTone = "white";
-        }*/
-
     }
     
     public Person(int i) {
@@ -85,7 +75,6 @@ public abstract class Person extends Entity
         maxHp = Greenfoot.getRandomNumber(25)+75;
         curHp = Greenfoot.getRandomNumber(10)+maxHp-10;
         strength = Greenfoot.getRandomNumber(5)+5;
-        luck = Greenfoot.getRandomNumber(4) + 1;
         intel = 40;
         if(Greenfoot.getRandomNumber(2)==0){
             skinTone = "black";
@@ -494,15 +483,11 @@ public abstract class Person extends Entity
     public int getIntel(){
         return intel;
     }
-    
-    public int getLuck(){
-        return luck;
-    }
 
     public Node getCurNode() {
         return curNode;
     }
-
+    
     public Room getCurRoom() {
         return curRoom;
     }

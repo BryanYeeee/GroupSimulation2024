@@ -34,7 +34,6 @@ public class StatusBar extends Actor
     private String[] maxHPs = new String[4];// = {String.valueOf(10), String.valueOf(10), String.valueOf(10), String.valueOf(10)};
     private String[] intelligences = new String[4];// = {String.valueOf(5), String.valueOf(5), String.valueOf(5), String.valueOf(5)};
     private String[] strs = new String[4];// = {String.valueOf(10), String.valueOf(10), String.valueOf(10), String.valueOf(10)};
-    private String[] lucks = new String[4];
     
     // Get values from Schedule, variation during job time
     private String[] actions = new String[4]; 
@@ -46,7 +45,6 @@ public class StatusBar extends Actor
     private SuperTextBox[] displayInts = new SuperTextBox[4];
     private SuperTextBox[] displayStrs = new SuperTextBox[4];
     private SuperTextBox[] displayActions = new SuperTextBox[4];
-    private SuperTextBox[] displayLucks = new SuperTextBox[4];
 
     // Tell me when to update status (after any value/stat change);
     private static boolean update = false;
@@ -126,16 +124,11 @@ public class StatusBar extends Actor
             
             // Int
             displayInts[i] = new SuperTextBox("INT: " + intelligences[i], transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), false, 100, 0, Color.BLACK);
-            getWorld().addObject(displayInts[i], 187 + (300 * i), 710);
+            getWorld().addObject(displayInts[i], 187 + (300 * i), 715);
 
             // Str
             displayStrs[i] = new SuperTextBox("STR: " + strs[i], transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), false, 100, 0, Color.BLACK);
-            getWorld().addObject(displayStrs[i], 188 + (300 * i), 725);
-            
-            // Luck
-            displayLucks[i] = new SuperTextBox("Luck: " + lucks[i], transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), false, 100, 0, Color.BLACK);
-            getWorld().addObject(displayLucks[i], 188 + (300 * i), 740);
-            
+            getWorld().addObject(displayStrs[i], 188 + (300 * i), 735);
 
             // Current Action
             MyWorld world = (MyWorld) getWorld();
@@ -185,11 +178,7 @@ public class StatusBar extends Actor
             maxHPs[i] = String.valueOf(MCs[i].getMaxHealth());
             intelligences[i] = String.valueOf(MCs[i].getIntel());
             strs[i] = String.valueOf(MCs[i].getStrength());
-            lucks[i] = String.valueOf(MCs[i].getLuck());
         }
-
-        // Items
-        // Don't know how they work so this is blank for now
     }
 
     // Clear all text
@@ -197,6 +186,11 @@ public class StatusBar extends Actor
         for(SuperTextBox text : getIntersectingObjects(SuperTextBox.class)){
             getWorld().removeObject(text);
         }
+        /*
+        for(TempBox box : getIntersectingObjects(TempBox.class)){
+            getWorld().removeObject(box);
+        }
+        */
     }
     
 }
