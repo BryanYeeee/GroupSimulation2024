@@ -34,7 +34,7 @@ import java.io.IOException;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class IntroWorld extends World
+public class IntroWorld extends AllWorld
 {
     /**
      * Constructor for objects of class IntroWorld.
@@ -217,7 +217,6 @@ public class IntroWorld extends World
             addObject(enterSimulation, 600, 775);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 14){ //once world clicked, proceed to main simulation
-            addObject(speakers[0], 512, 400);
             Person.setIntro(false);
             SelectWorld selectWorld = new SelectWorld();
             StatWorld statWorld = new StatWorld(selectWorld.saveSelectedPrisonersState());

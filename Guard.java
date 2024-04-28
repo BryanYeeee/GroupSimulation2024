@@ -25,23 +25,25 @@ public class Guard extends Person
     }
     public void act() {
         super.act();
-        if(((MyWorld)getWorld()).isEscapeTime()) {
-            if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
-                Action.walkAround(this, false);
-            }
-    
-            if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
-                Action.walkAround(this, true);
-            }
-          
-            // Fight intersecting MCs
-            if (!inFight && !isDead) {
-                MC mc = (MC)getOneIntersectingObject(MC.class);
-                if (mc != null && !mc.isFighting() && !mc.isDead()) {
-                    setInFight(mc, true);
-                    mc.setInFight(this, true);
-                    //curPath.clear();
-                    noFights++;
+        if(!inIntro){
+            if(((MyWorld)getWorld()).isEscapeTime()) {
+                if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
+                    Action.walkAround(this, false);
+                }
+        
+                if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
+                    Action.walkAround(this, true);
+                }
+              
+                // Fight intersecting MCs
+                if (!inFight && !isDead) {
+                    MC mc = (MC)getOneIntersectingObject(MC.class);
+                    if (mc != null && !mc.isFighting() && !mc.isDead()) {
+                        setInFight(mc, true);
+                        mc.setInFight(this, true);
+                        //curPath.clear();
+                        noFights++;
+                    }
                 }
             }
         }
