@@ -40,6 +40,7 @@ public class IntroWorld extends World
      * Constructor for objects of class IntroWorld.
      * 
      */
+    
     // Background
     private GreenfootImage introBackground = new GreenfootImage("prison_cell.jpg");
 

@@ -22,8 +22,10 @@ public class Accessory extends Entity
     private int accessoryIndex=0;
     private int actsLeft;
     private static final Map<String, Integer> offsetValues = initializeOffsetValues();
-
+    
+    
     private static Map<String, Integer> initializeOffsetValues() {
+        //These values correspond to the yOffset of different frames in animation
         Map<String, Integer> values = new HashMap<>();
         values.put("idleD0", 0);
         values.put("idleD1", 1);
@@ -140,7 +142,6 @@ public class Accessory extends Entity
         }
         setImage(currentImage);
         setLocation(origin.getX()+xOffset,origin.getY()+yOffset);
-
     }
     
     public void setActsLeft(int acts){

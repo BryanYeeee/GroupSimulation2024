@@ -88,20 +88,24 @@ public abstract class Person extends Entity
      * Set the location to the a random position on the starting node when added to the world
      */
     public void addedToWorld(World w) {
-        if(isNew && !inIntro){
-            setLocation(curNode.getX()+curNode.getOffset(false), curNode.getY() + SPRITE_OFFSET+curNode.getOffset(true));
-            healthBar = new SuperStatBar(maxHp, curHp, this, 40, 6, 36, Color.GREEN, Color.RED, false, Color.BLACK, 2);
-            if(this instanceof MC){
-                addUnderglow();
+        if(isNew){
+            
+            // Both intro and simulation world need accessories
+            accessoryIndices=getAccessories();
+            if (accessoryIndices != null) {
+                for (Integer i : accessoryIndices) {
+                    getWorld().addObject(new Accessory(this, i), getX(), getY());
+                }
+            }
+
+            if(!inIntro){
+                setLocation(curNode.getX()+curNode.getOffset(false), curNode.getY() + SPRITE_OFFSET+curNode.getOffset(true));
+                healthBar = new SuperStatBar(maxHp, curHp, this, 40, 6, 36, Color.GREEN, Color.RED, false, Color.BLACK, 2);
+                if(this instanceof MC){
+                    addUnderglow();
+                }
             }
             isNew=false;
-        }
-        // Both intro and simulation world need accessories
-        accessoryIndices=getAccessories();
-        if (accessoryIndices != null) {
-            for (Integer i : accessoryIndices) {
-                getWorld().addObject(new Accessory(this, i), getX(), getY());
-            }
         }
     }
 
@@ -224,7 +228,9 @@ public abstract class Person extends Entity
             }
 
             //Idle is slower so longer animationDelay
+
         }
+
     }
 
     /**

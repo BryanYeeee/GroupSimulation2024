@@ -74,15 +74,20 @@ public class MyWorld extends World
         SimulationFont.initalizeFont();
         Sprite.init();
         
+        
         //TEMPP
         setBackground(backgroundImg);
-
+        
+        //LAG TRACKER
+        PerformanceMeter meter = new PerformanceMeter();
+        addObject(meter, 50, 25);
         // Initialize the people in the prison (MCs, prisoners, guards)
+        
         prisonerCount = 12;
         guardCount = 3;
         people = new Person[prisonerCount + guardCount + 4];
         Prisoner.setJobList(jobs);
-
+        
         mainPrisoners = new MC[4];
         mainPrisoners[0] = new MC(0, this, "Janitor", "Scientist");
         mainPrisoners[1] = new MC(1, this, "Librarian", "Thief");
