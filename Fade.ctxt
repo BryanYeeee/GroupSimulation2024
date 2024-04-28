@@ -1,13 +1,13 @@
 #BlueJ class context
 comment0.target=Fade
-comment0.text=\n\ This\ is\ used\ for\ fading\ in\ and\ out\ of\ a\ screen\n\ \n\ @author\ Ainson\n\ @version\ April\ 2024\n
+comment0.text=\r\n\ This\ is\ used\ for\ fading\ in\ and\ out\ of\ a\ screen\r\n\ \r\n\ @author\ Ainson\r\n\ @version\ April\ 2024\r\n
 comment1.params=fade\ direction
 comment1.target=Fade(int,\ boolean)
-comment1.text=\n\ Constructor\ for\ Fade\n\ \n\ @param\ fade\ \ \ \ \ \ \ \ \ \ \ \ \ \ Duration\ of\ the\ fade\n\ @param\ direction\ \ \ \ \ \ \ \ \ Boolean\ to\ determine\ fading\ in\ oir\ fading\ out\n
+comment1.text=\r\n\ Constructor\ for\ Fade\r\n\ \r\n\ @param\ fade\ \ \ \ \ \ \ \ \ \ \ \ \ \ Duration\ of\ the\ fade\r\n\ @param\ direction\ \ \ \ \ \ \ \ \ Boolean\ to\ determine\ fading\ in\ oir\ fading\ out\r\n
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\n\ act\ method\ for\ fade\ \n
+comment2.text=\r\n\ act\ method\ for\ fade\ \r\n
 comment3.params=
 comment3.target=int\ getFade()
-comment3.text=\n\ Method\ to\ get\ fade\ duration\n\ \n\ @return\ fade\n
+comment3.text=\r\n\ Method\ to\ get\ fade\ duration\r\n\ \r\n\ @return\ fade\r\n
 numComments=4

@@ -1,16 +1,16 @@
 #BlueJ class context
 comment0.target=StatWorld
-comment0.text=\n\ World\ where\ the\ stats\ of\ the\ 5\ main\ characters\ can\ be\ changed\n\ \n\ @author\ Ainson\ \n\ @version\ April\ 2024\n
-comment1.params=
-comment1.target=StatWorld()
-comment1.text=\n\ Constructor\ for\ StatWorld.\n
+comment0.text=\r\n\ World\ where\ the\ stats\ of\ the\ 5\ main\ characters\ can\ be\ changed\r\n\ \r\n\ @author\ Ainson\ \r\n\ @version\ April\ 2024\r\n
+comment1.params=selectedPrisoners
+comment1.target=StatWorld(java.util.List)
+comment1.text=\r\n\ Constructor\ for\ StatWorld.\r\n
 comment2.params=
 comment2.target=java.util.List\ savePrisonersState()
-comment2.text=\n\ Used\ to\ save\ all\ the\ stats\ of\ each\ prisoner\n
+comment2.text=\r\n\ Used\ to\ save\ all\ the\ stats\ of\ each\ prisoner\r\n
 comment3.params=
 comment3.target=void\ act()
-comment3.text=\n\ Act\ Method\n
+comment3.text=\r\n\ Act\ Method\r\n
 comment4.params=
 comment4.target=void\ switchToWorld()
-comment4.text=\n\ saves\ all\ prisoner\ data\ and\ switches\ worlds\n
+comment4.text=\r\n\ saves\ all\ prisoner\ data\ and\ switches\ worlds\r\n
 numComments=5
