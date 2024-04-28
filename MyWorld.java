@@ -47,6 +47,7 @@ public class MyWorld extends World
     private JanitorCloset janitorCloset;
     private JailCell cell1;
     private JailCell cell2;
+    private Generator generator;
     
     private Breakable[] breakables;
     
@@ -68,8 +69,8 @@ public class MyWorld extends World
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
         setPaintOrder(Item.class, BannerIcon.class,  Banner.class, Clock.class, 
         EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, 
-        WallCover.class, Vehicle.class, Accessory.class, Person.class, Underglow.class, 
-        Tile.class, Breakable.class, Room.class);
+        ElectricFence.class, WallCover.class, Generator.class, Vehicle.class, Accessory.class, 
+        Person.class, Underglow.class, Tile.class, Breakable.class, Room.class);
         
         pf = new PathFinder(this); // Initialize this first
         SimulationFont.initalizeFont();
@@ -141,6 +142,8 @@ public class MyWorld extends World
         
         janitorCloset = new JanitorCloset(new int[]{142}, new int[]{93,63});
         addObject(janitorCloset, 773, 370);
+        generator = new Generator();
+        addObject(generator, 758, 370);
         
         cell1 = new JailCell(new int[]{132,134}, new int[]{95,125},1);
         addObject(cell1, 469, 583);
@@ -156,10 +159,10 @@ public class MyWorld extends World
         addObject(new WallCover("images/WallCover/WoodworkCover.png"), 319, 600);
         addObject(new WallCover("images/WallCover/MetalworkCover.png"), 728, 601);
         addObject(new WallCover("images/WallCover/VehicleDoorCover.png"), 257, 482);
-        // addObject(new WallCover("images/WallCover/KitchenTunnel.png"), 84, 304);
+        
         
         // Breakables
-        breakables = new Breakable[5];
+        breakables = new Breakable[6];
         breakables[0] = new Breakable("images/Breakable/RollCallWall.png",100, 100);
         addObject(breakables[0], 558, 188);
         breakables[1] = new Breakable("images/Breakable/VehicleDoor.png",5, 5);
@@ -170,6 +173,8 @@ public class MyWorld extends World
         addObject(breakables[3], 135, 323);
         breakables[4] = new Breakable("images/Breakable/OutsideFloor.png",50, 50);        
         addObject(breakables[4], 33, 323);
+        breakables[5] = new Breakable("images/Breakable/Fence.png",100, 100);        
+        addObject(breakables[5], 882, 162);
         
         // Vehicles
         addObject(new Vehicle("Car.png"), 150, 492);
@@ -219,6 +224,10 @@ public class MyWorld extends World
 
     public void updateEventDisplay(String event) {
         eventDisplay.update(event);
+    }
+    
+    public void generatorOff() {
+        generator.turnOff();
     }
     
     public boolean doEscape() {

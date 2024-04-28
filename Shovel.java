@@ -1,17 +1,17 @@
 /**
- * Write a description of class Fork here.
+ * Write a description of class Shovel here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Fork extends Item 
+public class Shovel extends Item 
 {
     /**
      * Constructor for objects of class Ladder
      */
-    public Fork()
+    public Shovel()
     {
-        super("fork");
+        super("shovel");
     }
 
     

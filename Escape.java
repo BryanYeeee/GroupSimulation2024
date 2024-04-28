@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Escape  
 {
     private MyWorld world;
-    private ArrayList<String> possibleEscapes = new ArrayList<>();
+    private ArrayList<ArrayList<String>> possibleEscapes = new ArrayList<>();
     private MC[] mcs;
     private Guard[] guards;
     
@@ -26,40 +26,62 @@ public class Escape
         chosenEscapes = new String[4];
         escapeSteps = new int[4];
         
-        int totalStrength = 0;
-        MC strongestMC = null, forkMC = null, bombMC = null;
+        possibleEscapes.add(new ArrayList<String>());
+        possibleEscapes.add(new ArrayList<String>());
+        possibleEscapes.add(new ArrayList<String>());
+        possibleEscapes.add(new ArrayList<String>());
+        
+        MC strongestMC = null;
         for(MC mc : mcs) {
-            totalStrength+=mc.getStrength();
-            if(!mc.getSpecialty().equals("Thief") && strongestMC == null || strongestMC.getStrength() < mc.getStrength()) {
+            if(strongestMC == null || strongestMC.getStrength() < mc.getStrength()) {
                 strongestMC = mc;
             }
             for(Item i : mc.getItems()) {
                 if(i instanceof Fork) {
-                    forkMC = mc;
+                    possibleEscapes.get(mc.getIndex()).add("2 Break Wall");
                 } else if(i instanceof Bomb) {
-                    bombMC = mc;
+                    possibleEscapes.get(mc.getIndex()).add("3 Explode Wall");
+                } else if(i instanceof Knife) {
+                    possibleEscapes.get(mc.getIndex()).add("1 Cut Fence");
+                } else if(i instanceof Shovel) {
+                    possibleEscapes.get(mc.getIndex()).add("4 Dig Hole");
                 }
             }
         }
-        // if(totalStrength >= 90) {
+        possibleEscapes.get(strongestMC.getIndex()).add("5 Drive Car");
+        
+        int j = 0;
+        for(ArrayList<String> escapes : possibleEscapes) {
+            System.out.println(j + ": " +escapes);
+            int highestPriority = 0;
+            for(String escape : escapes) {
+                int priority = Integer.parseInt(escape.substring(0, 1));
+                if(priority > highestPriority) {
+                    chosenEscapes[j] = escape.substring(2);
+                    highestPriority = priority;
+                }
+            } 
+            j++;
+        }
+        
+        System.out.println("ESCAPES: [");
+        for(int i = 0; i < 4; i++) {
+            if(chosenEscapes[i] == null) {
+                for(int k = 0; k < 4; k++) {
+                    if(chosenEscapes[k] != null && chosenEscapes[k].charAt(0) != '?' && !chosenEscapes[k].equals("Dig Hole")) {
+                        chosenEscapes[i] = "?"+chosenEscapes[k];
+                        break;
+                    }
+                }
+            }
+            System.out.print(chosenEscapes[i] + " ,");
+        }
+        System.out.println("]");
+        
+        // if(totalStrength >= 90, 70) {
             // possibleEscapes.add("Beat Cops");
         // }
-            chosenEscapes[1] = "?Break Wall";
-            chosenEscapes[0] = "?Break Wall";
-            chosenEscapes[2] = "?Break Wall";
-            chosenEscapes[3] = "?Break Wall";
-        if(totalStrength >= 70 || true /*temp*/) {
-            possibleEscapes.add("Car");
-            chosenEscapes[strongestMC.getIndex()] = "Car";
-        }
-        if(forkMC != null) {
-            possibleEscapes.add("Break Wall");
-            chosenEscapes[forkMC.getIndex()] = "Break Wall";
-        }
-        if(bombMC != null) {
-            possibleEscapes.add("Explode Wall");
-            chosenEscapes[bombMC.getIndex()] = "Explode Wall";
-        }
+
     }
     
     public void act() {
@@ -72,13 +94,17 @@ public class Escape
                 case "Explode Wall":
                     if(EscapeAction.explodeWall(world, mcs[i], EscapeAction.filterMC(mcs,chosenEscapes,i), escapeSteps[i])) escapeSteps[i]++;
                     break;
-                case "Car":
+                case "Cut Fence":
+                    if(EscapeAction.cutFence(world, mcs[i], EscapeAction.filterMC(mcs,chosenEscapes,i), escapeSteps[i])) escapeSteps[i]++;
+                    break;
+                case "Dig Hole":
+                    if(EscapeAction.digHole(world, mcs[i], escapeSteps[i])) escapeSteps[i]++;
+                    break;
+                case "Drive Car":
                     if(EscapeAction.driveCar(world, mcs[i], EscapeAction.filterMC(mcs,chosenEscapes,i), escapeSteps[i])) escapeSteps[i]++;
                     break;
             }
         }
-            if(chosenEscapes[0].equals("Break Wall")) {
-            }
     }
 
 }
