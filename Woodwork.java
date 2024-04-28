@@ -42,6 +42,13 @@ public class Woodwork extends Room
         }
     }
     
+    public void exitRoom(Person p, int roomPosition) {
+        if (p instanceof MC) {
+            ((MC)p).giveItem(new Wood());
+        } else {
+            super.exitRoom(p, roomPosition);
+        }
+    }
     
     
     public boolean checkEffectCondition (Person p) { // If person is at its assigned room position

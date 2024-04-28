@@ -68,9 +68,7 @@ public class EscapeAction extends Action
                 }
                 break;
             case 1:
-                Item item = new Keycard();
-                w.addObject(item, mc.getX(), mc.getY());
-                item.pickup(mc);
+                mc.giveItem(new Keycard());
                 return true;
             case 2:
                 if(mc.getCurNode().getIndex() == VEHICLE_DOOR_NODE) return true;

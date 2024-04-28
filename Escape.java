@@ -60,7 +60,10 @@ public class Escape
                     chosenEscapes[j] = escape.substring(2);
                     highestPriority = priority;
                 }
-            } 
+            }
+            for(ArrayList<String> escapesArl : possibleEscapes) {
+                escapesArl.remove(chosenEscapes[j]);
+            }
             j++;
         }
         
