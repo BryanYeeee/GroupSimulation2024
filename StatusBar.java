@@ -18,7 +18,7 @@ public class StatusBar extends Actor
     private Color transparentColor = new Color(0, 0, 0, 0);
     private Color textColor = new Color(250, 249, 246); //Color.WHITE;
     private Color boxColor = new Color(105, 105, 105);
-    
+
     // Visual values
     private int borderThickness = 8;
     private int lineThickness = 8;
@@ -34,7 +34,7 @@ public class StatusBar extends Actor
     private String[] maxHPs = new String[4];// = {String.valueOf(10), String.valueOf(10), String.valueOf(10), String.valueOf(10)};
     private String[] intelligences = new String[4];// = {String.valueOf(5), String.valueOf(5), String.valueOf(5), String.valueOf(5)};
     private String[] strs = new String[4];// = {String.valueOf(10), String.valueOf(10), String.valueOf(10), String.valueOf(10)};
-    
+
     // Get values from Schedule, variation during job time
     private String[] actions = new String[4]; 
 
@@ -48,39 +48,16 @@ public class StatusBar extends Actor
 
     // Tell me when to update status (after any value/stat change);
     private static boolean update = false;
-    
+
     // Array of MCs in the world
     private MC[] MCs;
+
     public StatusBar(){
         redraw();
     }
 
     public void addedToWorld(World w){
-        update = true;
-        // For character images, will only be done once as characters won't change
-        // Don't need to put in trackValues() method
-        MyWorld world = (MyWorld) getWorld();
-        MCs = world.getMainPrisoners();
-        int iteration = 0;
-        // Depending on specialty, have a different image for each MC
-        for(MC m : MCs){
-            if(m.getSpecialty().equals("Thief")){
-                // Need to create a class to hold this image with setImage()
-                // ImageHolder characterPhoto = new ImageHolder("thief");
-                // world.addObject(characterPhoto, x + (300 * iteration), y);
-            } else if (m.getSpecialty().equals("Brute")){
-                
-            } else if (m.getSpecialty().equals("Scientist")){
-                
-            } else if (m.getSpecialty().equals("Weapons Dealer")){
-                
-            } else if (m.getSpecialty().equals("Explosive Expert")){
-                
-            } else {
-                
-            }
-            iteration++;
-        }
+        update = true;       
     }    
 
     public void act()
@@ -90,21 +67,28 @@ public class StatusBar extends Actor
         }
     }
     // Fill SuperTextBox with all possible names
-    
+
     private void updateStatus(){
         // Cover old values
         clear();
 
         // Get new values
         trackValues();
-
+        
+        // MC[] of MCs in the World
+        MCs = ((MyWorld)getWorld()).getMainPrisoners();
+        
         // Loop through all 4 boxes in the status Bar
         for(int i = 0; i < 4; i++){
-            // Character Images (TempBox for now)
+            // MC[] of MCs in the World
+            MCs = ((MyWorld)getWorld()).getMainPrisoners();
+            
+            // Character Images 
             TempBox characterBox = new TempBox(70, 80, boxColor, borderColor, 3);
             getWorld().addObject(characterBox, 75 + (300 * i), 752);
 
-            // Item Images (TempBox for now)
+
+            // Item Images 
             TempBox itemBox1 = new TempBox(50, 50, boxColor, borderColor, 3);
             TempBox itemBox2 = new TempBox(50, 50, boxColor, borderColor, 3);
             getWorld().addObject(itemBox1, 170 + (300 * i), 780);
@@ -121,7 +105,7 @@ public class StatusBar extends Actor
             // HP
             displayHPs[i] = new SuperTextBox("HP: " + currentHPs[i] + "/" + maxHPs[i], transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), false, 100, 0, Color.BLACK);
             getWorld().addObject(displayHPs[i], 189 + (300 * i), 695);
-            
+
             // Int
             displayInts[i] = new SuperTextBox("INT: " + intelligences[i], transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), false, 100, 0, Color.BLACK);
             getWorld().addObject(displayInts[i], 187 + (300 * i), 715);
@@ -131,16 +115,29 @@ public class StatusBar extends Actor
             getWorld().addObject(displayStrs[i], 188 + (300 * i), 735);
 
             // Current Action
-            MyWorld world = (MyWorld) getWorld();
-            Schedule schedule = world.getSchedule();
-            actions[i] = schedule.getCurrentEvent();
+            actions[i] = MCs[i].getCurrentAction();
+            if(actions[i] == null){
+                actions[i] = "Roaming Around";
+            }
             displayActions[i] = new SuperTextBox(actions[i], transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 200, 0, Color.BLACK);
             getWorld().addObject(displayActions[i], 150 + (300 * i), 825);
-            
         }
+        
+        // Things that don't need iteration to complete down here
+        // Depending on specialty, have a different image for each MC
+        SavedPrisoner image1 = new SavedPrisoner(MCs[0].getSpecialty(), 70, 80);
+        SavedPrisoner image2 = new SavedPrisoner(MCs[1].getSpecialty(), 70, 80);
+        SavedPrisoner image3 = new SavedPrisoner(MCs[2].getSpecialty(), 70, 80);
+        SavedPrisoner image4 = new SavedPrisoner(MCs[3].getSpecialty(), 70, 80);
+
+        getWorld().addObject(image1, 75, 752);
+        getWorld().addObject(image2, 375, 752);
+        getWorld().addObject(image3, 675, 752);
+        getWorld().addObject(image4, 975, 752);
+        
+        // Current Action
         update = false;
     }
-    
 
     public static void setUpdate(boolean state){
         update = state;
@@ -186,11 +183,9 @@ public class StatusBar extends Actor
         for(SuperTextBox text : getIntersectingObjects(SuperTextBox.class)){
             getWorld().removeObject(text);
         }
-        
         for(TempBox box : getIntersectingObjects(TempBox.class)){
             getWorld().removeObject(box);
         }
-        
     }
-    
+
 }
