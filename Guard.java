@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Guard extends Person
 {
     private boolean specialGuard;
+    private static boolean guardsPoisoned;
     public Guard(int i) {
         super(i);
         personType = "guard";
@@ -23,6 +24,19 @@ public class Guard extends Person
     public void doCurrentEvent() {
         if(specialGuard) return;
         super.doCurrentEvent();
+    }
+    
+    public static void poisonGuards() {
+        guardsPoisoned = true;
+    }
+    
+    public static void setGuardStats(MyWorld w) {
+        if(guardsPoisoned) {
+            for(Guard g : w.getGuards()) {
+                g.setSpeed(1.2);
+                g.setStrength(g.getStrength()-2);
+            }
+        }
     }
     
     public void act() {

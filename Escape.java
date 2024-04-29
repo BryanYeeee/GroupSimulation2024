@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import greenfoot.*;
 /**
  * Write a description of class Escape here.
  * 
@@ -36,6 +37,7 @@ public class Escape
             if(strongestMC == null || strongestMC.getStrength() < mc.getStrength()) {
                 strongestMC = mc;
             }
+            if(Greenfoot.getRandomNumber(mc.getChance()) != 0) continue;
             for(Item i : mc.getItems()) {
                 if(i instanceof Fork) {
                     possibleEscapes.get(mc.getIndex()).add("2 Break Wall");

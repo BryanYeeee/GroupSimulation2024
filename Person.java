@@ -270,6 +270,19 @@ public abstract class Person extends Entity
             dir = nextDir;
         }
     }
+    
+    public int getChance() {
+        if (intel < 20) {
+            return 6;
+        } else if (intel < 40) {
+            return 4;
+        } else if (intel < 60) {
+            return 3;
+        } else if (intel < 80) {
+            return 2;
+        }
+        return 1;
+    }
 
     public void setDead(boolean isDead) {
         this.isDead = isDead;

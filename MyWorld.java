@@ -86,10 +86,10 @@ public class MyWorld extends World
         Prisoner.setJobList(jobs);
 
         mainPrisoners = new MC[4];
-        mainPrisoners[0] = new MC(0, this, "Janitor", "Scientist");
-        mainPrisoners[1] = new MC(1, this, "Librarian", "Thief");
-        mainPrisoners[2] = new MC(2, this, "", "Brute");;
-        mainPrisoners[3] = new MC(3, this, "Metalworker", "Weapons Dealer");
+        mainPrisoners[0] = new MC(0, this, "Cook", "Scientist");
+        mainPrisoners[1] = new MC(1, this, "Janitor", "Explosive Expert");
+        mainPrisoners[2] = new MC(2, this, "Woodworker", "Builder");;
+        mainPrisoners[3] = new MC(3, this, "Librarian", "Thief");
         for (int i = 0; i < 4; i++) {
             people[i] = mainPrisoners[i];
             addObject(mainPrisoners[i], 0, 0);
@@ -235,6 +235,7 @@ public class MyWorld extends World
         if (escapingMcs == 4) { // All prisoners are ready to escape
             escape = new Escape(this);
             escapeTime = true;
+            Guard.setGuardStats(this);
             return true;
         } else {
             return false;
