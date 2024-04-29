@@ -17,7 +17,7 @@ public class Action
     
     protected final static int GYM_NODE = 73;
     
-    protected final static int JANITOR_NODE = 43;
+    protected final static int JANITOR_NODE = 142;
     protected final static int LIBRARIAN_NODE = 110;
     protected final static int COOK_NODE = 108;
     protected final static int WOODWORKER_NODE = 4;
@@ -258,6 +258,9 @@ public class Action
         for (Person p : getPeople) {
             Action.goToLightsOut(w,p);
         }
+        Guard keycardGuard = new Guard();
+        w.addObject(keycardGuard, 0, 0);
+        keycardGuard.goToNode(110);
     }
     public static void goToLightsOut(MyWorld w, Person p) {
         if (p instanceof Prisoner && !(p instanceof MC)) {

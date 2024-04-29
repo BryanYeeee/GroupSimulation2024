@@ -45,8 +45,10 @@ public class MyWorld extends AllWorld
     private Library library;
     private Woodwork woodwork;
     private Metalwork metalwork;
+    private JanitorCloset janitorCloset;
     private JailCell cell1;
     private JailCell cell2;
+    private Generator generator;
     
     private Breakable[] breakables;
     
@@ -66,10 +68,10 @@ public class MyWorld extends AllWorld
     {    
         // Create a new world with 1200x850 cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
-        setPaintOrder(Item.class, BannerIcon.class,  Banner.class, Clock.class, 
+        setPaintOrder(Fade.class, Item.class, BannerIcon.class,  Banner.class, Clock.class, 
         EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, 
-        WallCover.class, Accessory.class, Person.class, Underglow.class, Tile.class, 
-        Breakable.class, Room.class);
+        ElectricFence.class, WallCover.class, Generator.class, Vehicle.class, Accessory.class, 
+        Person.class, Underglow.class, Tile.class, Breakable.class, Room.class);
         
         pf = new PathFinder(this); // Initialize this first
         SimulationFont.initalizeFont();
@@ -89,7 +91,11 @@ public class MyWorld extends AllWorld
         people = new Person[prisonerCount + guardCount + 4];
         Prisoner.setJobList(jobs);
        
-        mainPrisoners = new MC[4];
+        mainPrisoners = new MC[4]; 
+        // mainPrisoners[0] = new MC(0, this, "Cook", "Scientist");
+        // mainPrisoners[1] = new MC(1, this, "Janitor", "Explosive Expert");
+        // mainPrisoners[2] = new MC(2, this, "Woodworker", "Builder");;
+        // mainPrisoners[3] = new MC(3, this, "Librarian", "Thief");
         String[] savedData = new String[4];
         
         int index = 0;
@@ -103,29 +109,30 @@ public class MyWorld extends AllWorld
         }
        
         for(int i = 0; i < 4; i++) {
-            mainPrisoners[i] = new MC(i + 12, this, savedData[i].split(","));
+            mainPrisoners[i] = new MC(i, this, savedData[i].split(","));
             if(mainPrisoners[i].getName().equals("Brute")) {
                 mainPrisoners[i].addStr(12.0);
             } else if(mainPrisoners[i].getName().equals("Thief")) {
                 mainPrisoners[i].addSpeed(2.0);
             }
+            people[i] = mainPrisoners[i];
         }
         
-        savedMainPrisoners = new MC[4];
-        savedMainPrisoners[0] = new MC(50, this, mainPrisoners[0].getJob());
-        savedMainPrisoners[1] = new MC(51, this, mainPrisoners[1].getJob());
-        savedMainPrisoners[2] = new MC(52, this, mainPrisoners[2].getJob());
-        savedMainPrisoners[3] = new MC(53, this, mainPrisoners[3].getJob());
+        // savedMainPrisoners = new MC[4];
+        // savedMainPrisoners[0] = new MC(50, this, mainPrisoners[0].getJob());
+        // savedMainPrisoners[1] = new MC(51, this, mainPrisoners[1].getJob());
+        // savedMainPrisoners[2] = new MC(52, this, mainPrisoners[2].getJob());
+        // savedMainPrisoners[3] = new MC(53, this, mainPrisoners[3].getJob());
         
         addObject(mainPrisoners[0], 100, 100);
         addObject(mainPrisoners[1], 100, 200);
         addObject(mainPrisoners[2], 100, 300);
         addObject(mainPrisoners[3], 100, 400);
         
-        for (int i = 0; i < 4; i++) {
-            people[i] = mainPrisoners[i];
-            addObject(mainPrisoners[i], 0, 0);
-        }
+        // for (int i = 0; i < 4; i++) {
+            // people[i] = mainPrisoners[i];
+            // addObject(mainPrisoners[i], 0, 0);
+        // }
 
         Person.onGoingFights = 0;
         prisoners = new Prisoner[prisonerCount];
@@ -172,6 +179,11 @@ public class MyWorld extends AllWorld
         metalwork = new Metalwork(new int[]{122, 121}, new int[]{123, 153});
         addObject(metalwork, 728, 598);
         
+        janitorCloset = new JanitorCloset(new int[]{142}, new int[]{93,63});
+        addObject(janitorCloset, 773, 370);
+        generator = new Generator();
+        addObject(generator, 758, 370);
+        
         cell1 = new JailCell(new int[]{132,134}, new int[]{95,125},1);
         addObject(cell1, 469, 583);
         cell2 = new JailCell(new int[]{135,137}, new int[]{95,125},2);
@@ -181,14 +193,30 @@ public class MyWorld extends AllWorld
         addObject(new WallCover("images/WallCover/cover1.png"), 317, 323);
         addObject(new WallCover("images/WallCover/cover2.png"), 409, 299);
         addObject(new WallCover("images/WallCover/cover3.png"), 652, 299);
+        addObject(new WallCover("images/WallCover/cover4.png"), 834, 391);
         addObject(new WallCover("images/WallCover/SpawnCover.png"), 363, 79);
         addObject(new WallCover("images/WallCover/WoodworkCover.png"), 319, 600);
         addObject(new WallCover("images/WallCover/MetalworkCover.png"), 728, 601);
+        addObject(new WallCover("images/WallCover/VehicleDoorCover.png"), 257, 482);
+        
         
         // Breakables
-        breakables = new Breakable[3];
+        breakables = new Breakable[6];
         breakables[0] = new Breakable("images/Breakable/RollCallWall.png",100, 100);
         addObject(breakables[0], 558, 188);
+        breakables[1] = new Breakable("images/Breakable/VehicleDoor.png",5, 5);
+        addObject(breakables[1], 256, 467);
+        breakables[2] = new Breakable("images/Breakable/DiningRoomExplosion.png",1, 1);        
+        addObject(breakables[2], 184, 143);
+        breakables[3] = new Breakable("images/Breakable/KitchenFloor.png",50, 50);        
+        addObject(breakables[3], 135, 323);
+        breakables[4] = new Breakable("images/Breakable/OutsideFloor.png",50, 50);        
+        addObject(breakables[4], 33, 323);
+        breakables[5] = new Breakable("images/Breakable/Fence.png",100, 100);        
+        addObject(breakables[5], 882, 162);
+        
+        // Vehicles
+        addObject(new Vehicle("Car.png"), 150, 492);
         
         //Electric Fence
         addObject(new ElectricFence(27),1077,360);
@@ -237,11 +265,16 @@ public class MyWorld extends AllWorld
         eventDisplay.update(event);
     }
     
+    public void generatorOff() {
+        generator.turnOff();
+    }
+    
     public boolean doEscape() {
         escapingMcs++;
         if (escapingMcs == 4) { // All prisoners are ready to escape
             escape = new Escape(this);
             escapeTime = true;
+            Guard.setGuardStats(this);
             return true;
         } else {
             return false;

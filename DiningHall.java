@@ -48,6 +48,9 @@ public class DiningHall extends Room
     }
     
     public int enterRoom (Person p) {
+        if(p instanceof MC && isCooking(p)) {
+            Guard.poisonGuards();
+        }
         return isCooking(p) ? -2 : super.enterRoom(p);
     }
     public void exitRoom (Person p, int roomPosition) {
@@ -55,8 +58,11 @@ public class DiningHall extends Room
         if (roomPosition >= 0) super.exitRoom(p, roomPosition);
         
         // MAKE 1 to 3, ITS 1 FOR TESTING TO MAKE GARUNTEE
-        if(p instanceof MC && ((MC)p).getSpecialty().equals("Thief") && Greenfoot.getRandomNumber(1) == 0) {
+        if(p instanceof MC && ((MC)p).getSpecialty().equals("Thief") && Greenfoot.getRandomNumber(p.getChance()) == 0) {
             ((MC)p).giveItem(new Fork());
+        }
+        if(p instanceof MC && ((MC)p).getSpecialty().equals("Scientist") && roomPosition == -2 && Greenfoot.getRandomNumber(p.getChance()) == 0) {
+            ((MC)p).giveItem(new Food());
         }
     }
     
