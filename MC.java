@@ -13,6 +13,7 @@ public class MC extends Prisoner
     
     private String currentAction;
     private Item[] items = new Item[2];
+    private boolean doneCrafting;
     
     private String name;
     private StatSetter strength;
@@ -50,6 +51,7 @@ public class MC extends Prisoner
     public MC(int i, MyWorld world, String[] serializedData) {
         super(i, serializedData[1]);
         this.name = name;
+        this.world = world;
         heldItems = new ArrayList<Item>();
         name = serializedData[0];
         str = Double.parseDouble(serializedData[2]);
@@ -89,6 +91,14 @@ public class MC extends Prisoner
         super.act();
     }
     
+    public boolean isDoneCrafting() {
+        return doneCrafting;
+    }
+    
+    public void setDoneCrafting(boolean isCrafting) {
+        this.doneCrafting = isCrafting;
+    }
+    
      /**
      * Method to deserialize and restore the state of the prisoner
      * 
@@ -123,8 +133,9 @@ public class MC extends Prisoner
                 return;
             }
         }
+        getWorld().addObject(item, getX(), getY());
+        item.pickup(this);
         this.heldItems.add(item);
-        StatusBar.setUpdate(true);
     }
     
     // public void removeItem(Item item) {
@@ -138,9 +149,9 @@ public class MC extends Prisoner
     public boolean craftItem() {
         for(Item i : heldItems) {
             if(i.isMaterial()) {
-                i.useItem(world, this);
+                world.removeObject(i);
                 heldItems.remove(i);
-                StatusBar.setUpdate(true);
+                i.useItem(world, this);
                 return false;
             };
         }

@@ -186,11 +186,11 @@ public class StatusBar extends Actor
         for(SuperTextBox text : getIntersectingObjects(SuperTextBox.class)){
             getWorld().removeObject(text);
         }
-        /*
+        
         for(TempBox box : getIntersectingObjects(TempBox.class)){
             getWorld().removeObject(box);
         }
-        */
+        
     }
     
 }

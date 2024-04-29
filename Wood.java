@@ -16,6 +16,5 @@ public class Wood extends Item
     }
 
     public void useItem(MyWorld w, MC p) {
-        p.giveItem(new Ladder());
     }
 }

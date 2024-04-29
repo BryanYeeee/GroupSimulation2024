@@ -1,20 +1,19 @@
 /**
- * Write a description of class Fork here.
+ * Write a description of class Bomb here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Fork extends Item 
+public class Bomb extends Item 
 {
     /**
-     * Constructor for objects of class Ladder
+     * Constructor for objects of class Metal
      */
-    public Fork()
+    public Bomb()
     {
-        super("fork");
+        super("bomb");
     }
 
-    
     public void useItem(MyWorld w, MC p) {
         
     }
