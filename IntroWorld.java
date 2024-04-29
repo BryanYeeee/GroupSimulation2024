@@ -3,28 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class to hold the cutsceneappens after the character introductions
- * After every click (C): Prisoner ABCD will be random from the chosen 4 MCs
- * The 4 MCs should each have their own special dialogue
- * Default: All prisoners are gathered together
- * A guard comes in from them right, tells them they will be executed at dawn tomorrow morning, then leaves after some number of seconds to the right
- * The prisoners all? agree to try to gather materials during the day and escape during night
- * Potential Dialogue:
- * (Guard enters)
- * Guard: "Enjoy your last day here at the prison."
- * Prisoner A: "We are being released?"
- * Guard: "In your dreams, you all will be executed at dawn tomorrow."
- * Prisoner B: "That isn't fair, why didn't we get an earlier notice?"
- * Guard: "Because we felt like it."
- * (Guard leaves)
- * Prisoner C: "HEYYYYY!!! COME BACK!!!" 
- * Prisoner D: "Look, surely we all don't want to die tomorrow."
- * Prisoner D: "We should make a plan to escape."
- * Prisoner D: "I say we can gather materials by day and escape at night."
- * (Now each MC will have their own special line)
- * Ex. I do/don't agree, + some line that connects with the character's traits
- * Note: If they don't agree they shouldn't be Prisoner D
- * +4 lines
+ * A class to hold the cutscene after the character introductions
+ * 
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -56,6 +36,7 @@ public class IntroWorld extends AllWorld
     // Dialogue, Speaker, General Text
     // 9 lines + 4 lines (one special line per chosen MC)
     private SuperTextBox[] dialogues = new SuperTextBox[13];
+    private String[] splitName;
     // Guard + 4 chosen MCs
     private SuperTextBox[] speakers = new SuperTextBox[5];
     // Start-up message
@@ -64,8 +45,9 @@ public class IntroWorld extends AllWorld
     private TempBox dialogueBox;
     private TempBox speakerBox;
     
-    // Counters
+    // Dialogue Control
     private int dialogueCounter = 0;
+    private boolean switchedSpeaker = false;
     
     // Coordinates
     int[] xCoords = {150, 275, 400, 525}; 
@@ -84,6 +66,7 @@ public class IntroWorld extends AllWorld
     InnerIcon[] questionMarks = {new InnerIcon(1, 30, 30), new InnerIcon(1, 30, 30), new InnerIcon(1, 30, 30), new InnerIcon(1, 30, 30)}; 
 
     private List<String> serializedPrisonersState;
+    private ArrayList<String> savedMCs = new ArrayList<String>();
     
     private SavedPrisoner[] savedPrisoners;
     private List<String> MCs;
@@ -103,8 +86,8 @@ public class IntroWorld extends AllWorld
         
         MCs = selectedPrisoners;
         
-        displayCharacters();
         fillSpeakersAndDialogue();
+        displayCharacters();
         
         savedPrisoners = new SavedPrisoner[4];
         String[] savedData = new String[4];
@@ -198,8 +181,11 @@ public class IntroWorld extends AllWorld
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[3]);
             addObject(dialogues[dialogueCounter], 600, 775);
-            if(speakers[4].equals("Brute")){ // so doesn't go against personality
+            System.out.println("ddafsdf");
+            System.out.println(splitName[0]);
+            if(splitName[0].equals("Brute")){ // so doesn't go against personality
                 addObject(speakers[3], 350, 695);
+                switchedSpeaker = true;
             } else {
                 addObject(speakers[4], 350, 695);
             }
@@ -214,7 +200,12 @@ public class IntroWorld extends AllWorld
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 9){
             removeObject(dialogues[dialogueCounter-1]);
-            removeObject(speakers[4]);
+            if(switchedSpeaker){
+                removeObject(speakers[3]);
+                switchedSpeaker = false;
+            } else {
+                removeObject(speakers[4]);
+            }
             addObject(dialogues[dialogueCounter], 600, 775);
             addObject(speakers[1], 350, 695);
             dialogueCounter++;
@@ -258,42 +249,31 @@ public class IntroWorld extends AllWorld
             }
         }
     }
-    // needs a method from character select world that returns some indicator of what MCs the user chose
+    
+    
     private void displayCharacters(){
-        // This will be the int[] of MC's that the user chooses, assuming it is getMCs() method returning int[]
-        // int[] MCs = getMCs()
-        MC[] MCs = {new MC(0, true, "Thief"),new MC(1, true, "Scientist"), new MC(2, true, "Brute"), new MC(3, true, "Weapons Dealer")};
-        
+        System.out.println("-----");
+        System.out.println(savedMCs.get(0));
+        System.out.println(savedMCs.get(1));
+        System.out.println(savedMCs.get(2));
+        System.out.println(savedMCs.get(3));
+        // This is needed, code requires exactly the same lettering pattern in .equals() check
         for(int i = 0; i < 4; i++){
-            addObject(MCs[i], xCoords[i], yCoords[i]);
+            if(savedMCs.get(i).equals("WeaponDealer")){
+                savedMCs.set(i, "Weapons Dealer");
+            }
+            if(savedMCs.get(i).equals("ExplosiveE")){
+                savedMCs.set(i, "Explosive Expert");
+            }
+        }
+        
+        MC[] displayMCs = {new MC(0, true, savedMCs.get(0)),new MC(1, true, savedMCs.get(1)), new MC(2, true, savedMCs.get(2)), new MC(3, true, savedMCs.get(3))};
+        for(int i = 0; i < 4; i++){
+            addObject(displayMCs[i], xCoords[i], yCoords[i]);
         }
         
         guard = new Guard(0, true);
         addObject(guard, 900, 615);
-        /*
-        for(int i = 0; i < 4; i++){
-            int characterNumber = MCs[i]; 
-            if(characterNumber == 1){
-                mc1 = new MC1();
-                addObject(mc1, xCoords[i], yCoords[i]);
-            } else if(characterNumber == 2){
-                mc2 = new MC2();
-                addObject(mc2, xCoords[i], yCoords[i]);
-            } else if(characterNumber == 3){
-                mc3 = new MC3();
-                addObject(mc3, xCoords[i], yCoords[i]);
-            } else if(characterNumber == 4){
-                mc4 = new MC4();
-                addObject(mc4, xCoords[i], yCoords[i]);
-            } else if(characterNumber == 5){
-                mc5 = new MC5();
-                addObject(mc5, xCoords[i], yCoords[i]);
-            } else { // must be mc6 if none of the above
-                mc6 = new MC6();
-                addObject(mc6, xCoords[i], yCoords[i]);
-            }
-        }
-        */
     }
     
     
@@ -313,7 +293,9 @@ public class IntroWorld extends AllWorld
         // Special lines for each character, will be chosen depending on which characters were selected as main 4
         for(int i = 9; i < 13; i++){
             String name = MCs.get(index);
-            String[] splitName = name.split(",");
+            splitName = name.split(",");
+            // Only add these values once
+            savedMCs.add(splitName[0]);
             if(splitName[0].equals("Thief")){ // Thief
                 dialogues[i] = new SuperTextBox("Sure, I'll steal something useful.", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
             } else if(splitName[0].equals("Brute")){ // Brute
@@ -336,9 +318,9 @@ public class IntroWorld extends AllWorld
         // Fill speakers array with chosen MCs
         for(int i = 1; i < 5; i++){
             String name = MCs.get(index);
-            String[] splitName = name.split(",");
-            System.out.println("-----");
-            System.out.println(splitName[0]);
+            splitName = name.split(",");
+            //System.out.println("-----");
+            //System.out.println(splitName[0] + " " + index);
             if(splitName[0].equals("Thief")){
                 speakers[i] = new SuperTextBox("Thief", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);        
             } else if(splitName[0].equals("Brute")){
