@@ -271,7 +271,7 @@ public abstract class Person extends Entity
             nextNodeInPath(); // Go to next node in curPath
         } else {
             // Change y position if movingVertical is true, change x position if movingVertical is false
-            setLocation(movingVertical ? getX() : getX()+speed*dir, movingVertical ? getY()+speed*dir : getY());
+            setLocation(movingVertical ? getX() : getX()+speed*dir+spd/2, movingVertical ? getY()+speed*dir+spd/2 : getY());
         }
     }
 

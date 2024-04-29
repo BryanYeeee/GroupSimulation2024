@@ -25,7 +25,7 @@ public class SelectWorld extends AllWorld
         super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
         numSelectedPrisoners = 0;
         
-        SavedPrisoner mc1 = new SavedPrisoner("Brute", "None", 5, 1, 3, "Brute");
+        SavedPrisoner mc1 = new SavedPrisoner("Brute", "None", 8, 1, 3, "Brute");
         SavedPrisoner mc2 = new SavedPrisoner("Thief", "Librarian", 5, 1, 3, "Thief");
         SavedPrisoner mc3 = new SavedPrisoner("Weapondealer", "Metalworker", 5, 1, 3, "Weapondealer");
         SavedPrisoner mc4 = new SavedPrisoner("Scientist", "Cook", 5, 1, 3, "Scientist");
@@ -70,6 +70,7 @@ public class SelectWorld extends AllWorld
     
     
     public List<SavedPrisoner> getSelectedPrisoners() {
+        //problem here
         return selectedPrisoners;
     }
     
@@ -115,6 +116,7 @@ public class SelectWorld extends AllWorld
     public void act() {
         if (numSelectedPrisoners == 4) {
             if(NextButton.getSwitchWorld()) {
+                //System.out.print(getSelectedPrisoners());
                 NextButton.resetSwitchWorld();
                 transitionWorld();
             }

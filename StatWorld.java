@@ -14,6 +14,8 @@ public class StatWorld extends AllWorld
     private SavedPrisoner[] savedPrisoners;
     private SavedPrisoner[] imageSavedPrisoners;
     
+    private List<String> serializedPrisonersState;
+    
     /**
      * Constructor for StatWorld.
      */
@@ -25,7 +27,7 @@ public class StatWorld extends AllWorld
         String[] savedData = new String[4];
         
         int index = 0;
-        SelectWorld selectWorld = new SelectWorld();
+        SelectWorld selectWorld = new SelectWorld();// what does this do?
         for(String serializedData : selectedPrisoners) {
             if(index < 4) {
                 savedData[index] = serializedData;
@@ -54,7 +56,7 @@ public class StatWorld extends AllWorld
         savedPrisoners[2].createControls(625, 125);
         savedPrisoners[3].createControls(625, 425);
         
-        
+        //This is to get the image of the chosen prisoners
         imageSavedPrisoners = new SavedPrisoner[4];
         
         imageSavedPrisoners[0] = new SavedPrisoner(savedPrisoners[0].getName());
@@ -82,13 +84,6 @@ public class StatWorld extends AllWorld
      */
     public List<String> savePrisonersState() {
         List<String> serializedDataList = new ArrayList<>();
-        /*
-        for (Object object : getObjects(SavedPrisoner.class)) {
-            SavedPrisoner mc = (SavedPrisoner) object;
-            String serializedData = mc.serializeState();
-            serializedDataList.add(serializedData);
-        }
-        */
         for (SavedPrisoner prisoner : savedPrisoners) {
             String serializedData = prisoner.serializeState();
             serializedDataList.add(serializedData);
@@ -115,6 +110,8 @@ public class StatWorld extends AllWorld
      * saves all prisoner data and switches worlds
      */
     public void switchToWorld() {
-        Greenfoot.setWorld(new IntroWorld());
+        serializedPrisonersState = savePrisonersState();
+        //System.out.println(serializedPrisonersState);
+        Greenfoot.setWorld(new IntroWorld(serializedPrisonersState));
     }
 }
