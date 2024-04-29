@@ -181,8 +181,6 @@ public class IntroWorld extends AllWorld
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[3]);
             addObject(dialogues[dialogueCounter], 600, 775);
-            System.out.println("ddafsdf");
-            System.out.println(splitName[0]);
             if(splitName[0].equals("Brute")){ // so doesn't go against personality
                 addObject(speakers[3], 350, 695);
                 switchedSpeaker = true;

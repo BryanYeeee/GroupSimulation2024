@@ -51,6 +51,7 @@ public class StatusBar extends Actor
     
     // Array of MCs in the world
     private MC[] MCs;
+    
     public StatusBar(){
         redraw();
     }
@@ -186,11 +187,9 @@ public class StatusBar extends Actor
         for(SuperTextBox text : getIntersectingObjects(SuperTextBox.class)){
             getWorld().removeObject(text);
         }
-        /*
         for(TempBox box : getIntersectingObjects(TempBox.class)){
             getWorld().removeObject(box);
         }
-        */
     }
     
 }

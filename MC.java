@@ -14,12 +14,12 @@ public class MC extends Prisoner
     private String currentAction;
     private Item[] items = new Item[2];
     
-    private String name;
+    private String name; // person name
     private StatSetter strength;
     private StatSetter speed;
     private StatSetter luck;
     private StatSetter intelligence;
-    private String specialty;
+    private String specialty; // more like a class, thief, brute etc.
     
     // For cutscene/intro world
     public MC(int i, boolean inIntro, String specialty){
@@ -103,6 +103,27 @@ public class MC extends Prisoner
         spd = Double.parseDouble(parts[3]);
         intel = Double.parseDouble(parts[4]);
         specialty = parts[5];
+    }
+    
+    private void determineName(){
+        if(specialty.equals("Thief")){
+            name = "Wyatt";
+        }
+        if(specialty.equals("Brute")){
+            name = "Buck";
+        }
+        if(specialty.equals("Scientist")){
+            name = "Waldo";
+        }
+        if(specialty.equals("Weapons Dealer")){
+            name = "Leon";
+        }
+        if(specialty.equals("Explosive Expert")){
+            name = "Aron";
+        }
+        if(specialty.equals("Builder")){
+            name = "Reuben";
+        }
     }
     
     public String getSpecialty() {
