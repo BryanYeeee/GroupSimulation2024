@@ -50,7 +50,7 @@ public class CharacterIntros extends AllWorld
         SimulationFont.initalizeFont();
 
         // Indicator
-        indicator = new SuperTextBox("Click to move on to character selection", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 700, 5, borderColor);
+        indicator = new SuperTextBox("Click anywhere to move on to character selection", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 700, 5, borderColor);
 
         // By default first story will show up
         setBackground(characterBackgrounds[0]);

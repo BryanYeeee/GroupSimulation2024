@@ -26,12 +26,12 @@ public class SelectWorld extends AllWorld
         setPaintOrder(Fade.class);
         numSelectedPrisoners = 0;
         
-        SavedPrisoner mc1 = new SavedPrisoner("Brute", "None", 8, 1, 3, "Brute");
-        SavedPrisoner mc2 = new SavedPrisoner("Thief", "Librarian", 5, 1, 3, "Thief");
-        SavedPrisoner mc3 = new SavedPrisoner("WeaponDealer", "Metalworker", 5, 1, 3, "WeaponDealer");
-        SavedPrisoner mc4 = new SavedPrisoner("Scientist", "Cook", 5, 1, 3, "Scientist");
-        SavedPrisoner mc5 = new SavedPrisoner("ExplosiveE", "Janitor", 5, 1, 3, "Explosiveexpert");
-        SavedPrisoner mc6 = new SavedPrisoner("Builder", "Woodworker", 5, 1, 3, "Builder");
+        SavedPrisoner mc1 = new SavedPrisoner("Buck", "None", 8, 1, 3, "Brute");
+        SavedPrisoner mc2 = new SavedPrisoner("Wyatt", "Librarian", 5, 1, 3, "Thief");
+        SavedPrisoner mc3 = new SavedPrisoner("Leon", "Metalworker", 5, 1, 3, "Weapons Dealer");
+        SavedPrisoner mc4 = new SavedPrisoner("Waldo", "Cook", 5, 1, 3, "Scientist");
+        SavedPrisoner mc5 = new SavedPrisoner("Aron", "Janitor", 5, 1, 3, "Explosive Expert");
+        SavedPrisoner mc6 = new SavedPrisoner("Reuben", "Woodworker", 5, 1, 3, "Builder");
         
         addObject(mc1, 150, 250);
         addObject(mc2, 150, 550);
