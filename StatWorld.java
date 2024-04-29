@@ -24,7 +24,6 @@ public class StatWorld extends AllWorld
         super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
 
         savedPrisoners = new SavedPrisoner[4];
-        String[] savedData = new String[4];
         
         int index = 0;
         for(String serializedData : selectedPrisoners) {

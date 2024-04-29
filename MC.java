@@ -51,6 +51,7 @@ public class MC extends Prisoner
     public MC(int i, MyWorld world, String[] serializedData) {
         super(i, serializedData[1]);
         this.name = name;
+        this.world = world;
         heldItems = new ArrayList<Item>();
         name = serializedData[0];
         str = Double.parseDouble(serializedData[2]);

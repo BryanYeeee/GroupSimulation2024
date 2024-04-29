@@ -29,7 +29,7 @@ public class SavedPrisoner extends Actor {
         this.jobTitle = jobTitle;
         this.specialty = specialty;
         
-        image = new GreenfootImage(specialty+".png");
+        image = new GreenfootImage("images/"+specialty+".png");
         image.scale(100, 100);
         setImage(image);
         

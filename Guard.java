@@ -64,12 +64,14 @@ public class Guard extends Person
                 // Fight intersecting MCs
                 if (!inFight && !isDead) {
                     MC mc = (MC)getOneIntersectingObject(MC.class);
+                    if(mc != null) {
                     boolean dodged = mc.getSpeed() > 1.8 && Greenfoot.getRandomNumber(2)==0;
                     if (mc != null && !mc.isFighting() && !mc.isDead() && !dodged) {
                         setInFight(mc, true);
                         mc.setInFight(this, true);
                         //curPath.clear();
                         noFights++;
+                    }
                     }
                 }
             }
