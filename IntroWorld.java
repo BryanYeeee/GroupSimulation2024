@@ -1,15 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 /**
- * A class to hold what happens after the character introductions
+ * A class to hold the cutsceneappens after the character introductions
  * After every click (C): Prisoner ABCD will be random from the chosen 4 MCs
  * The 4 MCs should each have their own special dialogue
  * Default: All prisoners are gathered together
@@ -56,7 +50,7 @@ public class IntroWorld extends AllWorld
     
     // MCs
     //int MCs[];  // track which MCs were selected by the user
-    private int[] MCs = {1,3,4,6}; //temp
+    //private int[] MCs = {1,3,4,6}; //temp
     //MCs[] MCs;
     
     // Dialogue, Speaker, General Text
@@ -92,6 +86,7 @@ public class IntroWorld extends AllWorld
     private List<String> serializedPrisonersState;
     
     private SavedPrisoner[] savedPrisoners;
+    private List<String> MCs;
     
     public IntroWorld(List<String> selectedPrisoners)
     {    
@@ -106,9 +101,10 @@ public class IntroWorld extends AllWorld
         // Initalize font so the text isn't displayed as default font
         SimulationFont.initalizeFont();
         
+        MCs = selectedPrisoners;
+        
         displayCharacters();
         fillSpeakersAndDialogue();
-        
         
         savedPrisoners = new SavedPrisoner[4];
         String[] savedData = new String[4];
@@ -202,7 +198,11 @@ public class IntroWorld extends AllWorld
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[3]);
             addObject(dialogues[dialogueCounter], 600, 775);
-            addObject(speakers[4], 350, 695);
+            if(speakers[4].equals("Brute")){ // so doesn't go against personality
+                addObject(speakers[3], 350, 695);
+            } else {
+                addObject(speakers[4], 350, 695);
+            }
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 7){
             removeObject(dialogues[dialogueCounter-1]);
@@ -246,14 +246,7 @@ public class IntroWorld extends AllWorld
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 14){ //once world clicked, proceed to main simulation
             Person.setIntro(false);
-            //SelectWorld selectWorld = new SelectWorld();
             switchWorld();
-            
-            /*
-            StatWorld statWorld = new StatWorld(selectWorld.saveSelectedPrisonersState());
-            MyWorld simulationWorld = new MyWorld(statWorld.savePrisonersState());
-            Greenfoot.setWorld(simulationWorld);
-            */
         }
         if(actsLeft <= 60 && actsLeft > 0){
             actsLeft--;
@@ -305,6 +298,7 @@ public class IntroWorld extends AllWorld
     
     
     private void fillSpeakersAndDialogue(){
+        int index = 0;
         // Fill dialogues array with preset dialogue
         // Manadatory dialogue
         dialogues[0] = new SuperTextBox("Enjoy your last day here at the prison.", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
@@ -318,41 +312,49 @@ public class IntroWorld extends AllWorld
         dialogues[8] = new SuperTextBox("I say we can gather materials by day and escape at night.", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
         // Special lines for each character, will be chosen depending on which characters were selected as main 4
         for(int i = 9; i < 13; i++){
-            int characterNumber = MCs[i-9];
-            if(characterNumber == 1){ // Thief
+            String name = MCs.get(index);
+            String[] splitName = name.split(",");
+            if(splitName[0].equals("Thief")){ // Thief
                 dialogues[i] = new SuperTextBox("Sure, I'll steal something useful.", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
-            } else if(characterNumber == 2){ // Brute
-                dialogues[i] = new SuperTextBox("Screw you all, I'm doing my own thing", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
-            } else if(characterNumber == 3){ // Scientist
+            } else if(splitName[0].equals("Brute")){ // Brute
+                dialogues[i] = new SuperTextBox("Screw you all, I'm doing my own thing.", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
+            } else if(splitName[0].equals("Scientist")){ // Scientist
                 dialogues[i] = new SuperTextBox("Ok, I'll brew up some deadly potions.", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
-            } else if(characterNumber == 4){ // Weapons Dealer
+            } else if(splitName[0].equals("WeaponDealer")){ // Weapons Dealer
                 dialogues[i] = new SuperTextBox("Very well, I'll create some makeshift weapons.", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
-            } else if(characterNumber == 5){ // Expolsive Expert
+            } else if(splitName[0].equals("ExplosiveE")){ // Expolsive Expert
                 dialogues[i] = new SuperTextBox("Its time to blow this place up!", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
-            } else { // TBD
-                dialogues[i] = new SuperTextBox("F", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
+            } else { // Builder
+                dialogues[i] = new SuperTextBox("Time to dig out of this place.", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
             }
+            index ++;
         }
+        index = 0;
         
         // Fill speakers array with preset speaker
         speakers[0] = new SuperTextBox("Guard", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);
         // Fill speakers array with chosen MCs
         for(int i = 1; i < 5; i++){
-            int characterNumber = MCs[i-1];
-            if(characterNumber == 1){
-                speakers[i] = new SuperTextBox("MC1", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);        
-            } else if(characterNumber == 2){
-                speakers[i] = new SuperTextBox("MC2", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);        
-            } else if(characterNumber == 3){
-                speakers[i] = new SuperTextBox("MC3", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);        
-            } else if(characterNumber == 4){
-                speakers[i] = new SuperTextBox("MC4", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);        
-            } else if(characterNumber == 5){
-                speakers[i] = new SuperTextBox("MC5", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);        
-            } else { // must be 6th MC
-                speakers[i] = new SuperTextBox("MC6", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);        
+            String name = MCs.get(index);
+            String[] splitName = name.split(",");
+            System.out.println("-----");
+            System.out.println(splitName[0]);
+            if(splitName[0].equals("Thief")){
+                speakers[i] = new SuperTextBox("Thief", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);        
+            } else if(splitName[0].equals("Brute")){
+                speakers[i] = new SuperTextBox("Brute", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);        
+            } else if(splitName[0].equals("Scientist")){
+                speakers[i] = new SuperTextBox("Scientist", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);        
+            } else if(splitName[0].equals("WeaponDealer")){
+                speakers[i] = new SuperTextBox("Weapons Dealer", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);        
+            } else if(splitName[0].equals("ExplosiveE")){
+                speakers[i] = new SuperTextBox("Expolsive Expert", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);        
+            } else { // must be builder
+                speakers[i] = new SuperTextBox("Builder", transparentColor, Color.WHITE, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 256, 0, transparentColor);        
             }
+            index++;
         }
+        index = 0;
     }
     
     public void switchWorld() {
