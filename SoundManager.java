@@ -32,7 +32,7 @@ public class SoundManager
         sounds.put("VictoryEscape", new Sound("VictoryEscape.mp3", 100, false));
         
         sounds.put("Statscreen", new Sound("Statscreen.mp3", 100, true));
-        sounds.put("Titlescreen", new Sound("Titlescreen.mp3", 100, false));
+        sounds.put("Titlescreen", new Sound("Titlescreen.mp3", 25, false));
         
         
     }
@@ -70,6 +70,6 @@ public class SoundManager
         activeSounds.clear(); // Clear the arraylist
     }
     
-
+    
     
 }

@@ -35,12 +35,38 @@ public abstract class AllWorld extends World
      * Fade when going to another world
      */
     public void act() {
+        
+        /*
         if(worldTransition) {
             acts++;
             if(acts >= fadeOut.getFade()) {
                 Greenfoot.setWorld(world);
             }
         }
+        */
+    }
+    
+    /**
+     * Play music
+     */
+    public void started() {
+        sm.resumeSounds();
+    }
+    
+    /**
+     * Stop muisc
+     */
+    public void stopped() {
+        sm.pauseSounds();
+    }
+    
+    /**
+     * gets SoundManager
+     * 
+     * @return Sound Manager
+     */
+    public SoundManager getSM() {
+        return sm;
     }
     
     /**

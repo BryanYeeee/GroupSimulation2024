@@ -22,7 +22,8 @@ public class StatWorld extends AllWorld
     public StatWorld(List<String> selectedPrisoners)
     {
         super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
-
+        setPaintOrder(Fade.class);
+        
         savedPrisoners = new SavedPrisoner[4];
         String[] savedData = new String[4];
         

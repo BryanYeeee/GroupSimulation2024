@@ -23,6 +23,7 @@ public class SelectWorld extends AllWorld
     public SelectWorld()
     {
         super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
+        setPaintOrder(Fade.class);
         numSelectedPrisoners = 0;
         
         SavedPrisoner mc1 = new SavedPrisoner("Brute", "None", 8, 1, 3, "Brute");
