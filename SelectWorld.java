@@ -25,12 +25,12 @@ public class SelectWorld extends AllWorld
         super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
         numSelectedPrisoners = 0;
         
-        SavedPrisoner mc1 = new SavedPrisoner("Brute", "None", 8, 1, 3, "Brute");
-        SavedPrisoner mc2 = new SavedPrisoner("Thief", "Librarian", 5, 1, 3, "Thief");
-        SavedPrisoner mc3 = new SavedPrisoner("WeaponDealer", "Metalworker", 5, 1, 3, "WeaponDealer");
-        SavedPrisoner mc4 = new SavedPrisoner("Scientist", "Cook", 5, 1, 3, "Scientist");
-        SavedPrisoner mc5 = new SavedPrisoner("ExplosiveE", "Janitor", 5, 1, 3, "Explosiveexpert");
-        SavedPrisoner mc6 = new SavedPrisoner("Builder", "Woodworker", 5, 1, 3, "Builder");
+        SavedPrisoner mc1 = new SavedPrisoner("Brute", "None", 8, 1.8, 3, "Brute");
+        SavedPrisoner mc2 = new SavedPrisoner("Thief", "Librarian", 5, 3.8, 3, "Thief");
+        SavedPrisoner mc3 = new SavedPrisoner("WeaponDealer", "Metalworker", 5, 1.8, 3, "WeaponDealer");
+        SavedPrisoner mc4 = new SavedPrisoner("Scientist", "Cook", 5, 1.8, 3, "Scientist");
+        SavedPrisoner mc5 = new SavedPrisoner("ExplosiveE", "Janitor", 5, 1.8, 3, "ExplosiveExpert");
+        SavedPrisoner mc6 = new SavedPrisoner("Builder", "Woodworker", 5, 1.8, 3, "Builder");
         
         addObject(mc1, 150, 250);
         addObject(mc2, 150, 550);

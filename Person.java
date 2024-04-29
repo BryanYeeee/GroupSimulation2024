@@ -35,16 +35,10 @@ public abstract class Person extends Entity
     protected boolean inFight;
     protected static boolean inIntro = false;
 
-    // Person Stats
-    protected final double MAX_STRENGTH = 10.0;
-    protected final double MAX_INTEL = 10.0;
-    protected final double MAX_SPEED = 3.0;
-    
     protected int maxHp;
     protected int curHp;
     protected double str;
     protected double intel;
-    protected double luc;
     protected double spd;
     protected boolean isDead;
     protected SuperStatBar healthBar;

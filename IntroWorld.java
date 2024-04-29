@@ -89,9 +89,9 @@ public class IntroWorld extends AllWorld
     InnerIcon[] exclamationMarks = {new InnerIcon(0, 30, 30), new InnerIcon(0, 30, 30), new InnerIcon(0, 30, 30), new InnerIcon(0, 30, 30)}; 
     InnerIcon[] questionMarks = {new InnerIcon(1, 30, 30), new InnerIcon(1, 30, 30), new InnerIcon(1, 30, 30), new InnerIcon(1, 30, 30)}; 
 
-    private List<String> serializedPrisonersState;
+    private List<String> selectedPrisoners;
     
-    private SavedPrisoner[] savedPrisoners;
+    // private SavedPrisoner[] savedPrisoners;
     
     public IntroWorld(List<String> selectedPrisoners)
     {    
@@ -108,31 +108,31 @@ public class IntroWorld extends AllWorld
         
         displayCharacters();
         fillSpeakersAndDialogue();
+        this.selectedPrisoners=selectedPrisoners;
         
+        // savedPrisoners = new SavedPrisoner[4];
+        // String[] savedData = new String[4];
         
-        savedPrisoners = new SavedPrisoner[4];
-        String[] savedData = new String[4];
+        // int index = 0;
+        // for(String serializedData : selectedPrisoners) {
+            // if(index < 4) {
+                // savedData[index] = serializedData;
+                // index++;
+            // } else {
+                // break;
+            // }
+        // }
         
-        int index = 0;
-        for(String serializedData : selectedPrisoners) {
-            if(index < 4) {
-                savedData[index] = serializedData;
-                index++;
-            } else {
-                break;
-            }
-        }
+        // for(int i = 0; i < 4; i++) {
+            // savedPrisoners[i] = new SavedPrisoner("", "", 0, 0, 0, "");
+            // savedPrisoners[i].deserializeState(savedData[i]);
+        // }
         
-        for(int i = 0; i < 4; i++) {
-            savedPrisoners[i] = new SavedPrisoner("", "", 0, 0, 0, "");
-            savedPrisoners[i].deserializeState(savedData[i]);
-        }
-        
-        //adding them to the world to edit their stats
-        addObject(savedPrisoners[0], 100, 200);
-        addObject(savedPrisoners[1], 100, 500);
-        addObject(savedPrisoners[2], 450, 200);
-        addObject(savedPrisoners[3], 450, 500);
+        // //adding them to the world to edit their stats
+        // addObject(savedPrisoners[0], 100, 200);
+        // addObject(savedPrisoners[1], 100, 500);
+        // addObject(savedPrisoners[2], 450, 200);
+        // addObject(savedPrisoners[3], 450, 500);
         
         guideMessage = new SuperTextBox("Click to start & advance dialogue", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 54), true, 768, 5, borderColor);
         addObject(guideMessage, 600, 775);
@@ -356,21 +356,21 @@ public class IntroWorld extends AllWorld
     }
     
     public void switchWorld() {
-        serializedPrisonersState = savePrisonersState();
-        System.out.println(serializedPrisonersState);
-        Greenfoot.setWorld(new MyWorld(serializedPrisonersState));
+        // serializedPrisonersState = savePrisonersState();
+        // System.out.println(serializedPrisonersState);
+        Greenfoot.setWorld(new MyWorld(selectedPrisoners));
     }
     
-    /**
-     * Used to save all the stats of each prisoner
-     */
-    public List<String> savePrisonersState() {
-        List<String> serializedDataList = new ArrayList<>();
-        for (SavedPrisoner prisoner : savedPrisoners) {
-            String serializedData = prisoner.serializeState();
-            serializedDataList.add(serializedData);
-        }
+    // /**
+     // * Used to save all the stats of each prisoner
+     // */
+    // public List<String> savePrisonersState() {
+        // List<String> serializedDataList = new ArrayList<>();
+        // for (SavedPrisoner prisoner : savedPrisoners) {
+            // String serializedData = prisoner.serializeState();
+            // serializedDataList.add(serializedData);
+        // }
         
-        return serializedDataList;
-    }
+        // return serializedDataList;
+    // }
 }

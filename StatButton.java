@@ -8,11 +8,13 @@ import greenfoot.*;
  * @version April 2024
  */
 public class StatButton extends Button {
-    private StatSetter statSetter;
+    // private StatSetter statSetter;
+    private SavedPrisoner sp;
     private boolean increase; // Indicates whether the button increases or decreases the value
     private GreenfootImage image;
-    private static boolean isStat;
-    private static boolean switchWorld;
+    private String statName;
+    // private static boolean isStat;
+    // private static boolean switchWorld;
 
     /**
      * Constructer of the button
@@ -20,8 +22,9 @@ public class StatButton extends Button {
      * @param statSetter            specifies which stats should be modified
      * @param increase              boolean determines whether the button is used to increase or decrease
      */
-    public StatButton(StatSetter statSetter, boolean increase) {
-        this.statSetter = statSetter;
+    public StatButton(SavedPrisoner sp, String statName, boolean increase) {
+        this.sp = sp;
+        this.statName = statName;
         this.increase = increase;
 
         image = new GreenfootImage("gameArrow.png");
@@ -38,10 +41,16 @@ public class StatButton extends Button {
      */
     public void act() {
         if(Greenfoot.mouseClicked(this)) {
-            if(increase) {
-                statSetter.increaseValue();
-            } else {
-                statSetter.decreaseValue();
+            switch(statName) {
+                case "str":
+                    sp.addStrength(increase);
+                    break;
+                case "intel":
+                    sp.addIntel(increase);
+                    break;
+                case "spd":
+                    sp.addSpeed(increase);
+                    break;
             }
         }
     }
