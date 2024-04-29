@@ -11,7 +11,7 @@ public class Knife extends Item
      */
     public Knife()
     {
-        super("knife");
+        super("plasticknife");
     }
 
     

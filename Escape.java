@@ -50,7 +50,12 @@ public class Escape
                 }
             }
         }
-        possibleEscapes.get(strongestMC.getIndex()).add("5 Drive Car");
+        
+        boolean hasEscape = false;
+        for(ArrayList<String> escapes : possibleEscapes) {
+            if(!escapes.isEmpty()) hasEscape = true;
+        }
+        if(!hasEscape || Greenfoot.getRandomNumber(5)==0)possibleEscapes.get(strongestMC.getIndex()).add("5 Drive Car");
         
         int j = 0;
         for(ArrayList<String> escapes : possibleEscapes) {

@@ -159,41 +159,7 @@ public abstract class Person extends Entity
                 animate();
             }
 
-            // If currently escaping, don't do additional effects, like rooms or free roam
-            if(this instanceof MC && ((MyWorld)getWorld()).isEscapeTime()) return;
-            if(this instanceof Guard && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) return;
-
             Room r = (Room)getOneObjectAtOffset(0,-SPRITE_OFFSET,Room.class);
-            if (curRoom != r) { // Changed current room
-                if (curRoom != null) { // Leaving a room
-                    curRoom.exitRoom(this, roomPosition);
-                    curRoom = null;
-                    roomPosition = -1;
-                } else if(curPath.isEmpty()) { // Landed in a room
-                    curRoom = r;
-                    roomPosition = curRoom.enterRoom(this);
-                    //if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("DINING HALL"))System.out.println(roomPosition);
-                }
-            }
-
-            // If in room, and it has an effect that can occur, do effect
-            if (curRoom != null && curRoom.checkEffectCondition(this)) {
-                curRoom.doEffect(this);
-            }
-
-            if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
-                Action.walkAround(this, false);
-            }
-
-            if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
-                Action.walkAround(this, true);
-            }
-
-            if(curNode.getIndex() == STARTING_NODE_INDEX && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
-                //getWorld().removeObject(this);
-                curPath.clear();
-                speed = 0;
-            }
 
             if (!curPath.isEmpty()) {
                 action ="walk";
@@ -233,6 +199,41 @@ public abstract class Person extends Entity
             }
 
             //Idle is slower so longer animationDelay
+            
+            // If currently escaping, don't do additional effects, like rooms or free roam
+            if(this instanceof MC && ((MyWorld)getWorld()).isEscapeTime()) return;
+            if(this instanceof Guard && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) return;
+
+            if (curRoom != r) { // Changed current room
+                if (curRoom != null) { // Leaving a room
+                    curRoom.exitRoom(this, roomPosition);
+                    curRoom = null;
+                    roomPosition = -1;
+                } else if(curPath.isEmpty()) { // Landed in a room
+                    curRoom = r;
+                    roomPosition = curRoom.enterRoom(this);
+                    //if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("DINING HALL"))System.out.println(roomPosition);
+                }
+            }
+
+            // If in room, and it has an effect that can occur, do effect
+            if (curRoom != null && curRoom.checkEffectCondition(this)) {
+                curRoom.doEffect(this);
+            }
+
+            if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
+                Action.walkAround(this, false);
+            }
+
+            if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
+                Action.walkAround(this, true);
+            }
+
+            if(curNode.getIndex() == STARTING_NODE_INDEX && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
+                //getWorld().removeObject(this);
+                curPath.clear();
+                speed = 0;
+            }
 
         }
 
@@ -483,24 +484,24 @@ public abstract class Person extends Entity
         }
     }
 
-    public void healHp(int healAmount){
+    public void healHp(double healAmount){
         curHp+=healAmount;
         if (curHp > maxHp) curHp = maxHp;
         healthBar.update(curHp);
         if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
-    public void addIntel(int intelAmount) {
+    public void addIntel(double intelAmount) {
         intel+=intelAmount;
         if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
-    public void addStrength(int strengthAmount) {
+    public void addStrength(double strengthAmount) {
         if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute"))strengthAmount++;
         str+=strengthAmount;
     }
 
-    public void setStrength(int s) {
+    public void setStrength(double s) {
         str = s;
     }
     

@@ -64,7 +64,8 @@ public class Guard extends Person
                 // Fight intersecting MCs
                 if (!inFight && !isDead) {
                     MC mc = (MC)getOneIntersectingObject(MC.class);
-                    if (mc != null && !mc.isFighting() && !mc.isDead()) {
+                    boolean dodged = mc.getSpeed() > 1.8 && Greenfoot.getRandomNumber(2)==0;
+                    if (mc != null && !mc.isFighting() && !mc.isDead() && !dodged) {
                         setInFight(mc, true);
                         mc.setInFight(this, true);
                         //curPath.clear();
@@ -72,21 +73,21 @@ public class Guard extends Person
                     }
                 }
             }
-        }
-        if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
-            
-            if (curRoom != null) { // Leaving a room
-                curRoom.exitRoom(this, roomPosition);
-                curRoom = null;
-                roomPosition = -1;
-            } 
-            
-            if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
-                Action.walkAround(this, false);
-            }
-    
-            if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
-                Action.walkAround(this, true);
+            if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
+                
+                if (curRoom != null) { // Leaving a room
+                    curRoom.exitRoom(this, roomPosition);
+                    curRoom = null;
+                    roomPosition = -1;
+                } 
+                
+                if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
+                    Action.walkAround(this, false);
+                }
+        
+                if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
+                    Action.walkAround(this, true);
+                }
             }
         }
     }
