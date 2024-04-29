@@ -65,7 +65,7 @@ public class MyWorld extends AllWorld
     public MyWorld(List<String> serializedDataList)
     {    
         // Create a new world with 1200x850 cells with a cell size of 1x1 pixels.
-        super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
+        super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
         setPaintOrder(Item.class, BannerIcon.class,  Banner.class, Clock.class, 
         EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, 
         WallCover.class, Accessory.class, Person.class, Underglow.class, Tile.class, 

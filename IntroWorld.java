@@ -97,7 +97,7 @@ public class IntroWorld extends AllWorld
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         // The world will have prisoners in cells, no dialogue box or dialogue yet
-        super(1200, 850, 1); 
+        super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1); 
         introBackground.scale(1200, 700); // purposely scaled to lower than world height to add dialogue box in a logical place, will cause double background
         setBackground(introBackground);
         // Covering the double background

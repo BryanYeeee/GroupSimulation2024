@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public abstract class AllWorld extends World
 {
+    protected SoundManager sm;
     protected boolean worldTransition;
     protected Fade fadeIn, fadeOut;
     protected int acts;

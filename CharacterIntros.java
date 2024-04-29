@@ -37,7 +37,7 @@ public class CharacterIntros extends AllWorld
     public CharacterIntros()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1200, 850, 1);
+        super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
 
         fillCharacterBackgroundAndStories();
 
