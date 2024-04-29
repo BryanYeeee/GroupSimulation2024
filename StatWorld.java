@@ -24,6 +24,8 @@ public class StatWorld extends AllWorld
         super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
         setPaintOrder(Fade.class);
         
+        sm.playSound("Statscreen");
+        
         savedPrisoners = new SavedPrisoner[4];
         String[] savedData = new String[4];
         

@@ -23,15 +23,16 @@ public class SoundManager
         // Map all the sounds to an array to access sound class by name
         sounds = new HashMap<String, Sound>();
         
-        sounds.put("click", new Sound("click.wav", 100, false));
-        sounds.put("bomb", new Sound("bomb.wav", 100, false));
-        sounds.put("GeneratorOff", new Sound("GeneratorOff.wav", 100, false));
+        // Non-looped
+        sounds.put("click", new Sound("click.mp3", 35, false));
+        sounds.put("bomb", new Sound("bomb.mp3", 100, false));
+        sounds.put("GeneratorOff", new Sound("GeneratorOff.mp3", 100, false));
         sounds.put("WoodBurning", new Sound("WoodBurning.mp3", 100, false));
         sounds.put("WallBreak", new Sound("WallBreak.mp3", 100, false));
-        
         sounds.put("VictoryEscape", new Sound("VictoryEscape.mp3", 100, false));
         
-        sounds.put("Statscreen", new Sound("Statscreen.mp3", 100, true));
+        // Looped
+        sounds.put("Statscreen", new Sound("Statscreen.mp3", 25, true));
         sounds.put("Titlescreen", new Sound("Titlescreen.mp3", 25, false));
         
         

@@ -14,6 +14,8 @@ public class SelectButton extends Button
     private boolean isSelected = false;
     private SelectWorld selectWorld;
     
+    private SoundManager sm;
+    
     public SelectButton(SelectWorld selectWorld, SavedPrisoner savedPrisoner) {
         this.selectWorld = selectWorld;
         this.savedPrisoner = savedPrisoner;
@@ -31,6 +33,7 @@ public class SelectButton extends Button
     public void act()
     {
         if (Greenfoot.mouseClicked(this)) {
+            sm.playSound("click");
             if (!isSelected && selectWorld.getNumSelectedPrisoners() < 4) {
                 isSelected = true;
                 setImage(selectedImage); // Change image to indicate selection

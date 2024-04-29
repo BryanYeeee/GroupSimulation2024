@@ -79,12 +79,14 @@ public class CharacterIntros extends AllWorld
             addObject(indicator, 600, 100);
         }
         if(Greenfoot.mouseClicked(rightButton)){
+            sm.playSound("click");
             removeObject(characterStories[displayCounter]);
             displayCounter++;
             setBackground(characterBackgrounds[displayCounter]);
             addObject(characterStories[displayCounter], 600, 700);
         }
         if(Greenfoot.mouseClicked(leftButton)){
+            sm.playSound("click");
             removeObject(characterStories[displayCounter]);
             displayCounter--;
             setBackground(characterBackgrounds[displayCounter]);
