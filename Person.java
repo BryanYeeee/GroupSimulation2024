@@ -132,7 +132,7 @@ public abstract class Person extends Entity
                 currentImage.scale(48, 32);
                 setImage(currentImage);
 
-                if (actCount % 15 == 0) {
+                if (actCount % (this instanceof MC ? 5: 15) == 0) {
                     healHp(1);
                     if (curHp == maxHp) setDead(false);
                 }
