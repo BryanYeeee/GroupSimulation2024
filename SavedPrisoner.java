@@ -50,17 +50,17 @@ public class SavedPrisoner extends Actor {
         this.specialty = specialty;
         
         
-        if(name.equals("Brute")) {
+        if(specialty.equals("Brute")) {
             image = new GreenfootImage("Brute.png");
-        } else if(name.equals("Thief")) {
+        } else if(specialty.equals("Thief")) {
             image = new GreenfootImage("Thief.png");
-        } else if(name.equals("WeaponDealer")) {
+        } else if(specialty.equals("Weapons Dealer")) {
             image = new GreenfootImage("WeaponDealer.jpg");
-        } else if(name.equals("Scientist")) {
+        } else if(specialty.equals("Scientist")) {
             image = new GreenfootImage("MadScientist.png");
-        } else if(name.equals("ExplosiveE")) {
+        } else if(specialty.equals("Explosive Expert")) {
             image = new GreenfootImage("ExplosiveExpert.png");
-        } else if(name.equals("Builder")) {
+        } else if(specialty.equals("Builder")) {
             image = new GreenfootImage("Builder.png");
         }
         if(image != null) {
@@ -70,23 +70,23 @@ public class SavedPrisoner extends Actor {
         
     }
     
-    public SavedPrisoner(String name) {
-        this.name = name;
+    public SavedPrisoner(String specialty, int width, int height) {
+        this.specialty = specialty;
         
-        if(name.equals("Brute")) {
+        if(specialty.equals("Brute")) {
             image = new GreenfootImage("Brute.png");
-        } else if(name.equals("Thief")) {
+        } else if(specialty.equals("Thief")) {
             image = new GreenfootImage("Thief.png");
-        } else if(name.equals("WeaponDealer")) {
+        } else if(specialty.equals("Weapons Dealer")) {
             image = new GreenfootImage("WeaponDealer.jpg");
-        } else if(name.equals("Scientist")) {
+        } else if(specialty.equals("Scientist")) {
             image = new GreenfootImage("MadScientist.png");
-        } else if(name.equals("ExplosiveE")) {
+        } else if(specialty.equals("Explosive Expert")) {
             image = new GreenfootImage("ExplosiveExpert.png");
-        } else if(name.equals("Builder")) {
+        } else if(specialty.equals("Builder")) {
             image = new GreenfootImage("Builder.png");
         }
-        image.scale(100, 100);
+        image.scale(width, height);
         setImage(image);
     }
     

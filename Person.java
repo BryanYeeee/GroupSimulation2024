@@ -80,11 +80,16 @@ public abstract class Person extends Entity
         curHp = Greenfoot.getRandomNumber(10)+maxHp-10;
         str = Greenfoot.getRandomNumber(5)+5;
         intel = 40;
-        if(Greenfoot.getRandomNumber(2)==0){
-            skinTone = "black";
-        }
-        else{
+        // Since all images are white, no need to roll for skin color unless NPC
+        if(this instanceof MC){
             skinTone = "white";
+        } else {
+            if(Greenfoot.getRandomNumber(2)==0){
+                skinTone = "black";
+            }
+            else{
+                skinTone = "white";
+            }
         }
     }
 

@@ -103,7 +103,7 @@ public class MyWorld extends AllWorld
         }
        
         for(int i = 0; i < 4; i++) {
-            mainPrisoners[i] = new MC(i + 12, this, savedData[i].split(","));
+            mainPrisoners[i] = new MC(i, this, savedData[i].split(","));
             if(mainPrisoners[i].getName().equals("Brute")) {
                 mainPrisoners[i].addStr(12.0);
             } else if(mainPrisoners[i].getName().equals("Thief")) {

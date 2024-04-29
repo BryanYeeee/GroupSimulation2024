@@ -59,10 +59,10 @@ public class StatWorld extends AllWorld
         //This is to get the image of the chosen prisoners
         imageSavedPrisoners = new SavedPrisoner[4];
         
-        imageSavedPrisoners[0] = new SavedPrisoner(savedPrisoners[0].getName());
-        imageSavedPrisoners[1] = new SavedPrisoner(savedPrisoners[1].getName());
-        imageSavedPrisoners[2] = new SavedPrisoner(savedPrisoners[2].getName());
-        imageSavedPrisoners[3] = new SavedPrisoner(savedPrisoners[3].getName());
+        imageSavedPrisoners[0] = new SavedPrisoner(savedPrisoners[0].getSpecialty(), 100, 100);
+        imageSavedPrisoners[1] = new SavedPrisoner(savedPrisoners[1].getSpecialty(), 100, 100);
+        imageSavedPrisoners[2] = new SavedPrisoner(savedPrisoners[2].getSpecialty(), 100, 100);
+        imageSavedPrisoners[3] = new SavedPrisoner(savedPrisoners[3].getSpecialty(), 100, 100);
         
         addObject(imageSavedPrisoners[0], 100, 200);
         addObject(imageSavedPrisoners[1], 100, 500);

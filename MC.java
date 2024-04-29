@@ -10,17 +10,17 @@ public class MC extends Prisoner
 {
     private MyWorld world;
     private ArrayList<Item> heldItems;
-    
+
     private String currentAction;
     private Item[] items = new Item[2];
-    
+
     private String name; // person name
     private StatSetter strength;
     private StatSetter speed;
     private StatSetter luck;
     private StatSetter intelligence;
     private String specialty; // more like a class, thief, brute etc.
-    
+
     // For cutscene/intro world
     public MC(int i, boolean inIntro, String specialty){
         super(i, inIntro);
@@ -29,15 +29,14 @@ public class MC extends Prisoner
         cutsceneImage.scale(120, 180);
         setImage(cutsceneImage);
     }
-    
+
     public MC (int i, MyWorld world, String jobTitle) {
         super(i, jobTitle);
         //this.strength = 11;
         this.world = world;
         heldItems = new ArrayList<Item>();
     }
-    
-    
+
     /**
      * Prisoner constructor
      * 
@@ -59,27 +58,27 @@ public class MC extends Prisoner
         str += 10;
         /*
         if(name.equals("Brute")) {
-            jobTitle = "None";
-            //image = new GreenfootImage("");
+        jobTitle = "None";
+        //image = new GreenfootImage("");
         } else if(name.equals("Thief")) {
-            jobTitle = "Librarian";
-            //image = new GreenfootImage("");
+        jobTitle = "Librarian";
+        //image = new GreenfootImage("");
         } else if(name.equals("Weapondealer")) {
-            jobTitle = "Metalworker";
-            //image = new GreenfootImage("");
+        jobTitle = "Metalworker";
+        //image = new GreenfootImage("");
         } else if(name.equals("Scientist")) {
-            jobTitle = "Cook";
-            //image = new GreenfootImage("");
+        jobTitle = "Cook";
+        //image = new GreenfootImage("");
         } else if(name.equals("Explosiveexpert")) {
-            jobTitle = "Janitor";
-            //image = new GreenfootImage("");
+        jobTitle = "Janitor";
+        //image = new GreenfootImage("");
         } else if(name.equals("Builder")) {
-            jobTitle = "Woodworker";
-            //image = new GreenfootImage("");
+        jobTitle = "Woodworker";
+        //image = new GreenfootImage("");
         }
-        */
+         */
     }
-    
+
     /**
      * Act - do whatever the MC wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -88,8 +87,8 @@ public class MC extends Prisoner
     {
         super.act();
     }
-    
-     /**
+
+    /**
      * Method to deserialize and restore the state of the prisoner
      * 
      * help from ChatGPT
@@ -104,40 +103,23 @@ public class MC extends Prisoner
         intel = Double.parseDouble(parts[4]);
         specialty = parts[5];
     }
-    
-    private void determineName(){
-        if(specialty.equals("Thief")){
-            name = "Wyatt";
-        }
-        if(specialty.equals("Brute")){
-            name = "Buck";
-        }
-        if(specialty.equals("Scientist")){
-            name = "Waldo";
-        }
-        if(specialty.equals("Weapons Dealer")){
-            name = "Leon";
-        }
-        if(specialty.equals("Explosive Expert")){
-            name = "Aron";
-        }
-        if(specialty.equals("Builder")){
-            name = "Reuben";
-        }
-    }
-    
+
     public String getSpecialty() {
         return specialty;
     }
-    
+
     public String getName(){
         return name;
     }
     
+    public String getCurrentAction(){
+        return currentAction;
+    }
+
     public void setAction(String action) {
         this.currentAction = action;
     }
-    
+
     public void giveItem(Item item) {
         for(Item i : heldItems) {
             if(i.getClass() == item.getClass()) {
@@ -147,9 +129,9 @@ public class MC extends Prisoner
         this.heldItems.add(item);
         StatusBar.setUpdate(true);
     }
-    
+
     // public void removeItem(Item item) {
-        // this.heldItems.remove(item);
+    // this.heldItems.remove(item);
     // }
     /**
      * This method will craft the next material item in heldItems
@@ -167,15 +149,15 @@ public class MC extends Prisoner
         }
         return true;
     }
-    
+
     public ArrayList<Item> getItems() {
         return heldItems;
     }
-    
+
     public int getIndex(){
         return index;
     }
-    
+
     public ArrayList<Integer> getAccessories(){
         ArrayList<Integer> result = new ArrayList<>();
         if(specialty.equals("Scientist")){ 
@@ -194,7 +176,7 @@ public class MC extends Prisoner
         System.out.println(result);
         return result; 
     }
-    
+
     public void addItem(Item item) {
         for (int i = 0; i < items.length; i++) {
             if (items[i] == null) {  // Check if the slot is empty
@@ -205,7 +187,7 @@ public class MC extends Prisoner
         }
         System.out.println("Inventory is full. Cannot add item.");
     }
-    
+
     public int getItemCount() {
         int count = 0;
         for (Item item : items) {
@@ -215,7 +197,7 @@ public class MC extends Prisoner
         }
         return count;  // Return the total count of items
     }
-    
+
     /**
      * Adds strength
      * 
@@ -224,7 +206,7 @@ public class MC extends Prisoner
     public void addStr(double addStrength) {
         str += addStrength;
     }
-    
+
     /**
      * Adds intelligence
      * 
