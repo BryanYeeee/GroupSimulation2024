@@ -13,7 +13,7 @@ public abstract class Person extends Entity
 {
     public final static int STARTING_NODE_INDEX = 0;
     public final static int WALKING_NODE_INDEX = 128;
-    protected final static int SPRITE_OFFSET = -16; //JEFF
+    public final static int SPRITE_OFFSET = -16; //JEFF
     protected final static int MAX_FIGHTS = 4;
     protected int index;
     protected Deque<Node> curPath = new LinkedList<Node>();
@@ -164,40 +164,7 @@ public abstract class Person extends Entity
                 animate();
             }
 
-            // If currently escaping, don't do additional effects, like rooms or free roam
-            if(((MyWorld)getWorld()).isEscapeTime()) return;
-
             Room r = (Room)getOneObjectAtOffset(0,-SPRITE_OFFSET,Room.class);
-            if (curRoom != r) { // Changed current room
-                if (curRoom != null) { // Leaving a room
-                    curRoom.exitRoom(this, roomPosition);
-                    curRoom = null;
-                    roomPosition = -1;
-                } else if(curPath.isEmpty()) { // Landed in a room
-                    curRoom = r;
-                    roomPosition = curRoom.enterRoom(this);
-                    //if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("DINING HALL"))System.out.println(roomPosition);
-                }
-            }
-
-            // If in room, and it has an effect that can occur, do effect
-            if (curRoom != null && curRoom.checkEffectCondition(this)) {
-                curRoom.doEffect(this);
-            }
-
-            if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
-                Action.walkAround(this, false);
-            }
-
-            if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
-                Action.walkAround(this, true);
-            }
-
-            if(curNode.getIndex() == STARTING_NODE_INDEX && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
-                //getWorld().removeObject(this);
-                curPath.clear();
-                speed = 0;
-            }
 
             if (!curPath.isEmpty()) {
                 action ="walk";
@@ -237,6 +204,41 @@ public abstract class Person extends Entity
             }
 
             //Idle is slower so longer animationDelay
+            
+            // If currently escaping, don't do additional effects, like rooms or free roam
+            if(this instanceof MC && ((MyWorld)getWorld()).isEscapeTime()) return;
+            if(this instanceof Guard && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) return;
+
+            if (curRoom != r) { // Changed current room
+                if (curRoom != null) { // Leaving a room
+                    curRoom.exitRoom(this, roomPosition);
+                    curRoom = null;
+                    roomPosition = -1;
+                } else if(curPath.isEmpty()) { // Landed in a room
+                    curRoom = r;
+                    roomPosition = curRoom.enterRoom(this);
+                    //if(((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("DINING HALL"))System.out.println(roomPosition);
+                }
+            }
+
+            // If in room, and it has an effect that can occur, do effect
+            if (curRoom != null && curRoom.checkEffectCondition(this)) {
+                curRoom.doEffect(this);
+            }
+
+            if(curNode.getIndex() == STARTING_NODE_INDEX && !isMoving() && isWalkingAround) {
+                Action.walkAround(this, false);
+            }
+
+            if(curNode.getIndex() == WALKING_NODE_INDEX && !isMoving() && isWalkingAround) {
+                Action.walkAround(this, true);
+            }
+
+            if(curNode.getIndex() == STARTING_NODE_INDEX && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) {
+                //getWorld().removeObject(this);
+                curPath.clear();
+                speed = 0;
+            }
 
         }
 
@@ -305,6 +307,35 @@ public abstract class Person extends Entity
         dir = curPath.peek().getDirection(movingVertical, getX(), getY() - SPRITE_OFFSET);
         //DEBUG: System.out.println(offsetPos);
     }
+    
+    public void doCurrentEvent() {
+        if(this instanceof MC && ((MyWorld)getWorld()).isEscapeTime()) return;
+        Node nextNode = curPath.peek();
+        boolean nextAxis = movingVertical;
+        int nextOffset = offsetPos;
+        int nextDir = dir;
+        curPath.clear();
+        if(nextNode!=null) curPath.push(nextNode);
+        ((MyWorld)getWorld()).getSchedule().doCurrentEvent(this);
+        if(nextNode!=null) {
+            movingVertical = nextAxis;
+            offsetPos = nextOffset;
+            dir = nextDir;
+        }
+    }
+    
+    public int getChance() {
+        if (intel < 20) {
+            return 6;
+        } else if (intel < 40) {
+            return 4;
+        } else if (intel < 60) {
+            return 3;
+        } else if (intel < 80) {
+            return 2;
+        }
+        return 1;
+    }
 
     public void setDead(boolean isDead) {
         this.isDead = isDead;
@@ -312,20 +343,7 @@ public abstract class Person extends Entity
             if(healthBar.getWorld() == null) getWorld().addObject(healthBar, 0, 0);
         } else { // If alive then hide the healthbar, and return to the current event's actions
             getWorld().removeObject(healthBar);
-            //if(isWalkingAround) return;
-            Node nextNode = curPath.peek();
-            boolean nextAxis = movingVertical;
-            int nextOffset = offsetPos;
-            int nextDir = dir;
-            curPath.clear();
-            if(nextNode!=null) curPath.push(nextNode);
-            ((MyWorld)getWorld()).getSchedule().doCurrentEvent(this);
-            if(nextNode!=null) {
-                movingVertical = nextAxis;
-                offsetPos = nextOffset;
-                dir = nextDir;
-            }
-
+            doCurrentEvent();
         }
     }
 
@@ -368,18 +386,7 @@ public abstract class Person extends Entity
             opponentHealth = 0;
             opponentStrength = 0;
             getWorld().removeObject(healthBar);
-            Node nextNode = curPath.peek();
-            boolean nextAxis = movingVertical;
-            int nextOffset = offsetPos;
-            int nextDir = dir;
-            curPath.clear();
-            if(nextNode!=null) curPath.push(nextNode);
-            ((MyWorld)getWorld()).getSchedule().doCurrentEvent(this);
-            if(nextNode!=null) {
-                movingVertical = nextAxis;
-                offsetPos = nextOffset;
-                dir = nextDir;
-            }
+            doCurrentEvent();
         }
         //System.out.println("FIGHT: " +onGoingFights);
     }
@@ -482,25 +489,32 @@ public abstract class Person extends Entity
         }
     }
 
-    public void healHp(int healAmount){
+    public void healHp(double healAmount){
         curHp+=healAmount;
         if (curHp > maxHp) curHp = maxHp;
         healthBar.update(curHp);
         if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
-    public void addIntel(int intelAmount) {
+    public void addIntel(double intelAmount) {
         intel+=intelAmount;
         if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
-    public void addStrength(int strengthAmount) {
+    public void addStrength(double strengthAmount) {
         if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute"))strengthAmount++;
         str+=strengthAmount;
     }
 
-    public void setStrength(int s) {
+    public void setStrength(double s) {
         str = s;
+    }
+    
+    public double getSpeed() {
+        return speed;
+    }
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 
     public void setRoomPosition(int roomPosition) {

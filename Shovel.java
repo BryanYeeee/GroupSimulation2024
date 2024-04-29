@@ -1,19 +1,21 @@
 /**
- * Write a description of class Ladder here.
+ * Write a description of class Shovel here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Ladder extends Item 
+public class Shovel extends Item 
 {
     /**
      * Constructor for objects of class Ladder
      */
-    public Ladder()
+    public Shovel()
     {
-        super("rope");
+        super("shovel");
     }
 
+    
     public void useItem(MyWorld w, MC p) {
+        
     }
 }
