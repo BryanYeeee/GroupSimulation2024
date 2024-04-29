@@ -54,11 +54,11 @@ public class SavedPrisoner extends Actor {
             image = new GreenfootImage("Brute.png");
         } else if(name.equals("Thief")) {
             image = new GreenfootImage("Thief.png");
-        } else if(name.equals("Weapondealer")) {
+        } else if(name.equals("WeaponDealer")) {
             image = new GreenfootImage("WeaponDealer.png");
         } else if(name.equals("Scientist")) {
             image = new GreenfootImage("MadScientist.png");
-        } else if(name.equals("Explosiveexpert")) {
+        } else if(name.equals("ExplosiveE")) {
             image = new GreenfootImage("ExplosiveExpert.png");
         } else if(name.equals("Builder")) {
             image = new GreenfootImage("Builder.png");
@@ -77,11 +77,11 @@ public class SavedPrisoner extends Actor {
             image = new GreenfootImage("Brute.png");
         } else if(name.equals("Thief")) {
             image = new GreenfootImage("Thief.png");
-        } else if(name.equals("Weapondealer")) {
+        } else if(name.equals("WeaponDealer")) {
             image = new GreenfootImage("WeaponDealer.png");
         } else if(name.equals("Scientist")) {
             image = new GreenfootImage("MadScientist.png");
-        } else if(name.equals("Explosiveexpert")) {
+        } else if(name.equals("ExplosiveE")) {
             image = new GreenfootImage("ExplosiveExpert.png");
         } else if(name.equals("Builder")) {
             image = new GreenfootImage("Builder.png");
