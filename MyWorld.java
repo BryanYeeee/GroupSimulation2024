@@ -83,7 +83,7 @@ public class MyWorld extends AllWorld
         PerformanceMeter meter = new PerformanceMeter();
         addObject(meter, 50, 25);
         // Initialize the people in the prison (MCs, prisoners, guards)
-        
+
         prisonerCount = 12;
         guardCount = 3;
         people = new Person[prisonerCount + guardCount + 4];
@@ -104,6 +104,11 @@ public class MyWorld extends AllWorld
        
         for(int i = 0; i < 4; i++) {
             mainPrisoners[i] = new MC(i + 12, this, savedData[i].split(","));
+            if(mainPrisoners[i].getName().equals("Brute")) {
+                mainPrisoners[i].addStr(12.0);
+            } else if(mainPrisoners[i].getName().equals("Thief")) {
+                mainPrisoners[i].addSpeed(2.0);
+            }
         }
         
         savedMainPrisoners = new MC[4];

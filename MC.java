@@ -35,12 +35,6 @@ public class MC extends Prisoner
         //this.strength = 11;
         this.world = world;
         heldItems = new ArrayList<Item>();
-        if(specialty.equals("Thief")) {
-            spd = 3.8;
-        }
-        if(specialty.equals("Brute")) {
-            str = Greenfoot.getRandomNumber(3)+10;
-        }
     }
     
     
@@ -56,13 +50,13 @@ public class MC extends Prisoner
     public MC(int i, MyWorld world, String[] serializedData) {
         super(i, serializedData[1]);
         this.name = name;
-       
+        heldItems = new ArrayList<Item>();
         name = serializedData[0];
         str = Double.parseDouble(serializedData[2]);
         spd = Double.parseDouble(serializedData[3]);
         intel = Double.parseDouble(serializedData[4]);
         specialty = serializedData[5];
-
+        str += 10;
         /*
         if(name.equals("Brute")) {
             jobTitle = "None";
@@ -201,4 +195,30 @@ public class MC extends Prisoner
         return count;  // Return the total count of items
     }
     
+    /**
+     * Adds strength
+     * 
+     * @param addStrength
+     */
+    public void addStr(double addStrength) {
+        str += addStrength;
+    }
+    
+    /**
+     * Adds intelligence
+     * 
+     * @param addIntel
+     */
+    public void addIntel(double addIntel) {
+        intel += addIntel;
+    }
+
+    /**
+     * Adds speed
+     * 
+     * @param addSpd
+     */
+    public void addSpeed(double addSpd) {
+        spd += addSpd;
+    }
 }
