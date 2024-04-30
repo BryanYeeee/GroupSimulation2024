@@ -53,6 +53,7 @@ public abstract class AllWorld extends World
      * Play music
      */
     public void started() {
+        Greenfoot.setSpeed(50);
         sm.resumeSounds();
     }
     

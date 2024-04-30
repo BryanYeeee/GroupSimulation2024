@@ -52,7 +52,7 @@ public class StatWorld extends AllWorld
 
         //creating box under stat selections
         StatBox box1 = new StatBox();
-        addObject(box1, 386, 339);
+        addObject(box1, 370, 339);
         
         bgImage = new GreenfootImage("statsWorldBg3.jpg");
         bgImage.scale(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT);
