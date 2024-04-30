@@ -45,7 +45,7 @@ public class Guard extends Person
         if(guardsPoisoned) {
             for(Guard g : w.getGuards()) {
                 g.setSpeed(1.2);
-                // g.setStrength(g.getStrength()-2);
+                g.setStrength(g.getStrength()-1);
             }
         }
     }
@@ -70,7 +70,6 @@ public class Guard extends Person
                     if (mc != null && !mc.isFighting() && !mc.isDead() && !dodged) {
                         setInFight(mc, true);
                         mc.setInFight(this, true);
-                        //curPath.clear();
                         noFights++;
                     }
                     }
