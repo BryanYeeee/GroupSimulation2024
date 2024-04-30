@@ -37,9 +37,8 @@ public abstract class Person extends Entity
 
     protected int maxHp;
     protected int curHp;
-    protected double str;
-    protected double intel;
-    protected double spd;
+    protected int str;
+    protected int intel;
     protected boolean isDead;
     protected SuperStatBar healthBar;
 
@@ -74,11 +73,16 @@ public abstract class Person extends Entity
         curHp = Greenfoot.getRandomNumber(10)+maxHp-10;
         str = Greenfoot.getRandomNumber(5)+5;
         intel = 40;
-        if(Greenfoot.getRandomNumber(2)==0){
-            skinTone = "black";
-        }
-        else{
+        // Since all images are white, no need to roll for skin color unless NPC
+        if(this instanceof MC){
             skinTone = "white";
+        } else {
+            if(Greenfoot.getRandomNumber(2)==0){
+                skinTone = "black";
+            }
+            else{
+                skinTone = "white";
+            }
         }
     }
 
@@ -267,7 +271,7 @@ public abstract class Person extends Entity
             nextNodeInPath(); // Go to next node in curPath
         } else {
             // Change y position if movingVertical is true, change x position if movingVertical is false
-            setLocation(movingVertical ? getX() : getX()+speed*dir+spd/2, movingVertical ? getY()+speed*dir+spd/2 : getY());
+            setLocation(movingVertical ? getX() : getX()+speed*dir, movingVertical ? getY()+speed*dir : getY());
         }
     }
 
@@ -478,24 +482,24 @@ public abstract class Person extends Entity
         }
     }
 
-    public void healHp(double healAmount){
+    public void healHp(int healAmount){
         curHp+=healAmount;
         if (curHp > maxHp) curHp = maxHp;
         healthBar.update(curHp);
         if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
-    public void addIntel(double intelAmount) {
+    public void addIntel(int intelAmount) {
         intel+=intelAmount;
         if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
-    public void addStrength(double strengthAmount) {
+    public void addStrength(int strengthAmount) {
         if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute"))strengthAmount++;
         str+=strengthAmount;
     }
 
-    public void setStrength(double s) {
+    public void setStrength(int s) {
         str = s;
     }
     

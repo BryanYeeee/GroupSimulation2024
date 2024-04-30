@@ -29,7 +29,7 @@ public class SavedPrisoner extends Actor {
         this.jobTitle = jobTitle;
         this.specialty = specialty;
         
-        image = new GreenfootImage("images/"+specialty+".png");
+        image = new GreenfootImage("images/"+specialty.replaceAll(" ","")+".png");
         image.scale(100, 100);
         setImage(image);
         
@@ -38,6 +38,15 @@ public class SavedPrisoner extends Actor {
     public SavedPrisoner(String serializedData) {
         deserializeState(serializedData);
         setMaxValues(specialty);
+    }
+    
+    /**
+     * Used as an image card for the status bar in the main simulation
+     */
+    public SavedPrisoner(boolean img, String specialty) {
+        image = new GreenfootImage("images/"+specialty.replaceAll(" ","")+".png");
+        image.scale(80, 80);
+        setImage(image);
     }
     
     /**
@@ -97,7 +106,7 @@ public class SavedPrisoner extends Actor {
         intel = Integer.parseInt(parts[4]);
         specialty = parts[5];
         
-        image = new GreenfootImage(specialty+".png");
+        image = new GreenfootImage("images/"+specialty.replaceAll(" ","")+".png");
         image.scale(100,100);
         setImage(image);
     }
@@ -113,12 +122,24 @@ public class SavedPrisoner extends Actor {
     }
     
     public void setMaxValues(String specialty) {
-        maxStr = 25;
+        maxStr = 20;
         minStr = 5;
         maxIntel = 100;
         minIntel = 0 ;
         maxSpd = 1.9;
         minSpd = 1.7;
+        switch(specialty) {
+            case "Thief":
+                maxSpd = 4.0;
+                minSpd = 3.6;
+                maxStr = 10;
+                break;
+            case "Brute":
+                maxStr = 25;
+                minStr = 12;
+                maxIntel = 60;
+                break;
+        }
     }
     
     public void addStrength(boolean increase) {

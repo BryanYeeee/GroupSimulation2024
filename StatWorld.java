@@ -43,7 +43,6 @@ public class StatWorld extends AllWorld
         savedPrisoners[2].createControls(625, 125);
         savedPrisoners[3].createControls(625, 425);
         
-
         //Go to next world button
         NextButton next = new NextButton("NextButton.png");
         addObject(next, 1000, 60);
@@ -71,13 +70,10 @@ public class StatWorld extends AllWorld
      * Act Method
      */
     public void act() {
-        
-        acts++;
-        if(acts >= 120 && NextButton.getSwitchWorld()) {
+        if(NextButton.getSwitchWorld()) {
             NextButton.resetSwitchWorld();
             switchToWorld();
         }
-        
     }
 
     /**
