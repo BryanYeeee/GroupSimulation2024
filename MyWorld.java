@@ -264,9 +264,10 @@ public class MyWorld extends AllWorld
     }
 
     public void mcEscaped() {
+        System.out.println("mc escape");
         escapedMcs++;
         if(escapedMcs == 4) {
-            // go to end world
+            Greenfoot.setWorld(new EndWorld(mainPrisoners));
         }
     }
 
