@@ -23,32 +23,32 @@ public abstract class AllWorld extends World
     {    
         super(width, height, cellSize);
         SoundManager.initSounds();
-        
+
         acts = 0;
-        
+
         worldTransition = false;
-        
+
         fadeIn = new Fade(120, false);
         fadeOut = new Fade(120, true);
-        
+
         addObject(fadeIn, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
     }
-    
+
     /**
      * Fade when going to another world
      */
     public void act() {
-        
+
         /*
         if(worldTransition) {
-            acts++;
-            if(acts >= fadeOut.getFade()) {
-                Greenfoot.setWorld(world);
-            }
+        acts++;
+        if(acts >= fadeOut.getFade()) {
+        Greenfoot.setWorld(world);
         }
-        */
+        }
+         */
     }
-    
+
     /**
      * Play music
      */
@@ -56,14 +56,14 @@ public abstract class AllWorld extends World
         Greenfoot.setSpeed(50);
         sm.resumeSounds();
     }
-    
+
     /**
      * Stop muisc
      */
     public void stopped() {
         sm.pauseSounds();
     }
-    
+
     /**
      * gets SoundManager
      * 
@@ -72,7 +72,7 @@ public abstract class AllWorld extends World
     public SoundManager getSM() {
         return sm;
     }
-    
+
     /**
      * Fades out of the current world into another world
      */
