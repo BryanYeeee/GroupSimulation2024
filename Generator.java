@@ -10,9 +10,7 @@ public class Generator extends Actor
 {
     private final String offImg = "generatorOff.png";
     
-    private SoundManager sm;
     public void turnOff() {
-        sm.playSound("GeneratorOff");
         setImage(new GreenfootImage(offImg));
         ElectricFence.setOnOff(false);
     }

@@ -32,17 +32,20 @@ public class SoundManager
         sounds.put("VictoryEscape", new Sound("VictoryEscape.mp3", 30, false));
         sounds.put("MetalCraft", new Sound("MetalCraft.mp3", 24, false)); //could be looped
         sounds.put("DoorOpen", new Sound("DoorOpen.mp3", 35, false));
-        sounds.put("WoodCraft", new Sound("WoodCraft.mp3", 43, false)); // could be looped
-        sounds.put("Fighting", new Sound("Fighting.mp3", 31, true));
+        sounds.put("WoodCraft", new Sound("WoodCraft.mp3", 43, false)); // could be loopef
         sounds.put("RollCall", new Sound("RollCall.mp3", 21, false));
         sounds.put("CarStart", new Sound("CarStart.mp3", 21, false));
         sounds.put("PickUp", new Sound("PickUp.mp3", 42, false));
+        
         
         // Looped
         sounds.put("Statscreen", new Sound("Statscreen.mp3", 25, true));
         sounds.put("Titlescreen", new Sound("Titlescreen.mp3", 25, true));
         sounds.put("MainEscape", new Sound("MainEscape.mp3", 25, true));
         sounds.put("LightsOut", new Sound("LightsOut.mp3", 25, true));
+        sounds.put("Fighting", new Sound("Fighting.mp3", 31, true));
+        sounds.put("ShovelDirt", new Sound("ShovelDirt.mp3", 43, true));
+        sounds.put("CutFence", new Sound("CutFence.mp3", 43, true));
         
     }
     
