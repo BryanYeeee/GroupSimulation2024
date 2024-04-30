@@ -88,10 +88,11 @@ public class Escape
                 }
             }
             System.out.print(chosenEscapes[i] + " ,");
-            mcs[i].setEscapeMethod(chosenEscapes[i]);
             if(!leaderMC.equals("")) {
+                mcs[i].setEscapeMethod("Escaped w/ " + leaderMC);
                 mcs[i].setAction("Escaping with " + leaderMC);
             } else {
+                mcs[i].setEscapeMethod(chosenEscapes[i]);
                 mcs[i].setAction("Going to " + chosenEscapes[i]);
             }
         }

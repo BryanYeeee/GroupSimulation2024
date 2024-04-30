@@ -49,7 +49,7 @@ public class EscapeAction extends Action
             case 2:
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == BREAK_WALL_ESCAPE_NODE) {
-                    w.mcEscaped();
+                    
                     return true;
                 }
                 if(!mc.isMoving()) {
@@ -118,7 +118,7 @@ public class EscapeAction extends Action
             case 5:
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == CAR_ESCAPE_NODE) {
-                    w.mcEscaped();
+                    
                     return true;
                 }
                 if(!mc.isMoving() && mc.getActCount() % 25 == 0) {
@@ -126,6 +126,7 @@ public class EscapeAction extends Action
                 }
                 for(MC follower : followers) {
                     follower.setAction("Escaping");
+                    if(follower.getCurNode().getIndex() == CAR_ESCAPE_NODE) 
                     if(follower.getCurNode().getIndex() != CAR_ESCAPE_NODE && !follower.isMoving() && mc.getActCount() % 25 == 0) {
                         follower.goToNode(CAR_ESCAPE_NODE);
                     }
@@ -163,7 +164,7 @@ public class EscapeAction extends Action
             case 4:
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == EXPLOSION_ESCAPE_NODE) {
-                    w.mcEscaped();
+                    
                     return true;
                 }
                 if(!mc.isMoving()) mc.goToNode(EXPLOSION_ESCAPE_NODE);
@@ -205,7 +206,7 @@ public class EscapeAction extends Action
             case 3:
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == CUT_FENCE_ESCAPE_NODE) {
-                    w.mcEscaped();
+                    
                     return true;
                 }
                 if(!mc.isMoving()) {
@@ -262,7 +263,7 @@ public class EscapeAction extends Action
             case 4:
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == HOLE_ESCAPE_NODE) {
-                    w.mcEscaped();
+                    
                     return true;
                 }
                 if(!mc.isMoving()) {
