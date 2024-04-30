@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class to hold the cutscene after the character introductions
+ * The IntroWorld displays a cutscene with 4 chosen MCs with a reasoning of why they want to escape.
  * 
  * @author Jamison H
  * @version April 2024
@@ -68,7 +68,11 @@ public class IntroWorld extends AllWorld
     
     private SavedPrisoner[] savedPrisoners;
     private List<String> MCs;
-    
+    /**
+     * Constructor for IntroWorld that creates a start dialogue screen.
+     * 
+     * @param selectedPrisoners A list of values from StatWorld that give indicators of which MCs were chosen.
+     */
     public IntroWorld(List<String> selectedPrisoners)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -127,16 +131,15 @@ public class IntroWorld extends AllWorld
             index++;
         }
         
-        // //adding them to the world to edit their stats
-        // addObject(savedPrisoners[0], 100, 200);
-        // addObject(savedPrisoners[1], 100, 500);
-        // addObject(savedPrisoners[2], 450, 200);
-        // addObject(savedPrisoners[3], 450, 500);
-        
         guideMessage = new SuperTextBox("Click to start & advance dialogue", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 54), true, 768, 5, borderColor);
         addObject(guideMessage, 600, 775);
     }
 
+    /**
+     * The act method of IntroWorld.
+     * New dialogue will show up upon every click registered on the screen
+     * Note: Dialogue moves in one way, no going back to previous dialogue
+     */
     public void act(){
         super.act();
         // before this it should be just prisoners in the cell
@@ -287,7 +290,9 @@ public class IntroWorld extends AllWorld
         }
     }
     
-    
+    /**
+     * Display the chosen characters along with a guard from the previous SelectWorld.
+     */
     private void displayCharacters(){
         System.out.println("-----");
         System.out.println(savedMCs.get(0));
@@ -304,7 +309,9 @@ public class IntroWorld extends AllWorld
         addObject(guard, 900, 615);
     }
     
-    
+    /**
+     * Fill my arrays with text with possible speakers and dialogue.
+     */
     private void fillSpeakersAndDialogue(){
         int index = 0;
         // Fill dialogues array with preset dialogue
@@ -367,6 +374,10 @@ public class IntroWorld extends AllWorld
         index = 0;
     }
     
+    /**
+     * Switch to the next world (MyWorld, main simulation).
+     * Pass on a list of strings for the next world to know MCs selected and respective stats
+     */
     public void switchWorld() {
         serializedPrisonersState = savePrisonersState();
         System.out.println(serializedPrisonersState);
