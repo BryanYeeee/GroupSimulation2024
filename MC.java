@@ -16,6 +16,7 @@ public class MC extends Prisoner
 
     private String name; // person name
     private boolean doneCrafting;
+    private String escapeMethod;
     
     private String specialty; // more like a class, thief, brute etc.
 
@@ -64,6 +65,10 @@ public class MC extends Prisoner
     
     public void setDoneCrafting(boolean isCrafting) {
         this.doneCrafting = isCrafting;
+    }
+    
+    public String getEscapeMethod(){
+        return escapeMethod;
     }
 
     public String getSpecialty() {
@@ -127,14 +132,21 @@ public class MC extends Prisoner
             result.add(1);
         }
         else if(specialty.equals("Thief")){
-            result.add(5);
-            result.add(2);
+            
+            result.add(8);
+            result.add(10);
         }
         else if(specialty.equals("Brute")){
             result.add(3);
         }
         else if(specialty.equals("Weapons Dealer")){
             result.add(4);
+        }
+        else if(specialty.equals("Explosive Expert")){
+            result.add(7);
+        }
+        else if(specialty.equals("Builder")){
+            result.add(9);
         }
         System.out.println(result);
         return result; 

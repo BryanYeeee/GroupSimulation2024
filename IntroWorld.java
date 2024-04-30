@@ -292,7 +292,7 @@ public class IntroWorld extends AllWorld
             } else if(splitName[5].equals("Brute")){ // Brute
                 dialogues[i] = new SuperTextBox("Screw you all, I'm doing my own thing.", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
             } else if(splitName[5].equals("Scientist")){ // Scientist
-                dialogues[i] = new SuperTextBox("Ok, I'll brew up some deadly potions.", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
+                dialogues[i] = new SuperTextBox("Ok, I'll cook up some poisonous food.", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
             } else if(splitName[5].equals("Weapons Dealer")){ // Weapons Dealer
                 dialogues[i] = new SuperTextBox("Very well, I'll create some makeshift weapons.", transparentColor, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), false, 1024, 0, transparentColor);
             } else if(splitName[5].equals("Explosive Expert")){ // Expolsive Expert

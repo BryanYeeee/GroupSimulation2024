@@ -80,11 +80,10 @@ public class Schedule
     public void act()
     {
         if(actCount==10) {
-           // actCount=135*60;
-           // world.getMainPrisoners()[1].giveItem(new Fork());
-           // world.getMainPrisoners()[0].giveItem(new Chemicals());
-           // world.getMainPrisoners()[2].setStrength(35);
-           // world.getMainPrisoners()[3].giveItem(new Shovel());
+            //actCount=120*60;
+            
+            //world.getMainPrisoners()[2].setStrength(35);
+            
         }
         // if(actCount==20*60) {
         // }
@@ -173,14 +172,12 @@ public class Schedule
                 //x++;
                 Person.noFights = 0;
         }
-        if(actCount==440){
-            dialogue("this bomb that I smuggled might help", 150, "scientist");
-        }
+        
         if(actCount==360){
-            dialogue("I need to get out of here", 150, "thief");
+            dialogue("I need to get out of here", 5, "thief");
         }
         if(actCount==440){
-            dialogue("this bomb that I smuggled might help", 150, "scientist");
+            dialogue("this bomb that I smuggled might help", 5, "scientist");
         }
         actCount++;
     }
