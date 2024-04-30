@@ -68,7 +68,7 @@ public abstract class Item extends SuperSmoothMover
             }
             else{
                 setLocation(slotX,slotY);
-                setSize(48);
+                setSize(32);
             }
         }
         actCount++;

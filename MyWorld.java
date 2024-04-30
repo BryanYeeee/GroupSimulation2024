@@ -62,12 +62,11 @@ public class MyWorld extends AllWorld
     private int escapingMcs;
 
     public MyWorld() {
-        // Call to another constructor must be the first statement if you intend to do so
         this(Arrays.asList(
-                "Leon", "Metalworker", "8", "1.8", "100", "Weapons Dealer",
-                "Aron", "Janitor", "8", "1.8", "100", "Explosive Expert",
-                "Waldo", "Cook", "8", "1.9", "100", "Scientist",
-                "Reuben", "Woodworker", "5", "1.8", "40", "Builder"
+                "Leon,Metalworker,8,1.8,100,Weapons Dealer",
+                "Aron,Janitor,8,1.8,100,Explosive Expert",
+                "Waldo,Cook,8,1.9,100,Scientist",
+                "Reuben,Woodworker,5,1.8,100,Builder"
             ));
     }
 
@@ -80,7 +79,7 @@ public class MyWorld extends AllWorld
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
         setPaintOrder(Fade.class, Item.class, BannerIcon.class,  Banner.class, Clock.class, 
             EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, 
-            ElectricFence.class, WallCover.class, Generator.class, Vehicle.class, Accessory.class, 
+            ElectricFence.class, Explosive.class,WallCover.class, Generator.class, Vehicle.class, Accessory.class, 
             Person.class, Underglow.class, Tile.class, Breakable.class, Room.class);
 
         pf = new PathFinder(this); // Initialize this first
@@ -179,7 +178,7 @@ public class MyWorld extends AllWorld
         addObject(breakables[0], 558, 188);
         breakables[1] = new Breakable("images/Breakable/VehicleDoor.png",5, 5);
         addObject(breakables[1], 256, 467);
-        breakables[2] = new Breakable("images/Breakable/DiningRoomExplosion.png",1, 1);        
+        breakables[2] = new Breakable("images/Breakable/DiningRoomExplosion.png",50, 50);        
         addObject(breakables[2], 184, 143);
         breakables[3] = new Breakable("images/Breakable/KitchenFloor.png",50, 50);        
         addObject(breakables[3], 135, 323);
@@ -202,6 +201,7 @@ public class MyWorld extends AllWorld
         addObject(new ElectricFence(6,true),960,160);
         addObject(new ElectricFence(3,true),920,160);
         addObject(new ElectricFence(0,true),880,160);
+        
         
         //Item testing
         // addObject(new Potion(),400, 299);
