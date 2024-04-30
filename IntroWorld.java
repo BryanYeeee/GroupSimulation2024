@@ -75,9 +75,12 @@ public class IntroWorld extends AllWorld
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         // The world will have prisoners in cells, no dialogue box or dialogue yet
-        super(1200, 850, 1); 
+        super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1); 
         introBackground.scale(1200, 700); // purposely scaled to lower than world height to add dialogue box in a logical place, will cause double background
         setBackground(introBackground);
+        
+        setPaintOrder(Fade.class);
+        
         // Covering the double background
         SuperTextBox cover = new SuperTextBox("A", Color.BLACK, Color.BLACK, SimulationFont.loadCustomFont("VT323-Regular.ttf",80), true, 1200, 0, Color.BLACK);
         addObject(cover, 600, 780); 
@@ -107,6 +110,7 @@ public class IntroWorld extends AllWorld
     }
 
     public void act(){
+        super.act();
         // before this it should be just prisoners in the cell
         if(Greenfoot.mouseClicked(null) && dialogueCounter == 0){
             // add code for when guard comes in

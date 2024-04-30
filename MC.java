@@ -54,7 +54,6 @@ public class MC extends Prisoner
         speed = Double.parseDouble(serializedData[3]);
         intel = Integer.parseInt(serializedData[4]);
         specialty = serializedData[5];
-        // str += 10;
     }
 
     /**
