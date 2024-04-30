@@ -28,6 +28,8 @@ public class EscapeAction extends Action
     private final static int EXPLOSION_STEP_BACK_NODE = 108;
     private final static int EXPLOSION_ESCAPE_NODE = 144;
     
+    private static SoundManager sm;
+    
     public static boolean breakWall(MyWorld w, MC mc, MC[] followers, int step) {
         switch(step) {
             case 0:
@@ -44,6 +46,7 @@ public class EscapeAction extends Action
                     mc.setDirection(-1);
                     mc.setMovingVertical(true);
                     w.getBreakable(0).beginBreak();
+                    sm.playSound("WallBreak");
                 }
                 break;
             case 2:
@@ -96,6 +99,7 @@ public class EscapeAction extends Action
             case 4:
                 mc.setAction("Going to The Car");
                 if(mc.getCurNode().getIndex() == CAR_NODE) {
+                    sm.playSound("CarStart");
                     mc.setSpeed(1.6);
                     boolean followersDone = true;
                     for(MC follower : followers) {
