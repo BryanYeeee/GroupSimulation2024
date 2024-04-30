@@ -13,7 +13,22 @@ public class SelectWorld extends AllWorld
     private int numSelectedPrisoners;
     private List<SavedPrisoner> selectedPrisoners = new ArrayList<>();
     private List<String> serializedPrisonersState;
-
+    
+    
+    // Colors
+    private Color bgColor = new Color(119, 136, 153, 240);
+    private Color borderColor = new Color(192, 192, 192);
+    private Color transparentColor = new Color(0, 0, 0, 0);
+    private Color textColor = new Color(250, 249, 246);
+    
+    // Info
+    private SuperTextBox bruteInfo = new SuperTextBox("Buck: Brute", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox thiefInfo = new SuperTextBox("Wyatt: Thief", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox weaponsDealerInfo = new SuperTextBox("Leon: Weapons Dealer", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox scientistInfo = new SuperTextBox("Waldo: Scientist", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox explosiveExpertInfo = new SuperTextBox("Aron: Explosive Expert", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox builderInfo = new SuperTextBox("Reuben: Builder", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    
     private GreenfootImage bgImage;
 
     /**
@@ -48,6 +63,14 @@ public class SelectWorld extends AllWorld
         mc5.createButton(850, 250);
         mc6.createButton(850, 550);
          */
+        
+        addObject(bruteInfo, 250, 340);
+        addObject(thiefInfo, 250, 640);
+        addObject(weaponsDealerInfo, 600, 340);
+        addObject(scientistInfo, 600, 640);
+        addObject(explosiveExpertInfo, 950, 340);
+        addObject(builderInfo, 950, 640);
+        
 
         SelectButton button1 = new SelectButton(this, mc1);
         addObject(button1, 150 + 150, 250);

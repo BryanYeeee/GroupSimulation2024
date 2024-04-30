@@ -12,7 +12,7 @@ public class StatBox extends Actor
     
     public StatBox () {
         image = new GreenfootImage("StatsMenu2.png");
-        image.scale(760, 600);
+        image.scale(800, 700);
         setImage(image);
     }
     
