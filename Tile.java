@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Tile here.
+ * The tile is a class to visually show the nodes
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class Tile extends Actor
 {
@@ -18,10 +18,10 @@ public class Tile extends Actor
         }
     }
     public void act() {
-        if (Greenfoot.mouseClicked(this))
-        {
-            MyWorld.g.goToNode(id);
-            System.out.println(id);
-        }
+        // if (Greenfoot.mouseClicked(this))
+        // {
+        //     MyWorld.g.goToNode(id);
+        //     System.out.println(id);
+        // }
     }
 }

@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class DiningHall here.
+ * The DiningHall is a type of room where prisoners heal when they eat here. 
+ * It is also the place where the cook will go during job time
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class DiningHall extends Room
 {

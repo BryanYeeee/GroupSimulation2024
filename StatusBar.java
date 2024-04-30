@@ -4,8 +4,8 @@ import java.util.ArrayList;
  * Display for various stats and items
  * Does not auto update, will update after being set to update
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jamison H
+ * @version April 2024
  */
 public class StatusBar extends Actor
 {

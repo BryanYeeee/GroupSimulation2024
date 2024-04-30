@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Indicator here.
+ * The indicator class will show various actions done by the main prisoners
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jamison H
+ * @version April 2024
  */
 public class Indicator extends Actor
 {

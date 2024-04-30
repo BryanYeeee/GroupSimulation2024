@@ -1,9 +1,9 @@
 import greenfoot.*;
 /**
- * Write a description of class Metal here.
+ * The metal item class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y 
+ * @version April 2024
  */
 public class Metal extends Item 
 {
@@ -15,7 +15,6 @@ public class Metal extends Item
         super("metal");
         isMaterial = true;
     }
-
     
     public void useItem(MyWorld w, MC p) {
         int itemChoice = Greenfoot.getRandomNumber((int)p.getIntel());

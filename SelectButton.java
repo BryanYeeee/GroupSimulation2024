@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class SelectButton here.
+ * The Select button is used for selecting which main prisoners the user wants in the simulation
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ainson Z
+ * @version April 2024
  */
 public class SelectButton extends Button
 {

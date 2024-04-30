@@ -1,9 +1,9 @@
 import greenfoot.*;
 
 /**
+ * The textbox is used to display the stats in the statworld
  * 
- * 
- * @author Ainson
+ * @author Ainson Z
  * @version April 2024
  */
 public class Textbox extends Actor {

@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 /**
- * Write a description of class EscapeAction here.
+ * EscapeAction is the same as action, but mainly for the methods of escape. 
+ * This subclass was mainly created for organization purposes
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class EscapeAction extends Action 
 {
@@ -125,7 +126,9 @@ public class EscapeAction extends Action
                 break;
             case 3: // MAKE BOMB DO THIS
                 if(w.getBreakable(2).isBroken()) return true;
-                if(!w.getBreakable(2).isBreaking()) w.getBreakable(2).beginBreak();
+                if(!w.getBreakable(2).isBreaking()) {
+                    w.getBreakable(2).beginBreak();
+                }
                 break;
             case 4:
                 if(mc.getCurNode().getIndex() == EXPLOSION_ESCAPE_NODE) return true;

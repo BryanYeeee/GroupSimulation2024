@@ -2,10 +2,11 @@ import greenfoot.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 /**
- * Write a description of class Action here.
+ * The Action is a helper class that stores the functions for the prisoner's actions.
+ * The actions are usually called by the Schedule class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class Action  
 {

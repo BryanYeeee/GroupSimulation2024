@@ -3,16 +3,17 @@ import java.util.Arrays;
 import java.util.ArrayList;
 
 /**
- * Write a description of class Guard here.
+ * The guard subclass
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class Guard extends Person
 {
     private boolean specialGuard;
     private static boolean guardsPoisoned;
-    // For cutscene/intro
+    
+    // For cutscene/intro done by Jamison H
     public Guard(int i, boolean inIntro){
         super(i, inIntro);
         GreenfootImage cutsceneImage = new GreenfootImage("images/guard/male_white/idle/D0.png");

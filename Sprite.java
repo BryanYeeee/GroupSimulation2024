@@ -3,14 +3,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Write a description of class Sprite here.
+ * The sprite class is in charge of initializing the prisoner and guard sprites
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeff G
+ * @version April 2024
  */
 public class Sprite  
 {
-    // instance variables - replace the example below with your own
 
     private static String personType = "inmate";
     private static String sex = "male";

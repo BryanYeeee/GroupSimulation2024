@@ -1,13 +1,13 @@
 /**
- * Write a description of class Food here.
+ * The food item class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class Food extends Item 
 {
     /**
-     * Constructor for objects of class Ladder
+     * Constructor for objects of class Food
      */
     public Food()
     {

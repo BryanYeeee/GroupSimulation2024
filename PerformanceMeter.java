@@ -1,6 +1,11 @@
 import greenfoot.*;
 import java.awt.Color;
-
+/**
+ * The performance meter displays the average time per act to show how laggy the simulation is
+ * 
+ * @author Jeff G
+ * @version April 2024
+ */
 public class PerformanceMeter extends Actor
 {
     private long lastActTime = 0;

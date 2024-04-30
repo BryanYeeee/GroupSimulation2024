@@ -3,10 +3,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Write a description of class SelectWorld here.
+ * The selectworld is the world where the user will choose which main prisoners the user wants in the world
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ainson Z and Bryan Y 
+ * @version April 2024
  */
 public class SelectWorld extends AllWorld
 {
@@ -22,7 +22,7 @@ public class SelectWorld extends AllWorld
      */
     public SelectWorld()
     {
-        super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
+        super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1);
         setPaintOrder(Fade.class);
         numSelectedPrisoners = 0;
         

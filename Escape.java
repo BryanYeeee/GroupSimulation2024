@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import greenfoot.*;
 /**
- * Write a description of class Escape here.
+ * The escape class will calculate the chosen escape methods for each of the MCs based on certain conditions.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class Escape  
 {
@@ -27,6 +27,7 @@ public class Escape
         chosenEscapes = new String[4];
         escapeSteps = new int[4];
         
+        // Possible escape methods for each prisoner
         possibleEscapes.add(new ArrayList<String>());
         possibleEscapes.add(new ArrayList<String>());
         possibleEscapes.add(new ArrayList<String>());

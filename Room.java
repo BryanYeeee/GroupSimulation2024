@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Room here.
+ * The room superclass
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public abstract class Room extends Actor
 {
@@ -12,8 +12,8 @@ public abstract class Room extends Actor
     private Node[] prisonerPositions;
     private Node[] guardPositions;
     
-    public abstract void doEffect(Person p);
-    public abstract boolean checkEffectCondition(Person p);
+    public abstract void doEffect(Person p); // Each room will have a unique effect
+    public abstract boolean checkEffectCondition(Person p); // The room will do this effect based on its own unique condition
     
     public Room (int[] prisonerPosIndexes, int[] guardPosIndexes, int[] dimensions) {
         prisonerPositions = new Node[prisonerPosIndexes.length];
@@ -28,6 +28,12 @@ public abstract class Room extends Actor
         getImage().scale(dimensions[0],dimensions[1]);
     }
     
+    /**
+     * The enterRoom method will assign a node for the person enterring to stand on
+     * 
+     * @param p The person enterring the room
+     * @return The index of the assigned node
+     */
     public int enterRoom (Person p) {
         if (p instanceof Guard) {
             for (int i = 0; i < guardPositions.length; i++) {

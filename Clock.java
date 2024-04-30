@@ -1,25 +1,21 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Timer here.
+ * The clock is the timer at the top left of the main simulation that displays the current time
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeff G
+ * @version April 2024
  */
 public class Clock extends SuperTextBox
 {
-    /**
-     * Act - do whatever the Timer wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     private double preciseMinutes;
     private int minute;
     private int hour;
     private String display;
     /**
      * Creates a clock that goes through 24 game hours in 120 real life seconds, 
-     * @param startTime is a String for example "7:30"
      * 
+     * @param startTime is a String for example "7:30"
      */
     public Clock(String startTime){
         super(startTime,new Color (84,84,84), Color.WHITE,new Font("Calibri",true,false,26),true,100,8,Color.BLACK);
