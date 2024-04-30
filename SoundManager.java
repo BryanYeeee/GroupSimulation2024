@@ -25,19 +25,19 @@ public class SoundManager
         
         // Non-looped
         sounds.put("click", new Sound("click.mp3", 35, false));
-        sounds.put("bomb", new Sound("bomb.mp3", 35, false));
+        sounds.put("bomb", new Sound("bomb.mp3", 40, false));
         sounds.put("GeneratorOff", new Sound("GeneratorOff.mp3", 35, false));
-        sounds.put("WoodBurning", new Sound("WoodBurning.mp3", 35, false));
-        sounds.put("WallBreak", new Sound("WallBreak.mp3", 35, false));
+        sounds.put("WoodBurning", new Sound("WoodBurning.mp3", 25, false));
+        sounds.put("WallBreak", new Sound("WallBreak.mp3", 28, false));
         sounds.put("VictoryEscape", new Sound("VictoryEscape.mp3", 30, false));
-        sounds.put("MetalCraft", new Sound("MetalCraft.mp3", 35, false));
+        sounds.put("MetalCraft", new Sound("MetalCraft.mp3", 28, false));
         sounds.put("DoorOpen", new Sound("DoorOpen.mp3", 35, false));
         sounds.put("WoodCraft", new Sound("WoodCraft.mp3", 30, false));
-        sounds.put("Fighting", new Sound("Fighting.mp3", 35, false));
+        sounds.put("Fighting", new Sound("Fighting.mp3", 31, false));
         
         // Looped
         sounds.put("Statscreen", new Sound("Statscreen.mp3", 25, true));
-        sounds.put("Titlescreen", new Sound("Titlescreen.mp3", 25, false));
+        sounds.put("Titlescreen", new Sound("Titlescreen.mp3", 25, true));
         
         
     }
@@ -75,6 +75,9 @@ public class SoundManager
         activeSounds.clear(); // Clear the arraylist
     }
     
-    
+    //only stop loops
+    public static void stopSoundLoop(String sound) {
+        sounds.get(sound).stopSound();
+    }
     
 }
