@@ -23,7 +23,7 @@ public class SavedPrisoner extends Actor {
     public SavedPrisoner(String name, String jobTitle, int str, double spd, int intel, String specialty) {        
         this.str = str;
         this.spd = spd;
-        intel = intel;
+        this.intel = intel;
         
         this.name = name;
         this.jobTitle = jobTitle;
