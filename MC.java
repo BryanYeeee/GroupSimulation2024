@@ -16,6 +16,8 @@ public class MC extends Prisoner
 
     private String name; // person name
     private boolean doneCrafting;
+    private String escapeMethod;
+    
 
     private String specialty; // more like a class, thief, brute etc.
     private int bannerPosX;
@@ -67,6 +69,10 @@ public class MC extends Prisoner
 
     public void setDoneCrafting(boolean isCrafting) {
         this.doneCrafting = isCrafting;
+    }
+    
+    public String getEscapeMethod(){
+        return escapeMethod;
     }
 
     public String getSpecialty() {
