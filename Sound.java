@@ -68,7 +68,8 @@ public class Sound
         return isLoop;
     }
     
-    
-    
+    public void stopSound(){
+        sounds[soundIndex].stop();
+    }
     
 }

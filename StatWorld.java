@@ -68,13 +68,12 @@ public class StatWorld extends AllWorld
         return serializedDataList;
     }
     
-
     /**
      * Act Method
      */
     public void act() {
         if(NextButton.getSwitchWorld()) {
-            //sm.pauseSounds();
+            sm.stopSoundLoop("Statscreen");
             NextButton.resetSwitchWorld();
             switchToWorld();
         }

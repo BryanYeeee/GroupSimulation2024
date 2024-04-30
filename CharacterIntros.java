@@ -95,7 +95,7 @@ public class CharacterIntros extends AllWorld
             addObject(characterStories[displayCounter], 600, 700);
         }
         if(Greenfoot.mouseClicked(indicator)){
-            sm.pauseSounds();
+            sm.stopSoundLoop("Titlescreen");
             SelectWorld selectWorld = new SelectWorld();
             Greenfoot.setWorld(selectWorld);
         }
