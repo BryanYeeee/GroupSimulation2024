@@ -22,6 +22,8 @@ public abstract class Item extends SuperSmoothMover
     protected String itemName;
     protected GreenfootImage image;
     protected MC origin;
+    
+    private SoundManager sm;
     public Item(String itemName){
         this.itemName = itemName;
         try {
@@ -37,7 +39,6 @@ public abstract class Item extends SuperSmoothMover
 
     public void act()
     {
-
         if(pickupActs==-1){
             if (isTouching(MC.class)) {
                 MC touchingMC = (MC) getOneIntersectingObject(MC.class);
@@ -86,6 +87,7 @@ public abstract class Item extends SuperSmoothMover
 
     public void pickup(MC origin){
         this.origin=origin;
+        sm.playSound("PickUp");
         if(origin.getItemCount()<=1){
             if(origin.getItemCount()==0){
                 slotX= 170 + (300 * origin.getIndex());

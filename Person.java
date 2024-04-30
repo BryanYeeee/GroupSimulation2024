@@ -141,7 +141,7 @@ public abstract class Person extends Entity
                 return;
             }
             if(inFight) {
-                if(actCount % 80 == 0) {
+                if(actCount % 90 == 0) {
                     sm.playSound("Fighting");
                 }
                 if (this instanceof MC) ((MC)this).setAction("In a Fight");
@@ -154,6 +154,7 @@ public abstract class Person extends Entity
                     if(this instanceof MC) StatusBar.setUpdate(true);
                     if (opponentHealth <= 0 || curHp <= 0) {
                         if(curHp<=0) curHp = 0;
+                        sm.stopSoundLoop("Fighting");
                         setInFight(this, false);
                         setDead(curHp <= 0);
                     }

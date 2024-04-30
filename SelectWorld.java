@@ -89,7 +89,6 @@ public class SelectWorld extends AllWorld
      * @return selectedPrisoners    The prisoners that were selected.
      */
     public List<SavedPrisoner> getSelectedPrisoners() {
-        //problem here
         return selectedPrisoners;
     }
     
