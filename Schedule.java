@@ -79,7 +79,7 @@ public class Schedule
     
     public void act()
     {
-        System.out.println(actCount);
+        //System.out.println(actCount);
         if(actCount==180) {
             actCount=135*60;
            // world.getMainPrisoners()[1].giveItem(new Fork());

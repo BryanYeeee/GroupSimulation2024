@@ -88,6 +88,7 @@ public class Escape
                 }
             }
             System.out.print(chosenEscapes[i] + " ,");
+            mcs[i].setEscapeMethod(chosenEscapes[i]);
             if(!leaderMC.equals("")) {
                 mcs[i].setAction("Escaping with " + leaderMC);
             } else {
