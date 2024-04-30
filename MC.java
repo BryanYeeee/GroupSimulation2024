@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 /**
- * Write a description of class MC here.
+ * The MC subclass.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y, Constructor by Ainson Z
+ * @version April 2024
  */
 public class MC extends Prisoner
 {
@@ -27,13 +27,6 @@ public class MC extends Prisoner
         cutsceneImage.scale(120, 180);
         setImage(cutsceneImage);
     }
-
-    // public MC (int i, MyWorld world, String jobTitle) {
-        // super(i, jobTitle);
-        // //this.strength = 11;
-        // this.world = world;
-        // heldItems = new ArrayList<Item>();
-    // }
 
     /**
      * Prisoner constructor

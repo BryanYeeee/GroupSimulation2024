@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class EventDisplay here.
+ * The event display is the textbox at the top left of the main simulation that shows the current event based on the schedule
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeff G 
+ * @version April 2024
  */
 public class EventDisplay extends SuperTextBox
 {

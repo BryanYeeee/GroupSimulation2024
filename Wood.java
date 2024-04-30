@@ -2,7 +2,7 @@
  * Write a description of class Wood here.
  * 
  * @author (your name) 
- * @version (a version number or a date)
+ * @version April 2024
  */
 public class Wood extends Item 
 {
@@ -16,5 +16,6 @@ public class Wood extends Item
     }
 
     public void useItem(MyWorld w, MC p) {
+        p.giveItem(new Shovel());
     }
 }

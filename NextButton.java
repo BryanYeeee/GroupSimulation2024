@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class NextButton here.
+ * The next button is used for swapping between the statworld and the selectworld
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ainson Z
+ * @version April 2024
  */
 public class NextButton extends Button
 {

@@ -7,7 +7,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version April 2024
  */
 public abstract class AllWorld extends World
-{
+{   
+    public static final int WORLD_HEIGHT = 850;
+    public static final int WORLD_WIDTH = 1200;
+
     protected SoundManager sm;
     protected boolean worldTransition;
     protected Fade fadeIn, fadeOut;
@@ -28,7 +31,7 @@ public abstract class AllWorld extends World
         fadeIn = new Fade(120, false);
         fadeOut = new Fade(120, true);
         
-        addObject(fadeIn, Constants.WORLD_WIDTH/2, Constants.WORLD_HEIGHT/2);
+        addObject(fadeIn, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
     }
     
     /**
@@ -74,7 +77,7 @@ public abstract class AllWorld extends World
      */
     public void goToWorld(World w) {
         worldTransition = true;
-        addObject(fadeOut, Constants.WORLD_WIDTH/2, Constants.WORLD_HEIGHT/2);
+        addObject(fadeOut, AllWorld.WORLD_WIDTH/2, AllWorld.WORLD_HEIGHT/2);
         world = w;
     }
 }

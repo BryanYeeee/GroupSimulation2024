@@ -5,6 +5,8 @@ import java.util.ArrayList;
  * A class to hold all 6 of the MC's intro stories
  * Each story will be a background picture + some supporting text
  * 
+ * @author Jamison H 
+ * @version April 2024
  */
 public class CharacterIntros extends AllWorld
 {
@@ -37,7 +39,7 @@ public class CharacterIntros extends AllWorld
     public CharacterIntros()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
+        super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1);
         setPaintOrder(Fade.class);
         fillCharacterBackgroundAndStories();
 

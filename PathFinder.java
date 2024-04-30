@@ -3,6 +3,7 @@ import java.util.PriorityQueue;
 import java.util.ArrayList;
 /**
  * The PathFinder class will store the nodes for each coordinate that the people will walk on.
+ * It is also in charge of finding the optimal path from node to node for the person actors to use
  * 
  * @author Bryan Y 
  * @version April 2024

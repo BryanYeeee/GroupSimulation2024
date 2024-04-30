@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Announcement here.
+ * The Announcements class is a class at the top of the screen that displays the prison announcements during the main simulation
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeff G
+ * @version April 2024
  */
 public class Announcement extends Banner
 {

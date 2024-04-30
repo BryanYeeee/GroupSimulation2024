@@ -1,13 +1,13 @@
 /**
- * Write a description of class Fork here.
+ * The fork item class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class Fork extends Item 
 {
     /**
-     * Constructor for objects of class Ladder
+     * Constructor for objects of class Fork
      */
     public Fork()
     {
@@ -16,6 +16,6 @@ public class Fork extends Item
 
     
     public void useItem(MyWorld w, MC p) {
-        
+        // No effect
     }
 }

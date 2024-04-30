@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * The Person superclass
  * 
- * @author Bryan Y 
+ * @author Bryan Y , Animations by Jeff G
  * @version April 2024
  */
 public abstract class Person extends Entity

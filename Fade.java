@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * This is used for fading in and out of a screen
  * 
- * @author Ainson
+ * @author Ainson Z
  * @version April 2024
  */
 public class Fade extends Actor
@@ -23,7 +23,7 @@ public class Fade extends Actor
         this.fade = fade;
         this.direction = direction;
         fadeDuration = direction ? fade: 0;
-        image = new GreenfootImage(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
+        image = new GreenfootImage(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT);
         image.fill();
         if(direction) {
             image.setTransparency(0);

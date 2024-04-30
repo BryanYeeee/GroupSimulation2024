@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Creates an instance of a prisoner
- * There will be 5 total prisoners that are the main characters
+ * Creates an instance of a prisoner with saved data for the statworld and selectworld
  * 
- * ChatGPT
+ * @author Ainson Z and Bryan Y
+ * @version April 2024
  */
 public class SavedPrisoner extends Actor {
     

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Breakable here.
+ * The breakable class are objects that the prisoners can remove from the world such as breakable walls or doors
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class Breakable extends Actor
 {

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Vehicle here.
+ * The vehicle class is used for the drive away escape method
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class Vehicle extends Actor
 {
@@ -17,9 +17,11 @@ public class Vehicle extends Actor
     public void act()
     {
         if(linkedMC != null) {
+            // Follow the linked MC position
             setLocation(linkedMC.getX()-4, linkedMC.getY()-Person.SPRITE_OFFSET-21);
             return;
         }
+        // When intersecting an MC, store the mc
         MC mc = (MC)getOneObjectAtOffset(4,21,MC.class);
         if(mc != null && !mc.isMoving()) {
             linkedMC = mc;

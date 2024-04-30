@@ -1,5 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+/**
+ * The electric fence is an actor to show the electricity graphics on the main simulation's fence
+ * 
+ * @author Jeff G
+ * @version April 2024
+ */
 public class ElectricFence extends Actor
 {
 

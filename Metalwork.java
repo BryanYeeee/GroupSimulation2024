@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Metalwork here.
+ * The metal work room is where the metalworker job will go to during job time
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y 
+ * @version April 2024
  */
 public class Metalwork extends Room
 {

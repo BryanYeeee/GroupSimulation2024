@@ -1,10 +1,10 @@
 import greenfoot.*;
 import java.util.ArrayList;
 /**
- * Write a description of class PathFinder here.
+ * The node class is the various positions on the map that the person actor can traverse
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y 
+ * @version April 2024
  */
 public class Node {
         int index;

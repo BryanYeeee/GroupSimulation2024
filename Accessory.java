@@ -2,10 +2,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.HashMap;
 import java.util.Map;
 /**
- * Write a description of class Hair here.
+ * Accessories are cosmetics that are added ontop of the prisoners and guards.
+ * Some examples include hair and police hats
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeff G
+ * @version April 2024
  */
 public class Accessory extends Entity
 {

@@ -1,12 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Library here.
+ * The library room is where prisoners will go to increase their intel
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y 
+ * @version April 2024
  */
-
 public class Library extends Room
 {
     private static final int libraryCapacity = 2;

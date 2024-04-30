@@ -2,10 +2,10 @@ import java.util.HashMap;
 import java.util.Map;
 import greenfoot.*;
 /**
- * Write a description of class Schedule here.
+ * The schedule class is in charge of making the prisoners do various actions based on the time
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y 
+ * @version April 2024
  */
 public class Schedule  
 {
