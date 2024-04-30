@@ -22,26 +22,16 @@ public class StatWorld extends AllWorld
     public StatWorld(List<String> selectedPrisoners)
     {
         super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
-
+        setPaintOrder(Fade.class);
+        
+        sm.playSound("Statscreen");
+        
         savedPrisoners = new SavedPrisoner[4];
-        String[] savedData = new String[4];
         
         int index = 0;
-        SelectWorld selectWorld = new SelectWorld();// what does this do?
         for(String serializedData : selectedPrisoners) {
-            if(index < 4) {
-                savedData[index] = serializedData;
-                index++;
-            } else {
-                break;
-            }
-        }
-        
-        
-        for(int i = 0; i < 4; i++) {
-            savedPrisoners[i] = new SavedPrisoner("", "", 0, 0, 0, "");
-            savedPrisoners[i].deserializeState(savedData[i]);
-            
+            savedPrisoners[index] = new SavedPrisoner(serializedData);
+            index++;
         }
 
         //adding them to the world to edit their stats
@@ -56,20 +46,6 @@ public class StatWorld extends AllWorld
         savedPrisoners[2].createControls(625, 125);
         savedPrisoners[3].createControls(625, 425);
         
-        //This is to get the image of the chosen prisoners
-        imageSavedPrisoners = new SavedPrisoner[4];
-        
-        imageSavedPrisoners[0] = new SavedPrisoner(savedPrisoners[0].getName());
-        imageSavedPrisoners[1] = new SavedPrisoner(savedPrisoners[1].getName());
-        imageSavedPrisoners[2] = new SavedPrisoner(savedPrisoners[2].getName());
-        imageSavedPrisoners[3] = new SavedPrisoner(savedPrisoners[3].getName());
-        
-        addObject(imageSavedPrisoners[0], 100, 200);
-        addObject(imageSavedPrisoners[1], 100, 500);
-        addObject(imageSavedPrisoners[2], 450, 200);
-        addObject(imageSavedPrisoners[3], 450, 500);
-        
-
         //Go to next world button
         NextButton next = new NextButton("NextButton.png");
         addObject(next, 1000, 60);
@@ -97,13 +73,11 @@ public class StatWorld extends AllWorld
      * Act Method
      */
     public void act() {
-        
-        acts++;
-        if(acts >= 120 && NextButton.getSwitchWorld()) {
+        if(NextButton.getSwitchWorld()) {
+            //sm.pauseSounds();
             NextButton.resetSwitchWorld();
             switchToWorld();
         }
-        
     }
 
     /**
@@ -111,7 +85,7 @@ public class StatWorld extends AllWorld
      */
     public void switchToWorld() {
         serializedPrisonersState = savePrisonersState();
-        //System.out.println(serializedPrisonersState);
+        System.out.println(serializedPrisonersState);
         Greenfoot.setWorld(new IntroWorld(serializedPrisonersState));
     }
 }

@@ -44,7 +44,7 @@ public class Guard extends Person
         if(guardsPoisoned) {
             for(Guard g : w.getGuards()) {
                 g.setSpeed(1.2);
-                g.setStrength(g.getStrength()-2);
+                // g.setStrength(g.getStrength()-2);
             }
         }
     }
@@ -64,12 +64,14 @@ public class Guard extends Person
                 // Fight intersecting MCs
                 if (!inFight && !isDead) {
                     MC mc = (MC)getOneIntersectingObject(MC.class);
+                    if(mc != null) {
                     boolean dodged = mc.getSpeed() > 1.8 && Greenfoot.getRandomNumber(2)==0;
                     if (mc != null && !mc.isFighting() && !mc.isDead() && !dodged) {
                         setInFight(mc, true);
                         mc.setInFight(this, true);
                         //curPath.clear();
                         noFights++;
+                    }
                     }
                 }
             }

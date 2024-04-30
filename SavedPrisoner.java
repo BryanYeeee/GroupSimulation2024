@@ -1,5 +1,4 @@
 import greenfoot.*;
-import java.io.Serializable;
 
 /**
  * Creates an instance of a prisoner
@@ -9,133 +8,45 @@ import java.io.Serializable;
  */
 public class SavedPrisoner extends Actor {
     
-    private double str, maxStr;
-    private double hp, maxHp;
-    private double intel, maxIntel;
-    private double spd, maxSpd;
+    private int str, maxStr, minStr;
+    private int intel, maxIntel, minIntel;
+    private double spd, maxSpd, minSpd;
     
     private GreenfootImage image;
     private String name;
-    private StatSetter strength;
-    private StatSetter speed;
-    private StatSetter intelligence;
     private String jobTitle;
     private String specialty;
-    
-    //private GreenfootImage inmate;
-    
-    private String[] jobOptions = {"None", "Librarian", "Cook", "Woodwoker", "Metalworker", "Janitor"};
 
     /**
      * Prisoner constructor
-     * 
-     * @param name                      name of the character
-     * @param initialStrength           sets an initial strength stat
-     * @param initialSpeed              sets an initial speed stat
-     * @param initialLuck               sets an initial luck stat
-     * @param initialIntelligence       sets an initial intelligence stat
      */
-    public SavedPrisoner(String name, String jobTitle, double initialStrength, double initialSpeed, double initialIntelligence, String specialty) {
-        maxStr = 10;
-        hp = 100;
-        maxHp = 200;
-        maxIntel = 10;
-        maxSpd = 3;
+    public SavedPrisoner(String name, String jobTitle, int str, double spd, int intel, String specialty) {        
+        this.str = str;
+        this.spd = spd;
+        this.intel = intel;
         
         this.name = name;
         this.jobTitle = jobTitle;
-        strength = new StatSetter(initialStrength, false);
-        speed = new StatSetter(initialSpeed, true);
-        intelligence = new StatSetter(initialIntelligence, false);
         this.specialty = specialty;
         
-        
-        if(name.equals("Brute")) {
-            image = new GreenfootImage("Brute.png");
-        } else if(name.equals("Thief")) {
-            image = new GreenfootImage("Thief.png");
-        } else if(name.equals("WeaponDealer")) {
-            image = new GreenfootImage("WeaponDealer.png");
-        } else if(name.equals("Scientist")) {
-            image = new GreenfootImage("MadScientist.png");
-        } else if(name.equals("ExplosiveE")) {
-            image = new GreenfootImage("ExplosiveExpert.png");
-        } else if(name.equals("Builder")) {
-            image = new GreenfootImage("Builder.png");
-        }
-        if(image != null) {
-            image.scale(100, 100);
-        }
-        setImage(image);
-        
-    }
-    
-    public SavedPrisoner(String name) {
-        this.name = name;
-        
-        if(name.equals("Brute")) {
-            image = new GreenfootImage("Brute.png");
-        } else if(name.equals("Thief")) {
-            image = new GreenfootImage("Thief.png");
-        } else if(name.equals("WeaponDealer")) {
-            image = new GreenfootImage("WeaponDealer.png");
-        } else if(name.equals("Scientist")) {
-            image = new GreenfootImage("MadScientist.png");
-        } else if(name.equals("ExplosiveE")) {
-            image = new GreenfootImage("ExplosiveExpert.png");
-        } else if(name.equals("Builder")) {
-            image = new GreenfootImage("Builder.png");
-        }
+        image = new GreenfootImage("images/"+specialty.replaceAll(" ","")+".png");
         image.scale(100, 100);
         setImage(image);
+        
     }
     
-    public String getSpecialty() {
-        return specialty;
+    public SavedPrisoner(String serializedData) {
+        deserializeState(serializedData);
+        setMaxValues(specialty);
     }
     
     /**
-     * Method to get prisoner's name
-     * 
-     * @return name
+     * Used as an image card for the status bar in the main simulation
      */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Method to get prisoner's strength 
-     * 
-     * @return strength
-     */
-    public StatSetter getStrength() {
-        return strength;
-    }
-
-    /**
-     * Method to get prisoner's speed
-     * 
-     * @return speed
-     */
-    public StatSetter getSpeed() {
-        return speed;
-    }
-
-    /**
-     * Method to get prisoner's intelligence
-     * 
-     * @return intelligence
-     */
-    public StatSetter getIntelligence() {
-        return intelligence;
-    }
-    
-    public void setJob(String newJob) {
-        jobTitle = newJob;
-    }
-
-    public String getJob() {
-        return jobTitle;
+    public SavedPrisoner(boolean img, String specialty) {
+        image = new GreenfootImage("images/"+specialty.replaceAll(" ","")+".png");
+        image.scale(80, 80);
+        setImage(image);
     }
     
     /**
@@ -146,25 +57,25 @@ public class SavedPrisoner extends Actor {
      */
     public void createControls(int x, int y) {
         // Strength controls
-        StatButton increaseStrengthButton = new StatButton(strength, true);
-        StatButton decreaseStrengthButton = new StatButton(strength, false);
-        Textbox strengthTextbox = new Textbox("Str", 70, strength);
+        StatButton increaseStrengthButton = new StatButton(this,"str", true);
+        StatButton decreaseStrengthButton = new StatButton(this,"str", false);
+        Textbox strengthTextbox = new Textbox(this, "str", 70);
         getWorld().addObject(increaseStrengthButton, x + 50, y + 20);
         getWorld().addObject(decreaseStrengthButton, x, y + 20);
         getWorld().addObject(strengthTextbox, x - 55, y + 20);
 
         // Speed controls
-        StatButton increaseSpeedButton = new StatButton(speed, true);
-        StatButton decreaseSpeedButton = new StatButton(speed, false);
-        Textbox speedTextbox = new Textbox("Spd", 70, speed);
+        StatButton increaseSpeedButton = new StatButton(this,"spd", true);
+        StatButton decreaseSpeedButton = new StatButton(this,"spd", false);
+        Textbox speedTextbox = new Textbox(this, "spd", 70);
         getWorld().addObject(increaseSpeedButton, x + 50, y + 70);
         getWorld().addObject(decreaseSpeedButton, x, y + 70);
         getWorld().addObject(speedTextbox, x - 55, y + 70);
 
         // Intelligence controls
-        StatButton increaseIntelligenceButton = new StatButton(intelligence, true);
-        StatButton decreaseIntelligenceButton = new StatButton(intelligence, false);
-        Textbox intelligenceTextbox = new Textbox("Int", 70, intelligence);
+        StatButton increaseIntelligenceButton = new StatButton(this,"intel", true);
+        StatButton decreaseIntelligenceButton = new StatButton(this,"intel", false);
+        Textbox intelligenceTextbox = new Textbox(this, "intel", 70);
         getWorld().addObject(increaseIntelligenceButton, x + 50, y + 120);
         getWorld().addObject(decreaseIntelligenceButton, x, y + 120);
         getWorld().addObject(intelligenceTextbox, x -55, y + 120);
@@ -177,7 +88,7 @@ public class SavedPrisoner extends Actor {
      */
     public String serializeState() {
         // Serialize the state into a string
-        return name + "," + jobTitle + "," +strength.getValue() + "," + speed.getValue() + "," + intelligence.getValue() + "," + specialty;
+        return name + "," + jobTitle + "," +str + "," + spd + "," + intel + "," + specialty;
     }
     
     /**
@@ -190,45 +101,68 @@ public class SavedPrisoner extends Actor {
         String[] parts = serializedData.split(",");
         name = parts[0];
         jobTitle = parts[1];
-        strength.setValue(Double.parseDouble(parts[2]));
-        speed.setValue(Double.parseDouble(parts[3]));
-        intelligence.setValue(Double.parseDouble(parts[4]));
+        str = Integer.parseInt(parts[2]);
+        spd = Double.parseDouble(parts[3]);
+        intel = Integer.parseInt(parts[4]);
         specialty = parts[5];
+        
+        image = new GreenfootImage("images/"+specialty.replaceAll(" ","")+".png");
+        image.scale(100,100);
+        setImage(image);
     }
     
-    /**
-     * Adds strength
-     * 
-     * @param addStrength
-     */
-    public void addStr(double addStrength) {
-        str = str + addStrength > maxStr ? maxStr: str + addStrength;
+    public int getStrength() {
+        return str;
+    }
+    public double getSpeed() {
+        return spd;
+    }
+    public int getIntel() {
+        return intel;
     }
     
-    /**
-     * Adds hp
-     * 
-     * @param addHp
-     */
-    public void addHp(double addHp) {
-        hp = hp + addHp > maxHp ? maxHp: hp + addHp;
+    public void setMaxValues(String specialty) {
+        maxStr = 20;
+        minStr = 5;
+        maxIntel = 100;
+        minIntel = 0 ;
+        maxSpd = 1.9;
+        minSpd = 1.7;
+        switch(specialty) {
+            case "Thief":
+                maxSpd = 4.0;
+                minSpd = 3.6;
+                maxStr = 10;
+                break;
+            case "Brute":
+                maxStr = 25;
+                minStr = 12;
+                maxIntel = 60;
+                break;
+        }
     }
     
-    /**
-     * Adds intelligence
-     * 
-     * @param addIntel
-     */
-    public void addIntel(double addIntel) {
-        intel = intel + addIntel> maxIntel ? maxIntel: intel + addIntel;
+    public void addStrength(boolean increase) {
+        if(increase) {
+            str = str + 1 > maxStr ? maxStr: str + 1;
+        } else {
+            str = str - 1 < minStr ? minStr: str - 1;
+        } 
+    }
+    
+    public void addIntel(boolean increase) {
+        if(increase) {
+            intel = intel + 20 > maxIntel ? maxIntel: intel + 20;
+        } else {
+            intel = intel - 20 < minIntel ? minIntel: intel - 20;
+        } 
     }
 
-    /**
-     * Adds speed
-     * 
-     * @param addSpd
-     */
-    public void addSpeed(double addSpd) {
-        spd = spd + addSpd > maxSpd ? maxSpd: spd + addSpd;
+    public void addSpeed(boolean increase) {
+        if(increase) {
+            spd = (spd * 10 + 1) / 10 > maxSpd ? maxSpd: (spd * 10 + 1) / 10;
+        } else {
+            spd = (spd * 10 - 1) / 10 < minSpd ? minSpd: (spd * 10 - 1) / 10;
+        } 
     }
 }
