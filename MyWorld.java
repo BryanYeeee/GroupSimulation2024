@@ -212,6 +212,8 @@ public class MyWorld extends AllWorld
         // addObject(new Metal(),500, 299);
         // addObject(new Keycard(),360, 299);
         // addObject(new Wood(),380, 299);
+        
+        sm.playSound("MainEscape");
     }
 
     public void started(){

@@ -30,6 +30,8 @@ public class EscapeAction extends Action
     
     private static int[] startActs = new int[4];
     
+    private static SoundManager sm;
+    
     public static boolean breakWall(MyWorld w, MC mc, MC[] followers, int step) {
         switch(step) {
             case 0:
