@@ -93,7 +93,7 @@ public class Schedule
          // }
                 
         if (messageTimings.containsKey(actCount)) {
-            announce(messageTimings.get(actCount), 150);
+            announce(messageTimings.get(actCount), 3);
         }
         switch (actCount) {
             case 0: // Beginning roll call, act 0
@@ -174,10 +174,10 @@ public class Schedule
         }
         
         if(actCount==360){
-            dialogue("I need to get out of here", 5, "thief");
+            dialogue("I need to get out of here", 1, "thief");
         }
         if(actCount==440){
-            dialogue("this bomb that I smuggled might help", 5, "scientist");
+            //dialogue("this bomb that I smuggled might help", 1, "scientist");
         }
         actCount++;
     }
@@ -217,7 +217,7 @@ public class Schedule
         world.addObject(new Announcement(text,acts),bannerPosX,bannerPosY); 
     }
          
-    public void dialogue(String text, int acts, String speakerName){
-        world.addObject(new Dialogue(text,acts,speakerName),bannerPosX,bannerPosY); 
+    public void dialogue(String text, int seconds, String speakerName){
+        world.addObject(new Dialogue(text,seconds,speakerName),bannerPosX,bannerPosY); 
     }
 }

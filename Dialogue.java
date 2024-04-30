@@ -19,6 +19,10 @@ public class Dialogue extends Banner
     private String currText="";
     //private static GreenfootSound dialogueSound = new GreenfootSound("sounds/bannerSound_dialogue.mp3");
     private boolean soundPlaying;
+    public Dialogue(String text, String iconName){
+        this(text, 2, iconName); 
+        
+    }
     public Dialogue(String text,double seconds, String iconName){
         super(" ", seconds, iconName, announcementBackgroundColor, Color.BLACK); 
         this.text=text;
@@ -39,15 +43,19 @@ public class Dialogue extends Banner
         if(((int)actCount/1.5)<text.length()){
             currText = text.substring(0, (int)(actCount/1.5) % text.length() + 1);
             update(currText);
-            
+
         }
         else if (soundPlaying==true){
-            
+
             //dialogueSound.stop();
             soundPlaying = false;
 
         }
+        else{
+
+        }
         super.act();
+
     }
 
 }
