@@ -70,7 +70,6 @@ public class Guard extends Person
                     if (mc != null && !mc.isFighting() && !mc.isDead() && !dodged) {
                         setInFight(mc, true);
                         mc.setInFight(this, true);
-                        //curPath.clear();
                         noFights++;
                     }
                     }

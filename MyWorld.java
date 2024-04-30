@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.awt.Font;
 import java.util.Collections;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -60,7 +61,14 @@ public class MyWorld extends AllWorld
     private boolean escapeTime;
     private int escapingMcs;
 
-
+    public MyWorld() {
+            this(Arrays.asList(
+                    "Leon,Metalworker,8,1.8,100,Weapons Dealer",
+                    "Aron,Janitor,8,1.8,100,Explosive Expert",
+                    "Waldo,Cook,8,1.9,100,Scientist",
+                    "Reuben,Woodworker,5,1.8,100,Builder"
+                ));
+    }
     /**
      * Constructor for objects of class MyWorld.
      */

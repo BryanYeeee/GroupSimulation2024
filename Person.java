@@ -115,6 +115,7 @@ public abstract class Person extends Entity
         actCount++;
         if(!inIntro){
             if(isDead) {
+                if (this instanceof MC) ((MC)this).setAction("Reviving...");
                 action="sleep"; 
 
                 //Sets a random direction L or R if person is not horizontal
@@ -137,12 +138,14 @@ public abstract class Person extends Entity
                 return;
             }
             if(inFight) {
+                if (this instanceof MC) ((MC)this).setAction("In a Fight");
                 action="attack";
                 animationDelay=10;
                 animate(); //Call animate before return 
                 if (actCount % 30 == 0) {
                     curHp -= opponentStrength;
                     opponentHealth -= str;
+                    if(this instanceof MC) StatusBar.setUpdate(true);
                     if (opponentHealth <= 0 || curHp <= 0) {
                         if(curHp<=0) curHp = 0;
                         setInFight(this, false);
@@ -163,37 +166,6 @@ public abstract class Person extends Entity
                 action ="walk";
                 animationDelay = 7;
                 move();
-            } else{
-                if(r instanceof DiningHall){
-                    if(personType.equals( "inmate")){
-                        action = "eat";
-                        animationDelay = 20;
-                    }
-                    else{
-                        action="idle";
-                        animationDelay = 50;
-                    }
-                }
-                else if(r instanceof Gym){
-                    if(personType.equals( "inmate")){
-                        if((getX()>900)&&(getY()<600)){
-                            action = "walk";
-                            animationDelay = 7;
-                        }
-                        else{
-                            action="idle";
-                            animationDelay = 50;
-                        }
-                    }
-                    else{
-                        action="idle";
-                        animationDelay = 50;
-                    }
-                }
-                else{
-                    action ="idle";
-                    animationDelay = 50;
-                }
             }
 
             //Idle is slower so longer animationDelay
@@ -201,6 +173,20 @@ public abstract class Person extends Entity
             // If currently escaping, don't do additional effects, like rooms or free roam
             if(this instanceof MC && ((MyWorld)getWorld()).isEscapeTime()) return;
             if(this instanceof Guard && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) return;
+
+            if(curPath.isEmpty()) {
+                if(r instanceof DiningHall && personType.equals("inmate") && getY()>190){
+                    action = "eat";
+                    animationDelay = 20;
+                }
+                else if(r instanceof Gym && personType.equals( "inmate") && (getX()>900)&&(getY()<600)){
+                    action = "walk";
+                    animationDelay = 7;
+                } else {
+                    action ="idle";
+                    animationDelay = 50;
+                }
+            }
 
             if (curRoom != r) { // Changed current room
                 if (curRoom != null) { // Leaving a room
@@ -497,6 +483,7 @@ public abstract class Person extends Entity
     public void addStrength(int strengthAmount) {
         if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute"))strengthAmount++;
         str+=strengthAmount;
+        if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
     public void setStrength(int s) {
@@ -558,11 +545,11 @@ public abstract class Person extends Entity
         return curHp;
     }
 
-    public double getStrength() {
+    public int getStrength() {
         return str;
     }
 
-    public double getIntel(){
+    public int getIntel(){
         return intel;
     }
 

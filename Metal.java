@@ -18,18 +18,15 @@ public class Metal extends Item
     
     public void useItem(MyWorld w, MC p) {
         int itemChoice = Greenfoot.getRandomNumber((int)p.getIntel());
-        if(itemChoice < 20) {
-            p.giveItem(new Weapon("hammer"));
-            p.addStrength(5);
-        } else if (itemChoice < 40) {
+        if(itemChoice < 50) {
             p.giveItem(new Knife());
             p.addStrength(6);
         } else if (itemChoice < 60) {
             p.giveItem(new Weapon("crowbar"));
-            p.addStrength(10);
+            p.addStrength(13);
         } else {
             p.giveItem(new Weapon("axe"));
-            p.addStrength(18);
+            p.addStrength(20);
         }
 
         StatusBar.setUpdate(true);

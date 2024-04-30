@@ -45,7 +45,7 @@ public class SavedPrisoner extends Actor {
      */
     public SavedPrisoner(boolean img, String specialty) {
         image = new GreenfootImage("images/"+specialty.replaceAll(" ","")+".png");
-        image.scale(80, 80);
+        image.scale(77, 77);
         setImage(image);
     }
     
