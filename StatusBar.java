@@ -87,8 +87,8 @@ public class StatusBar extends Actor
 
 
             // Item Images 
-            TempBox itemBox1 = new TempBox(50, 50, boxColor, borderColor, 3);
-            TempBox itemBox2 = new TempBox(50, 50, boxColor, borderColor, 3);
+            TempBox itemBox1 = new TempBox(42, 42, boxColor, borderColor, 3);
+            TempBox itemBox2 = new TempBox(42, 42, boxColor, borderColor, 3);
             getWorld().addObject(itemBox1, 170 + (300 * i), 780);
             getWorld().addObject(itemBox2, 245 + (300 * i), 780);
 

@@ -139,7 +139,8 @@ public class EscapeAction extends Action
                 }
                 break;
             case 1:
-                //spawn bomb
+                w.addObject(new Explosive(), 184, 143);
+
                 if(true)return true;
                 break;
             case 2:

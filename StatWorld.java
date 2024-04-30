@@ -22,7 +22,7 @@ public class StatWorld extends AllWorld
     public StatWorld(List<String> selectedPrisoners)
     {
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1);
-        setPaintOrder(Fade.class);
+        setPaintOrder(Fade.class, SavedPrisoner.class, Button.class, Textbox.class);
         
         sm.playSound("Statscreen");
         
@@ -50,6 +50,10 @@ public class StatWorld extends AllWorld
         NextButton next = new NextButton("NextButton.png");
         addObject(next, 1000, 60);
 
+        //creating box under stat selections
+        StatBox box1 = new StatBox();
+        addObject(box1, 386, 339);
+        
         bgImage = new GreenfootImage("statsWorldBg3.jpg");
         bgImage.scale(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT);
         setBackground(bgImage);
@@ -68,13 +72,12 @@ public class StatWorld extends AllWorld
         return serializedDataList;
     }
     
-
     /**
      * Act Method
      */
     public void act() {
         if(NextButton.getSwitchWorld()) {
-            //sm.pauseSounds();
+            sm.stopSoundLoop("Statscreen");
             NextButton.resetSwitchWorld();
             switchToWorld();
         }

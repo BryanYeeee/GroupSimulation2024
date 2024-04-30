@@ -16,7 +16,7 @@ public class TempBox extends Actor
     }
     
     public TempBox(int width, int height, Color bgColor, Color borderColor, int borderThickness){
-        GreenfootImage box  = new GreenfootImage(width, height);
+        GreenfootImage box = new GreenfootImage(width, height);
         // Draw Background
         box.setColor(bgColor);
         box.fill();

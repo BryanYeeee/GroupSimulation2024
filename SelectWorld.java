@@ -13,9 +13,9 @@ public class SelectWorld extends AllWorld
     private int numSelectedPrisoners;
     private List<SavedPrisoner> selectedPrisoners = new ArrayList<>();
     private List<String> serializedPrisonersState;
-    
+
     private GreenfootImage bgImage;
-    
+
     /**
      * Constructor for objects of class SelectWorld.
      * 
@@ -25,21 +25,21 @@ public class SelectWorld extends AllWorld
         super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1);
         setPaintOrder(Fade.class);
         numSelectedPrisoners = 0;
-        
+
         SavedPrisoner mc1 = new SavedPrisoner("Buck", "None", 15, 1.8, 40, "Brute");
         SavedPrisoner mc2 = new SavedPrisoner("Wyatt", "Librarian", 8, 3.8, 40, "Thief");
         SavedPrisoner mc3 = new SavedPrisoner("Leon", "Metalworker", 8, 1.8, 40, "Weapons Dealer");
         SavedPrisoner mc4 = new SavedPrisoner("Waldo", "Cook", 8, 1.8, 40, "Scientist");
         SavedPrisoner mc5 = new SavedPrisoner("Aron", "Janitor", 8, 1.8, 40, "Explosive Expert");
         SavedPrisoner mc6 = new SavedPrisoner("Reuben", "Woodworker", 5, 1.8, 40, "Builder");
-        
+
         addObject(mc1, 150, 250);
         addObject(mc2, 150, 550);
         addObject(mc3, 500, 250);
         addObject(mc4, 500, 550);
         addObject(mc5, 850, 250);
         addObject(mc6, 850, 550);
-        
+
         /*
         mc1.createButton(150, 250);
         mc2.createButton(150, 550);
@@ -47,8 +47,8 @@ public class SelectWorld extends AllWorld
         mc4.createButton(500, 550);
         mc5.createButton(850, 250);
         mc6.createButton(850, 550);
-        */
-       
+         */
+
         SelectButton button1 = new SelectButton(this, mc1);
         addObject(button1, 150 + 150, 250);
         SelectButton button2 = new SelectButton(this, mc2);
@@ -61,25 +61,24 @@ public class SelectWorld extends AllWorld
         addObject(button5, 850 + 150, 250);
         SelectButton button6 = new SelectButton(this, mc6);
         addObject(button6, 850 + 150, 550);
-        
+
         NextButton next = new NextButton("NextButton.png");
         addObject(next, 1000, 800);
-        
+
         bgImage = new GreenfootImage("PrisonBg2.png");
         setBackground(bgImage);
+        prepare();
     }
-    
-    
+
     public List<SavedPrisoner> getSelectedPrisoners() {
         //problem here
         return selectedPrisoners;
     }
-    
-    
+
     public int getNumSelectedPrisoners() {
         return numSelectedPrisoners;
     }
-    
+
     public void incrementNumSelectedPrisoners() {
         numSelectedPrisoners++;
     }
@@ -87,21 +86,21 @@ public class SelectWorld extends AllWorld
     public void decrementNumSelectedPrisoners() {
         numSelectedPrisoners--;
     }
-    
+
     public void addSelectedPrisoner(SavedPrisoner prisoner) {
         selectedPrisoners.add(prisoner);
     }
-    
+
     public void removeSelectedPrisoner(SavedPrisoner prisoner) {
         selectedPrisoners.remove(prisoner);
     }
-    
+
     public void transitionWorld() {
         serializedPrisonersState = saveSelectedPrisonersState();
         System.out.println(serializedPrisonersState);
         Greenfoot.setWorld(new StatWorld(serializedPrisonersState));
     }
-    
+
     /**
      * Used to save all the stats of each prisoner
      */
@@ -113,7 +112,7 @@ public class SelectWorld extends AllWorld
         }
         return serializedDataList;
     }
-    
+
     public void act() {
         if (numSelectedPrisoners == 4) {
             if(NextButton.getSwitchWorld()) {
@@ -121,7 +120,14 @@ public class SelectWorld extends AllWorld
                 NextButton.resetSwitchWorld();
                 transitionWorld();
             }
-            
+
         }
+    }
+    /**
+     * Prepare the world for the start of the program.
+     * That is: create the initial objects and add them to the world.
+     */
+    private void prepare()
+    {
     }
 }
