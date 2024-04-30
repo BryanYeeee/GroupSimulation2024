@@ -39,6 +39,7 @@ public class SoundManager
         sounds.put("Statscreen", new Sound("Statscreen.mp3", 25, true));
         sounds.put("Titlescreen", new Sound("Titlescreen.mp3", 25, true));
         sounds.put("MainEscape", new Sound("MainEscape.mp3", 25, true));
+        sounds.put("LightsOut", new Sound("LightsOut.mp3", 25, true));
         
     }
     
