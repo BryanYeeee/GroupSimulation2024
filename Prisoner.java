@@ -2,16 +2,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.Arrays;
 import java.util.ArrayList;
 /**
- * Write a description of class Prisoner here.
+ * The prisoner subclass
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class Prisoner extends Person
 {
     private static ArrayList<String> jobList;
     protected String jobTitle = "";
-    // For cutscene/intro world
+    
+    // For cutscene/intro world by Jamison H
     public Prisoner(int i, boolean inIntro){
         super(i, inIntro);
     }

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Weapon here.
+ * The weapon item class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class Weapon extends Item
 {
@@ -15,6 +15,6 @@ public class Weapon extends Item
 
     
     public void useItem(MyWorld w, MC p) {
-        
+        // No effect
     }
 }

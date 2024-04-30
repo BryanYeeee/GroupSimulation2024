@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TitleScreen here.
+ * The title screen
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jamison H
+ * @version April 2024
  */
 public class TitleScreen extends AllWorld
 {
@@ -21,7 +21,7 @@ public class TitleScreen extends AllWorld
     public TitleScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
+        super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1);
         setPaintOrder(Fade.class);
         SimulationFont.initalizeFont();
         titleBackground.scale(1200, 850);

@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Write a description of class MyWorld here.
+ * This is the main simulation world
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y, Ainson Z, and Jeff G
+ * @version April 2024
  */
 public class MyWorld extends AllWorld
 {
@@ -76,16 +76,13 @@ public class MyWorld extends AllWorld
         pf = new PathFinder(this); // Initialize this first
         SimulationFont.initalizeFont();
         Sprite.init();
-        
-        
-        //TEMPP
         setBackground(backgroundImg);
         
-        //LAG TRACKER
+        //LAG TRACKER by Jeff G
         PerformanceMeter meter = new PerformanceMeter();
         addObject(meter, 50, 25);
-        // Initialize the people in the prison (MCs, prisoners, guards)
 
+        // Initialize the people in the prison (MCs, prisoners, guards) by Ainson Z
         prisonerCount = 12;
         guardCount = 3;
         people = new Person[prisonerCount + guardCount + 4];
@@ -118,7 +115,7 @@ public class MyWorld extends AllWorld
         // g = new Prisoner(17);
         // addObject(g,0,0);
         
-        // Initialize schedule and GUI
+        // Initialize schedule and GUI by Bryan Y 
         schedule = new Schedule(this);
         addObject(new Clock("7:00"), 68, 50);
         eventDisplay = new EventDisplay("ROLLCALL");
@@ -126,7 +123,7 @@ public class MyWorld extends AllWorld
         statBar = new StatusBar();
         addObject(statBar, 600, 762);
 
-        // Initialize the prison's rooms
+        // Initialize the prison's rooms by Bryan Y 
         rollCall = new RollCall(new int[]{64, 65, 66, 67, 68, 59, 60, 61, 62, 63, 55, 56, 57, 50, 51, 52}, new int[]{69, 70, 71}, new int[]{213, 243});
         addObject(rollCall, 530, 279);
 
@@ -155,7 +152,7 @@ public class MyWorld extends AllWorld
         cell2 = new JailCell(new int[]{135,137}, new int[]{95,125},2);
         addObject(cell2, 591, 583);
         
-        // Add the wall covers to the world
+        // Add the wall covers to the world by Bryan Y 
         addObject(new WallCover("images/WallCover/cover1.png"), 317, 323);
         addObject(new WallCover("images/WallCover/cover2.png"), 409, 299);
         addObject(new WallCover("images/WallCover/cover3.png"), 652, 299);
@@ -166,7 +163,7 @@ public class MyWorld extends AllWorld
         addObject(new WallCover("images/WallCover/VehicleDoorCover.png"), 257, 482);
         
         
-        // Breakables
+        // Breakables by Bryan Y 
         breakables = new Breakable[6];
         breakables[0] = new Breakable("images/Breakable/RollCallWall.png",100, 100);
         addObject(breakables[0], 558, 188);
@@ -181,10 +178,10 @@ public class MyWorld extends AllWorld
         breakables[5] = new Breakable("images/Breakable/Fence.png",100, 100);        
         addObject(breakables[5], 882, 162);
         
-        // Vehicles
+        // Vehicles by Bryan Y 
         addObject(new Vehicle("Car.png"), 150, 492);
         
-        //Electric Fence
+        //Electric Fence by Jeff
         addObject(new ElectricFence(27),1077,360);
         addObject(new ElectricFence(24),1077,320);
         addObject(new ElectricFence(21),1077,280);
@@ -196,7 +193,7 @@ public class MyWorld extends AllWorld
         addObject(new ElectricFence(3,true),920,160);
         addObject(new ElectricFence(0,true),880,160);
         
-        //Items
+        //Item testing
         // addObject(new Potion(),400, 299);
         // addObject(new Metal(),420, 299);
         // addObject(new Ladder(),440, 299);
@@ -324,6 +321,7 @@ public class MyWorld extends AllWorld
         return WORLD_HEIGHT;
     }
 
+    //Z-sorting by Jeff
     public void zSort() {
         List<Entity> rawEntities = getObjects(Entity.class);
         ArrayList<ActorContent> acList = new ArrayList<ActorContent>();

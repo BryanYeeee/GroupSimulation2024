@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TempBox here.
+ * A class that draws a background box with an optional border
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jamison H
+ * @version April 2024
  */
 public class TempBox extends Actor
 {

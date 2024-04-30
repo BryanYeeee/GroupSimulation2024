@@ -10,8 +10,8 @@ import java.io.IOException;
  * Note: Majority of code is taken from crissty21 from Greenfoot forum: "Import Font from .ttf file" <p>
  * Link: https://www.greenfoot.org/topics/65058/0
  * 
- * @author
- * 
+ * @author crissty21, and modified by Jeff G
+ * @version April 2024
  */
 public class SimulationFont extends Actor
 {

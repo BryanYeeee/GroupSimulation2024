@@ -1,17 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Item here.
+ * The Item super class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeff G
+ * @version April 2024
  */
 public abstract class Item extends SuperSmoothMover
 {
-    /**
-     * Act - do whatever the Item wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     protected int actCount=0;
     protected int originalSize = 32;
     protected int size = originalSize;

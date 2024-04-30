@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * World where the stats of the 5 main characters can be changed
+ * World where the stats of the 4main characters can be changed
  * 
- * @author Ainson 
+ * @author Ainson Z
  * @version April 2024
  */
 public class StatWorld extends AllWorld
@@ -21,7 +21,7 @@ public class StatWorld extends AllWorld
      */
     public StatWorld(List<String> selectedPrisoners)
     {
-        super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
+        super(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT, 1);
         setPaintOrder(Fade.class);
         
         sm.playSound("Statscreen");
@@ -51,7 +51,7 @@ public class StatWorld extends AllWorld
         addObject(next, 1000, 60);
 
         bgImage = new GreenfootImage("statsWorldBg3.jpg");
-        bgImage.scale(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
+        bgImage.scale(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT);
         setBackground(bgImage);
     }
 

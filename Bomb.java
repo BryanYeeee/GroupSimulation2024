@@ -1,13 +1,13 @@
 /**
- * Write a description of class Bomb here.
+ * The bomb item class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class Bomb extends Item 
 {
     /**
-     * Constructor for objects of class Metal
+     * Constructor for objects of class Bryan
      */
     public Bomb()
     {
@@ -15,6 +15,6 @@ public class Bomb extends Item
     }
 
     public void useItem(MyWorld w, MC p) {
-        
+        // No effect
     }
 }

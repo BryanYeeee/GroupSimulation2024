@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Ladder here.
+ * The keycard item class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeff G
+ * @version April 2024
  */
 public class Keycard extends Item 
 {
     /**
-     * Constructor for objects of class Ladder
+     * Constructor for objects of class Keycard
      */
     public Keycard()
     {
@@ -17,6 +17,7 @@ public class Keycard extends Item
     }
 
     public void useItem(MyWorld w, MC p) {
+        // No effect
     }
 }
 

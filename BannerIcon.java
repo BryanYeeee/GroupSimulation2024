@@ -1,18 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class DialogueIcon here.
+ * The BannerIcon is the image that appears on the side of the Banner class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeff G
+ * @version April 2024
  */
 public class BannerIcon extends Actor
 {
-    /**
-     * Act - do whatever the DialogueIcon wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    
+
     public BannerIcon(String imageName){
         GreenfootImage image = new GreenfootImage("images/announcements/icon_"+imageName+".png");
         image.scale(48,48);

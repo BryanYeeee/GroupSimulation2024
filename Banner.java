@@ -7,10 +7,10 @@ import java.io.FileInputStream;
 import java.awt.Font;
 
 /**
- * Write a description of class Banner here.
+ * The Banner class is a supertextbox that displays info at the top of the screen.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeff G
+ * @version April 2024
  */
 public class Banner extends SuperTextBox
 {

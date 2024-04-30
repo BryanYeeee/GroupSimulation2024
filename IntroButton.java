@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Button here.
+ * The introbutton is responsible for navigating the character intros in the beginning of the simulation
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jamison H
+ * @version April 2024
  */
 public class IntroButton extends Actor
 {

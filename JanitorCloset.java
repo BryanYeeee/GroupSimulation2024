@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class JanitorCloset here.
+ * The janitor closet is where the janitor job will go during job time.
+ * It is also where the generator is located
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y
+ * @version April 2024
  */
 public class JanitorCloset extends Room
 {

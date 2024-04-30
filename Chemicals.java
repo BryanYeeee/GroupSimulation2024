@@ -1,13 +1,13 @@
 /**
- * Write a description of class Chemicals here.
+ * The chemicals item class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Bryan Y 
+ * @version April 2024
  */
 public class Chemicals extends Item 
 {
     /**
-     * Constructor for objects of class Metal
+     * Constructor for objects of class Chemicals
      */
     public Chemicals()
     {
