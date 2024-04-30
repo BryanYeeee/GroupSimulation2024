@@ -126,7 +126,6 @@ public class EscapeAction extends Action
                 }
                 for(MC follower : followers) {
                     follower.setAction("Escaping");
-                    if(follower.getCurNode().getIndex() == CAR_ESCAPE_NODE) 
                     if(follower.getCurNode().getIndex() != CAR_ESCAPE_NODE && !follower.isMoving() && mc.getActCount() % 25 == 0) {
                         follower.goToNode(CAR_ESCAPE_NODE);
                     }
