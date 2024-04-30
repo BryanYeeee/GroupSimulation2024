@@ -28,13 +28,13 @@ public class StatusBar extends Actor
     // Get values from a method in the MC's themselves, For now will be preset
     private String[] names = new String[4];// = {"MC1", "MC2", "MC3", "MC4"};
     private String[] specialties = new String[4];// = {"Thief", "Mad Scientist", "Weapons Dealer", "Explosive Expert"};
-
+    private Color[] colors = {new Color(255,64,56), new Color(255,231,22),new Color(34,121,227), new Color(45,247,38)};
     // Get hp, int, str from a method in the MC's themselves, For now will be preset
     private String[] currentHPs = new String[4];// = {String.valueOf(10), String.valueOf(9), String.valueOf(5), String.valueOf(0)};
     private String[] maxHPs = new String[4];// = {String.valueOf(10), String.valueOf(10), String.valueOf(10), String.valueOf(10)};
     private String[] intelligences = new String[4];// = {String.valueOf(5), String.valueOf(5), String.valueOf(5), String.valueOf(5)};
     private String[] strs = new String[4];// = {String.valueOf(10), String.valueOf(10), String.valueOf(10), String.valueOf(10)};
-
+    
     // Get values from Schedule, variation during job time
     private String[] actions = new String[4]; 
 
@@ -82,7 +82,7 @@ public class StatusBar extends Actor
         for(int i = 0; i < 4; i++){
             
             // Character Images 
-            TempBox characterBox = new TempBox(80, 80, boxColor, borderColor, 3);
+            TempBox characterBox = new TempBox(90, 90, boxColor, colors[i], 3);
             getWorld().addObject(characterBox, 75 + (300 * i), 752);
 
 

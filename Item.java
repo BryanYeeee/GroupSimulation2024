@@ -73,7 +73,7 @@ public abstract class Item extends SuperSmoothMover
         }
         actCount++;
     }
-    
+
     public boolean isMaterial() {
         return isMaterial;
     }
@@ -97,7 +97,32 @@ public abstract class Item extends SuperSmoothMover
             pickupActs=50;
             origin.addItem(this);
         }
+        MyWorld w = (MyWorld) getWorld();
 
+        if (this instanceof Chemicals) {
+            w.dialogue("\"Warning! Explosive\", that's convenient.", 4, origin.getSpecialty().toLowerCase());
+        }
+        if (this instanceof Fork) {
+            w.dialogue("Got away with a fork? it's my lucky day.", 4, origin.getSpecialty().toLowerCase());
+        }
+        if (this instanceof Keycard) {
+            w.dialogue("YES!A KEYCARD!!", 3, origin.getSpecialty().toLowerCase());
+        }
+        if (this instanceof Food) {
+            w.dialogue("A nice treat", 3, origin.getSpecialty().toLowerCase());
+        }
+        if (this instanceof Metal) {
+            w.dialogue("I could turn this into something useful", 4, origin.getSpecialty().toLowerCase());
+        }
+        if (this instanceof Wood) {
+            w.dialogue("Could use this for a handle or something", 4, origin.getSpecialty().toLowerCase());
+        }
+        if (this instanceof Shovel) {
+            w.dialogue("Dis shovel is not disheveled", 4, origin.getSpecialty().toLowerCase());
+        }
+        if (this instanceof Bomb) {
+            w.dialogue("Bombaclaat!", 4, origin.getSpecialty().toLowerCase());
+        }
         return;
     }
 

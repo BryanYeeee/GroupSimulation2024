@@ -57,10 +57,11 @@ public class Banner extends SuperTextBox
 
     public void act()
     {
-        secondsLeft-=(1/60);
-        if(secondsLeft==0){
+        secondsLeft-=0.0166;
+        if(secondsLeft<=0){
             getWorld().removeObject(icon);
             getWorld().removeObject(this);
+            
         }
     }   
 

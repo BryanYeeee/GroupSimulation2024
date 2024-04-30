@@ -18,8 +18,10 @@ public class MC extends Prisoner
     private boolean doneCrafting;
     private String escapeMethod;
     
-    private String specialty; // more like a class, thief, brute etc.
 
+    private String specialty; // more like a class, thief, brute etc.
+    private int bannerPosX;
+    private int bannerPosY;
     // For cutscene/intro world
     public MC(int i, boolean inIntro, String specialty){
         super(i, inIntro);
@@ -27,6 +29,8 @@ public class MC extends Prisoner
         GreenfootImage cutsceneImage = new GreenfootImage("images/inmate/male_white/idle/D0.png");
         cutsceneImage.scale(120, 180);
         setImage(cutsceneImage);
+        bannerPosX = world.WORLD_WIDTH/2;
+        bannerPosY = 50;
     }
 
     /**
@@ -59,11 +63,11 @@ public class MC extends Prisoner
     {
         super.act();
     }
-    
+
     public boolean isDoneCrafting() {
         return doneCrafting;
     }
-    
+
     public void setDoneCrafting(boolean isCrafting) {
         this.doneCrafting = isCrafting;
     }
@@ -83,7 +87,7 @@ public class MC extends Prisoner
     public String getName(){
         return name;
     }
-    
+
     public String getCurrentAction(){
         return currentAction;
     }
@@ -147,7 +151,7 @@ public class MC extends Prisoner
             result.add(1);
         }
         else if(specialty.equals("Thief")){
-            
+
             result.add(8);
             result.add(10);
         }
@@ -186,5 +190,11 @@ public class MC extends Prisoner
             }
         }
         return count;  // Return the total count of items
+    }
+
+    public void dialogue(String text, int seconds, String speakerName){
+
+        world.addObject(new Dialogue(text,seconds,speakerName),bannerPosX,bannerPosY); 
+        
     }
 }
