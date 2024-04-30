@@ -22,7 +22,10 @@ public class StatWorld extends AllWorld
     public StatWorld(List<String> selectedPrisoners)
     {
         super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
-
+        setPaintOrder(Fade.class);
+        
+        sm.playSound("Statscreen");
+        
         savedPrisoners = new SavedPrisoner[4];
         String[] savedData = new String[4];
         
@@ -100,6 +103,7 @@ public class StatWorld extends AllWorld
         
         acts++;
         if(acts >= 120 && NextButton.getSwitchWorld()) {
+            //sm.pauseSounds();
             NextButton.resetSwitchWorld();
             switchToWorld();
         }

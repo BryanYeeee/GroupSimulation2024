@@ -58,7 +58,7 @@ public class MC extends Prisoner
         spd = Double.parseDouble(serializedData[3]);
         intel = Double.parseDouble(serializedData[4]);
         specialty = serializedData[5];
-        str += 10;
+        //str += 10;
         /*
         if(name.equals("Brute")) {
         jobTitle = "None";
@@ -91,7 +91,6 @@ public class MC extends Prisoner
         super.act();
     }
 
-    /**
     
     public boolean isDoneCrafting() {
         return doneCrafting;

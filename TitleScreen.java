@@ -21,7 +21,8 @@ public class TitleScreen extends AllWorld
     public TitleScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1200, 850, 1); 
+        super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
+        setPaintOrder(Fade.class);
         SimulationFont.initalizeFont();
         titleBackground.scale(1200, 850);
         setBackground(titleBackground);
@@ -30,9 +31,10 @@ public class TitleScreen extends AllWorld
         addObject(startIntro, 600, 800);
     }
     
-    public void act(){
+    public void act(){ 
         if(Greenfoot.mouseClicked(startIntro)){
-            // add transition here
+            sm.playSound("click");
+            Greenfoot.setWorld(new CharacterIntros());
         }
     }
 }

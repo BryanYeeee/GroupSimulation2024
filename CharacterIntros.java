@@ -27,6 +27,9 @@ public class CharacterIntros extends AllWorld
 
     // Counter to keep track of current displayed story
     int displayCounter = 0;
+    
+    //Used for sound
+    int actCount = 0;
     /**
      * Constructor for objects of class CharacterIntros.
      * 
@@ -34,8 +37,8 @@ public class CharacterIntros extends AllWorld
     public CharacterIntros()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1200, 850, 1);
-
+        super(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, 1);
+        setPaintOrder(Fade.class);
         fillCharacterBackgroundAndStories();
 
         // Use multi-line textbox
@@ -60,6 +63,10 @@ public class CharacterIntros extends AllWorld
     }
 
     public void act(){
+        actCount++;
+        if(actCount == 1) {
+            sm.playSound("Titlescreen");
+        }
         addObject(leftButton, 100, 425);
         addObject(rightButton, 1100, 425);
         if(displayCounter == 0){
@@ -72,18 +79,21 @@ public class CharacterIntros extends AllWorld
             addObject(indicator, 600, 100);
         }
         if(Greenfoot.mouseClicked(rightButton)){
+            sm.playSound("click");
             removeObject(characterStories[displayCounter]);
             displayCounter++;
             setBackground(characterBackgrounds[displayCounter]);
             addObject(characterStories[displayCounter], 600, 700);
         }
         if(Greenfoot.mouseClicked(leftButton)){
+            sm.playSound("click");
             removeObject(characterStories[displayCounter]);
             displayCounter--;
             setBackground(characterBackgrounds[displayCounter]);
             addObject(characterStories[displayCounter], 600, 700);
         }
         if(Greenfoot.mouseClicked(indicator)){
+            sm.pauseSounds();
             SelectWorld selectWorld = new SelectWorld();
             Greenfoot.setWorld(selectWorld);
         }
