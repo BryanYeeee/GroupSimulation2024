@@ -103,6 +103,7 @@ public class StatWorld extends AllWorld
         
         acts++;
         if(acts >= 120 && NextButton.getSwitchWorld()) {
+            //sm.pauseSounds();
             NextButton.resetSwitchWorld();
             switchToWorld();
         }
