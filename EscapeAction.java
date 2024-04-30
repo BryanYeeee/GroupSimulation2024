@@ -18,7 +18,7 @@ public class EscapeAction extends Action
     
     private final static int GENERATOR_NODE = 142;
     private final static int CUT_FENCE_NODE = 150;
-    private final static int CUT_FENCE_ESCAPE_NODE = 152;
+    private final static int CUT_FENCE_ESCAPE_NODE = 151;
     
     private final static int HOLE_ENTER_NODE = 149;
     private final static int HOLE_EXIT_NODE = 148;
@@ -155,9 +155,11 @@ public class EscapeAction extends Action
                 }
                 break;
             case 4:
+                mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == EXPLOSION_ESCAPE_NODE) return true;
                 if(!mc.isMoving()) mc.goToNode(EXPLOSION_ESCAPE_NODE);
                 for(MC follower : followers) {
+                    follower.setAction("Escaping");
                     if(!follower.isMoving()) follower.goToNode(EXPLOSION_ESCAPE_NODE);
                 }
                 break;
@@ -168,20 +170,30 @@ public class EscapeAction extends Action
     public static boolean cutFence(MyWorld w, MC mc, MC[] followers, int step) {
         switch(step) {
             case 0:
+                mc.setAction("Turning Off Generator");
+                if(mc.getCurNode().getIndex() == GENERATOR_NODE) {
+                    w.generatorOff();
+                    return true;
+                }
+                if(!mc.isMoving()) {
+                    mc.goToNode(GENERATOR_NODE);
+                }
+                break;
+            case 1:
                 mc.setAction("Going to Cut The Fence");
                 if(mc.getCurNode().getIndex() == CUT_FENCE_NODE) return true;
                 if(!mc.isMoving()) {
                     mc.goToNode(CUT_FENCE_NODE);
                 }
                 break;
-            case 1:
+            case 2:
                 mc.setAction("Cutting The Fence");
                 if(w.getBreakable(5).isBroken()) return true;
                 if(!w.getBreakable(5).isBreaking()) {
                     w.getBreakable(5).beginBreak();
                 }
                 break;
-            case 2:
+            case 3:
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == CUT_FENCE_ESCAPE_NODE) return true;
                 if(!mc.isMoving()) {

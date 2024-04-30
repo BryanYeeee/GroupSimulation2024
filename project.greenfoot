@@ -8,361 +8,6 @@ class.JanitorCloset.image=JanitorCloset.png
 class.Library.image=Library.png
 class.MC.image=girl1.png
 class.Metalwork.image=Metalwork.png
-<<<<<<< HEAD
-dependency1.from=AllWorld
-dependency1.to=SoundManager
-dependency1.type=UsesDependency
-dependency10.from=SelectWorld
-dependency10.to=StatWorld
-dependency10.type=UsesDependency
-dependency100.from=Metal
-dependency100.to=StatusBar
-dependency100.type=UsesDependency
-dependency101.from=Weapon
-dependency101.to=MyWorld
-dependency101.type=UsesDependency
-dependency102.from=Weapon
-dependency102.to=MC
-dependency102.type=UsesDependency
-dependency103.from=Chemicals
-dependency103.to=MyWorld
-dependency103.type=UsesDependency
-dependency104.from=Chemicals
-dependency104.to=MC
-dependency104.type=UsesDependency
-dependency105.from=Chemicals
-dependency105.to=Bomb
-dependency105.type=UsesDependency
-dependency106.from=Fork
-dependency106.to=MyWorld
-dependency106.type=UsesDependency
-dependency107.from=Fork
-dependency107.to=MC
-dependency107.type=UsesDependency
-dependency108.from=Knife
-dependency108.to=MyWorld
-dependency108.type=UsesDependency
-dependency109.from=Knife
-dependency109.to=MC
-dependency109.type=UsesDependency
-dependency11.from=SelectWorld
-dependency11.to=Fade
-dependency11.type=UsesDependency
-dependency110.from=Shovel
-dependency110.to=MyWorld
-dependency110.type=UsesDependency
-dependency111.from=Shovel
-dependency111.to=MC
-dependency111.type=UsesDependency
-dependency112.from=Bomb
-dependency112.to=MyWorld
-dependency112.type=UsesDependency
-dependency113.from=Bomb
-dependency113.to=MC
-dependency113.type=UsesDependency
-dependency114.from=Food
-dependency114.to=MyWorld
-dependency114.type=UsesDependency
-dependency115.from=Food
-dependency115.to=MC
-dependency115.type=UsesDependency
-dependency116.from=Wood
-dependency116.to=MyWorld
-dependency116.type=UsesDependency
-dependency117.from=Wood
-dependency117.to=MC
-dependency117.type=UsesDependency
-dependency118.from=Wood
-dependency118.to=Shovel
-dependency118.type=UsesDependency
-dependency119.from=Keycard
-dependency119.to=MyWorld
-dependency119.type=UsesDependency
-dependency12.from=StatWorld
-dependency12.to=SavedPrisoner
-dependency12.type=UsesDependency
-dependency120.from=Keycard
-dependency120.to=MC
-dependency120.type=UsesDependency
-dependency121.from=Vehicle
-dependency121.to=MC
-dependency121.type=UsesDependency
-dependency122.from=Vehicle
-dependency122.to=Person
-dependency122.type=UsesDependency
-dependency123.from=SelectButton
-dependency123.to=SavedPrisoner
-dependency123.type=UsesDependency
-dependency124.from=SelectButton
-dependency124.to=SelectWorld
-dependency124.type=UsesDependency
-dependency125.from=SelectButton
-dependency125.to=SoundManager
-dependency125.type=UsesDependency
-dependency126.from=StatButton
-dependency126.to=SavedPrisoner
-dependency126.type=UsesDependency
-dependency127.from=StatusBar
-dependency127.to=SuperTextBox
-dependency127.type=UsesDependency
-dependency128.from=StatusBar
-dependency128.to=MyWorld
-dependency128.type=UsesDependency
-dependency129.from=StatusBar
-dependency129.to=TempBox
-dependency129.type=UsesDependency
-dependency13.from=StatWorld
-dependency13.to=NextButton
-dependency13.type=UsesDependency
-dependency130.from=StatusBar
-dependency130.to=SavedPrisoner
-dependency130.type=UsesDependency
-dependency131.from=StatusBar
-dependency131.to=SimulationFont
-dependency131.type=UsesDependency
-dependency132.from=Banner
-dependency132.to=BannerIcon
-dependency132.type=UsesDependency
-dependency133.from=Fade
-dependency133.to=AllWorld
-dependency133.type=UsesDependency
-dependency134.from=Generator
-dependency134.to=ElectricFence
-dependency134.type=UsesDependency
-dependency135.from=Room
-dependency135.to=Person
-dependency135.type=UsesDependency
-dependency136.from=Room
-dependency136.to=Node
-dependency136.type=UsesDependency
-dependency137.from=Room
-dependency137.to=Guard
-dependency137.type=UsesDependency
-dependency138.from=Room
-dependency138.to=Prisoner
-dependency138.type=UsesDependency
-dependency139.from=Room
-dependency139.to=MyWorld
-dependency139.type=UsesDependency
-dependency14.from=StatWorld
-dependency14.to=IntroWorld
-dependency14.type=UsesDependency
-dependency140.from=Metalwork
-dependency140.to=Person
-dependency140.type=UsesDependency
-dependency141.from=Metalwork
-dependency141.to=MC
-dependency141.type=UsesDependency
-dependency142.from=Metalwork
-dependency142.to=Metal
-dependency142.type=UsesDependency
-dependency143.from=JanitorCloset
-dependency143.to=Person
-dependency143.type=UsesDependency
-dependency144.from=JanitorCloset
-dependency144.to=MC
-dependency144.type=UsesDependency
-dependency145.from=JanitorCloset
-dependency145.to=Chemicals
-dependency145.type=UsesDependency
-dependency146.from=Gym
-dependency146.to=Person
-dependency146.type=UsesDependency
-dependency147.from=Woodwork
-dependency147.to=Person
-dependency147.type=UsesDependency
-dependency148.from=Woodwork
-dependency148.to=MC
-dependency148.type=UsesDependency
-dependency149.from=Woodwork
-dependency149.to=Wood
-dependency149.type=UsesDependency
-dependency15.from=StatWorld
-dependency15.to=Fade
-dependency15.type=UsesDependency
-dependency150.from=JailCell
-dependency150.to=Person
-dependency150.type=UsesDependency
-dependency151.from=JailCell
-dependency151.to=MC
-dependency151.type=UsesDependency
-dependency152.from=JailCell
-dependency152.to=MyWorld
-dependency152.type=UsesDependency
-dependency153.from=Library
-dependency153.to=Person
-dependency153.type=UsesDependency
-dependency154.from=RollCall
-dependency154.to=Person
-dependency154.type=UsesDependency
-dependency155.from=RollCall
-dependency155.to=Prisoner
-dependency155.type=UsesDependency
-dependency156.from=RollCall
-dependency156.to=Guard
-dependency156.type=UsesDependency
-dependency157.from=DiningHall
-dependency157.to=Person
-dependency157.type=UsesDependency
-dependency158.from=DiningHall
-dependency158.to=MyWorld
-dependency158.type=UsesDependency
-dependency159.from=DiningHall
-dependency159.to=Prisoner
-dependency159.type=UsesDependency
-dependency16.from=MyWorld
-dependency16.to=PathFinder
-dependency16.type=UsesDependency
-dependency160.from=DiningHall
-dependency160.to=MC
-dependency160.type=UsesDependency
-dependency161.from=DiningHall
-dependency161.to=Fork
-dependency161.type=UsesDependency
-dependency162.from=DiningHall
-dependency162.to=Food
-dependency162.type=UsesDependency
-dependency163.from=DiningHall
-dependency163.to=Guard
-dependency163.type=UsesDependency
-dependency164.from=Textbox
-dependency164.to=SavedPrisoner
-dependency164.type=UsesDependency
-dependency165.from=Breakable
-dependency165.to=SuperStatBar
-dependency165.type=UsesDependency
-dependency166.from=SavedPrisoner
-dependency166.to=StatButton
-dependency166.type=UsesDependency
-dependency167.from=SavedPrisoner
-dependency167.to=Textbox
-dependency167.type=UsesDependency
-dependency168.from=SoundManager
-dependency168.to=Sound
-dependency168.type=UsesDependency
-dependency169.from=PathFinder
-dependency169.to=MyWorld
-dependency169.type=UsesDependency
-dependency17.from=MyWorld
-dependency17.to=Prisoner
-dependency17.type=UsesDependency
-dependency170.from=PathFinder
-dependency170.to=Node
-dependency170.type=UsesDependency
-dependency171.from=PathFinder
-dependency171.to=Tile
-dependency171.type=UsesDependency
-dependency172.from=PathFinder
-dependency172.to=Person
-dependency172.type=UsesDependency
-dependency173.from=Action
-dependency173.to=MyWorld
-dependency173.type=UsesDependency
-dependency174.from=Action
-dependency174.to=Person
-dependency174.type=UsesDependency
-dependency175.from=Action
-dependency175.to=Node
-dependency175.type=UsesDependency
-dependency176.from=Action
-dependency176.to=MC
-dependency176.type=UsesDependency
-dependency177.from=Action
-dependency177.to=DiningHall
-dependency177.type=UsesDependency
-dependency178.from=Action
-dependency178.to=Gym
-dependency178.type=UsesDependency
-dependency179.from=Action
-dependency179.to=Guard
-dependency179.type=UsesDependency
-dependency18.from=MyWorld
-dependency18.to=EventDisplay
-dependency18.type=UsesDependency
-dependency180.from=Action
-dependency180.to=Prisoner
-dependency180.type=UsesDependency
-dependency181.from=Action
-dependency181.to=Library
-dependency181.type=UsesDependency
-dependency182.from=Action
-dependency182.to=Woodwork
-dependency182.type=UsesDependency
-dependency183.from=Action
-dependency183.to=Metalwork
-dependency183.type=UsesDependency
-dependency184.from=EscapeAction
-dependency184.to=MyWorld
-dependency184.type=UsesDependency
-dependency185.from=EscapeAction
-dependency185.to=MC
-dependency185.type=UsesDependency
-dependency186.from=EscapeAction
-dependency186.to=Keycard
-dependency186.type=UsesDependency
-dependency187.from=EscapeAction
-dependency187.to=WallCover
-dependency187.type=UsesDependency
-dependency188.from=Escape
-dependency188.to=MyWorld
-dependency188.type=UsesDependency
-dependency189.from=Escape
-dependency189.to=MC
-dependency189.type=UsesDependency
-dependency19.from=MyWorld
-dependency19.to=Schedule
-dependency19.type=UsesDependency
-dependency190.from=Escape
-dependency190.to=Item
-dependency190.type=UsesDependency
-dependency191.from=Escape
-dependency191.to=Fork
-dependency191.type=UsesDependency
-dependency192.from=Escape
-dependency192.to=Bomb
-dependency192.type=UsesDependency
-dependency193.from=Escape
-dependency193.to=Knife
-dependency193.type=UsesDependency
-dependency194.from=Escape
-dependency194.to=Shovel
-dependency194.type=UsesDependency
-dependency195.from=Escape
-dependency195.to=EscapeAction
-dependency195.type=UsesDependency
-dependency196.from=Schedule
-dependency196.to=MyWorld
-dependency196.type=UsesDependency
-dependency197.from=Schedule
-dependency197.to=NightTime
-dependency197.type=UsesDependency
-dependency198.from=Schedule
-dependency198.to=MC
-dependency198.type=UsesDependency
-dependency199.from=Schedule
-dependency199.to=Person
-dependency199.type=UsesDependency
-dependency2.from=AllWorld
-dependency2.to=Fade
-dependency2.type=UsesDependency
-dependency20.from=MyWorld
-dependency20.to=DiningHall
-dependency20.type=UsesDependency
-dependency200.from=Schedule
-dependency200.to=Prisoner
-dependency200.type=UsesDependency
-dependency201.from=Schedule
-dependency201.to=Announcement
-dependency201.type=UsesDependency
-dependency202.from=Schedule
-dependency202.to=Dialogue
-dependency202.type=UsesDependency
-dependency203.from=Schedule
-dependency203.to=Action
-dependency203.type=UsesDependency
-dependency21.from=MyWorld
-dependency21.to=RollCall
-=======
 dependency1.from=Sword
 dependency1.to=MC
 dependency1.type=UsesDependency
@@ -734,7 +379,6 @@ dependency209.to=Weapon
 dependency209.type=UsesDependency
 dependency21.from=MyWorld
 dependency21.to=PathFinder
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 dependency21.type=UsesDependency
 dependency210.from=Schedule
 dependency210.to=MC
@@ -755,269 +399,6 @@ dependency215.from=Schedule
 dependency215.to=Action
 dependency215.type=UsesDependency
 dependency22.from=MyWorld
-<<<<<<< HEAD
-dependency22.to=Gym
-dependency22.type=UsesDependency
-dependency23.from=MyWorld
-dependency23.to=Library
-dependency23.type=UsesDependency
-dependency24.from=MyWorld
-dependency24.to=Woodwork
-dependency24.type=UsesDependency
-dependency25.from=MyWorld
-dependency25.to=Metalwork
-dependency25.type=UsesDependency
-dependency26.from=MyWorld
-dependency26.to=JanitorCloset
-dependency26.type=UsesDependency
-dependency27.from=MyWorld
-dependency27.to=JailCell
-dependency27.type=UsesDependency
-dependency28.from=MyWorld
-dependency28.to=Generator
-dependency28.type=UsesDependency
-dependency29.from=MyWorld
-dependency29.to=StatusBar
-dependency29.type=UsesDependency
-dependency3.from=TitleScreen
-dependency3.to=SuperTextBox
-dependency3.type=UsesDependency
-dependency30.from=MyWorld
-dependency30.to=Escape
-dependency30.type=UsesDependency
-dependency31.from=MyWorld
-dependency31.to=PerformanceMeter
-dependency31.type=UsesDependency
-dependency32.from=MyWorld
-dependency32.to=Person
-dependency32.type=UsesDependency
-dependency33.from=MyWorld
-dependency33.to=MC
-dependency33.type=UsesDependency
-dependency34.from=MyWorld
-dependency34.to=Guard
-dependency34.type=UsesDependency
-dependency35.from=MyWorld
-dependency35.to=Clock
-dependency35.type=UsesDependency
-dependency36.from=MyWorld
-dependency36.to=WallCover
-dependency36.type=UsesDependency
-dependency37.from=MyWorld
-dependency37.to=Breakable
-dependency37.type=UsesDependency
-dependency38.from=MyWorld
-dependency38.to=Vehicle
-dependency38.type=UsesDependency
-dependency39.from=MyWorld
-dependency39.to=ElectricFence
-dependency39.type=UsesDependency
-dependency4.from=TitleScreen
-dependency4.to=CharacterIntros
-dependency4.type=UsesDependency
-dependency40.from=MyWorld
-dependency40.to=Entity
-dependency40.type=UsesDependency
-dependency41.from=MyWorld
-dependency41.to=Fade
-dependency41.type=UsesDependency
-dependency42.from=MyWorld
-dependency42.to=Item
-dependency42.type=UsesDependency
-dependency43.from=MyWorld
-dependency43.to=BannerIcon
-dependency43.type=UsesDependency
-dependency44.from=MyWorld
-dependency44.to=Banner
-dependency44.type=UsesDependency
-dependency45.from=MyWorld
-dependency45.to=Alarm
-dependency45.type=UsesDependency
-dependency46.from=MyWorld
-dependency46.to=NightTime
-dependency46.type=UsesDependency
-dependency47.from=MyWorld
-dependency47.to=SuperStatBar
-dependency47.type=UsesDependency
-dependency48.from=MyWorld
-dependency48.to=Accessory
-dependency48.type=UsesDependency
-dependency49.from=MyWorld
-dependency49.to=Underglow
-dependency49.type=UsesDependency
-dependency5.from=TitleScreen
-dependency5.to=SimulationFont
-dependency5.type=UsesDependency
-dependency50.from=MyWorld
-dependency50.to=Tile
-dependency50.type=UsesDependency
-dependency51.from=MyWorld
-dependency51.to=Room
-dependency51.type=UsesDependency
-dependency52.from=MyWorld
-dependency52.to=SimulationFont
-dependency52.type=UsesDependency
-dependency53.from=MyWorld
-dependency53.to=Sprite
-dependency53.type=UsesDependency
-dependency54.from=IntroWorld
-dependency54.to=SuperTextBox
-dependency54.type=UsesDependency
-dependency55.from=IntroWorld
-dependency55.to=TempBox
-dependency55.type=UsesDependency
-dependency56.from=IntroWorld
-dependency56.to=Guard
-dependency56.type=UsesDependency
-dependency57.from=IntroWorld
-dependency57.to=Accessory
-dependency57.type=UsesDependency
-dependency58.from=IntroWorld
-dependency58.to=Indicator
-dependency58.type=UsesDependency
-dependency59.from=IntroWorld
-dependency59.to=InnerIcon
-dependency59.type=UsesDependency
-dependency6.from=TitleScreen
-dependency6.to=Fade
-dependency6.type=UsesDependency
-dependency60.from=IntroWorld
-dependency60.to=SavedPrisoner
-dependency60.type=UsesDependency
-dependency61.from=IntroWorld
-dependency61.to=MC
-dependency61.type=UsesDependency
-dependency62.from=IntroWorld
-dependency62.to=MyWorld
-dependency62.type=UsesDependency
-dependency63.from=IntroWorld
-dependency63.to=Fade
-dependency63.type=UsesDependency
-dependency64.from=IntroWorld
-dependency64.to=SimulationFont
-dependency64.type=UsesDependency
-dependency65.from=IntroWorld
-dependency65.to=Person
-dependency65.type=UsesDependency
-dependency66.from=CharacterIntros
-dependency66.to=SuperTextBox
-dependency66.type=UsesDependency
-dependency67.from=CharacterIntros
-dependency67.to=IntroButton
-dependency67.type=UsesDependency
-dependency68.from=CharacterIntros
-dependency68.to=SelectWorld
-dependency68.type=UsesDependency
-dependency69.from=CharacterIntros
-dependency69.to=Fade
-dependency69.type=UsesDependency
-dependency7.from=SelectWorld
-dependency7.to=SavedPrisoner
-dependency7.type=UsesDependency
-dependency70.from=CharacterIntros
-dependency70.to=SimulationFont
-dependency70.type=UsesDependency
-dependency71.from=Accessory
-dependency71.to=Person
-dependency71.type=UsesDependency
-dependency72.from=Person
-dependency72.to=Node
-dependency72.type=UsesDependency
-dependency73.from=Person
-dependency73.to=Room
-dependency73.type=UsesDependency
-dependency74.from=Person
-dependency74.to=SuperStatBar
-dependency74.type=UsesDependency
-dependency75.from=Person
-dependency75.to=MC
-dependency75.type=UsesDependency
-dependency76.from=Person
-dependency76.to=Accessory
-dependency76.type=UsesDependency
-dependency77.from=Person
-dependency77.to=MyWorld
-dependency77.type=UsesDependency
-dependency78.from=Person
-dependency78.to=Guard
-dependency78.type=UsesDependency
-dependency79.from=Person
-dependency79.to=DiningHall
-dependency79.type=UsesDependency
-dependency8.from=SelectWorld
-dependency8.to=SelectButton
-dependency8.type=UsesDependency
-dependency80.from=Person
-dependency80.to=Gym
-dependency80.type=UsesDependency
-dependency81.from=Person
-dependency81.to=Underglow
-dependency81.type=UsesDependency
-dependency82.from=Person
-dependency82.to=Sprite
-dependency82.type=UsesDependency
-dependency83.from=Person
-dependency83.to=StatusBar
-dependency83.type=UsesDependency
-dependency84.from=Person
-dependency84.to=Action
-dependency84.type=UsesDependency
-dependency85.from=Prisoner
-dependency85.to=MyWorld
-dependency85.type=UsesDependency
-dependency86.from=Prisoner
-dependency86.to=MC
-dependency86.type=UsesDependency
-dependency87.from=MC
-dependency87.to=MyWorld
-dependency87.type=UsesDependency
-dependency88.from=MC
-dependency88.to=Item
-dependency88.type=UsesDependency
-dependency89.from=MC
-dependency89.to=StatusBar
-dependency89.type=UsesDependency
-dependency9.from=SelectWorld
-dependency9.to=NextButton
-dependency9.type=UsesDependency
-dependency90.from=Guard
-dependency90.to=MyWorld
-dependency90.type=UsesDependency
-dependency91.from=Guard
-dependency91.to=MC
-dependency91.type=UsesDependency
-dependency92.from=Guard
-dependency92.to=Accessory
-dependency92.type=UsesDependency
-dependency93.from=Guard
-dependency93.to=Action
-dependency93.type=UsesDependency
-dependency94.from=Item
-dependency94.to=MC
-dependency94.type=UsesDependency
-dependency95.from=Item
-dependency95.to=MyWorld
-dependency95.type=UsesDependency
-dependency96.from=Metal
-dependency96.to=MyWorld
-dependency96.type=UsesDependency
-dependency97.from=Metal
-dependency97.to=MC
-dependency97.type=UsesDependency
-dependency98.from=Metal
-dependency98.to=Weapon
-dependency98.type=UsesDependency
-dependency99.from=Metal
-dependency99.to=Knife
-dependency99.type=UsesDependency
-editor.fx.0.height=0
-editor.fx.0.width=0
-editor.fx.0.x=0
-editor.fx.0.y=0
-height=830
-package.numDependencies=203
-package.numTargets=75
-=======
 dependency22.to=Prisoner
 dependency22.type=UsesDependency
 dependency23.from=MyWorld
@@ -1279,7 +660,6 @@ editor.fx.0.y=-8
 height=1048
 package.numDependencies=215
 package.numTargets=81
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
@@ -1293,11 +673,7 @@ readme.name=@README
 readme.width=49
 readme.x=10
 readme.y=10
-<<<<<<< HEAD
-simulation.speed=66
-=======
 simulation.speed=100
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target1.height=30
 target1.name=Entity
 target1.showInterface=false
@@ -1355,33 +731,21 @@ target16.width=120
 target16.x=0
 target16.y=0
 target17.height=70
-<<<<<<< HEAD
-target17.name=Button
-=======
 target17.name=Explosive
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target17.showInterface=false
 target17.type=ClassTarget
 target17.width=120
 target17.x=0
 target17.y=0
 target18.height=70
-<<<<<<< HEAD
-target18.name=MC
-=======
 target18.name=Sword
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target18.showInterface=false
 target18.type=ClassTarget
 target18.width=120
 target18.x=0
 target18.y=0
 target19.height=70
-<<<<<<< HEAD
-target19.name=Metalwork
-=======
 target19.name=Button
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target19.showInterface=false
 target19.type=ClassTarget
 target19.width=120
@@ -1395,112 +759,70 @@ target2.width=120
 target2.x=0
 target2.y=0
 target20.height=70
-<<<<<<< HEAD
-target20.name=JanitorCloset
-=======
 target20.name=MC
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target20.showInterface=false
 target20.type=ClassTarget
 target20.width=120
 target20.x=0
 target20.y=0
-<<<<<<< HEAD
-target21.height=30
-target21.name=SelectWorld
-=======
 target21.height=70
 target21.name=Metalwork
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target21.showInterface=false
 target21.type=ClassTarget
 target21.width=60
 target21.x=0
 target21.y=0
 target22.height=70
-<<<<<<< HEAD
-target22.name=PerformanceMeter
-=======
 target22.name=JanitorCloset
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target22.showInterface=false
 target22.type=ClassTarget
 target22.width=120
 target22.x=0
 target22.y=0
-<<<<<<< HEAD
-target23.height=70
-target23.name=Guard
-=======
 target23.height=30
 target23.name=SelectWorld
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target23.showInterface=false
 target23.type=ClassTarget
 target23.width=60
 target23.x=0
 target23.y=0
 target24.height=70
-<<<<<<< HEAD
-target24.name=Gym
-=======
 target24.name=PerformanceMeter
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target24.showInterface=false
 target24.type=ClassTarget
 target24.width=120
 target24.x=0
 target24.y=0
 target25.height=70
-<<<<<<< HEAD
-target25.name=StatWorld
-=======
 target25.name=Guard
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target25.showInterface=false
 target25.type=ClassTarget
 target25.width=120
 target25.x=0
 target25.y=0
 target26.height=70
-<<<<<<< HEAD
-target26.name=MyWorld
-=======
 target26.name=Gym
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target26.showInterface=false
 target26.type=ClassTarget
 target26.width=120
 target26.x=0
 target26.y=0
 target27.height=70
-<<<<<<< HEAD
-target27.name=NextButton
-=======
 target27.name=StatWorld
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target27.showInterface=false
 target27.type=ClassTarget
 target27.width=120
 target27.x=0
 target27.y=0
 target28.height=70
-<<<<<<< HEAD
-target28.name=Woodwork
-=======
 target28.name=MyWorld
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target28.showInterface=false
 target28.type=ClassTarget
 target28.width=120
 target28.x=0
 target28.y=0
 target29.height=70
-<<<<<<< HEAD
-target29.name=Sound
-=======
 target29.name=NextButton
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target29.showInterface=false
 target29.type=ClassTarget
 target29.width=120
@@ -1514,112 +836,70 @@ target3.width=130
 target3.x=0
 target3.y=0
 target30.height=70
-<<<<<<< HEAD
-target30.name=BannerIcon
-=======
 target30.name=Woodwork
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target30.showInterface=false
 target30.type=ClassTarget
 target30.width=120
 target30.x=0
 target30.y=0
-<<<<<<< HEAD
-target31.height=30
-target31.name=PathFinder
-=======
 target31.height=70
 target31.name=Sound
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target31.showInterface=false
 target31.type=ClassTarget
 target31.width=60
 target31.x=0
 target31.y=0
 target32.height=70
-<<<<<<< HEAD
-target32.name=StatusBar
-=======
 target32.name=BannerIcon
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target32.showInterface=false
 target32.type=ClassTarget
 target32.width=120
 target32.x=0
 target32.y=0
-<<<<<<< HEAD
-target33.height=70
-target33.name=Chemicals
-=======
 target33.height=30
 target33.name=PathFinder
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target33.showInterface=false
 target33.type=ClassTarget
 target33.width=60
 target33.x=0
 target33.y=0
 target34.height=70
-<<<<<<< HEAD
-target34.name=JailCell
-=======
 target34.name=StatusBar
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target34.showInterface=false
 target34.type=ClassTarget
 target34.width=120
 target34.x=0
 target34.y=0
 target35.height=70
-<<<<<<< HEAD
-target35.name=TempBox
-=======
 target35.name=Chemicals
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target35.showInterface=false
 target35.type=ClassTarget
 target35.width=120
 target35.x=0
 target35.y=0
 target36.height=70
-<<<<<<< HEAD
-target36.name=IntroButton
-=======
 target36.name=JailCell
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target36.showInterface=false
 target36.type=ClassTarget
 target36.width=120
 target36.x=0
 target36.y=0
 target37.height=70
-<<<<<<< HEAD
-target37.name=SuperTextBox
-=======
 target37.name=TempBox
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target37.showInterface=false
 target37.type=ClassTarget
 target37.width=120
 target37.x=0
 target37.y=0
 target38.height=70
-<<<<<<< HEAD
-target38.name=InnerIcon
-=======
 target38.name=IntroButton
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target38.showInterface=false
 target38.type=ClassTarget
 target38.width=120
 target38.x=0
 target38.y=0
 target39.height=70
-<<<<<<< HEAD
-target39.name=Library
-=======
 target39.name=SuperTextBox
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target39.showInterface=false
 target39.type=ClassTarget
 target39.width=120
@@ -1633,112 +913,70 @@ target4.width=120
 target4.x=0
 target4.y=0
 target40.height=70
-<<<<<<< HEAD
-target40.name=NightTime
-=======
 target40.name=InnerIcon
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target40.showInterface=false
 target40.type=ClassTarget
 target40.width=120
 target40.x=0
 target40.y=0
 target41.height=70
-<<<<<<< HEAD
-target41.name=Fade
-=======
 target41.name=Library
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target41.showInterface=false
 target41.type=ClassTarget
 target41.width=120
 target41.x=0
 target41.y=0
 target42.height=70
-<<<<<<< HEAD
-target42.name=Person
-target42.showInterface=false
-target42.type=AbstractTarget
-=======
 target42.name=NightTime
 target42.showInterface=false
 target42.type=ClassTarget
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target42.width=120
 target42.x=0
 target42.y=0
 target43.height=70
-<<<<<<< HEAD
-target43.name=Generator
-=======
 target43.name=Fade
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target43.showInterface=false
 target43.type=ClassTarget
 target43.width=120
 target43.x=0
 target43.y=0
 target44.height=70
-<<<<<<< HEAD
-target44.name=Action
-=======
 target44.name=Person
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target44.showInterface=false
 target44.type=AbstractTarget
 target44.width=120
 target44.x=0
 target44.y=0
 target45.height=70
-<<<<<<< HEAD
-target45.name=Fork
-=======
 target45.name=Generator
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target45.showInterface=false
 target45.type=ClassTarget
 target45.width=120
 target45.x=0
 target45.y=0
 target46.height=70
-<<<<<<< HEAD
-target46.name=Announcement
-=======
 target46.name=Action
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target46.showInterface=false
 target46.type=ClassTarget
 target46.width=120
 target46.x=0
 target46.y=0
 target47.height=70
-<<<<<<< HEAD
-target47.name=RollCall
-=======
 target47.name=Fork
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target47.showInterface=false
 target47.type=ClassTarget
 target47.width=120
 target47.x=0
 target47.y=0
 target48.height=70
-<<<<<<< HEAD
-target48.name=Knife
-=======
 target48.name=Announcement
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target48.showInterface=false
 target48.type=ClassTarget
 target48.width=120
 target48.x=0
 target48.y=0
 target49.height=70
-<<<<<<< HEAD
-target49.name=Shovel
-=======
 target49.name=RollCall
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target49.showInterface=false
 target49.type=ClassTarget
 target49.width=120
@@ -1752,82 +990,47 @@ target5.width=120
 target5.x=0
 target5.y=0
 target50.height=70
-<<<<<<< HEAD
-target50.name=EndWorld
-=======
 target50.name=StatSetter
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target50.showInterface=false
 target50.type=ClassTarget
 target50.width=120
 target50.x=0
 target50.y=0
 target51.height=70
-<<<<<<< HEAD
-target51.name=EscapeAction
-=======
 target51.name=Knife
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target51.showInterface=false
 target51.type=ClassTarget
 target51.width=120
 target51.x=0
 target51.y=0
 target52.height=70
-<<<<<<< HEAD
-target52.name=Bomb
-=======
 target52.name=Shovel
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target52.showInterface=false
 target52.type=ClassTarget
 target52.width=120
 target52.x=0
 target52.y=0
 target53.height=70
-<<<<<<< HEAD
-target53.name=Room
-=======
 target53.name=EndWorld
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target53.showInterface=false
 target53.type=AbstractTarget
 target53.width=120
 target53.x=0
 target53.y=0
 target54.height=70
-<<<<<<< HEAD
-target54.name=Food
-=======
 target54.name=EscapeAction
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target54.showInterface=false
 target54.type=ClassTarget
 target54.width=120
 target54.x=0
 target54.y=0
 target55.height=70
-<<<<<<< HEAD
-target55.name=SimulationFont
-=======
 target55.name=Bomb
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target55.showInterface=false
 target55.type=ClassTarget
 target55.width=120
 target55.x=0
 target55.y=0
-<<<<<<< HEAD
-target56.height=30
-target56.name=ElectricFence
-target56.showInterface=false
-target56.type=ClassTarget
-target56.width=60
-target56.x=0
-target56.y=0
-target57.height=70
-target57.name=Escape
-=======
 target56.height=70
 target56.name=Room
 target56.showInterface=false
@@ -1837,36 +1040,23 @@ target56.x=0
 target56.y=0
 target57.height=70
 target57.name=Food
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target57.showInterface=false
 target57.type=ClassTarget
 target57.width=120
 target57.x=0
 target57.y=0
 target58.height=70
-<<<<<<< HEAD
-target58.name=Sprite
-=======
 target58.name=SimulationFont
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target58.showInterface=false
 target58.type=ClassTarget
 target58.width=120
 target58.x=0
 target58.y=0
-<<<<<<< HEAD
-target59.height=70
-target59.name=Wood
-target59.showInterface=false
-target59.type=ClassTarget
-target59.width=120
-=======
 target59.height=30
 target59.name=ElectricFence
 target59.showInterface=false
 target59.type=ClassTarget
 target59.width=60
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target59.x=0
 target59.y=0
 target6.height=70
@@ -1877,118 +1067,73 @@ target6.width=120
 target6.x=0
 target6.y=0
 target60.height=70
-<<<<<<< HEAD
-target60.name=Banner
-=======
 target60.name=Escape
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target60.showInterface=false
 target60.type=ClassTarget
 target60.width=120
 target60.x=0
 target60.y=0
 target61.height=70
-<<<<<<< HEAD
-target61.name=Textbox
-=======
 target61.name=Sprite
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target61.showInterface=false
 target61.type=ClassTarget
 target61.width=120
 target61.x=0
 target61.y=0
 target62.height=70
-<<<<<<< HEAD
-target62.name=IntroWorld
-=======
 target62.name=Wood
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target62.showInterface=false
 target62.type=ClassTarget
 target62.width=120
 target62.x=0
 target62.y=0
 target63.height=70
-<<<<<<< HEAD
-target63.name=Tile
-=======
 target63.name=Potion
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target63.showInterface=false
 target63.type=ClassTarget
 target63.width=120
 target63.x=0
 target63.y=0
-<<<<<<< HEAD
-target64.height=30
-target64.name=Keycard
-=======
 target64.height=70
 target64.name=Banner
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target64.showInterface=false
 target64.type=ClassTarget
 target64.width=60
 target64.x=0
 target64.y=0
 target65.height=70
-<<<<<<< HEAD
-target65.name=SuperStatBar
-=======
 target65.name=Textbox
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target65.showInterface=false
 target65.type=ClassTarget
 target65.width=120
 target65.x=0
 target65.y=0
 target66.height=70
-<<<<<<< HEAD
-target66.name=Breakable
-=======
 target66.name=IntroWorld
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target66.showInterface=false
 target66.type=ClassTarget
 target66.width=120
 target66.x=0
 target66.y=0
 target67.height=70
-<<<<<<< HEAD
-target67.name=Indicator
-=======
 target67.name=Tile
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target67.showInterface=false
 target67.type=ClassTarget
 target67.width=120
 target67.x=0
 target67.y=0
 target68.height=70
-<<<<<<< HEAD
-target68.name=Alarm
-=======
 target68.name=Constants
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target68.showInterface=false
 target68.type=ClassTarget
 target68.width=120
 target68.x=0
 target68.y=0
-<<<<<<< HEAD
-target69.height=70
-target69.name=DiningHall
-target69.showInterface=false
-target69.type=ClassTarget
-target69.width=120
-=======
 target69.height=30
 target69.name=Keycard
 target69.showInterface=false
 target69.type=ClassTarget
 target69.width=60
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target69.x=0
 target69.y=0
 target7.height=70
@@ -1999,74 +1144,47 @@ target7.width=120
 target7.x=0
 target7.y=0
 target70.height=70
-<<<<<<< HEAD
-target70.name=Schedule
-=======
 target70.name=SuperStatBar
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target70.showInterface=false
 target70.type=ClassTarget
 target70.width=120
 target70.x=0
 target70.y=0
 target71.height=70
-<<<<<<< HEAD
-target71.name=EventDisplay
-=======
 target71.name=Breakable
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target71.showInterface=false
 target71.type=ClassTarget
 target71.width=120
 target71.x=0
 target71.y=0
 target72.height=70
-<<<<<<< HEAD
-target72.name=SavedPrisoner
-=======
 target72.name=Indicator
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target72.showInterface=false
 target72.type=ClassTarget
 target72.width=120
 target72.x=0
 target72.y=0
-<<<<<<< HEAD
-target73.height=30
-target73.name=StatButton
-=======
 target73.height=70
 target73.name=Ladder
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target73.showInterface=false
 target73.type=ClassTarget
 target73.width=60
 target73.x=0
 target73.y=0
 target74.height=70
-<<<<<<< HEAD
-target74.name=CharacterIntros
-=======
 target74.name=Alarm
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target74.showInterface=false
 target74.type=ClassTarget
 target74.width=120
 target74.x=0
 target74.y=0
 target75.height=70
-<<<<<<< HEAD
-target75.name=Underglow
-=======
 target75.name=DiningHall
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target75.showInterface=false
 target75.type=ClassTarget
 target75.width=120
 target75.x=0
 target75.y=0
-<<<<<<< HEAD
-=======
 target76.height=70
 target76.name=Schedule
 target76.showInterface=false
@@ -2095,7 +1213,6 @@ target79.type=ClassTarget
 target79.width=60
 target79.x=0
 target79.y=0
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 target8.height=30
 target8.name=Clock
 target8.showInterface=false
@@ -2124,14 +1241,8 @@ target9.type=ClassTarget
 target9.width=120
 target9.x=0
 target9.y=0
-<<<<<<< HEAD
-version=3.0.0
-width=1550
-world.lastInstantiated=TitleScreen
-=======
 version=3.1.0
 width=1936
 world.lastInstantiated=MyWorld
->>>>>>> 4a6d1c2a4eea2169725b57f65ed01c534c004eff
 xPosition=0
 yPosition=0

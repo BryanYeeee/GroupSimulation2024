@@ -85,7 +85,13 @@ public class MC extends Prisoner
     }
 
     public void setAction(String action) {
-        if(!currentAction.equals(action)) {
+        if(isDead) {
+            this.currentAction = "Reviving...";
+            StatusBar.setUpdate(true);
+        } else if(inFight) {
+            this.currentAction = "In a Fight";
+            StatusBar.setUpdate(true);
+        } else if(!currentAction.equals(action)) {
             this.currentAction = action;
             StatusBar.setUpdate(true);
         }
