@@ -28,14 +28,14 @@ public class EndWorld extends AllWorld
     SuperTextBox endingText1; 
     SuperTextBox endingText2; 
     // MC[] mainPrisoners must be passed on, right now will just be temp preset values
-    public EndWorld()
+    public EndWorld(MC[] mainPrisoners)
     {
         super(1200, 850, 1);
         SimulationFont.initalizeFont();
         endingBackground.scale(1200, 850);
         setBackground(endingBackground);
         // Temp
-        MC[] mainPrisoners = {new MC(0, true, "Thief"), new MC(1, true, "Brute"), new MC(2, true, "Explosive Expert"), new MC(3, true, "Weapons Dealer")};
+        //MC[] mainPrisoners = {new MC(0, true, "Thief"), new MC(1, true, "Brute"), new MC(2, true, "Explosive Expert"), new MC(3, true, "Weapons Dealer")};
         
         // Set texts
         endingText1 = new SuperTextBox("SIMULATION END", transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 54), true, 1024, 0, transparentColor);

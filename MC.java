@@ -75,6 +75,10 @@ public class MC extends Prisoner
     public String getEscapeMethod(){
         return escapeMethod;
     }
+    
+    public void setEscapeMethod(String method){
+        escapeMethod = method;
+    }
 
     public String getSpecialty() {
         return specialty;
