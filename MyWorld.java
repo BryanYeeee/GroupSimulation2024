@@ -19,7 +19,7 @@ import java.util.Arrays;
  */
 public class MyWorld extends AllWorld
 {
-    public final static boolean SHOW_NODES = true;
+    public final static boolean SHOW_NODES = false;
     public final static int WORLD_WIDTH = 1200;
     public final static int WORLD_HEIGHT = 850;
     public static greenfoot.Font pixelFont;
@@ -252,6 +252,7 @@ public class MyWorld extends AllWorld
 
     public void generatorOff() {
         generator.turnOff();
+        sm.playSound("GeneratorOff");
     }
 
     public boolean doEscape() {

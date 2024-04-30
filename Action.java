@@ -27,7 +27,10 @@ public class Action
     protected final static int CELL_1 = 133;
     protected final static int CELL_2 = 136;
     
+    private static SoundManager sm;
+    
     public static void doRollCall(MyWorld w) {
+        sm.playSound("RollCall");
         Person[] getPeople = w.getPeople();
         for (Person p : getPeople) {
             //System.out.println(p);

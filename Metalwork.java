@@ -15,6 +15,8 @@ public class Metalwork extends Room
     private final int JOB_NODE_4 = 120;
     private final int JOB_NODE_5 = 124;
     private final int JOB_NODE_6 = 122;
+    
+    private SoundManager sm;
 
     public Metalwork (int[] prisonerPosIndexes, int[] dimensions) {
         super(prisonerPosIndexes, new int[]{}, dimensions);
@@ -22,6 +24,9 @@ public class Metalwork extends Room
 
     public void doEffect (Person p) {
         if (!p.isMoving() && p.getActCount() % 120 == 0) {
+            if(p.getActCount() % 300 == 0) {
+                sm.playSound("MetalCraft");
+            }
             //System.out.println(p.getCurNode().getIndex());
             switch(p.getCurNode().getIndex()) {
                 case JOB_NODE_1:
