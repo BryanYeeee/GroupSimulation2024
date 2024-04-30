@@ -25,11 +25,15 @@ public class SoundManager
         
         // Non-looped
         sounds.put("click", new Sound("click.mp3", 35, false));
-        sounds.put("bomb", new Sound("bomb.mp3", 100, false));
-        sounds.put("GeneratorOff", new Sound("GeneratorOff.mp3", 100, false));
-        sounds.put("WoodBurning", new Sound("WoodBurning.mp3", 100, false));
-        sounds.put("WallBreak", new Sound("WallBreak.mp3", 100, false));
-        sounds.put("VictoryEscape", new Sound("VictoryEscape.mp3", 100, false));
+        sounds.put("bomb", new Sound("bomb.mp3", 35, false));
+        sounds.put("GeneratorOff", new Sound("GeneratorOff.mp3", 35, false));
+        sounds.put("WoodBurning", new Sound("WoodBurning.mp3", 35, false));
+        sounds.put("WallBreak", new Sound("WallBreak.mp3", 35, false));
+        sounds.put("VictoryEscape", new Sound("VictoryEscape.mp3", 30, false));
+        sounds.put("MetalCraft", new Sound("MetalCraft.mp3", 35, false));
+        sounds.put("DoorOpen", new Sound("DoorOpen.mp3", 35, false));
+        sounds.put("WoodCraft", new Sound("WoodCraft.mp3", 30, false));
+        sounds.put("Fighting", new Sound("Fighting.mp3", 35, false));
         
         // Looped
         sounds.put("Statscreen", new Sound("Statscreen.mp3", 25, true));
