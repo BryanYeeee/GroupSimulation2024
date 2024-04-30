@@ -79,11 +79,16 @@ public class Schedule
     
     public void act()
     {
-        if(actCount==10) {
-            //actCount=120*60;
-            
-            //world.getMainPrisoners()[2].setStrength(35);
-            
+        System.out.println(actCount);
+        if(actCount==180) {
+            actCount=135*60;
+           // world.getMainPrisoners()[1].giveItem(new Fork());
+             world.getMainPrisoners()[0].giveItem(new Knife());
+            world.getMainPrisoners()[0].setStrength(40);
+            world.getMainPrisoners()[1].setStrength(40);
+            world.getMainPrisoners()[2].setStrength(40);
+            world.getMainPrisoners()[3].setStrength(40);
+           // world.getMainPrisoners()[3].giveItem(new Shovel());
         }
         // if(actCount==20*60) {
         // }
@@ -102,12 +107,6 @@ public class Schedule
                 Action.doRollCall(world);
                 System.out.println("STARTING SIMULATION");
                 //System.out.println(x + ": " + Person.noFights);
-                MC[] mc = world.getMainPrisoners();
-                for(MC m : mc) {
-                    m.setStrength(Greenfoot.getRandomNumber(5)+5);
-                    if(m.getSpecialty().equals("Brute")) m.setStrength(Greenfoot.getRandomNumber(3)+10);
-                    System.out.println(m.getSpecialty() +": "+m.getStrength());
-                }
                 break;
             case 10*60: // Breakfast, act 600
                 world.updateEventDisplay("BREAKFAST");

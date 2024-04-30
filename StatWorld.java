@@ -92,7 +92,6 @@ public class StatWorld extends AllWorld
             }
         }
         
-        
         bgImage = new GreenfootImage("statsWorldBg3.jpg");
         bgImage.scale(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT);
         setBackground(bgImage);

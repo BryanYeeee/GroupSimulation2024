@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.awt.Font;
 import java.util.Collections;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Arrays;
 
@@ -216,10 +217,11 @@ public class MyWorld extends AllWorld
         sm.playSound("MainEscape");
     }
 
+    /*
     public void started(){
         Greenfoot.setSpeed(50);
     }
-
+    */
     public void debug() {
         for (Prisoner p : prisoners) {
             p.offsetPos = -20;
@@ -246,8 +248,11 @@ public class MyWorld extends AllWorld
     }
 
     public boolean doEscape() {
+        sm.stopSoundLoop("MainEscape");
+        sm.playSound("LightsOut");
+        
         escapingMcs++;
-        if (escapingMcs == 4) { // All prisoners are ready to escape
+        if (escapingMcs == 4) { // All prisoners are ready to escap
             escape = new Escape(this);
             escapeTime = true;
             Guard.setGuardStats(this);

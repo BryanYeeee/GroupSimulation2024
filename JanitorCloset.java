@@ -20,9 +20,9 @@ public class JanitorCloset extends Room
     public void exitRoom(Person p, int roomPosition) {
         if (p instanceof MC && Greenfoot.getRandomNumber(p.getChance()) == 0) {
             ((MC)p).giveItem(new Chemicals());
-        } else {
-            super.exitRoom(p, roomPosition);
         }
+        super.exitRoom(p, roomPosition);
+        
     }
 
     public boolean checkEffectCondition (Person p) { // If person is at its assigned room position
