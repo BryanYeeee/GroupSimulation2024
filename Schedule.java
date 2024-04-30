@@ -173,14 +173,12 @@ public class Schedule
                 //x++;
                 Person.noFights = 0;
         }
-        if(actCount==440){
-            dialogue("this bomb that I smuggled might help", 150, "scientist");
-        }
+        
         if(actCount==360){
-            dialogue("I need to get out of here", 150, "thief");
+            dialogue("I need to get out of here", 5, "thief");
         }
         if(actCount==440){
-            dialogue("this bomb that I smuggled might help", 150, "scientist");
+            dialogue("this bomb that I smuggled might help", 5, "scientist");
         }
         actCount++;
     }

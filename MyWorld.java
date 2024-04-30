@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 /**
  * Write a description of class MyWorld here.
@@ -36,7 +37,7 @@ public class MyWorld extends AllWorld
 
     private MC[] mainPrisoners;
     private MC[] savedMainPrisoners;
-    
+
     private EventDisplay eventDisplay;
     private Schedule schedule;
     private DiningHall diningHall;
@@ -49,17 +50,26 @@ public class MyWorld extends AllWorld
     private JailCell cell1;
     private JailCell cell2;
     private Generator generator;
-    
+
     private Breakable[] breakables;
-    
+
     private StatusBar statBar;
 
     private int actCount;
-        
+
     private Escape escape;
     private boolean escapeTime;
     private int escapingMcs;
 
+    public MyWorld() {
+        // Call to another constructor must be the first statement if you intend to do so
+        this(Arrays.asList(
+                "Leon", "Metalworker", "8", "1.8", "100", "Weapons Dealer",
+                "Aron", "Janitor", "8", "1.8", "100", "Explosive Expert",
+                "Waldo", "Cook", "8", "1.9", "100", "Scientist",
+                "Reuben", "Woodworker", "5", "1.8", "40", "Builder"
+            ));
+    }
 
     /**
      * Constructor for objects of class MyWorld.
@@ -69,18 +79,17 @@ public class MyWorld extends AllWorld
         // Create a new world with 1200x850 cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
         setPaintOrder(Fade.class, Item.class, BannerIcon.class,  Banner.class, Clock.class, 
-        EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, 
-        ElectricFence.class, WallCover.class, Generator.class, Vehicle.class, Accessory.class, 
-        Person.class, Underglow.class, Tile.class, Breakable.class, Room.class);
-        
+            EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, 
+            ElectricFence.class, WallCover.class, Generator.class, Vehicle.class, Accessory.class, 
+            Person.class, Underglow.class, Tile.class, Breakable.class, Room.class);
+
         pf = new PathFinder(this); // Initialize this first
         SimulationFont.initalizeFont();
         Sprite.init();
-        
-        
+
         //TEMPP
         setBackground(backgroundImg);
-        
+
         //LAG TRACKER
         PerformanceMeter meter = new PerformanceMeter();
         addObject(meter, 50, 25);
@@ -90,7 +99,7 @@ public class MyWorld extends AllWorld
         guardCount = 3;
         people = new Person[prisonerCount + guardCount + 4];
         Prisoner.setJobList(jobs);
-       
+
         int index = 0;
         mainPrisoners = new MC[4];
         for(String serializedData : serializedDataList) {
@@ -117,7 +126,7 @@ public class MyWorld extends AllWorld
         // Test prisoner
         // g = new Prisoner(17);
         // addObject(g,0,0);
-        
+
         // Initialize schedule and GUI
         schedule = new Schedule(this);
         addObject(new Clock("7:00"), 68, 50);
@@ -144,17 +153,17 @@ public class MyWorld extends AllWorld
 
         metalwork = new Metalwork(new int[]{122, 121}, new int[]{123, 153});
         addObject(metalwork, 728, 598);
-        
+
         janitorCloset = new JanitorCloset(new int[]{142}, new int[]{93,63});
         addObject(janitorCloset, 773, 370);
         generator = new Generator();
         addObject(generator, 758, 370);
-        
+
         cell1 = new JailCell(new int[]{132,134}, new int[]{95,125},1);
         addObject(cell1, 469, 583);
         cell2 = new JailCell(new int[]{135,137}, new int[]{95,125},2);
         addObject(cell2, 591, 583);
-        
+
         // Add the wall covers to the world
         addObject(new WallCover("images/WallCover/cover1.png"), 317, 323);
         addObject(new WallCover("images/WallCover/cover2.png"), 409, 299);
@@ -164,8 +173,8 @@ public class MyWorld extends AllWorld
         addObject(new WallCover("images/WallCover/WoodworkCover.png"), 319, 600);
         addObject(new WallCover("images/WallCover/MetalworkCover.png"), 728, 601);
         addObject(new WallCover("images/WallCover/VehicleDoorCover.png"), 257, 482);
-        
-        
+
+        //addObject(new Explosive(),600,400);
         // Breakables
         breakables = new Breakable[6];
         breakables[0] = new Breakable("images/Breakable/RollCallWall.png",100, 100);
@@ -180,10 +189,10 @@ public class MyWorld extends AllWorld
         addObject(breakables[4], 33, 323);
         breakables[5] = new Breakable("images/Breakable/Fence.png",100, 100);        
         addObject(breakables[5], 882, 162);
-        
+
         // Vehicles
         addObject(new Vehicle("Car.png"), 150, 492);
-        
+
         //Electric Fence
         addObject(new ElectricFence(27),1077,360);
         addObject(new ElectricFence(24),1077,320);
@@ -195,7 +204,7 @@ public class MyWorld extends AllWorld
         addObject(new ElectricFence(6,true),960,160);
         addObject(new ElectricFence(3,true),920,160);
         addObject(new ElectricFence(0,true),880,160);
-        
+
         //Items
         // addObject(new Potion(),400, 299);
         // addObject(new Metal(),420, 299);
@@ -210,6 +219,7 @@ public class MyWorld extends AllWorld
     public void started(){
         Greenfoot.setSpeed(50);
     }
+
     public void debug() {
         for (Prisoner p : prisoners) {
             p.offsetPos = -20;
@@ -218,11 +228,11 @@ public class MyWorld extends AllWorld
 
     public void act() {
         schedule.act();
-        
+
         if (escapeTime) {
             escape.act();
         }
-        
+
         actCount++;
         zSort();
     }
@@ -230,11 +240,11 @@ public class MyWorld extends AllWorld
     public void updateEventDisplay(String event) {
         eventDisplay.update(event);
     }
-    
+
     public void generatorOff() {
         generator.turnOff();
     }
-    
+
     public boolean doEscape() {
         escapingMcs++;
         if (escapingMcs == 4) { // All prisoners are ready to escape
@@ -246,15 +256,15 @@ public class MyWorld extends AllWorld
             return false;
         }
     }
-    
+
     public boolean isEscapeTime() {
         return escapeTime;
     }
-    
+
     public Breakable getBreakable(int index) {
         return breakables[index];
     }
-    
+
     private void initalizeFont(){
         File f = new File("VT323-Regular.ttf");
         try {
@@ -275,7 +285,7 @@ public class MyWorld extends AllWorld
             e.printStackTrace();
         }
     }
-    
+
     public Person[] getPeople() {
         return people;
     }
