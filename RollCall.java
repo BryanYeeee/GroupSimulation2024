@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class RollCall extends Room
 {
+    private SoundManager sm;
     
     public RollCall (int[] prisonerPosIndexes, int[] guardPosIndexes, int[] dimensions) {
         super(prisonerPosIndexes, guardPosIndexes, dimensions);
@@ -23,6 +24,12 @@ public class RollCall extends Room
             p.setDirection(1);
             p.setMovingVertical(true);
         }
+        
+        /*
+        if(p.getActCount() % 480 == 0) {
+            sm.playSound("RollCall");
+        }
+        */
     }
     
     public boolean checkEffectCondition (Person p) { // If person is at its assigned room position

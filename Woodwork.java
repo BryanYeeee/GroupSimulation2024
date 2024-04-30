@@ -16,6 +16,8 @@ public class Woodwork extends Room
     private final int JOB_NODE_5 = 115;
     private final int JOB_NODE_6 = 117;
     
+    private SoundManager sm;
+    
     public Woodwork (int[] prisonerPosIndexes, int[] dimensions) {
         super(prisonerPosIndexes, new int[]{}, dimensions);
     }
@@ -23,6 +25,9 @@ public class Woodwork extends Room
     public void doEffect (Person p) {
             //System.out.println(p.getCurNode().getIndex() + " " + p.getActCount());
         if (!p.isMoving() && p.getActCount() % 120 == 0) {
+            if(p.getActCount() % 240 == 0) {
+                sm.playSound("WoodCraft");
+            }
             switch(p.getCurNode().getIndex()) {
                 case JOB_NODE_1:
                     p.goToNode(JOB_NODE_2);

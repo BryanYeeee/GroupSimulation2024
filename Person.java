@@ -54,6 +54,9 @@ public abstract class Person extends Entity
     protected int actCount;
     private Color[] colors = {new Color(255,64,56), new Color(255,231,22),new Color(34,121,227), new Color(45,247,38)};
     protected ArrayList<Integer> accessoryIndices; //JEFF
+    
+    private SoundManager sm;
+    
     // For cutscene/intro world
     public Person(int i, boolean intro){
         this.index = i;
@@ -138,6 +141,9 @@ public abstract class Person extends Entity
                 return;
             }
             if(inFight) {
+                if(actCount % 90 == 0) {
+                    sm.playSound("Fighting");
+                }
                 if (this instanceof MC) ((MC)this).setAction("In a Fight");
                 action="attack";
                 animationDelay=10;
@@ -148,6 +154,7 @@ public abstract class Person extends Entity
                     if(this instanceof MC) StatusBar.setUpdate(true);
                     if (opponentHealth <= 0 || curHp <= 0) {
                         if(curHp<=0) curHp = 0;
+                        sm.stopSoundLoop("Fighting");
                         setInFight(this, false);
                         setDead(curHp <= 0);
                     }
