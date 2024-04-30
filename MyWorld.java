@@ -206,9 +206,11 @@ public class MyWorld extends AllWorld
         sm.playSound("MainEscape");
     }
 
+    /*
     public void started(){
         Greenfoot.setSpeed(50);
     }
+    */
     public void debug() {
         for (Prisoner p : prisoners) {
             p.offsetPos = -20;
