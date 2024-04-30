@@ -52,7 +52,7 @@ public abstract class Person extends Entity
     private int animationLength = 2;
     private int animationDelay = 7;
     protected int actCount;
-
+    private Color[] colors = {new Color(255,64,56), new Color(255,231,22),new Color(34,121,227), new Color(45,247,38)};
     protected ArrayList<Integer> accessoryIndices; //JEFF
     // For cutscene/intro world
     public Person(int i, boolean intro){
@@ -104,7 +104,7 @@ public abstract class Person extends Entity
                 setLocation(curNode.getX()+curNode.getOffset(false), curNode.getY() + SPRITE_OFFSET+curNode.getOffset(true));
                 healthBar = new SuperStatBar(maxHp, curHp, this, 40, 6, 36, Color.GREEN, Color.RED, false, Color.BLACK, 2);
                 if(this instanceof MC){
-                    addUnderglow();
+                    addUnderglow(colors[this.getIndex()]);
                 }
             }
             isNew=false;
@@ -409,8 +409,8 @@ public abstract class Person extends Entity
         return isWalkingAround;
     }
 
-    public void addUnderglow(){
-        getWorld().addObject(new Underglow(this), getX(), getY());
+    public void addUnderglow(Color color){
+        getWorld().addObject(new Underglow(this, color), getX(), getY());
     }
 
     public void setAction(String action){
