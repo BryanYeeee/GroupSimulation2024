@@ -107,6 +107,7 @@ public class IntroWorld extends AllWorld
         super.act();
         // before this it should be just prisoners in the cell
         if(Greenfoot.mouseClicked(null) && dialogueCounter == 0){
+            sm.playSound("click");
             // add code for when guard comes in
             removeObject(guideMessage);
             // add new boxes for dialogue
@@ -118,6 +119,7 @@ public class IntroWorld extends AllWorld
             addObject(speakers[0], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 1){
+            sm.playSound("click");
             for(int i = 0; i < 4; i++){ // add question marks
                 addObject(bubbles[i], xCoords[i], yCoords[i] - 100);
                 addObject(questionMarks[i], xCoords[i], yCoords[i] - 105);
@@ -128,6 +130,7 @@ public class IntroWorld extends AllWorld
             addObject(speakers[1], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 2){
+            sm.playSound("click");
             for(int i = 0; i < 4; i++){ // remove question marks
                 removeObject(bubbles[i]);
                 removeObject(questionMarks[i]);
@@ -138,18 +141,21 @@ public class IntroWorld extends AllWorld
             addObject(speakers[0], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 3){
+            sm.playSound("click");
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[0]);
             addObject(dialogues[dialogueCounter], 600, 775);
             addObject(speakers[2], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 4){
+            sm.playSound("click");
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[2]);
             addObject(dialogues[dialogueCounter], 600, 775);
             addObject(speakers[0], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 5){
+            sm.playSound("click");
             actsLeft = 60; // fade out the guard
             for(int i = 0; i < 4; i++){ // add exclamation marks
                 addObject(bubbles[i], xCoords[i], yCoords[i] - 100);
@@ -161,6 +167,7 @@ public class IntroWorld extends AllWorld
             addObject(speakers[3], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 6){
+            sm.playSound("click");
             for(int i = 0; i < 4; i++){ //remove exclamation marks
                 removeObject(bubbles[i]);
                 removeObject(exclamationMarks[i]);
@@ -176,14 +183,17 @@ public class IntroWorld extends AllWorld
             }
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 7){
+            sm.playSound("click");
             removeObject(dialogues[dialogueCounter-1]);
             addObject(dialogues[dialogueCounter], 600, 775);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 8){
+            sm.playSound("click");
             removeObject(dialogues[dialogueCounter-1]);
             addObject(dialogues[dialogueCounter], 600, 775);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 9){
+            sm.playSound("click");
             removeObject(dialogues[dialogueCounter-1]);
             if(switchedSpeaker){
                 removeObject(speakers[3]);
@@ -195,24 +205,28 @@ public class IntroWorld extends AllWorld
             addObject(speakers[1], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 10){
+            sm.playSound("click");
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[1]);
             addObject(dialogues[dialogueCounter], 600, 775);
             addObject(speakers[2], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 11){
+            sm.playSound("click");
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[2]);
             addObject(dialogues[dialogueCounter], 600, 775);
             addObject(speakers[3], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 12){ // end of dialogue
+            sm.playSound("click");
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[3]);
             addObject(dialogues[dialogueCounter], 600, 775);
             addObject(speakers[4], 350, 695);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 13){
+            sm.playSound("click");
             removeObject(dialogues[dialogueCounter-1]);
             removeObject(speakers[4]);
             removeObject(dialogueBox);
@@ -221,6 +235,7 @@ public class IntroWorld extends AllWorld
             addObject(enterSimulation, 600, 775);
             dialogueCounter++;
         } else if (Greenfoot.mouseClicked(null) && dialogueCounter == 14){ //once world clicked, proceed to main simulation
+            sm.playSound("click");
             Person.setIntro(false);
             switchWorld();
         }
