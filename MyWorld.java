@@ -61,7 +61,6 @@ public class MyWorld extends AllWorld
     private Escape escape;
     private boolean escapeTime;
     private int escapingMcs;
-    private int escapedMcs;
 
     public MyWorld() {
         this(Arrays.asList(
@@ -234,6 +233,13 @@ public class MyWorld extends AllWorld
 
         if (escapeTime) {
             escape.act();
+            int escapedMcs = 0;
+            for(MC mc : mainPrisoners) {
+                if(mc.getX() ==0 || mc.getY() ==0) escapedMcs++;
+            }
+            if(escapedMcs == 4) {
+                Greenfoot.setWorld(new EndWorld(mainPrisoners));
+            }
         }
 
         actCount++;
@@ -260,14 +266,6 @@ public class MyWorld extends AllWorld
             return true;
         } else {
             return false;
-        }
-    }
-
-    public void mcEscaped() {
-        System.out.println("mc escape");
-        escapedMcs++;
-        if(escapedMcs == 4) {
-            Greenfoot.setWorld(new EndWorld(mainPrisoners));
         }
     }
 
