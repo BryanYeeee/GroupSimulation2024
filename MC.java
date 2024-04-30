@@ -16,11 +16,7 @@ public class MC extends Prisoner
 
     private String name; // person name
     private boolean doneCrafting;
-
-    private StatSetter strength;
-    private StatSetter speed;
-    private StatSetter luck;
-    private StatSetter intelligence;
+    
     private String specialty; // more like a class, thief, brute etc.
 
     // For cutscene/intro world
@@ -32,12 +28,12 @@ public class MC extends Prisoner
         setImage(cutsceneImage);
     }
 
-    public MC (int i, MyWorld world, String jobTitle) {
-        super(i, jobTitle);
-        //this.strength = 11;
-        this.world = world;
-        heldItems = new ArrayList<Item>();
-    }
+    // public MC (int i, MyWorld world, String jobTitle) {
+        // super(i, jobTitle);
+        // //this.strength = 11;
+        // this.world = world;
+        // heldItems = new ArrayList<Item>();
+    // }
 
     /**
      * Prisoner constructor
@@ -54,32 +50,10 @@ public class MC extends Prisoner
         this.world = world;
         heldItems = new ArrayList<Item>();
         name = serializedData[0];
-        str = Double.parseDouble(serializedData[2]);
-        spd = Double.parseDouble(serializedData[3]);
-        intel = Double.parseDouble(serializedData[4]);
+        str = Integer.parseInt(serializedData[2]);
+        speed = Double.parseDouble(serializedData[3]);
+        intel = Integer.parseInt(serializedData[4]);
         specialty = serializedData[5];
-        //str += 10;
-        /*
-        if(name.equals("Brute")) {
-        jobTitle = "None";
-        //image = new GreenfootImage("");
-        } else if(name.equals("Thief")) {
-        jobTitle = "Librarian";
-        //image = new GreenfootImage("");
-        } else if(name.equals("Weapondealer")) {
-        jobTitle = "Metalworker";
-        //image = new GreenfootImage("");
-        } else if(name.equals("Scientist")) {
-        jobTitle = "Cook";
-        //image = new GreenfootImage("");
-        } else if(name.equals("Explosiveexpert")) {
-        jobTitle = "Janitor";
-        //image = new GreenfootImage("");
-        } else if(name.equals("Builder")) {
-        jobTitle = "Woodworker";
-        //image = new GreenfootImage("");
-        }
-         */
     }
 
     /**
@@ -90,7 +64,6 @@ public class MC extends Prisoner
     {
         super.act();
     }
-
     
     public boolean isDoneCrafting() {
         return doneCrafting;
@@ -98,22 +71,6 @@ public class MC extends Prisoner
     
     public void setDoneCrafting(boolean isCrafting) {
         this.doneCrafting = isCrafting;
-    }
-    
-     /**
-     * Method to deserialize and restore the state of the prisoner
-     * 
-     * help from ChatGPT
-     */
-    public void deserializeState(String serializedData) {
-        // Deserialize the string and restore the state of the prisoner
-        String[] parts = serializedData.split(",");
-        name = parts[0];
-        jobTitle = parts[1];
-        str = Double.parseDouble(parts[2]);
-        spd = Double.parseDouble(parts[3]);
-        intel = Double.parseDouble(parts[4]);
-        specialty = parts[5];
     }
 
     public String getSpecialty() {
@@ -209,32 +166,5 @@ public class MC extends Prisoner
             }
         }
         return count;  // Return the total count of items
-    }
-
-    /**
-     * Adds strength
-     * 
-     * @param addStrength
-     */
-    public void addStr(double addStrength) {
-        str += addStrength;
-    }
-
-    /**
-     * Adds intelligence
-     * 
-     * @param addIntel
-     */
-    public void addIntel(double addIntel) {
-        intel += addIntel;
-    }
-
-    /**
-     * Adds speed
-     * 
-     * @param addSpd
-     */
-    public void addSpeed(double addSpd) {
-        spd += addSpd;
     }
 }

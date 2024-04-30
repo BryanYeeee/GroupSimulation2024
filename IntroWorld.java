@@ -93,28 +93,17 @@ public class IntroWorld extends AllWorld
         displayCharacters();
         
         savedPrisoners = new SavedPrisoner[4];
-        String[] savedData = new String[4];
-        
         int index = 0;
         for(String serializedData : selectedPrisoners) {
-            if(index < 4) {
-                savedData[index] = serializedData;
-                index++;
-            } else {
-                break;
-            }
+            savedPrisoners[index] = new SavedPrisoner(serializedData);
+            index++;
         }
         
-        for(int i = 0; i < 4; i++) {
-            savedPrisoners[i] = new SavedPrisoner("", "", 0, 0, 0, "");
-            savedPrisoners[i].deserializeState(savedData[i]);
-        }
-        
-        //adding them to the world to edit their stats
-        addObject(savedPrisoners[0], 100, 200);
-        addObject(savedPrisoners[1], 100, 500);
-        addObject(savedPrisoners[2], 450, 200);
-        addObject(savedPrisoners[3], 450, 500);
+        // //adding them to the world to edit their stats
+        // addObject(savedPrisoners[0], 100, 200);
+        // addObject(savedPrisoners[1], 100, 500);
+        // addObject(savedPrisoners[2], 450, 200);
+        // addObject(savedPrisoners[3], 450, 500);
         
         guideMessage = new SuperTextBox("Click to start & advance dialogue", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 54), true, 768, 5, borderColor);
         addObject(guideMessage, 600, 775);

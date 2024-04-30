@@ -91,48 +91,14 @@ public class MyWorld extends AllWorld
         people = new Person[prisonerCount + guardCount + 4];
         Prisoner.setJobList(jobs);
        
-        mainPrisoners = new MC[4]; 
-        // mainPrisoners[0] = new MC(0, this, "Cook", "Scientist");
-        // mainPrisoners[1] = new MC(1, this, "Janitor", "Explosive Expert");
-        // mainPrisoners[2] = new MC(2, this, "Woodworker", "Builder");;
-        // mainPrisoners[3] = new MC(3, this, "Librarian", "Thief");
-        String[] savedData = new String[4];
-        
         int index = 0;
+        mainPrisoners = new MC[4];
         for(String serializedData : serializedDataList) {
-            if(index < 4) {
-                savedData[index] = serializedData;
-                index++;
-            } else {
-                break;
-            }
+            mainPrisoners[index] = new MC(index, this, serializedData.split(","));
+            people[index] = mainPrisoners[index];
+            addObject(mainPrisoners[index],0,0);
+            index++;
         }
-       
-        for(int i = 0; i < 4; i++) {
-            mainPrisoners[i] = new MC(i, this, savedData[i].split(","));
-            if(mainPrisoners[i].getName().equals("Brute")) {
-                mainPrisoners[i].addStr(12.0);
-            } else if(mainPrisoners[i].getName().equals("Thief")) {
-                mainPrisoners[i].addSpeed(2.0);
-            }
-            people[i] = mainPrisoners[i];
-        }
-        
-        // savedMainPrisoners = new MC[4];
-        // savedMainPrisoners[0] = new MC(50, this, mainPrisoners[0].getJob());
-        // savedMainPrisoners[1] = new MC(51, this, mainPrisoners[1].getJob());
-        // savedMainPrisoners[2] = new MC(52, this, mainPrisoners[2].getJob());
-        // savedMainPrisoners[3] = new MC(53, this, mainPrisoners[3].getJob());
-        
-        addObject(mainPrisoners[0], 100, 100);
-        addObject(mainPrisoners[1], 100, 200);
-        addObject(mainPrisoners[2], 100, 300);
-        addObject(mainPrisoners[3], 100, 400);
-        
-        // for (int i = 0; i < 4; i++) {
-            // people[i] = mainPrisoners[i];
-            // addObject(mainPrisoners[i], 0, 0);
-        // }
 
         Person.onGoingFights = 0;
         prisoners = new Prisoner[prisonerCount];

@@ -80,11 +80,9 @@ public class StatusBar extends Actor
         
         // Loop through all 4 boxes in the status Bar
         for(int i = 0; i < 4; i++){
-            // MC[] of MCs in the World
-            MCs = ((MyWorld)getWorld()).getMainPrisoners();
             
             // Character Images 
-            TempBox characterBox = new TempBox(70, 80, boxColor, borderColor, 3);
+            TempBox characterBox = new TempBox(80, 80, boxColor, borderColor, 3);
             getWorld().addObject(characterBox, 75 + (300 * i), 752);
 
 
@@ -125,10 +123,10 @@ public class StatusBar extends Actor
         
         // Things that don't need iteration to complete down here
         // Depending on specialty, have a different image for each MC
-        SavedPrisoner image1 = new SavedPrisoner(MCs[0].getSpecialty(), 70, 80);
-        SavedPrisoner image2 = new SavedPrisoner(MCs[1].getSpecialty(), 70, 80);
-        SavedPrisoner image3 = new SavedPrisoner(MCs[2].getSpecialty(), 70, 80);
-        SavedPrisoner image4 = new SavedPrisoner(MCs[3].getSpecialty(), 70, 80);
+        SavedPrisoner image1 = new SavedPrisoner(true,MCs[0].getSpecialty());
+        SavedPrisoner image2 = new SavedPrisoner(true,MCs[1].getSpecialty());
+        SavedPrisoner image3 = new SavedPrisoner(true,MCs[2].getSpecialty());
+        SavedPrisoner image4 = new SavedPrisoner(true,MCs[3].getSpecialty());
 
         getWorld().addObject(image1, 75, 752);
         getWorld().addObject(image2, 375, 752);
