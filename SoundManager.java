@@ -36,7 +36,7 @@ public class SoundManager
         sounds.put("RollCall", new Sound("RollCall.mp3", 21, false));
         sounds.put("CarStart", new Sound("CarStart.mp3", 21, false));
         sounds.put("PickUp", new Sound("PickUp.mp3", 42, false));
-        
+        sounds.put("Hit", new Sound("Hit.mp3", 42, false));
         
         // Looped
         sounds.put("Statscreen", new Sound("Statscreen.mp3", 25, true));
