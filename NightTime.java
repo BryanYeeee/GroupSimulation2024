@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class NightTime extends Actor
 {
     public void addedToWorld(World w) {
+        setImage("images/Nighttime.png");
         setLocation(w.getWidth()/2,w.getHeight()/2);
     }
 }
