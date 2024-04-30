@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * World where the stats of the 4main characters can be changed
+ * The StatWorld is where the stats of the 4 main characters can be changed within a range of values depending on the type of character.
  * 
  * @author Ainson Z
  * @version April 2024
@@ -32,7 +32,9 @@ public class StatWorld extends AllWorld
     private List<String> serializedPrisonersState;
     
     /**
-     * Constructor for StatWorld.
+     * Constructor for StatWorld that displays the 4 chosen MCs and customizable stats.
+     * 
+     * @param selectedPrisoners A list of values from SelectWorld that give indicators of which MCs were chosen.
      */
     public StatWorld(List<String> selectedPrisoners)
     {
@@ -111,7 +113,7 @@ public class StatWorld extends AllWorld
     }
     
     /**
-     * Act Method
+     * The act Method of StatWorld that switches worlds when prompted.
      */
     public void act() {
         if(NextButton.getSwitchWorld()) {
@@ -122,7 +124,7 @@ public class StatWorld extends AllWorld
     }
 
     /**
-     * saves all prisoner data and switches worlds
+     * Saves all prisoner data and switches worlds.
      */
     public void switchToWorld() {
         serializedPrisonersState = savePrisonersState();
