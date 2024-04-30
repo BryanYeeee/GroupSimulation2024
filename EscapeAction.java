@@ -28,6 +28,8 @@ public class EscapeAction extends Action
     private final static int EXPLOSION_STEP_BACK_NODE = 108;
     private final static int EXPLOSION_ESCAPE_NODE = 144;
     
+    private static SoundManager sm;
+    
     public static boolean breakWall(MyWorld w, MC mc, MC[] followers, int step) {
         switch(step) {
             case 0:
@@ -44,6 +46,7 @@ public class EscapeAction extends Action
                     mc.setDirection(-1);
                     mc.setMovingVertical(true);
                     w.getBreakable(0).beginBreak();
+                    sm.playSound("WallBreak");
                 }
                 break;
             case 2:
@@ -94,8 +97,10 @@ public class EscapeAction extends Action
                 }
                 break;
             case 4:
+                sm.playSound("DoorOpen");
                 mc.setAction("Going to The Car");
                 if(mc.getCurNode().getIndex() == CAR_NODE) {
+                    sm.playSound("CarStart");
                     mc.setSpeed(1.6);
                     boolean followersDone = true;
                     for(MC follower : followers) {
@@ -118,7 +123,6 @@ public class EscapeAction extends Action
             case 5:
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == CAR_ESCAPE_NODE) {
-                    
                     return true;
                 }
                 if(!mc.isMoving() && mc.getActCount() % 25 == 0) {
@@ -158,6 +162,7 @@ public class EscapeAction extends Action
             case 3: // MAKE BOMB DO THIS
                 if(w.getBreakable(2).isBroken()) return true;
                 if(!w.getBreakable(2).isBreaking()) {
+                    sm.playSound("bomb");
                     w.getBreakable(2).beginBreak();
                 }
                 break;
@@ -182,6 +187,7 @@ public class EscapeAction extends Action
             case 0:
                 mc.setAction("Turning Off Generator");
                 if(mc.getCurNode().getIndex() == GENERATOR_NODE) {
+                    sm.playSound("GeneratorOff");
                     w.generatorOff();
                     return true;
                 }
@@ -201,12 +207,13 @@ public class EscapeAction extends Action
                 if(w.getBreakable(5).isBroken()) return true;
                 if(!w.getBreakable(5).isBreaking()) {
                     w.getBreakable(5).beginBreak();
+                    sm.playSound("CutFence");
                 }
                 break;
             case 3:
+                sm.stopSoundLoop("CutFence");
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == CUT_FENCE_ESCAPE_NODE) {
-                    
                     return true;
                 }
                 if(!mc.isMoving()) {
@@ -239,11 +246,14 @@ public class EscapeAction extends Action
                     return true;
                 }
                 if(!w.getBreakable(3).isBreaking()) {
+                    sm.playSound("ShovelDirt");
                     w.getBreakable(3).beginBreak();
                 }
+                
                 break;
             case 2:
                 mc.setAction("Tunneling");
+                sm.stopSoundLoop("ShovelDirt");
                 if(mc.getCurNode().getIndex() == HOLE_EXIT_NODE) return true;
                 if(!mc.isMoving()) {
                     mc.goToNode(HOLE_EXIT_NODE);
@@ -257,10 +267,12 @@ public class EscapeAction extends Action
                     return true;
                 }
                 if(!w.getBreakable(4).isBreaking()) {
+                    sm.playSound("ShovelDirt");
                     w.getBreakable(4).beginBreak();
                 }
                 break;
             case 4:
+                sm.stopSoundLoop("ShovelDirt");
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == HOLE_ESCAPE_NODE) {
                     

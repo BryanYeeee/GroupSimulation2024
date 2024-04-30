@@ -1,9 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class EndWorld here.
+ * The end world of the simulation that displays the chosen characters, stats, and escape methods used.
  * 
- * @author (your name) 
+ * @author Jamison H.
  * @version April 2024
  */
 public class EndWorld extends AllWorld
@@ -23,11 +23,15 @@ public class EndWorld extends AllWorld
     private SuperTextBox[] displayInts = new SuperTextBox[4];
     private SuperTextBox[] displayStrs = new SuperTextBox[4];
     private SuperTextBox displayEscapes;
-    private String[] escapes; // no duplicates in here
+    private String[] escapes; 
     
     SuperTextBox endingText1; 
     SuperTextBox endingText2; 
-    // MC[] mainPrisoners must be passed on, right now will just be temp preset values
+    /**
+     * Constructor for EndWorld that generates text based on stats and values from the main simulation.
+     * 
+     * @param mainPrisoners An array of MC objects that were used in the main simulation world.
+     */
     public EndWorld(MC[] mainPrisoners)
     {
         super(1200, 850, 1);
@@ -71,6 +75,9 @@ public class EndWorld extends AllWorld
 
     }
 
+    /**
+     * The act method of EndWorld. It will detect when the user wants to go to the title screen.
+     */
     public void act(){
         if(Greenfoot.mouseClicked(endingText2)){
             sm.playSound("click");

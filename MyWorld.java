@@ -12,14 +12,14 @@ import java.util.List;
 import java.util.Arrays;
 
 /**
- * This is the main simulation world
+ * This is the main simulation world.
  * 
  * @author Bryan Y, Ainson Z, and Jeff G
  * @version April 2024
  */
 public class MyWorld extends AllWorld
 {
-    public final static boolean SHOW_NODES = true;
+    public final static boolean SHOW_NODES = false;
     public final static int WORLD_WIDTH = 1200;
     public final static int WORLD_HEIGHT = 850;
     public static greenfoot.Font pixelFont;
@@ -61,7 +61,9 @@ public class MyWorld extends AllWorld
     private Escape escape;
     private boolean escapeTime;
     private int escapingMcs;
-
+    /**
+     * An alternate constructor of MyWorld for faster testing, as it doesn't require parameters.
+     */
     public MyWorld() {
         this(Arrays.asList(
                 "Leon,Metalworker,8,1.8,100,Weapons Dealer",
@@ -72,10 +74,12 @@ public class MyWorld extends AllWorld
     }
 
     /**
-     * Constructor for objects of class MyWorld.
+     * The main constructor for objects of class MyWorld that sets the map and MCs.
+     * 
+     * @param selectedPrisoners A list of values from IntroWorld that give indicators of which MCs were chosen.
      */
     public MyWorld(List<String> serializedDataList)
-    {    
+    {   
         // Create a new world with 1200x850 cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
         setPaintOrder(Fade.class, Item.class, BannerIcon.class,  Dialogue.class, Announcement.class,Clock.class, 
@@ -217,16 +221,19 @@ public class MyWorld extends AllWorld
         sm.playSound("MainEscape");
     }
 
-    /*
-    public void started(){
-        Greenfoot.setSpeed(50);
-    }
-    */
+    /**
+     * A debugging method that offsets the prisoners by 20 pixels.
+     */
     public void debug() {
         for (Prisoner p : prisoners) {
             p.offsetPos = -20;
         }
     }
+    
+    /**
+     * The act method of the simulation, zSorts actors and relies on the act() of schedule and escape.
+     * Once all prisoners have escaped, move onto the EndWorld automatically.
+     */
 
     public void act() {
         schedule.act();
@@ -248,15 +255,26 @@ public class MyWorld extends AllWorld
         actCount++;
         zSort();
     }
-
+    /**
+     * Update the event display with the current event.
+     * 
+     * @param event The current event to be displayed.
+     */
     public void updateEventDisplay(String event) {
         eventDisplay.update(event);
     }
-
+    
+    /**
+     * Turn the generator off.
+     */
     public void generatorOff() {
         generator.turnOff();
+        sm.playSound("GeneratorOff");
     }
-
+    
+    /**
+     * Start the escape section of the simulation, swap music as well.
+     */
     public boolean doEscape() {
         sm.stopSoundLoop("MainEscape");
         sm.playSound("LightsOut");
@@ -271,90 +289,142 @@ public class MyWorld extends AllWorld
             return false;
         }
     }
-
+    
+    /**
+     * Return whether it is time to escape.
+     * 
+     * @return escapeTime   True if it is time to escape, false if it isn't.
+     */
     public boolean isEscapeTime() {
         return escapeTime;
     }
-
+    
+    /**
+     * Return the index of a breakable object.
+     * 
+     * @param index     The index of the breakable object.
+     * @return breakables[index]    The breakable object.
+     */
     public Breakable getBreakable(int index) {
         return breakables[index];
     }
 
-    private void initalizeFont(){
-        File f = new File("VT323-Regular.ttf");
-        try {
-            FileInputStream in = new FileInputStream(f);
-            Font dynamicFont, dynamicFont32;
-
-            dynamicFont = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(f));
-            dynamicFont32 = dynamicFont.deriveFont(26f);
-
-            java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(dynamicFont32);
-            pixelFont = new greenfoot.Font(dynamicFont32.getName(), dynamicFont32.getStyle() % 2 == 1, dynamicFont32.getStyle() / 2 == 1, dynamicFont32.getSize());
-            in.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Return the people (MC, other NPC prisoners, guards) within the simulation.
+     * 
+     * @return people   The people within the simulation.
+     */
     public Person[] getPeople() {
         return people;
     }
-
+    
+    /**
+     * Return the 4 main prisoners within the simulation.
+     * 
+     * @return mainPrisoners    The main prisoners within the simulation.
+     */
     public MC[] getMainPrisoners() {
         return mainPrisoners;
     }
-
+    
+    /**
+     * Return the prisoners (not MCs) within the simulation.
+     * 
+     * @return prisoners   The prisoners within the simulation.
+     */
     public Prisoner[] getPrisoners() {
         return prisoners;
     }
-
+    
+    /**
+     * Return the guards within the simulation.
+     * 
+     * @return guards   The guards within the simulation.
+     */
     public Guard[] getGuards() {
         return guards;
     }
-
+    
+    /**
+     * Return the schedule of the simluation.
+     * 
+     * @return schedule    The simluation schedule.
+     */
     public Schedule getSchedule() {
         return schedule;
     }
-
+    
+    /**
+     * Return the font used for text.
+     * 
+     * @return pixelFont    The font.
+     */
     public greenfoot.Font getFont() {
         return pixelFont;
     }
-
+    
+    /**
+     * Tell the schedule to start free time actions.
+     */
     public void doFree() {
         schedule.doFree();
     }
 
+    /**
+     * Tell the schedule to start job time actions.
+     */
     public void doJob() {
         schedule.doJob();
     }
 
+    /**
+     * Tell the schedule to start roll call actions.
+     */
     public void doRoll() {
         schedule.doRoll();
     }
-
+    
+    /**
+     * Tell the schedule to start night time actions.
+     */
     public void doNight() {
         schedule.doNight();
     }
-
+    
+    /**
+     * Return the world width.
+     * 
+     * @return WORLD_WIDTH  The world width.
+     */
     public int getWidth() {
         return WORLD_WIDTH;
     }
-
+    
+    /**
+     * Return the world height.
+     * 
+     * @return WORLD_WIDTH  The world height.
+     */
     public int getHeight() {
         return WORLD_HEIGHT;
     }
-    
+
+    /**
+     * Add an Dialogue object, a line of dialogue characters say.
+     * 
+     * @param text          The text of the dialogue.
+     * @param seconds       The duration of the dialogue.
+     * @param speakerName   The name of the charater speaking.
+     */
     public  void dialogue(String text, int seconds, String speakerName){
         addObject(new Dialogue(text,seconds,speakerName),WORLD_WIDTH/2,50 ); 
     }
 
-    //Z-sorting by Jeff
+    /**
+     * Z-Sort (re-order) all entities of the simulation.
+     */
     public void zSort() {
+        //Z-sorting by Jeff
         List<Entity> rawEntities = getObjects(Entity.class);
         ArrayList<ActorContent> acList = new ArrayList<ActorContent>();
         for (Entity entity : rawEntities) {
