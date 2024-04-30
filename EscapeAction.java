@@ -48,7 +48,10 @@ public class EscapeAction extends Action
                 break;
             case 2:
                 mc.setAction("Escaping");
-                if(mc.getCurNode().getIndex() == BREAK_WALL_ESCAPE_NODE) return true;
+                if(mc.getCurNode().getIndex() == BREAK_WALL_ESCAPE_NODE) {
+                    w.mcEscaped();
+                    return true;
+                }
                 if(!mc.isMoving()) {
                     mc.goToNode(BREAK_WALL_ESCAPE_NODE);
                 }
@@ -114,7 +117,10 @@ public class EscapeAction extends Action
                 break;
             case 5:
                 mc.setAction("Escaping");
-                if(mc.getCurNode().getIndex() == CAR_ESCAPE_NODE) return true;
+                if(mc.getCurNode().getIndex() == CAR_ESCAPE_NODE) {
+                    w.mcEscaped();
+                    return true;
+                }
                 if(!mc.isMoving() && mc.getActCount() % 25 == 0) {
                     mc.goToNode(CAR_ESCAPE_NODE);
                 }
@@ -156,7 +162,10 @@ public class EscapeAction extends Action
                 break;
             case 4:
                 mc.setAction("Escaping");
-                if(mc.getCurNode().getIndex() == EXPLOSION_ESCAPE_NODE) return true;
+                if(mc.getCurNode().getIndex() == EXPLOSION_ESCAPE_NODE) {
+                    w.mcEscaped();
+                    return true;
+                }
                 if(!mc.isMoving()) mc.goToNode(EXPLOSION_ESCAPE_NODE);
                 for(MC follower : followers) {
                     follower.setAction("Escaping");
@@ -195,7 +204,10 @@ public class EscapeAction extends Action
                 break;
             case 3:
                 mc.setAction("Escaping");
-                if(mc.getCurNode().getIndex() == CUT_FENCE_ESCAPE_NODE) return true;
+                if(mc.getCurNode().getIndex() == CUT_FENCE_ESCAPE_NODE) {
+                    w.mcEscaped();
+                    return true;
+                }
                 if(!mc.isMoving()) {
                     mc.goToNode(CUT_FENCE_ESCAPE_NODE);
                 }
@@ -249,7 +261,10 @@ public class EscapeAction extends Action
                 break;
             case 4:
                 mc.setAction("Escaping");
-                if(mc.getCurNode().getIndex() == HOLE_ESCAPE_NODE) return true;
+                if(mc.getCurNode().getIndex() == HOLE_ESCAPE_NODE) {
+                    w.mcEscaped();
+                    return true;
+                }
                 if(!mc.isMoving()) {
                     mc.goToNode(HOLE_ESCAPE_NODE);
                 }

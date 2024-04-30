@@ -61,6 +61,7 @@ public class MyWorld extends AllWorld
     private Escape escape;
     private boolean escapeTime;
     private int escapingMcs;
+    private int escapedMcs;
 
     public MyWorld() {
         this(Arrays.asList(
@@ -259,6 +260,13 @@ public class MyWorld extends AllWorld
             return true;
         } else {
             return false;
+        }
+    }
+
+    public void mcEscaped() {
+        escapedMcs++;
+        if(escapedMcs == 4) {
+            // go to end world
         }
     }
 
