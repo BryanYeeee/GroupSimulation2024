@@ -20,6 +20,7 @@ public class DiningHall extends Room
         //Do effect
         //System.out.println("eats");
         if(p.getRoomPosition() == -2 && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("DINING HALL")) {
+            if(p instanceof MC) ((MC)p).setAction("Going to Dining Hall");
             p.setRoomPosition(-1);
             p.setRoomPosition(this.enterRoom(p));
         }
@@ -50,6 +51,7 @@ public class DiningHall extends Room
     
     public int enterRoom (Person p) {
         if(p instanceof MC && isCooking(p)) {
+            ((MC)p).setAction("Poisoning Guard's Food");
             Guard.poisonGuards();
         }
         return isCooking(p) ? -2 : super.enterRoom(p);

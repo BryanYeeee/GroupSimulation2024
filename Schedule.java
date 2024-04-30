@@ -116,12 +116,6 @@ public class Schedule
                 System.out.println("STARTING SIMULATION");
                 
                 //System.out.println(x + ": " + Person.noFights);
-                MC[] mc = world.getMainPrisoners();
-                for(MC m : mc) {
-                    m.setStrength(Greenfoot.getRandomNumber(5)+5);
-                    if(m.getSpecialty().equals("Brute")) m.setStrength(Greenfoot.getRandomNumber(3)+10);
-                    System.out.println(m.getSpecialty() +": "+m.getStrength());
-                }
                 break;
             
             case 4*60:

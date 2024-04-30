@@ -14,6 +14,21 @@ public class StatWorld extends AllWorld
     private SavedPrisoner[] savedPrisoners;
     private SavedPrisoner[] imageSavedPrisoners;
     
+    
+    // Colors
+    private Color bgColor = new Color(119, 136, 153, 240);
+    private Color borderColor = new Color(192, 192, 192);
+    private Color transparentColor = new Color(0, 0, 0, 0);
+    private Color textColor = new Color(250, 249, 246);
+    
+    // Info
+    private SuperTextBox bruteInfo = new SuperTextBox("Buck: Brute", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox thiefInfo = new SuperTextBox("Wyatt: Thief", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox weaponsDealerInfo = new SuperTextBox("Leon: Weapons Dealer", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox scientistInfo = new SuperTextBox("Waldo: Scientist", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox explosiveExpertInfo = new SuperTextBox("Aron: Explosive Expert", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox builderInfo = new SuperTextBox("Reuben: Builder", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    
     private List<String> serializedPrisonersState;
     
     /**
@@ -52,7 +67,30 @@ public class StatWorld extends AllWorld
 
         //creating box under stat selections
         StatBox box1 = new StatBox();
-        addObject(box1, 386, 339);
+        addObject(box1, 386, 399); // was 386, 339
+        
+        // Info
+        int[] xCoords = {200, 200, 550, 550};
+        int[] yCoords = {310, 615, 310, 615};
+        
+        // Top left, bottom left, top right, bottom right
+        for(int i = 0; i < 4; i++){
+            String name = selectedPrisoners.get(i);
+            String[] splitName = name.split(",");
+            if(splitName[5].equals("Thief")){ // Thief
+                addObject(thiefInfo, xCoords[i], yCoords[i]);
+            } else if(splitName[5].equals("Brute")){ // Brute
+                addObject(bruteInfo, xCoords[i], yCoords[i]);
+            } else if(splitName[5].equals("Scientist")){ // Scientist
+                addObject(scientistInfo, xCoords[i], yCoords[i]);
+            } else if(splitName[5].equals("Weapons Dealer")){ // Weapons Dealer
+                addObject(weaponsDealerInfo, xCoords[i], yCoords[i]);
+            } else if(splitName[5].equals("Explosive Expert")){ // Expolsive Expert
+                addObject(explosiveExpertInfo, xCoords[i], yCoords[i]);
+            } else { // Builder
+                addObject(builderInfo, xCoords[i], yCoords[i]);
+            }
+        }
         
         bgImage = new GreenfootImage("statsWorldBg3.jpg");
         bgImage.scale(AllWorld.WORLD_WIDTH, AllWorld.WORLD_HEIGHT);

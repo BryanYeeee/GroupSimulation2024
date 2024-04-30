@@ -22,10 +22,14 @@ public class IntroWorld extends AllWorld
     private Color transparentColor = new Color(0, 0, 0, 0);
     private Color textColor = new Color(250, 249, 246);
     
-    // MCs
-    //int MCs[];  // track which MCs were selected by the user
-    //private int[] MCs = {1,3,4,6}; //temp
-    //MCs[] MCs;
+    // Info - only at start
+    private SuperTextBox bruteInfo = new SuperTextBox("Brute", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 150, 5, borderColor);
+    private SuperTextBox thiefInfo = new SuperTextBox("Thief", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 150, 5, borderColor);
+    private SuperTextBox weaponsDealerInfo = new SuperTextBox("Weapons Dealer", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 150, 5, borderColor);
+    private SuperTextBox scientistInfo = new SuperTextBox("Scientist", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 150, 5, borderColor);
+    private SuperTextBox explosiveExpertInfo = new SuperTextBox("Explosive Expert", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 150, 5, borderColor);
+    private SuperTextBox builderInfo = new SuperTextBox("Builder", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 150, 5, borderColor);
+    private ArrayList<SuperTextBox> chosenInfo = new ArrayList<SuperTextBox>();
     
     // Dialogue, Speaker, General Text
     // 9 lines + 4 lines (one special line per chosen MC)
@@ -86,6 +90,36 @@ public class IntroWorld extends AllWorld
         fillSpeakersAndDialogue();
         displayCharacters();
         
+        // Info
+        int[] xCoords = {150, 275, 400, 525};
+        int[] yCoords = {500, 450, 500, 450};
+        
+        // Top left, top right, bottom left, bottom right
+        for(int i = 0; i < 4; i++){
+            String name = selectedPrisoners.get(i);
+            String[] splitName = name.split(",");
+            if(splitName[5].equals("Thief")){ // Thief
+                addObject(thiefInfo, xCoords[i], yCoords[i]);
+                chosenInfo.add(thiefInfo);
+            } else if(splitName[5].equals("Brute")){ // Brute
+                addObject(bruteInfo, xCoords[i], yCoords[i]);
+                chosenInfo.add(bruteInfo);
+            } else if(splitName[5].equals("Scientist")){ // Scientist
+                addObject(scientistInfo, xCoords[i], yCoords[i]);
+                chosenInfo.add(scientistInfo);
+            } else if(splitName[5].equals("Weapons Dealer")){ // Weapons Dealer
+                addObject(weaponsDealerInfo, xCoords[i], yCoords[i]);
+                chosenInfo.add(weaponsDealerInfo);
+            } else if(splitName[5].equals("Explosive Expert")){ // Expolsive Expert
+                addObject(explosiveExpertInfo, xCoords[i], yCoords[i]);
+                chosenInfo.add(explosiveExpertInfo);
+            } else { // Builder
+                addObject(builderInfo, xCoords[i], yCoords[i]);
+                chosenInfo.add(builderInfo);
+            }
+        }
+        
+        
         savedPrisoners = new SavedPrisoner[4];
         int index = 0;
         for(String serializedData : selectedPrisoners) {
@@ -108,8 +142,11 @@ public class IntroWorld extends AllWorld
         // before this it should be just prisoners in the cell
         if(Greenfoot.mouseClicked(null) && dialogueCounter == 0){
             sm.playSound("click");
-            // add code for when guard comes in
             removeObject(guideMessage);
+            // remove info
+            for(SuperTextBox box : chosenInfo){
+                removeObject(box);
+            }
             // add new boxes for dialogue
             dialogueBox = new TempBox(1200, 150, bgColor, borderColor, 5);
             speakerBox = new TempBox(400, 50, bgColor, borderColor, 5);

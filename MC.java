@@ -52,6 +52,7 @@ public class MC extends Prisoner
         speed = Double.parseDouble(serializedData[3]);
         intel = Integer.parseInt(serializedData[4]);
         specialty = serializedData[5];
+        currentAction = "";
     }
 
     /**
@@ -88,7 +89,16 @@ public class MC extends Prisoner
     }
 
     public void setAction(String action) {
-        this.currentAction = action;
+        if(isDead) {
+            this.currentAction = "Reviving...";
+            StatusBar.setUpdate(true);
+        } else if(inFight) {
+            this.currentAction = "In a Fight";
+            StatusBar.setUpdate(true);
+        } else if(!currentAction.equals(action)) {
+            this.currentAction = action;
+            StatusBar.setUpdate(true);
+        }
     }
 
     public void giveItem(Item item) {
@@ -113,6 +123,7 @@ public class MC extends Prisoner
     public boolean craftItem() {
         for(Item i : heldItems) {
             if(i.isMaterial()) {
+                setAction("Crafting Items");
                 world.removeObject(i);
                 heldItems.remove(i);
                 i.useItem(world, this);
