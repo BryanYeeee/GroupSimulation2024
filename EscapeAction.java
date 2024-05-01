@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 /**
  * EscapeAction is the same as action, but mainly for the methods of escape. 
- * This subclass was mainly created for organization purposes
+ * This subclass was mainly created for organization purposes.
  * 
  * @author Bryan Y
  * @version April 2024
@@ -30,6 +30,14 @@ public class EscapeAction extends Action
     
     private static SoundManager sm;
     
+    /**
+     * Return whether an MC can proceed to the next step of the breaking wall escape.
+     * 
+     * @param w         The simulation world the MC is in.
+     * @param mc        The main character doing the escape.
+     * @param followers The followers of the MC that will follow along the MC's route.
+     * @return boolean  True if MC can proceed to the next step, and do that step, false if the requirements are not met.
+     */
     public static boolean breakWall(MyWorld w, MC mc, MC[] followers, int step) {
         switch(step) {
             case 0:
@@ -69,7 +77,14 @@ public class EscapeAction extends Action
         }
         return false;
     }
-    
+    /**
+     * Return whether an MC can proceed to the next step of the car escape.
+     * 
+     * @param w         The simulation world the MC is in.
+     * @param mc        The main character doing the escape.
+     * @param followers The followers of the MC that will follow along the MC's route.
+     * @return boolean  True if MC can proceed to the next step, and do that step, false if the requirements are not met.
+     */
     public static boolean driveCar(MyWorld w, MC mc, MC[] followers, int step) {
         switch(step) {
             case 0:
@@ -115,6 +130,7 @@ public class EscapeAction extends Action
                     return followersDone;
                 }
                 if(!mc.isMoving()) {
+                    sm.playSound("DoorOpen");
                     mc.goToNode(CAR_NODE);
                 }
                 break;
@@ -129,7 +145,6 @@ public class EscapeAction extends Action
                 }
                 for(MC follower : followers) {
                     follower.setAction("Escaping");
-                    //if(follower.getCurNode().getIndex() == CAR_ESCAPE_NODE) 
                     if(follower.getCurNode().getIndex() != CAR_ESCAPE_NODE && !follower.isMoving() && mc.getActCount() % 25 == 0) {
                         follower.goToNode(CAR_ESCAPE_NODE);
                     }
@@ -139,6 +154,14 @@ public class EscapeAction extends Action
         return false;
     }
     
+    /**
+     * Return whether an MC can proceed to the next step of the exploding wall escape.
+     * 
+     * @param w         The simulation world the MC is in.
+     * @param mc        The main character doing the escape.
+     * @param followers The followers of the MC that will follow along the MC's route.
+     * @return boolean  True if MC can proceed to the next step, and do that step, false if the requirements are not met.
+     */
     public static boolean explodeWall(MyWorld w, MC mc, MC[] followers, int step) {
         switch(step) {
             case 0:
@@ -150,22 +173,22 @@ public class EscapeAction extends Action
                 break;
             case 1:
                 w.addObject(new Explosive(), 184, 143);
-
-                if(true)return true;
-                break;
+                return true;
             case 2:
                 //gtfo
                 if(mc.getCurNode().getIndex() == EXPLOSION_STEP_BACK_NODE) return true;
                 if(!mc.isMoving() && mc.getActCount() % 20 == 0) mc.goToNode(EXPLOSION_STEP_BACK_NODE);
                 break;
             case 3: // MAKE BOMB DO THIS
-                if(w.getBreakable(2).isBroken()) return true;
+                if(w.getBreakable(2).isBroken()) {
+                    sm.playSound("bomb");
+                    return true;
+                }
                 if(!w.getBreakable(2).isBreaking()) {
                     w.getBreakable(2).beginBreak();
                 }
                 break;
             case 4:
-                sm.playSound("bomb");
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == EXPLOSION_ESCAPE_NODE) {
                     return true;
@@ -180,12 +203,19 @@ public class EscapeAction extends Action
         return false;
     }
     
+    /**
+     * Return whether an MC can proceed to the next step of the cutting fence escape.
+     * 
+     * @param w         The simulation world the MC is in.
+     * @param mc        The main character doing the escape.
+     * @param followers The followers of the MC that will follow along the MC's route.
+     * @return boolean  True if MC can proceed to the next step, and do that step, false if the requirements are not met.
+     */
     public static boolean cutFence(MyWorld w, MC mc, MC[] followers, int step) {
         switch(step) {
             case 0:
                 mc.setAction("Turning Off Generator");
                 if(mc.getCurNode().getIndex() == GENERATOR_NODE) {
-                    sm.playSound("GeneratorOff");
                     w.generatorOff();
                     return true;
                 }
@@ -209,12 +239,12 @@ public class EscapeAction extends Action
                 }
                 break;
             case 3:
-                sm.stopSoundLoop("CutFence");
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == CUT_FENCE_ESCAPE_NODE) {
                     return true;
                 }
                 if(!mc.isMoving()) {
+                    sm.stopSoundLoop("CutFence");
                     mc.goToNode(CUT_FENCE_ESCAPE_NODE);
                 }
                 for(MC follower : followers) {
@@ -228,6 +258,14 @@ public class EscapeAction extends Action
         return false;
     }
     
+    /**
+     * Return whether an MC can proceed to the next step of the digging hole escape.
+     * 
+     * @param w         The simulation world the MC is in.
+     * @param mc        The main character doing the escape.
+     * @param followers The followers of the MC that will follow along the MC's route.
+     * @return boolean  True if MC can proceed to the next step, and do that step, false if the requirements are not met.
+     */
     public static boolean digHole(MyWorld w, MC mc, int step) {
         switch(step) {
             case 0:
@@ -284,6 +322,14 @@ public class EscapeAction extends Action
         return false;
     }
     
+    /**
+     * Return an array of the MCs that are following an MC who is doing a main escape.
+     * 
+     * @param mcs           The array of main characters.
+     * @param chosenEscapes The array of escapes.
+     * @param index         The index of the main mc doing the main escape.
+     * @return followersArr An array of MCs that will follow the MC doing an escape.
+     */
     public static MC[] filterMC(MC[] mcs, String[] chosenEscapes, int index) {
         ArrayList<MC> followers = new ArrayList<>();
         for (int i = 0; i < 4; i++) {

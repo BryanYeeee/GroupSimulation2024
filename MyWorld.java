@@ -66,11 +66,12 @@ public class MyWorld extends AllWorld
      */
     public MyWorld() {
         this(Arrays.asList(
-                "Leon,Metalworker,8,1.8,100,Weapons Dealer",
-                "Aron,Janitor,8,1.8,100,Explosive Expert",
-                "Waldo,Cook,8,1.9,100,Scientist",
+                "Leon,Metalworker,45,1.8,100,Brute",
+                "Aron,Janitor,25,1.8,100,Weapons Dealer",
+                "Waldo,Cook,8,1.9,100,Thief",
                 "Reuben,Woodworker,5,1.8,100,Builder"
             ));
+            sm.stopSoundLoop("MainEscape");
     }
 
     /**
@@ -83,7 +84,7 @@ public class MyWorld extends AllWorld
         // Create a new world with 1200x850 cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
         setPaintOrder(Fade.class, Item.class, BannerIcon.class,  Dialogue.class, Announcement.class,Clock.class, 
-            EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, 
+            EventDisplay.class, NightTime.class, SuperStatBar.class, 
             ElectricFence.class, Explosive.class,WallCover.class, Generator.class, Vehicle.class, Accessory.class, 
             Person.class, Underglow.class, Tile.class, Breakable.class, Room.class);
 
@@ -276,11 +277,11 @@ public class MyWorld extends AllWorld
      * Start the escape section of the simulation, swap music as well.
      */
     public boolean doEscape() {
-        sm.stopSoundLoop("MainEscape");
-        sm.playSound("LightsOut");
         
         escapingMcs++;
         if (escapingMcs == 4) { // All prisoners are ready to escap
+            sm.stopSoundLoop("MainEscape");
+            sm.playSound("LightsOut");
             escape = new Escape(this);
             escapeTime = true;
             Guard.setGuardStats(this);
@@ -438,6 +439,9 @@ public class MyWorld extends AllWorld
         }
     }
 
+    /**
+     * This interface is used for z-Sorting.
+     */
     class ActorContent implements Comparable<ActorContent> {
         private Actor actor;
         private int xx, yy;

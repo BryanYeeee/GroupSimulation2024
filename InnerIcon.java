@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 /**
- * The inner icon is the icon that appears in the indicator class
+ * The inner icon is the icon that appears within the Indicator class bubble.
  * 
  * @author Jamison H
  * @version April 2024
@@ -15,6 +15,13 @@ public class InnerIcon extends Actor
     GreenfootImage intIcon = new GreenfootImage("images/icons/intelligence-icon.png");
     GreenfootImage strIcon = new GreenfootImage("images/icons/strength-icon.png");
 
+    /**
+     * Constructor for InnerIcon, fill possible icon images and select a certain image to be displayed.
+     * 
+     * @param index     The index of the displayed image.
+     * @param width     The width of the image.
+     * @param height    The height of the image.
+     */
     public InnerIcon(int index, int width, int height){
         fillImages();
         GreenfootImage tempImage = innerImages.get(index);
@@ -22,6 +29,9 @@ public class InnerIcon extends Actor
         setImage(tempImage);
     }
     
+    /**
+     * Fill an array with possible icon images.
+     */
     private void fillImages(){
         innerImages.add(exclamationMark); //index 0
         innerImages.add(questionMark); //index 1

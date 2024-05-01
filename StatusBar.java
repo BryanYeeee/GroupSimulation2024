@@ -1,8 +1,8 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 /**
- * Display for various stats and items
- * Does not auto update, will update after being set to update
+ * Display for various stats and items in the main world.
+ * Note: Does not auto update, it will update after being told/set to update.
  * 
  * @author Jamison H
  * @version April 2024
@@ -51,23 +51,35 @@ public class StatusBar extends Actor
 
     // Array of MCs in the world
     private MC[] MCs;
-
+    /**
+     * Constructor for StatusBar, draw the background image and borders.
+     */
     public StatusBar(){
         redraw();
     }
 
+    /**
+     * Update the values of the bar once added to the world
+     * 
+     * @param w     The world being added to.
+     */
     public void addedToWorld(World w){
         update = true;       
     }    
 
+    /**
+     * The act method of the StatusBar, update values once told to.
+     */
     public void act()
     {
         if(update){
             updateStatus();
         }
     }
-    // Fill SuperTextBox with all possible names
-
+    
+    /**
+     * Update values of the bar by adding text to the world.
+     */
     private void updateStatus(){
         // Cover old values
         clear();
@@ -137,10 +149,18 @@ public class StatusBar extends Actor
         update = false;
     }
 
+    /**
+     * Set when the StatusBar should update.
+     * 
+     * @param state     Typically true, setting the bar to update, false means no update happens.
+     */
     public static void setUpdate(boolean state){
         update = state;
     }
 
+    /**
+     * Draw the background and borders of the StatusBar.
+     */
     private void redraw(){
         GreenfootImage background = new GreenfootImage(width, height);
         // Draw background
@@ -159,8 +179,10 @@ public class StatusBar extends Actor
 
         setImage(background);
     }
-    // This method is for actually getting real values from prisoners, won't work now due to lack of methods
-
+    
+    /**
+     * Track the values of the main prisoners within the simluation world.
+     */
     private void trackValues(){
         // Prisoners
         // From MyWorld, get an array of MCs in the world
@@ -176,7 +198,10 @@ public class StatusBar extends Actor
         }
     }
 
-    // Clear all text
+    /**
+     * Clear the StatusBar of text and background boxes (will be readded in updateStatus).
+     * This is used to stop text being drawn over each other and too many TempBoxes being in the world causing lag.
+     */
     private void clear(){
         for(SuperTextBox text : getIntersectingObjects(SuperTextBox.class)){
             getWorld().removeObject(text);

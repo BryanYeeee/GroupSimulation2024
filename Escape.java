@@ -17,7 +17,10 @@ public class Escape
     private int[] escapeSteps;
 
     /**
-     * Constructor for objects of class Escape
+     * Constructor for objects of class Escape.
+     * Calculate the escape method depending on items and stats.
+     * 
+     * @param w     The simluation world where escapes will happen.
      */
     public Escape(MyWorld w)
     {
@@ -54,9 +57,9 @@ public class Escape
         
         boolean hasEscape = false;
         for(ArrayList<String> escapes : possibleEscapes) {
-            if(!escapes.isEmpty()) hasEscape = true;
+            if(!escapes.isEmpty() && !escapes.contains("4 Dig a Hole")) hasEscape = true;
         }
-        if(!hasEscape || Greenfoot.getRandomNumber(5)==0)possibleEscapes.get(strongestMC.getIndex()).add("5 Drive The Car");
+        if(!hasEscape || strongestMC.getStrength() >= 35 || Greenfoot.getRandomNumber(5)==0)possibleEscapes.get(strongestMC.getIndex()).add("5 Drive The Car");
         
         int j = 0;
         for(ArrayList<String> escapes : possibleEscapes) {
@@ -100,6 +103,10 @@ public class Escape
 
     }
     
+    /**
+     * The act method of Escape.
+     * Increment the steps of an escape if the conditions are met.
+     */
     public void act() {
         for(int i = 0; i < 4; i++) {
             if(chosenEscapes[i].charAt(0) == '?') continue; // Following another MC's escape method

@@ -5,15 +5,21 @@ import java.util.ArrayList;
  * The PathFinder class will store the nodes for each coordinate that the people will walk on.
  * It is also in charge of finding the optimal path from node to node for the person actors to use
  * 
- * @author Bryan Y 
+ * @author Bryan T 
  * @version April 2024
  */
 public class PathFinder  
 {
-    private Node[] nodes; // 
+    private Node[] nodes; 
 
+    /**
+     * The constructor for the pathfinder
+     * 
+     * @param w the main simulation world
+     */
     public PathFinder(MyWorld w)
     {
+        // Config for all the Nodes (index, xPosition, yPosition, leftBoundary, rightBoundary, topBoundary, bottomBoundary)
         String[] nodeConfig = new String[] {
             // Spawn Node
             "0 378 155 45 15 138 0",
@@ -77,6 +83,8 @@ public class PathFinder
             "148 33 324 0 0 0 0","149 135 324 0 0 0 0","152 0 324",
             "150 882 204","151 882 0"
         };
+
+        // Config for all the node connections
         String[] nodeConnections = new String[] {
             // Hallway:
             "0 1",          "41 42","42 140","140 43",
@@ -179,8 +187,8 @@ public class PathFinder
     /**
      * This method will print the pathfinder's path from one node to another (only used for debugging).
      * 
-     * @param int index of the starting node
-     * @param int index of the ending node
+     * @param startNodeIndex Index of the starting node
+     * @param endNodeIndex Index of the ending node
      */
     public void findPath(int startNodeIndex, int endNodeIndex) {
         goToNode(null, getNode(startNodeIndex), endNodeIndex);
@@ -189,9 +197,9 @@ public class PathFinder
     /**
      * Using the A* algorithm, this method will find the optimal path from one node to another. It will then add the series nodes into the person's path
      * 
-     * @param Person the person that will be following the calculated path
-     * @param Node starting node
-     * @param int index of the ending node
+     * @param p The person that will be following the calculated path
+     * @param startNode Starting node
+     * @param endNodeIndex Index of the ending node
      */
     public void goToNode(Person p, Node startNode, int endNodeIndex) { 
         // a* search algorithm, generate a string path of the nodes needed to travel from one node to another
@@ -240,6 +248,12 @@ public class PathFinder
         
     }
     
+    /**
+     * Get the node based on the nodeIndex
+     * 
+     * @param nodeIndex The index of the node
+     * @return Node The desired node
+     */
     public Node getNode(int nodeIndex) {
         return nodes[nodeIndex];
     }
@@ -250,6 +264,13 @@ public class PathFinder
         private String path;
         private int dist;
         
+        /**
+         * Constructor for SearchNode
+         * 
+         * @param n The assigned Node
+         * @param dist The distance from the assigned node to the starting node
+         * @param path String of the path from start node to assigned node
+         */
         public SearchNode(Node n, int dist, String path) {
             this.n = n;
             this.dist = dist;

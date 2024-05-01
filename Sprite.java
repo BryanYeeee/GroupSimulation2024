@@ -18,12 +18,10 @@ public class Sprite
     private static char dirChar = 'D';
     private static int imageIndex = 0;
     private static Map<String, GreenfootImage> frames = new HashMap<>();
-
-    public Sprite()
-    {
-
-    }
-
+    
+    /**
+     * Initalize the map with all frames depending on person type, skin tone, direction and action.
+     */
     public static void init(){
         for(int i = 0; i<2; i++){
             if(i==0){
@@ -114,6 +112,12 @@ public class Sprite
         }
     }
 
+    /**
+     * Return a GreenfootImage of a frame of an animation. If key is not found, return a default black inmate idle frame.
+     * 
+     * @param key               The key to access the frame within the map.
+     * @return GreenfootImage   The frame of an animation.
+     */
     public static GreenfootImage getFrame(String key){
         if (frames.containsKey(key)) {
             return frames.get(key);
