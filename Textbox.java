@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 /**
- * The textbox is used to display the stats in the statworld
+ * The textbox is used to display the stats in the statworld.
  * 
  * @author Ainson Z
  * @version April 2024
@@ -10,6 +10,13 @@ public class Textbox extends Actor {
     private SavedPrisoner sp;
     private String statName;
 
+    /**
+     * Constructor for Textbox.
+     * 
+     * @param sp        The box's associated prisoner.
+     * @param statName  The box's stat.
+     * @param width     The box's width.
+     */
     public Textbox(SavedPrisoner sp, String statName, int width) {
         this.statName = statName;
         this.sp = sp;
@@ -24,6 +31,11 @@ public class Textbox extends Actor {
         setImage(image);
     }
 
+    /**
+     * Update the stat text.
+     * 
+     * @param image     The image to be updated on.
+     */
     private void updateText(GreenfootImage image) {
         switch(statName) {
             case "str":
@@ -39,6 +51,9 @@ public class Textbox extends Actor {
             
     }
 
+    /**
+     * The act method of Textbox, keep clearing and updating my image.
+     */
     public void act() {
         GreenfootImage image = getImage();
         image.clear(); // Clear the image before updating
