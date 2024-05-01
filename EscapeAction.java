@@ -54,10 +54,10 @@ public class EscapeAction extends Action
                     mc.setDirection(-1);
                     mc.setMovingVertical(true);
                     w.getBreakable(0).beginBreak();
-                    sm.playSound("WallBreak");
                 }
                 break;
             case 2:
+                sm.playSound("WallBreak");
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == BREAK_WALL_ESCAPE_NODE) {
                     
@@ -114,7 +114,6 @@ public class EscapeAction extends Action
             case 4:
                 mc.setAction("Going to The Car");
                 if(mc.getCurNode().getIndex() == CAR_NODE) {
-                    sm.playSound("CarStart");
                     mc.setSpeed(1.6);
                     boolean followersDone = true;
                     for(MC follower : followers) {
@@ -136,6 +135,7 @@ public class EscapeAction extends Action
                 }
                 break;
             case 5:
+                sm.playSound("CarStart");
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == CAR_ESCAPE_NODE) {
                     return true;

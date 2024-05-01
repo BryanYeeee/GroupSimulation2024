@@ -36,7 +36,7 @@ public class SoundManager
         sounds.put("WoodCraft", new Sound("WoodCraft.mp3", 43, false)); // could be looped
         sounds.put("Fighting", new Sound("Fighting.mp3", 31, true));
         sounds.put("RollCall", new Sound("RollCall.mp3", 21, false));
-        sounds.put("CarStart", new Sound("CarStart.mp3", 21, false));
+        sounds.put("CarStart", new Sound("CarStart.mp3", 50, false));
         sounds.put("PickUp", new Sound("PickUp.mp3", 42, false));
         
         // Looped
