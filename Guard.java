@@ -14,6 +14,9 @@ public class Guard extends Person
     private static boolean guardsPoisoned;
     
     // For cutscene/intro done by Jamison H
+    /**
+     * Constructor for Guard used for cutscene/intro
+     */
     public Guard(int i, boolean inIntro){
         super(i, inIntro);
         GreenfootImage cutsceneImage = new GreenfootImage("images/guard/male_white/idle/D0.png");
@@ -22,25 +25,43 @@ public class Guard extends Person
         personType = "guard";
     }
     
+    /**
+     * Constructoe for Guard
+     */
     public Guard(int i) {
         super(i);
         personType = "guard";
     }
     
+    /**
+     * Constructor for gGuard
+     */
     public Guard() {
         this(-1);
         specialGuard = true;
     }
     
+    /**
+     * Do the current event going on
+     */
     public void doCurrentEvent() {
         if(specialGuard) return;
         super.doCurrentEvent();
     }
     
+    /**
+     * Guard is poisoned
+     */
     public static void poisonGuards() {
         guardsPoisoned = true;
     }
     
+    
+    /**
+     * Sets the Guards stats in MyWorld
+     * 
+     * @param w                         World where Guard is
+     */
     public static void setGuardStats(MyWorld w) {
         if(guardsPoisoned) {
             for(Guard g : w.getGuards()) {
@@ -50,6 +71,9 @@ public class Guard extends Person
         }
     }
     
+    /**
+     * Act method for Guard
+     */
     public void act() {
         super.act();
         if(!inIntro){
@@ -94,14 +118,23 @@ public class Guard extends Person
         }
     }
 
+    /**
+     * Returns the accessory Guard has
+     * 
+     * @return result                       Accessory 
+     */
     public ArrayList<Integer> getAccessories(){
         ArrayList<Integer> result = new ArrayList<>();
         result.add(6);
         return result; 
     }
     
+    /**
+     * returns if Guard is touching an accessory
+     * 
+     * @return (Accessory) getOneIntersectingObject(Accessory.class)    Guard touching an Accessory
+     */
     public Accessory getAccessory(){
         return (Accessory) getOneIntersectingObject(Accessory.class);
     }
-    
 }
