@@ -24,7 +24,11 @@ public class Accessory extends Entity
     private int actsLeft;
     private static final Map<String, Integer> offsetValues = initializeOffsetValues();
     
-    
+    /**
+     * Used to set yOffset for diiferent animation frames
+     * 
+     * @return values                   Animation frame yOffsets
+     */
     private static Map<String, Integer> initializeOffsetValues() {
         //These values correspond to the yOffset of different frames in animation
         Map<String, Integer> values = new HashMap<>();
@@ -88,11 +92,20 @@ public class Accessory extends Entity
         return values;
     }
 
+    /**
+     * Constructor for Accessory
+     * 
+     * @param origin                    Prisoner that accessory is attached to
+     * @param accessoryIndex            Index of the accessory
+     */
     public Accessory(Person origin, int accessoryIndex){
         this.origin = origin;
         this.accessoryIndex = accessoryIndex;
     }
 
+    /**
+     * Act method for Accessory
+     */
     public void act()
     {
         try {
@@ -145,10 +158,21 @@ public class Accessory extends Entity
         setLocation(origin.getX()+xOffset,origin.getY()+yOffset);
     }
     
+    /**
+     * Sets acts left
+     * 
+     * @param acts                  Sets to current acts
+     */
     public void setActsLeft(int acts){
         actsLeft = acts;
     }
     
+    /**
+     * Fades the object in or out of the world
+     * 
+     * @param timeLeft              Time left for fade to complete
+     * @param totalFadeTime         Total time for fade duration
+     */
     public void fade (int timeLeft, int totalFadeTime){
         double percent = timeLeft / (double)totalFadeTime;
         if (percent > 1.00) return;
