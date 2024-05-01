@@ -12,7 +12,86 @@ import java.util.List;
 import java.util.Arrays;
 
 /**
- * This is the main simulation world.
+ * Prison Escape Simluation: The Escapers <p>
+ * 
+ * Plot: <p>
+ * 4 prisoners are told they only have one day to live, thus they spend their last day gathering resources and increasing their stats to attempt an escape.
+ * Then, in the night time, they execute their plan and try to escape the prison. <p>
+ * 
+ * Features: <p>
+ * - Day-Night Cycle where prisoners obtain items and increase their stats in the day, and at night time they will attempt to escape <br>
+ * - Fighting between inmates and guards
+ * - A clock with a current event indicator <br>
+ * - Character dialogue throughout the simluation that can be triggered by conditions such as obtaining an item <br>
+ * - Pathing algorithm that allows for prisoners to nagivate the map around nodes efficiently <br>
+ * - Unique accessories and underglow for each MC <br>
+ * - Animations for eating, working out, roaming around, executing escapes, fighting <br>
+ * - Items that can give various buffs and craft other items <br>
+ * - A status bar that shows the 4 MCs' stats and current action <br>
+ * <p>
+ * Credits: <p>
+ * Images/Backgrounds not credited here are drawn by chatGPT <p>
+ * 
+ * Font: 
+ * https://www.fontsquirrel.com/fonts/list/classification/pixel VT323 by Peter Hull <br>
+ * Intro Background:
+ * https://www.deviantart.com/saulica/art/Prison-Cell-Pixel-Art-x4-Size-485929021 Prison Cell - Pixel Art x4 Size by Saulica <br>
+ * 
+ * Character Intro Advance Button:
+ * https://www.vecteezy.com/vector-art/26996703-arrow-left-button-pixelated-rgb-color-ui-icon-move-back-previous-track-simplistic-filled-8bit-graphic-element-retro-style-design-for-arcade-video-game-art-editable-vector-isolated-image
+ * Arrow left button pixelated RGB color ui icon… by bsd_studio<br>
+ * 
+ * Indicator:
+ * https://iconduck.com/icons/257047/pop-up-blank <br>
+ * 
+ * Exclamation Mark:
+ * https://emojipedia.org/exclamation-mark <br>
+ * 
+ * Question Mark:
+ * https://www.cleanpng.com/png-question-mark-royalty-free-stock-photography-clip-1624671/ by latti<br>
+ * 
+ * Health Icon:
+ * https://www.cleanpng.com/png-heart-icon-health-care-icon-health-care-icon-7679290/ by organizing<br>
+ * 
+ * Intelligence Icon:
+ * https://wiki.hypixel.net/Intelligence <br>
+ * 
+ * Strength Icon:
+ * https://www.freepik.com/icon/empowerment_9603955#fromView=keyword&page=1&position=82&uuid=07bc346f-9646-4f2e-9046-727c76e4a19f by cah nggunung<br>
+ * 
+ * Ending Background:
+ * https://www.pinterest.com/pin/free-vector--1041246376317781659/ by Freepik<br>
+ * <p>
+ * Sounds: <p>
+ * WoodBurning:
+ * https://www.youtube.com/watch?v=-mZHANRv8T4<br>
+ * 
+ * Wall Break:
+ * https://www.youtube.com/watch?v=oRwHxQnu-gs<br>
+ * 
+ * Metal Craft:
+ * https://www.youtube.com/watch?v=LRaa9ejX5R8<br>
+ * 
+ * Roll Call:
+ * https://www.youtube.com/watch?v=AftEpDVWzRw<br>
+ * 
+ * Shovel Dirt:
+ * https://www.youtube.com/watch?v=JFr3YEz12H4<br>
+ * 
+ * Statscreen: 
+ * https://www.youtube.com/watch?v=TkM88tuTYxA<br>
+ * 
+ * Titlescreen:
+ * https://www.youtube.com/watch?v=Ujds4BkTvaI<br>
+ * 
+ * MainEscape:
+ * https://www.youtube.com/watch?v=9LmNMqenFmk<br>
+ * 
+ * LightsOut:
+ * https://www.youtube.com/watch?v=lV1dnpfyg9Q <br>
+ * 
+ * Fighting:
+ * https://www.youtube.com/watch?v=KZcC1oK291I <br>
  * 
  * @author Bryan Y, Ainson Z, and Jeff G
  * @version April 2024
@@ -71,7 +150,7 @@ public class MyWorld extends AllWorld
                 "Waldo,Cook,8,1.9,100,Thief",
                 "Reuben,Woodworker,5,1.8,100,Builder"
             ));
-            sm.stopSoundLoop("MainEscape");
+        sm.stopSoundLoop("MainEscape");
     }
 
     /**
@@ -92,7 +171,7 @@ public class MyWorld extends AllWorld
         SimulationFont.initalizeFont();
         Sprite.init();
         setBackground(backgroundImg);
-        
+
         //LAG TRACKER by Jeff G
         PerformanceMeter meter = new PerformanceMeter();
         addObject(meter, 50, 25);
@@ -129,7 +208,7 @@ public class MyWorld extends AllWorld
         // Test prisoner
         // g = new Prisoner(17);
         // addObject(g,0,0);
-        
+
         // Initialize schedule and GUI by Bryan Y 
         schedule = new Schedule(this);
         addObject(new Clock("7:00"), 68, 50);
@@ -166,7 +245,7 @@ public class MyWorld extends AllWorld
         addObject(cell1, 469, 583);
         cell2 = new JailCell(new int[]{135,137}, new int[]{95,125},2);
         addObject(cell2, 591, 583);
-        
+
         // Add the wall covers to the world by Bryan Y 
         addObject(new WallCover("images/WallCover/cover1.png"), 317, 323);
         addObject(new WallCover("images/WallCover/cover2.png"), 409, 299);
@@ -176,8 +255,7 @@ public class MyWorld extends AllWorld
         addObject(new WallCover("images/WallCover/WoodworkCover.png"), 319, 600);
         addObject(new WallCover("images/WallCover/MetalworkCover.png"), 728, 601);
         addObject(new WallCover("images/WallCover/VehicleDoorCover.png"), 257, 482);
-        
-        
+
         // Breakables by Bryan Y 
         breakables = new Breakable[6];
         breakables[0] = new Breakable("images/Breakable/RollCallWall.png",100, 100);
@@ -192,10 +270,10 @@ public class MyWorld extends AllWorld
         addObject(breakables[4], 33, 323);
         breakables[5] = new Breakable("images/Breakable/Fence.png",100, 100);        
         addObject(breakables[5], 882, 162);
-        
+
         // Vehicles by Bryan Y 
         addObject(new Vehicle("Car.png"), 150, 492);
-        
+
         //Electric Fence by Jeff
         addObject(new ElectricFence(27),1077,360);
         addObject(new ElectricFence(24),1077,320);
@@ -207,8 +285,7 @@ public class MyWorld extends AllWorld
         addObject(new ElectricFence(6,true),960,160);
         addObject(new ElectricFence(3,true),920,160);
         addObject(new ElectricFence(0,true),880,160);
-        
-        
+
         //Item testing
         // addObject(new Potion(),400, 299);
         // addObject(new Metal(),420, 299);
@@ -218,7 +295,7 @@ public class MyWorld extends AllWorld
         // addObject(new Metal(),500, 299);
         // addObject(new Keycard(),360, 299);
         // addObject(new Wood(),380, 299);
-        
+
         sm.playSound("MainEscape");
     }
 
@@ -230,7 +307,7 @@ public class MyWorld extends AllWorld
             p.offsetPos = -20;
         }
     }
-    
+
     /**
      * The act method of the simulation, zSorts actors and relies on the act() of schedule and escape.
      * Once all prisoners have escaped, move onto the EndWorld automatically.
@@ -245,7 +322,7 @@ public class MyWorld extends AllWorld
             for(MC mc : mainPrisoners) {
                 if(mc.getX() ==0 || mc.getY() ==0){
                     escapedMcs++;
-                    
+
                 }
             }
             if(escapedMcs == 4) {
@@ -256,6 +333,7 @@ public class MyWorld extends AllWorld
         actCount++;
         zSort();
     }
+
     /**
      * Update the event display with the current event.
      * 
@@ -264,7 +342,7 @@ public class MyWorld extends AllWorld
     public void updateEventDisplay(String event) {
         eventDisplay.update(event);
     }
-    
+
     /**
      * Turn the generator off.
      */
@@ -272,12 +350,12 @@ public class MyWorld extends AllWorld
         generator.turnOff();
         sm.playSound("GeneratorOff");
     }
-    
+
     /**
      * Start the escape section of the simulation, swap music as well.
      */
     public boolean doEscape() {
-        
+
         escapingMcs++;
         if (escapingMcs == 4) { // All prisoners are ready to escap
             sm.stopSoundLoop("MainEscape");
@@ -290,7 +368,7 @@ public class MyWorld extends AllWorld
             return false;
         }
     }
-    
+
     /**
      * Return whether it is time to escape.
      * 
@@ -299,7 +377,7 @@ public class MyWorld extends AllWorld
     public boolean isEscapeTime() {
         return escapeTime;
     }
-    
+
     /**
      * Return the index of a breakable object.
      * 
@@ -318,7 +396,7 @@ public class MyWorld extends AllWorld
     public Person[] getPeople() {
         return people;
     }
-    
+
     /**
      * Return the 4 main prisoners within the simulation.
      * 
@@ -327,7 +405,7 @@ public class MyWorld extends AllWorld
     public MC[] getMainPrisoners() {
         return mainPrisoners;
     }
-    
+
     /**
      * Return the prisoners (not MCs) within the simulation.
      * 
@@ -336,7 +414,7 @@ public class MyWorld extends AllWorld
     public Prisoner[] getPrisoners() {
         return prisoners;
     }
-    
+
     /**
      * Return the guards within the simulation.
      * 
@@ -345,7 +423,7 @@ public class MyWorld extends AllWorld
     public Guard[] getGuards() {
         return guards;
     }
-    
+
     /**
      * Return the schedule of the simluation.
      * 
@@ -354,7 +432,7 @@ public class MyWorld extends AllWorld
     public Schedule getSchedule() {
         return schedule;
     }
-    
+
     /**
      * Return the font used for text.
      * 
@@ -363,7 +441,7 @@ public class MyWorld extends AllWorld
     public greenfoot.Font getFont() {
         return pixelFont;
     }
-    
+
     /**
      * Tell the schedule to start free time actions.
      */
@@ -384,14 +462,14 @@ public class MyWorld extends AllWorld
     public void doRoll() {
         schedule.doRoll();
     }
-    
+
     /**
      * Tell the schedule to start night time actions.
      */
     public void doNight() {
         schedule.doNight();
     }
-    
+
     /**
      * Return the world width.
      * 
@@ -400,7 +478,7 @@ public class MyWorld extends AllWorld
     public int getWidth() {
         return WORLD_WIDTH;
     }
-    
+
     /**
      * Return the world height.
      * 
