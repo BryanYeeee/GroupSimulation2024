@@ -17,7 +17,10 @@ public class Escape
     private int[] escapeSteps;
 
     /**
-     * Constructor for objects of class Escape
+     * Constructor for objects of class Escape.
+     * Calculate the escape method depending on items and stats.
+     * 
+     * @param w     The simluation world where escapes will happen.
      */
     public Escape(MyWorld w)
     {
@@ -100,6 +103,10 @@ public class Escape
 
     }
     
+    /**
+     * The act method of Escape.
+     * Increment the steps of an escape if the conditions are met.
+     */
     public void act() {
         for(int i = 0; i < 4; i++) {
             if(chosenEscapes[i].charAt(0) == '?') continue; // Following another MC's escape method

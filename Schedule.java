@@ -4,7 +4,7 @@ import greenfoot.*;
 import java.util.List;
 
 /**
- * The schedule class is in charge of making the prisoners do various actions based on the time
+ * The schedule class is in charge of making the prisoners do various actions based on the time.
  * 
  * @author Bryan Y 
  * @version April 2024
@@ -18,6 +18,11 @@ public class Schedule
     private int bannerPosX, bannerPosY;
     private String currentEvent;
     private MyWorld world;
+    
+    public int x = 0; // temp variable to track fighting amounts
+    /**
+     * A map of the timing of messages and the text of the messages.
+     */
     {
         messageTimings = new HashMap<>();
         // Beginning roll call
@@ -47,7 +52,10 @@ public class Schedule
     }
 
     /**
-     * Constructor for objects of class Schedule
+     * Constructor for objects of class Schedule.
+     * Initalize my values for my banner using some world values.
+     * 
+     * @param w     The simulation world the schedule will be running in.
      */
     public Schedule(MyWorld w)
     {
@@ -56,24 +64,36 @@ public class Schedule
         bannerPosX = w.WORLD_WIDTH/2;
         bannerPosY = 50;    
     }
-    public int x = 0; // temp variable to track fighting amounts
+    
+    /**
+     * Update the world to show and do free time actions.
+     */
     public void doFree() {
         world.updateEventDisplay("FREE TIME");
         currentEvent = "FREE TIME";
         Action.doFreeTime(world);    }
 
+    /**
+     * Update the world to show and do job time actions.
+     */
     public void doJob() {
         world.updateEventDisplay("JOB TIME");
         currentEvent = "JOB TIME";
         Action.doJob(world);
     }
-
+    
+    /**
+     * Update the world to show and do roll call actions.
+     */
     public void doRoll(){
         world.updateEventDisplay("ROLL CALL");
         currentEvent = "ROLL CALL";
         Action.doRollCall(world);
     }
 
+    /**
+     * Update the world to show and do night time actions.
+     */
     public void doNight(){
         world.addObject(new NightTime(),0,0);
         world.updateEventDisplay("LIGHTS OUT");
@@ -81,6 +101,10 @@ public class Schedule
         Action.doLightsOut(world);
     }
 
+    /**
+     * The act method of Schedule.
+     * Display character dialogue, annoucements, also update the world to do and show the current event depending on act count.
+     */
     public void act()
     {
         if(actCount==10) {
@@ -262,6 +286,11 @@ public class Schedule
         actCount++;
     }
 
+    /**
+     * Tell a person to do an action corresponding with the current event.
+     * 
+     * @param p   The person doing the current event.
+     */
     public void doCurrentEvent(Person p) {
         switch (currentEvent) {
             case "ROLL CALL":
@@ -285,22 +314,50 @@ public class Schedule
         }
     }
 
+    /**
+     * Return the world's current event.
+     * 
+     * @return currentEvent The current event.
+     */
     public String getCurrentEvent() {
         return currentEvent;
     }
 
+    /**
+     * Return the schedule's act count.
+     * 
+     * @return actCount     The act count.
+     */
     public int getActCount() {
         return actCount;
     }
 
+    /**
+     * Add an annoucement to the simulation world.
+     * 
+     * @param text  The text within the annoucement.
+     * @param acts  The number of acts the annoucment will appear for.
+     */
     public void announce(String text, int acts){
         world.addObject(new Announcement(text,acts),bannerPosX,bannerPosY); 
     }
 
-    public  void dialogue(String text, int seconds, String speakerName){
+    /**
+     * Add a character dialogue to the simulation world.
+     * 
+     * @param text          The text within the dialogue.
+     * @param acts          The number of acts the dialogue will appear for.
+     * @param speakerName   The character speaking the dialogue.
+     */
+    public void dialogue(String text, int seconds, String speakerName){
         world.addObject(new Dialogue(text,seconds,speakerName),bannerPosX,bannerPosY); 
     }
 
+    /**
+     * Return a random MC within the simulation world. 
+     * 
+     * @return MC   The random MC, null if no MCs in the world.
+     */
     public MC getRandomMC()
     {
         
@@ -311,7 +368,13 @@ public class Schedule
         }
         return mcs.get(Greenfoot.getRandomNumber(mcs.size()));
     }
-
+    
+    /**
+     * Run the dialogue function.
+     * 
+     * @param text      The text of the dialogue.
+     * @param seconds   The seconds the dialogue will display for.
+     */
     public void say(String text, int seconds){
         dialogue(text,seconds, getRandomMC().getSpecialty().toLowerCase());
     }

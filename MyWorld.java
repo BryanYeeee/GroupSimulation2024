@@ -438,6 +438,9 @@ public class MyWorld extends AllWorld
         }
     }
 
+    /**
+     * This interface is used for z-Sorting.
+     */
     class ActorContent implements Comparable<ActorContent> {
         private Actor actor;
         private int xx, yy;
