@@ -83,8 +83,8 @@ public class Schedule
 
     public void act()
     {
-        if(actCount==10) {
-            //actCount=120*60;
+        if(actCount==110) {
+            actCount=135*60;
             //world.getMainPrisoners()[2].giveItem(new Chemicals());
 
             //world.getMainPrisoners()[2].setStrength(35);
