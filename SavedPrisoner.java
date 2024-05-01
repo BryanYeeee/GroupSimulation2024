@@ -18,7 +18,14 @@ public class SavedPrisoner extends Actor {
     private String specialty;
 
     /**
-     * Prisoner constructor
+     * Constructor of SavedPrisoner
+     * 
+     * @param name          The name of the prisoner.
+     * @param jobTitle      The job name of the prisoner.
+     * @param str           The strength value of the prisoner.
+     * @param spd           The speed value of the prisoner.
+     * @param intel         The intelligence value of the prisoner.
+     * @param specialty     The specialty of the prisoner.
      */
     public SavedPrisoner(String name, String jobTitle, int str, double spd, int intel, String specialty) {        
         this.str = str;
@@ -35,13 +42,21 @@ public class SavedPrisoner extends Actor {
         
     }
     
+    /**
+     * Secondary construtor
+     * 
+     * @param serializedData    The data of the prisoner.
+     */
     public SavedPrisoner(String serializedData) {
         deserializeState(serializedData);
         setMaxValues(specialty);
     }
     
     /**
-     * Used as an image card for the status bar in the main simulation
+     * A constructor used as an image card for the status bar in the main simulation.
+     * 
+     * @param img       To differeniate between the previous single String constuctor
+     * @param specialty The specialty of the prisoner.
      */
     public SavedPrisoner(boolean img, String specialty) {
         image = new GreenfootImage("images/"+specialty.replaceAll(" ","")+".png");
@@ -50,10 +65,11 @@ public class SavedPrisoner extends Actor {
     }
     
     /**
-     * Creates stat's increase and decrease buttons, and text to show stat
+     * Creates stat's increase and decrease buttons, and text to show stat.
+     * Help from ChatGPT
      * 
-     * 
-     * help from ChatGPT
+     * @param x The x-coordinate of the button.
+     * @param y The y-coordinate of the button.
      */
     public void createControls(int x, int y) {
         // Strength controls
@@ -83,8 +99,7 @@ public class SavedPrisoner extends Actor {
     
     /**
      * Method to serialize the state of the prisoner
-     * 
-     * help from ChatGPT
+     * Help from ChatGPT
      */
     public String serializeState() {
         // Serialize the state into a string
@@ -93,8 +108,9 @@ public class SavedPrisoner extends Actor {
     
     /**
      * Method to deserialize and restore the state of the prisoner
+     * Help from ChatGPT
      * 
-     * help from ChatGPT
+     * @param serializedData    The data to be operated on.
      */
     public void deserializeState(String serializedData) {
         // Deserialize the string and restore the state of the prisoner
@@ -111,16 +127,38 @@ public class SavedPrisoner extends Actor {
         setImage(image);
     }
     
+    /**
+     * Return the prisoner's strength stat.
+     * 
+     * @return int  The strength value.
+     */
     public int getStrength() {
         return str;
     }
+    
+    /**
+     * Return the prisoner's speed stat.
+     * 
+     * @return int  The speed value.
+     */
     public double getSpeed() {
         return spd;
     }
+    
+    /**
+     * Return the prisoner's intelligence stat.
+     * 
+     * @return int  The intelligence value.
+     */
     public int getIntel() {
         return intel;
     }
     
+    /**
+     * Set the max values of the prisoner, to be varied depending on their specialty.
+     * 
+     * @param specialty     The specialty of the prisoner.
+     */
     public void setMaxValues(String specialty) {
         maxStr = 20;
         minStr = 5;
@@ -142,6 +180,11 @@ public class SavedPrisoner extends Actor {
         }
     }
     
+    /**
+     * Increase the strength stat of the prisoner.
+     * 
+     * @param increase  The value to be increased by.
+     */
     public void addStrength(boolean increase) {
         if(increase) {
             str = str + 1 > maxStr ? maxStr: str + 1;
@@ -150,6 +193,11 @@ public class SavedPrisoner extends Actor {
         } 
     }
     
+    /**
+     * Increase the intelligence stat of the prisoner.
+     * 
+     * @param increase  The value to be increased by.
+     */
     public void addIntel(boolean increase) {
         if(increase) {
             intel = intel + 20 > maxIntel ? maxIntel: intel + 20;
@@ -158,6 +206,11 @@ public class SavedPrisoner extends Actor {
         } 
     }
 
+    /**
+     * Increase the speed stat of the prisoner.
+     * 
+     * @param increase  The value to be increased by.
+     */
     public void addSpeed(boolean increase) {
         if(increase) {
             spd = (spd * 10 + 1) / 10 > maxSpd ? maxSpd: (spd * 10 + 1) / 10;

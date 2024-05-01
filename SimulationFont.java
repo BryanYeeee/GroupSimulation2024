@@ -10,7 +10,7 @@ import java.io.IOException;
  * Note: Majority of code is taken from crissty21 from Greenfoot forum: "Import Font from .ttf file" <p>
  * Link: https://www.greenfoot.org/topics/65058/0
  * 
- * @author crissty21, and modified by Jeff G
+ * @author crissty21, and modified by Jeff G and Jamison H
  * @version April 2024
  */
 public class SimulationFont extends Actor
@@ -88,7 +88,9 @@ public class SimulationFont extends Actor
             return null;
         }
     }
-    
+    /**
+     * Utility method to initalize the font of a world.
+     */
     public static void initalizeFont(){
         File f = new File("VT323-Regular.ttf");
         try {
