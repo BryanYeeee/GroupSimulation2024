@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 /**
- * This is used for fading in and out of a screen
+ * This is used for fading in and out of a screen.
  * 
  * @author Ainson Z
  * @version April 2024
@@ -17,7 +17,7 @@ public class Fade extends Actor
      * Constructor for Fade
      * 
      * @param fade              Duration of the fade
-     * @param direction         Boolean to determine fading in oir fading out
+     * @param direction         Boolean to determine fading in or fading out
      */
     public Fade(int fade, boolean direction) {
         this.fade = fade;
@@ -34,7 +34,7 @@ public class Fade extends Actor
     }
     
     /**
-     * act method for fade 
+     * Act method for fade, sets transparency of the image.
      */
     public void act() {
         if(direction) {
@@ -54,7 +54,7 @@ public class Fade extends Actor
     /**
      * Method to get fade duration
      * 
-     * @return fade
+     * @return fade     The duration of the fading effect.
      */
     public int getFade() {
         return fade;

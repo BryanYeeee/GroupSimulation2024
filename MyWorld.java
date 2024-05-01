@@ -83,7 +83,7 @@ public class MyWorld extends AllWorld
         // Create a new world with 1200x850 cells with a cell size of 1x1 pixels.
         super(WORLD_WIDTH, WORLD_HEIGHT, 1); 
         setPaintOrder(Fade.class, Item.class, BannerIcon.class,  Dialogue.class, Announcement.class,Clock.class, 
-            EventDisplay.class, Alarm.class, NightTime.class, SuperStatBar.class, 
+            EventDisplay.class, NightTime.class, SuperStatBar.class, 
             ElectricFence.class, Explosive.class,WallCover.class, Generator.class, Vehicle.class, Accessory.class, 
             Person.class, Underglow.class, Tile.class, Breakable.class, Room.class);
 

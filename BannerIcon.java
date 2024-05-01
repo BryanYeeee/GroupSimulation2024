@@ -1,14 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * The BannerIcon is the image that appears on the side of the Banner class
+ * The BannerIcon is the image that appears on the side of the Banner class.
  * 
  * @author Jeff G
  * @version April 2024
  */
 public class BannerIcon extends Actor
 {
-
+    /**
+     * Constructor of BannerIcon that creates an icon for the annoucement banner.
+     * 
+     * @param imageName     The file name of the image.
+     */
     public BannerIcon(String imageName){
         GreenfootImage image = new GreenfootImage("images/announcements/icon_"+imageName+".png");
         image.scale(48,48);
@@ -24,10 +28,5 @@ public class BannerIcon extends Actor
 
         borderedImage.drawImage(image, thickness, thickness);
         setImage(borderedImage);
-    }
-
-    public void act()
-    {
-        // Add your action code here.
     }
 }

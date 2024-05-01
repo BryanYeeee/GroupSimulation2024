@@ -1,8 +1,8 @@
 import greenfoot.*;
 
 /**
- * StatButton class that is used to generate arrow images
- * that can edit a stat by decreasing or increasing
+ * StatButton class that is used to generate arrow images.
+ * that can edit a stat by decreasing or increasing.
  * 
  * @author Bryan Y and Ainson Z
  * @version April 2024
@@ -13,6 +13,13 @@ public class StatButton extends Button {
     private GreenfootImage image;
     private String statName;
 
+    /**
+     * Constructor for StatButton, sets and scales my image.
+     * 
+     * @param sp        The associated prisoner with the button.
+     * @param statName  The name of the stat I am for.
+     * @param increase  The value to increase the stat by.
+     */
     public StatButton(SavedPrisoner sp, String statName, boolean increase) {
         this.sp = sp;
         this.statName = statName;
@@ -27,8 +34,7 @@ public class StatButton extends Button {
     }
 
     /**
-     * Act method
-     * On mouse click increase or decrease stat
+     * The act method of StatButton, on mouse click increase or decrease stat.
      */
     public void act() {
         if(Greenfoot.mouseClicked(this)) {

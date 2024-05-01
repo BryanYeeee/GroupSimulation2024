@@ -1,6 +1,11 @@
 import greenfoot.*;
 import java.util.Random;  // Import the Random class for generating random numbers
-
+/**
+ * An explosion effect for the bomb in the exploding a wall escape.
+ * 
+ * @author Jeff G
+ * @version April 2024
+ */
 public class Explosive extends Actor {
     private GreenfootImage initialImage;
     private GreenfootImage[] images;  
@@ -11,6 +16,9 @@ public class Explosive extends Actor {
     private int updateFrequency;
     private Random random;  // Add a Random object for generating shake
 
+    /**
+     * Constructor for Explosive, set the image and values for animation and duration.
+     */
     public Explosive() {
         initialImage = new GreenfootImage("images/items/bomb.png");
         initialImage.scale(50,50);
@@ -28,6 +36,9 @@ public class Explosive extends Actor {
         random = new Random();  // Initialize the Random object
     }
 
+    /**
+     * The act method of Explosive, sets location and frame of animation.
+     */
     public void act() {
         if (primeActs > 0) {
             primeActs--;

@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
- * The electric fence is an actor to show the electricity graphics on the main simulation's fence
+ * The electric fence is an actor to show the electricity graphics on the main simulation's fence.
  * 
  * @author Jeff G
  * @version April 2024
@@ -15,14 +15,28 @@ public class ElectricFence extends Actor
     private int animationLength = 11;
     private int loopLength = 45;
     private boolean isRotated;
+    /**
+     * The default constructor of ElectricFence, starting Frame of 0 and no rotation.
+     */
     public ElectricFence(){
         this(0,false);
     }
-
+    
+    /**
+     * The secondary constructor of ElectricFence
+     * 
+     * @param startingFrame     The starting image frame of the fence.
+     */
     public ElectricFence(int startingFrame){
         this(startingFrame,false);
     }
 
+    /**
+     * The primary constructor of ElectricFence that sets image and rotation.
+     * 
+     * @param startingFrame     The starting image frame of the fence.
+     * @param isRotated         True if the animation should be rotated, false if not.
+     */
     public ElectricFence(int startingFrame, boolean isRotated){
         imageIndex = startingFrame;
         this.isRotated = isRotated;
@@ -31,12 +45,19 @@ public class ElectricFence extends Actor
         }
     }
 
+    /**
+     * The act method of ElectricFence
+     * Increment the act count to help animation, continously animate.
+     */
     public void act()
     {
         actCount++;
         animate();
     }
 
+    /**
+     * Animate the fence with a blueish wave.
+     */
     public void animate() {
         if (actCount % animationDelay != 0) {
             return;
@@ -66,9 +87,11 @@ public class ElectricFence extends Actor
             imageIndex=0;
         }
     }
+    
     /**
-     * Turns the electric fence on or off
-     * @param onOff true means on false means off
+     * Turns the electric fence on or off.
+     * 
+     * @param onOff True means on false means off.
      */
     public static void setOnOff(boolean onOff){
         isOn = onOff;
