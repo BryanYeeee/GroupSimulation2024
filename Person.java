@@ -56,8 +56,10 @@ public abstract class Person extends Entity
     protected ArrayList<Integer> accessoryIndices; //JEFF
     
     private SoundManager sm;
-    
-    // For cutscene/intro world
+    // For cutscene/intro done by Jamison H
+    /**
+     * Constructor for Person used for cutscene/intro world
+     */
     public Person(int i, boolean intro){
         this.index = i;
         inIntro = intro;
@@ -68,6 +70,9 @@ public abstract class Person extends Entity
         intel = 40;
     }
 
+    /**
+     * Constructor for Person
+     */
     public Person(int i) {
         this.index = i;
         curNode = MyWorld.pf.getNode(STARTING_NODE_INDEX);
@@ -114,6 +119,9 @@ public abstract class Person extends Entity
         }
     }
 
+    /**
+     * Act method for Person
+     */
     public void act(){   
         actCount++;
         if(!inIntro){
@@ -308,6 +316,11 @@ public abstract class Person extends Entity
         }
     }
     
+    /**
+     * Returns the chance that a Person gets an item
+     * 
+     * @return                          Chance of obtaining an item
+     */
     public int getChance() {
         if (intel < 20) {
             return 6;
@@ -321,6 +334,11 @@ public abstract class Person extends Entity
         return 1;
     }
 
+    /**
+     * Checks if the Person is currently dead or alive 
+     * 
+     * @param isDead                    Checks if Person is dead or alive
+     */
     public void setDead(boolean isDead) {
         this.isDead = isDead;
         if (isDead) { // If dead, then keep the healthBar visible
@@ -331,6 +349,9 @@ public abstract class Person extends Entity
         }
     }
 
+    /**
+     * Horizontal animations
+     */
     public void makeHorizontal(){
         if(dirChar != 'L' && dirChar != 'R'){
             if (Greenfoot.getRandomNumber(2) == 0) {
@@ -341,6 +362,10 @@ public abstract class Person extends Entity
         }
     }
 
+    /**
+     * 
+     * 
+     */
     public void setInFight(Person opponent, boolean inFight) {
         this.inFight = inFight;
         if (inFight) { // If starting fight then show healthBar and store the opponent's health and strength
@@ -376,6 +401,12 @@ public abstract class Person extends Entity
         //System.out.println("FIGHT: " +onGoingFights);
     }
 
+    /**
+     * Fades the object in or out of the world
+     * 
+     * @param timeLeft              Time left for fade to complete
+     * @param totalFadeTime         Total time for fade duration
+     */
     protected void fade (int timeLeft, int totalFadeTime){
         double percent = timeLeft / (double)totalFadeTime;
         if (percent > 1.00) return;
@@ -383,32 +414,65 @@ public abstract class Person extends Entity
         getImage().setTransparency (newTranparency);
     }
 
+    /**
+     * Returns the index of the Person in the world
+     * 
+     * @return index                Gets the index of Person
+     */
     public int getIndex() {
         return index;
     }
 
+    /**
+     * Returns Person items
+     * 
+     * @return result                   Gets Person items
+     */
     protected ArrayList<Integer> getAccessories(){
         ArrayList<Integer> result = new ArrayList<>();
         result.add(0);
         return result;
     }
 
+    /**
+     * Checks if Person is walking around 
+     * 
+     * @param walking                   Checks if Person is walking
+     */
     public void setWalking(boolean walking) {
         isWalkingAround = walking;
     }
 
+    /**
+     * Returns if Person is walking around
+     * 
+     * @return isWalkingAround          Checks if Person is walking
+     */
     public boolean isWalking() {
         return isWalkingAround;
     }
 
+    /**
+     * Adds an underglow to Person
+     * 
+     * @param color                     Color of the underglow
+     */
     public void addUnderglow(Color color){
         getWorld().addObject(new Underglow(this, color), getX(), getY());
     }
 
+    /**
+     * Sets the action Person follows
+     * 
+     * @param action                    Sets action of Person
+     */
     public void setAction(String action){
         this.action=action;
     }
 
+    /**
+     * Animations
+     */
     public void animate() {
         //frames only change at intervals of animationDelay
         if (actCount % animationDelay != 0) {
@@ -466,6 +530,11 @@ public abstract class Person extends Entity
         setImage(currentImage);
     }
 
+    /**
+     * Shows the healthbar of Person
+     * 
+     * @param show                      Display healthbar or not 
+     */
     public void showHealthBar(boolean show) {
         if(show && healthBar.getWorld() == null) {
             getWorld().addObject(healthBar, 0, 0);
@@ -474,6 +543,11 @@ public abstract class Person extends Entity
         }
     }
 
+    /**
+     * Method used to heal Person's HP
+     * 
+     * @param healAmount                    Sets the amount which Person heals by
+     */
     public void healHp(int healAmount){
         curHp+=healAmount;
         if (curHp > maxHp) curHp = maxHp;
@@ -481,105 +555,229 @@ public abstract class Person extends Entity
         if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
+    /**
+     * Adds intel to Person
+     * 
+     * @param intelAmount                   Increase intel by an amount
+     */
     public void addIntel(int intelAmount) {
         intel+=intelAmount;
         if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
+    /**
+     * Adds strength to Person
+     * 
+     * @param strengthAmount                Increase strength by an amount
+     */
     public void addStrength(int strengthAmount) {
         if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute"))strengthAmount++;
         str+=strengthAmount;
         if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
+    /**
+     * Sets strength value
+     * 
+     * @param s                             Assigns strength a value
+     */
     public void setStrength(int s) {
         str = s;
     }
     
+    /**
+     * Returns speed
+     * 
+     * @return speed                        Speed of Person
+     */
     public double getSpeed() {
         return speed;
     }
+    
+    /**
+     * Sets the speed of Person
+     * 
+     * @param speed                         Sets speed of Person
+     */
     public void setSpeed(double speed) {
         this.speed = speed;
     }
 
+    /**
+     * Sets the room position of Person in it
+     * 
+     * @param roomPosition                  Position in Person's room
+     */
     public void setRoomPosition(int roomPosition) {
         this.roomPosition = roomPosition;
     }
 
+    /**
+     * Sets the direction Person will face
+     * 
+     * @param dir                           Direction of Person
+     */
     public void setDirection(int dir) {
         this.dir = dir;
     }
 
+    /**
+     * Checks if Person is moving vertically
+     * 
+     * @param movingVertical                Moving vertically or horizontally
+     */
     public void setMovingVertical(boolean movingVertical) {
         this.movingVertical = movingVertical;
     }
 
+    /**
+     * Is Person fighting
+     * 
+     * @return inFight                      Currently in a fight
+     */
     public boolean isFighting() {
         return inFight;
     }
 
+    /**
+     * Clears paths Person is taking
+     */
     public void clearPath() {
         curPath.clear();
     }
 
+    /**
+     * Is Person moving
+     * 
+     * @return !curPath.isEmpty()           Person is moving if path is not empty
+     */
     public boolean isMoving() {
         return !curPath.isEmpty();
     }
 
+    /**
+     * Adds the next node Person has to walk to
+     * 
+     * @param nextNode                      Next node to walk to
+     */
     public void addToPath(Node nextNode) {
         curPath.add(nextNode);
     }
 
+    /**
+     * Returns if Person is dead
+     * 
+     * @return isDead                       Person is dead or alive
+     */
     public boolean isDead() {
         return isDead;
     }
 
+    /**
+     * Sets Person in intro or not in intro
+     * 
+     * @param intro                         Person is in or not in intro
+     */
     public static void setIntro(boolean intro){
         inIntro = intro;
     }
 
+    /**
+     * Returns act
+     * 
+     * @return actCount                     Current acts
+     */
     public int getActCount() {
         return actCount;
     }
 
+    /**
+     * Returns maxHP
+     * 
+     * @return maxHp                        MaxHp of Person
+     */
     public int getMaxHealth() {
         return maxHp;
     }
 
+    /**
+     * Returns the current health of Person
+     * 
+     * @return curHp                        Current Hp of Person
+     */
     public int getHealth() {
         return curHp;
     }
 
+    /**
+     * Returns the strength of Person
+     * 
+     * @return str                          Strength of Person
+     */
     public int getStrength() {
         return str;
     }
 
+    /**
+     * Returns the intel of Person
+     * 
+     * @return intel                        Intelligence of Person
+     */
     public int getIntel(){
         return intel;
     }
 
+    /**
+     * Returns the node Person is on
+     * 
+     * @return currNode                     Current node
+     */
     public Node getCurNode() {
         return curNode;
     }
 
+    /**
+     * Returns Person's current room
+     * 
+     * @return curRoom                      Current Room
+     */
     public Room getCurRoom() {
         return curRoom;
     }
 
+    /**
+     * Return Person's position in the room
+     * 
+     * @return roomPosition                 Room position
+     */
     public int getRoomPosition() {
         return roomPosition;
     }
 
+    /**
+     * Returns the direction Person is currently facing
+     * 
+     * @return dirChar                      Direction Person is facing
+     */
     public char getDirChar(){
         return dirChar;
     }
 
+    /**
+     * Returns the current action Person is performing
+     * 
+     * @return action                       Action of Person
+     */
     public String getAction(){
         return action;
     }
 
     //JEFF ADDED
+    /**
+     * Animation for walking and idle
+     * 
+     * @return imageIndex                     Index of animation  
+     */
     public int getImageIndex(){
         if (action.equals("walk")) {
             animationLength = 12;
