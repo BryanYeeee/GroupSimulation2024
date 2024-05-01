@@ -15,7 +15,7 @@ public class EndWorld extends AllWorld
     private Color transparentColor = new Color(0, 0, 0, 0);
     private Color textColor = new Color(250, 249, 246);
 
-    TempBox backImage = new TempBox(1000, 700, bgColor, borderColor, 10);
+    TempBox backImage = new TempBox(1100, 700, bgColor, borderColor, 10);
     
     private SuperTextBox[] displayNames = new SuperTextBox[4];
     private SuperTextBox[] displaySpecialties = new SuperTextBox[4];
