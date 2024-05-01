@@ -54,9 +54,9 @@ public class Escape
         
         boolean hasEscape = false;
         for(ArrayList<String> escapes : possibleEscapes) {
-            if(!escapes.isEmpty()) hasEscape = true;
+            if(!escapes.isEmpty() && !escapes.contains("4 Dig a Hole")) hasEscape = true;
         }
-        if(!hasEscape || Greenfoot.getRandomNumber(5)==0)possibleEscapes.get(strongestMC.getIndex()).add("5 Drive The Car");
+        if(!hasEscape || strongesetMC.getStrength() >= 35 || Greenfoot.getRandomNumber(5)==0)possibleEscapes.get(strongestMC.getIndex()).add("5 Drive The Car");
         
         int j = 0;
         for(ArrayList<String> escapes : possibleEscapes) {
