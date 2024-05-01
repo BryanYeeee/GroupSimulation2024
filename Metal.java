@@ -16,6 +16,12 @@ public class Metal extends Item
         isMaterial = true;
     }
     
+    /**
+     * Activate the item's effects, craft a weapon depending on the intelligence of the MC using the item.
+     * 
+     * @param w     The simulation world the MC exists in.
+     * @param p     The MC using the item.
+     */
     public void useItem(MyWorld w, MC p) {
         int itemChoice = Greenfoot.getRandomNumber((int)p.getIntel());
         if(itemChoice < 50) {

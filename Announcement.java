@@ -8,19 +8,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Announcement extends Banner
 {
-    /**
-     * Act - do whatever the Announcement wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    
-
     private int actsLeft;
     private static Color announcementBackgroundColor = new Color (84,84,84);
 
+    /**
+     * Constructor for Annoucement
+     * 
+     * @param text      The displayed text.
+     * @param seconds   The duration of display.
+     */
     public Announcement(String text,double seconds){
         super(text, seconds, "announcement", announcementBackgroundColor, Color.WHITE); 
         secondsLeft = seconds;
     }
+    /**
+     * The act method of Annoucement
+     */
     public void act()
     {
         super.act();
