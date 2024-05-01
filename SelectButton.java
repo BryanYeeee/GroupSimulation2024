@@ -16,6 +16,12 @@ public class SelectButton extends Button
     
     private SoundManager sm;
     
+    /**
+     * Constructor for SelectButton, set and scale images.
+     * 
+     * @param selectWorld   The world to be placed in.
+     * @param savedPrisoner The associated prisoner with the button.
+     */
     public SelectButton(SelectWorld selectWorld, SavedPrisoner savedPrisoner) {
         this.selectWorld = selectWorld;
         this.savedPrisoner = savedPrisoner;
@@ -27,8 +33,7 @@ public class SelectButton extends Button
     }
     
     /**
-     * Act - do whatever the SelectButton wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * The act method of SelectButton, vary image depending on clicks and number of selected prisoners.
      */
     public void act()
     {
