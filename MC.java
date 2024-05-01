@@ -95,7 +95,9 @@ public class MC extends Prisoner
     }
     
     /**
+     * Sets the escape method of the MC
      * 
+     * @param                           Method of escape
      */
     public void setEscapeMethod(String method){
         escapeMethod = method;
