@@ -43,6 +43,9 @@ public class SoundManager
         sounds.put("Titlescreen", new Sound("Titlescreen.mp3", 25, true));
         sounds.put("MainEscape", new Sound("MainEscape.mp3", 25, true));
         sounds.put("LightsOut", new Sound("LightsOut.mp3", 25, true));
+        sounds.put("Fighting", new Sound("Fighting.mp3", 31, true));
+        sounds.put("ShovelDirt", new Sound("ShovelDirt.mp3", 43, true));
+        sounds.put("CutFence", new Sound("CutFence.mp3", 43, true));
         
     }
     

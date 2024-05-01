@@ -149,6 +149,7 @@ public abstract class Person extends Entity
                 animationDelay=10;
                 animate(); //Call animate before return 
                 if (actCount % 30 == 0) {
+                    sm.playSound("Hit");
                     curHp -= opponentStrength;
                     opponentHealth -= str;
                     if(this instanceof MC) StatusBar.setUpdate(true);

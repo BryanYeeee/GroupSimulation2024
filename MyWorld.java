@@ -242,7 +242,10 @@ public class MyWorld extends AllWorld
             escape.act();
             int escapedMcs = 0;
             for(MC mc : mainPrisoners) {
-                if(mc.getX() ==0 || mc.getY() ==0) escapedMcs++;
+                if(mc.getX() ==0 || mc.getY() ==0){
+                    escapedMcs++;
+                    
+                }
             }
             if(escapedMcs == 4) {
                 Greenfoot.setWorld(new EndWorld(mainPrisoners));
