@@ -162,14 +162,13 @@ public class EscapeAction extends Action
             case 3: // MAKE BOMB DO THIS
                 if(w.getBreakable(2).isBroken()) return true;
                 if(!w.getBreakable(2).isBreaking()) {
-                    sm.playSound("bomb");
                     w.getBreakable(2).beginBreak();
                 }
                 break;
             case 4:
+                sm.playSound("bomb");
                 mc.setAction("Escaping");
                 if(mc.getCurNode().getIndex() == EXPLOSION_ESCAPE_NODE) {
-                    
                     return true;
                 }
                 if(!mc.isMoving()) mc.goToNode(EXPLOSION_ESCAPE_NODE);
