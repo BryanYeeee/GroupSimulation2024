@@ -1,9 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class EndWorld here.
+ * The end world of the simulation that displays the chosen characters, stats, and escape methods used.
  * 
- * @author (your name) 
+ * @author Jamison H.
  * @version April 2024
  */
 public class EndWorld extends AllWorld
@@ -15,7 +15,7 @@ public class EndWorld extends AllWorld
     private Color transparentColor = new Color(0, 0, 0, 0);
     private Color textColor = new Color(250, 249, 246);
 
-    TempBox backImage = new TempBox(800, 600, bgColor, borderColor, 10);
+    TempBox backImage = new TempBox(1000, 700, bgColor, borderColor, 10);
     
     private SuperTextBox[] displayNames = new SuperTextBox[4];
     private SuperTextBox[] displaySpecialties = new SuperTextBox[4];
@@ -23,24 +23,28 @@ public class EndWorld extends AllWorld
     private SuperTextBox[] displayInts = new SuperTextBox[4];
     private SuperTextBox[] displayStrs = new SuperTextBox[4];
     private SuperTextBox displayEscapes;
-    private String[] escapes; // no duplicates in here
+    private String[] escapes; 
     
     SuperTextBox endingText1; 
     SuperTextBox endingText2; 
-    // MC[] mainPrisoners must be passed on, right now will just be temp preset values
-    public EndWorld()
+    /**
+     * Constructor for EndWorld that generates text based on stats and values from the main simulation.
+     * 
+     * @param mainPrisoners An array of MC objects that were used in the main simulation world.
+     */
+    public EndWorld(MC[] mainPrisoners)
     {
         super(1200, 850, 1);
         SimulationFont.initalizeFont();
         endingBackground.scale(1200, 850);
         setBackground(endingBackground);
-        // Temp
-        MC[] mainPrisoners = {new MC(0, true, "Thief"), new MC(1, true, "Brute"), new MC(2, true, "Explosive Expert"), new MC(3, true, "Weapons Dealer")};
+        String[] specialities = {mainPrisoners[0].getSpecialty(),mainPrisoners[1].getSpecialty(),mainPrisoners[2].getSpecialty(),mainPrisoners[3].getSpecialty()};
+        MC[] escapedPrisoners = {new MC(0, true, specialities[0]), new MC(1, true, specialities[1]), new MC(2, true, specialities[2]), new MC(3, true, specialities[3])};
         
         // Set texts
         endingText1 = new SuperTextBox("SIMULATION END", transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 54), true, 1024, 0, transparentColor);
         endingText2 = new SuperTextBox("Return to Title Screen", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 600, 5, borderColor);
-        displayEscapes = new SuperTextBox("Escapes Occured: " + mainPrisoners[0].getEscapeMethod() + ", " + mainPrisoners[1].getEscapeMethod() + ", " + mainPrisoners[2].getEscapeMethod() + ", " + mainPrisoners[3].getEscapeMethod(), transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 1000, 0, Color.BLACK); 
+        displayEscapes = new SuperTextBox("Escapes Occured: " + escapedPrisoners[0].getEscapeMethod() + ", " + escapedPrisoners[1].getEscapeMethod() + ", " + escapedPrisoners[2].getEscapeMethod() + ", " + escapedPrisoners[3].getEscapeMethod(), transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 1000, 0, Color.BLACK); 
  
         
         // Display values
@@ -50,7 +54,7 @@ public class EndWorld extends AllWorld
         addObject(displayEscapes, 600, 635);
         
         for(int i = 0; i < 4; i++){
-            addObject(mainPrisoners[i], 340 + (175 * i), 350); 
+            addObject(escapedPrisoners[i], 340 + (175 * i), 350); 
             // If text is too long
             if(mainPrisoners[i].getSpecialty().equals("Explosive Expert")){
                 displaySpecialties[i] = new SuperTextBox("Explo. Expert", transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), false, 200, 0, Color.BLACK); 
@@ -71,6 +75,9 @@ public class EndWorld extends AllWorld
 
     }
 
+    /**
+     * The act method of EndWorld. It will detect when the user wants to go to the title screen.
+     */
     public void act(){
         if(Greenfoot.mouseClicked(endingText2)){
             sm.playSound("click");

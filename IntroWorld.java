@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class to hold the cutscene after the character introductions
+ * The IntroWorld displays a cutscene with 4 chosen MCs with a reasoning of why they want to escape.
  * 
  * @author Jamison H
  * @version April 2024
@@ -22,10 +22,14 @@ public class IntroWorld extends AllWorld
     private Color transparentColor = new Color(0, 0, 0, 0);
     private Color textColor = new Color(250, 249, 246);
     
-    // MCs
-    //int MCs[];  // track which MCs were selected by the user
-    //private int[] MCs = {1,3,4,6}; //temp
-    //MCs[] MCs;
+    // Info - only at start
+    private SuperTextBox bruteInfo = new SuperTextBox("Brute", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 150, 5, borderColor);
+    private SuperTextBox thiefInfo = new SuperTextBox("Thief", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 150, 5, borderColor);
+    private SuperTextBox weaponsDealerInfo = new SuperTextBox("Weapons Dealer", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 150, 5, borderColor);
+    private SuperTextBox scientistInfo = new SuperTextBox("Scientist", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 150, 5, borderColor);
+    private SuperTextBox explosiveExpertInfo = new SuperTextBox("Explosive Expert", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 150, 5, borderColor);
+    private SuperTextBox builderInfo = new SuperTextBox("Builder", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 20), true, 150, 5, borderColor);
+    private ArrayList<SuperTextBox> chosenInfo = new ArrayList<SuperTextBox>();
     
     // Dialogue, Speaker, General Text
     // 9 lines + 4 lines (one special line per chosen MC)
@@ -64,7 +68,11 @@ public class IntroWorld extends AllWorld
     
     private SavedPrisoner[] savedPrisoners;
     private List<String> MCs;
-    
+    /**
+     * Constructor for IntroWorld that creates a start dialogue screen.
+     * 
+     * @param selectedPrisoners A list of values from StatWorld that give indicators of which MCs were chosen.
+     */
     public IntroWorld(List<String> selectedPrisoners)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -86,6 +94,36 @@ public class IntroWorld extends AllWorld
         fillSpeakersAndDialogue();
         displayCharacters();
         
+        // Info
+        int[] xCoords = {150, 275, 400, 525};
+        int[] yCoords = {500, 450, 500, 450};
+        
+        // Top left, top right, bottom left, bottom right
+        for(int i = 0; i < 4; i++){
+            String name = selectedPrisoners.get(i);
+            String[] splitName = name.split(",");
+            if(splitName[5].equals("Thief")){ // Thief
+                addObject(thiefInfo, xCoords[i], yCoords[i]);
+                chosenInfo.add(thiefInfo);
+            } else if(splitName[5].equals("Brute")){ // Brute
+                addObject(bruteInfo, xCoords[i], yCoords[i]);
+                chosenInfo.add(bruteInfo);
+            } else if(splitName[5].equals("Scientist")){ // Scientist
+                addObject(scientistInfo, xCoords[i], yCoords[i]);
+                chosenInfo.add(scientistInfo);
+            } else if(splitName[5].equals("Weapons Dealer")){ // Weapons Dealer
+                addObject(weaponsDealerInfo, xCoords[i], yCoords[i]);
+                chosenInfo.add(weaponsDealerInfo);
+            } else if(splitName[5].equals("Explosive Expert")){ // Expolsive Expert
+                addObject(explosiveExpertInfo, xCoords[i], yCoords[i]);
+                chosenInfo.add(explosiveExpertInfo);
+            } else { // Builder
+                addObject(builderInfo, xCoords[i], yCoords[i]);
+                chosenInfo.add(builderInfo);
+            }
+        }
+        
+        
         savedPrisoners = new SavedPrisoner[4];
         int index = 0;
         for(String serializedData : selectedPrisoners) {
@@ -93,23 +131,25 @@ public class IntroWorld extends AllWorld
             index++;
         }
         
-        // //adding them to the world to edit their stats
-        // addObject(savedPrisoners[0], 100, 200);
-        // addObject(savedPrisoners[1], 100, 500);
-        // addObject(savedPrisoners[2], 450, 200);
-        // addObject(savedPrisoners[3], 450, 500);
-        
         guideMessage = new SuperTextBox("Click to start & advance dialogue", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 54), true, 768, 5, borderColor);
         addObject(guideMessage, 600, 775);
     }
 
+    /**
+     * The act method of IntroWorld.
+     * New dialogue will show up upon every click registered on the screen
+     * Note: Dialogue moves in one way, no going back to previous dialogue
+     */
     public void act(){
         super.act();
         // before this it should be just prisoners in the cell
         if(Greenfoot.mouseClicked(null) && dialogueCounter == 0){
             sm.playSound("click");
-            // add code for when guard comes in
             removeObject(guideMessage);
+            // remove info
+            for(SuperTextBox box : chosenInfo){
+                removeObject(box);
+            }
             // add new boxes for dialogue
             dialogueBox = new TempBox(1200, 150, bgColor, borderColor, 5);
             speakerBox = new TempBox(400, 50, bgColor, borderColor, 5);
@@ -250,7 +290,9 @@ public class IntroWorld extends AllWorld
         }
     }
     
-    
+    /**
+     * Display the chosen characters along with a guard from the previous SelectWorld.
+     */
     private void displayCharacters(){
         System.out.println("-----");
         System.out.println(savedMCs.get(0));
@@ -267,7 +309,9 @@ public class IntroWorld extends AllWorld
         addObject(guard, 900, 615);
     }
     
-    
+    /**
+     * Fill my arrays with text with possible speakers and dialogue.
+     */
     private void fillSpeakersAndDialogue(){
         int index = 0;
         // Fill dialogues array with preset dialogue
@@ -330,6 +374,10 @@ public class IntroWorld extends AllWorld
         index = 0;
     }
     
+    /**
+     * Switch to the next world (MyWorld, main simulation).
+     * Pass on a list of strings for the next world to know MCs selected and respective stats
+     */
     public void switchWorld() {
         serializedPrisonersState = savePrisonersState();
         System.out.println(serializedPrisonersState);

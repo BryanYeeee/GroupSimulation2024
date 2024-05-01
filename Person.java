@@ -52,8 +52,11 @@ public abstract class Person extends Entity
     private int animationLength = 2;
     private int animationDelay = 7;
     protected int actCount;
-
+    private Color[] colors = {new Color(255,64,56), new Color(255,231,22),new Color(34,121,227), new Color(45,247,38)};
     protected ArrayList<Integer> accessoryIndices; //JEFF
+    
+    private SoundManager sm;
+    
     // For cutscene/intro world
     public Person(int i, boolean intro){
         this.index = i;
@@ -104,7 +107,7 @@ public abstract class Person extends Entity
                 setLocation(curNode.getX()+curNode.getOffset(false), curNode.getY() + SPRITE_OFFSET+curNode.getOffset(true));
                 healthBar = new SuperStatBar(maxHp, curHp, this, 40, 6, 36, Color.GREEN, Color.RED, false, Color.BLACK, 2);
                 if(this instanceof MC){
-                    addUnderglow();
+                    addUnderglow(colors[this.getIndex()]);
                 }
             }
             isNew=false;
@@ -115,6 +118,7 @@ public abstract class Person extends Entity
         actCount++;
         if(!inIntro){
             if(isDead) {
+                if (this instanceof MC) ((MC)this).setAction("Reviving...");
                 action="sleep"; 
 
                 //Sets a random direction L or R if person is not horizontal
@@ -137,14 +141,19 @@ public abstract class Person extends Entity
                 return;
             }
             if(inFight) {
+                //sm.playSound("Fighting");
+                if (this instanceof MC) ((MC)this).setAction("In a Fight");
                 action="attack";
                 animationDelay=10;
                 animate(); //Call animate before return 
                 if (actCount % 30 == 0) {
+                    sm.playSound("Hit");
                     curHp -= opponentStrength;
                     opponentHealth -= str;
+                    if(this instanceof MC) StatusBar.setUpdate(true);
                     if (opponentHealth <= 0 || curHp <= 0) {
                         if(curHp<=0) curHp = 0;
+                        //sm.stopSoundLoop("Fighting");
                         setInFight(this, false);
                         setDead(curHp <= 0);
                     }
@@ -163,37 +172,6 @@ public abstract class Person extends Entity
                 action ="walk";
                 animationDelay = 7;
                 move();
-            } else{
-                if(r instanceof DiningHall){
-                    if(personType.equals( "inmate")){
-                        action = "eat";
-                        animationDelay = 20;
-                    }
-                    else{
-                        action="idle";
-                        animationDelay = 50;
-                    }
-                }
-                else if(r instanceof Gym){
-                    if(personType.equals( "inmate")){
-                        if((getX()>900)&&(getY()<600)){
-                            action = "walk";
-                            animationDelay = 7;
-                        }
-                        else{
-                            action="idle";
-                            animationDelay = 50;
-                        }
-                    }
-                    else{
-                        action="idle";
-                        animationDelay = 50;
-                    }
-                }
-                else{
-                    action ="idle";
-                    animationDelay = 50;
-                }
             }
 
             //Idle is slower so longer animationDelay
@@ -201,6 +179,20 @@ public abstract class Person extends Entity
             // If currently escaping, don't do additional effects, like rooms or free roam
             if(this instanceof MC && ((MyWorld)getWorld()).isEscapeTime()) return;
             if(this instanceof Guard && ((MyWorld)getWorld()).getSchedule().getCurrentEvent().equals("LIGHTS OUT")) return;
+
+            if(curPath.isEmpty()) {
+                if(r instanceof DiningHall && personType.equals("inmate") && getY()>190){
+                    action = "eat";
+                    animationDelay = 20;
+                }
+                else if(r instanceof Gym && personType.equals( "inmate") && (getX()>900)&&(getY()<600)){
+                    action = "walk";
+                    animationDelay = 7;
+                } else {
+                    action ="idle";
+                    animationDelay = 50;
+                }
+            }
 
             if (curRoom != r) { // Changed current room
                 if (curRoom != null) { // Leaving a room
@@ -409,8 +401,8 @@ public abstract class Person extends Entity
         return isWalkingAround;
     }
 
-    public void addUnderglow(){
-        getWorld().addObject(new Underglow(this), getX(), getY());
+    public void addUnderglow(Color color){
+        getWorld().addObject(new Underglow(this, color), getX(), getY());
     }
 
     public void setAction(String action){
@@ -497,6 +489,7 @@ public abstract class Person extends Entity
     public void addStrength(int strengthAmount) {
         if(this instanceof MC && ((MC)this).getSpecialty().equals("Brute"))strengthAmount++;
         str+=strengthAmount;
+        if(this instanceof MC)  StatusBar.setUpdate(true);
     }
 
     public void setStrength(int s) {
@@ -558,11 +551,11 @@ public abstract class Person extends Entity
         return curHp;
     }
 
-    public double getStrength() {
+    public int getStrength() {
         return str;
     }
 
-    public double getIntel(){
+    public int getIntel(){
         return intel;
     }
 

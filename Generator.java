@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Generator extends Actor
 {
     private final String offImg = "generatorOff.png";
+    
     public void turnOff() {
         setImage(new GreenfootImage(offImg));
         ElectricFence.setOnOff(false);

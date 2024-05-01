@@ -18,8 +18,10 @@ public class MC extends Prisoner
     private boolean doneCrafting;
     private String escapeMethod;
     
-    private String specialty; // more like a class, thief, brute etc.
 
+    private String specialty; // more like a class, thief, brute etc.
+    private int bannerPosX;
+    private int bannerPosY;
     // For cutscene/intro world
     public MC(int i, boolean inIntro, String specialty){
         super(i, inIntro);
@@ -27,6 +29,8 @@ public class MC extends Prisoner
         GreenfootImage cutsceneImage = new GreenfootImage("images/inmate/male_white/idle/D0.png");
         cutsceneImage.scale(120, 180);
         setImage(cutsceneImage);
+        bannerPosX = world.WORLD_WIDTH/2;
+        bannerPosY = 50;
     }
 
     /**
@@ -48,6 +52,7 @@ public class MC extends Prisoner
         speed = Double.parseDouble(serializedData[3]);
         intel = Integer.parseInt(serializedData[4]);
         specialty = serializedData[5];
+        currentAction = "";
     }
 
     /**
@@ -58,17 +63,21 @@ public class MC extends Prisoner
     {
         super.act();
     }
-    
+
     public boolean isDoneCrafting() {
         return doneCrafting;
     }
-    
+
     public void setDoneCrafting(boolean isCrafting) {
         this.doneCrafting = isCrafting;
     }
     
     public String getEscapeMethod(){
         return escapeMethod;
+    }
+    
+    public void setEscapeMethod(String method){
+        escapeMethod = method;
     }
 
     public String getSpecialty() {
@@ -78,13 +87,22 @@ public class MC extends Prisoner
     public String getName(){
         return name;
     }
-    
+
     public String getCurrentAction(){
         return currentAction;
     }
 
     public void setAction(String action) {
-        this.currentAction = action;
+        if(isDead) {
+            this.currentAction = "Reviving...";
+            StatusBar.setUpdate(true);
+        } else if(inFight) {
+            this.currentAction = "In a Fight";
+            StatusBar.setUpdate(true);
+        } else if(!currentAction.equals(action)) {
+            this.currentAction = action;
+            StatusBar.setUpdate(true);
+        }
     }
 
     public void giveItem(Item item) {
@@ -109,6 +127,7 @@ public class MC extends Prisoner
     public boolean craftItem() {
         for(Item i : heldItems) {
             if(i.isMaterial()) {
+                setAction("Crafting Items");
                 world.removeObject(i);
                 heldItems.remove(i);
                 i.useItem(world, this);
@@ -132,7 +151,7 @@ public class MC extends Prisoner
             result.add(1);
         }
         else if(specialty.equals("Thief")){
-            
+
             result.add(8);
             result.add(10);
         }
@@ -171,5 +190,11 @@ public class MC extends Prisoner
             }
         }
         return count;  // Return the total count of items
+    }
+
+    public void dialogue(String text, int seconds, String speakerName){
+
+        world.addObject(new Dialogue(text,seconds,speakerName),bannerPosX,bannerPosY); 
+        
     }
 }

@@ -2,8 +2,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * A class to hold all 6 of the MC's intro stories
- * Each story will be a background picture + some supporting text
+ * CharacterIntros displays all 6 of the MC's intro stories. <p>
+ * Each story will be a background picture + some supporting text.
  * 
  * @author Jamison H 
  * @version April 2024
@@ -33,8 +33,8 @@ public class CharacterIntros extends AllWorld
     //Used for sound
     int actCount = 0;
     /**
-     * Constructor for objects of class CharacterIntros.
-     * 
+     * Constructor for objects of class CharacterIntros. 
+     * It will initalize backgrounds, stories, and buttons to control story switching.
      */
     public CharacterIntros()
     {    
@@ -52,7 +52,7 @@ public class CharacterIntros extends AllWorld
         SimulationFont.initalizeFont();
 
         // Indicator
-        indicator = new SuperTextBox("Click anywhere to move on to character selection", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 700, 5, borderColor);
+        indicator = new SuperTextBox("Click here to move on to character selection", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 700, 5, borderColor);
 
         // By default first story will show up
         setBackground(characterBackgrounds[0]);
@@ -64,6 +64,10 @@ public class CharacterIntros extends AllWorld
         leftButton = new IntroButton(false);
     }
 
+    /**
+     * The act method of Character Intros.
+     * Once all stories have been looked at, an indicator will show to switch to the select world.
+     */
     public void act(){
         actCount++;
         if(actCount == 1) {
@@ -102,8 +106,9 @@ public class CharacterIntros extends AllWorld
         }
     }
 
-    // Fill String[] with text relating to MC stories
-    // Change file paths to actual images later on, change font as needed
+    /**
+     * Fill my arrays with MC backgrounds and stories.
+     */
     private void fillCharacterBackgroundAndStories(){
         // Thief
         characterBackgrounds[0] = new GreenfootImage("inmate/thief-background.jpg");

@@ -27,7 +27,10 @@ public class Action
     protected final static int CELL_1 = 133;
     protected final static int CELL_2 = 136;
     
+    private static SoundManager sm;
+    
     public static void doRollCall(MyWorld w) {
+        sm.playSound("RollCall");
         Person[] getPeople = w.getPeople();
         for (Person p : getPeople) {
             //System.out.println(p);
@@ -83,7 +86,6 @@ public class Action
     public static void doJob(MyWorld w) {
         Person[] getPeople = w.getPeople();
         for (Person p : getPeople) {
-            /*
             if(p instanceof Guard) {
                 continue;
             }
@@ -93,7 +95,6 @@ public class Action
             }
             //System.out.println(((Prisoner)p).getJob());
             Action.goToJob(w, p, ((Prisoner)p).getJob());
-            */
            
             if(p instanceof MC) {
                 if(!((MC)p).hasJob()) continue;
@@ -156,8 +157,8 @@ public class Action
             p.setWalking(false);
         }
          if(p instanceof MC && ((MC)p).getSpecialty().equals("Brute")) {
-                 Action.goToGym(p);
-                 return;
+             Action.goToGym(p);
+             return;
         }
             // if(((MC)p).getSpecialty().equals("Brute")) {
                 // Action.goToGym(p);
@@ -172,6 +173,10 @@ public class Action
                 case 3:
             //System.out.println(p.getIndex() + ": LIB");
                     if(Action.goToLibrary(w, p)) break;
+                    if(p instanceof MC) {
+                        Action.goToFreeTime(w, p);
+                        return;
+                    }
                 case 0:
                     // walk around
             //System.out.println(p.getIndex() + ": WALK");
@@ -201,16 +206,15 @@ public class Action
             }
         }
         if(p instanceof Guard) {
-                    p.setWalking(true);
-                    switch(Greenfoot.getRandomNumber(2)) {
-                        case 0:
-                            p.goToNode(Person.STARTING_NODE_INDEX);
-                            break;
-                        case 1:
-                            p.goToNode(Person.WALKING_NODE_INDEX);
-                            break;
-                    }
-            
+            p.setWalking(true);
+            switch(Greenfoot.getRandomNumber(2)) {
+                case 0:
+                    p.goToNode(Person.STARTING_NODE_INDEX);
+                    break;
+                case 1:
+                    p.goToNode(Person.WALKING_NODE_INDEX);
+                    break;
+            }
         }
     }
     
@@ -269,6 +273,7 @@ public class Action
             p.goToNode(Person.STARTING_NODE_INDEX);
         }
         if (p instanceof MC) {
+            ((MC)p).setAction("Going to Jail Cell");
             switch(p.getIndex()) {
                 case 0:
                 case 1:

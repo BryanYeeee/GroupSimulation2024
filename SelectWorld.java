@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * The selectworld is the world where the user will choose which main prisoners the user wants in the world
+ * The selectworld is the world where the user will choose which main prisoners the user wants in the world.
  * 
  * @author Ainson Z and Bryan Y 
  * @version April 2024
@@ -13,12 +13,27 @@ public class SelectWorld extends AllWorld
     private int numSelectedPrisoners;
     private List<SavedPrisoner> selectedPrisoners = new ArrayList<>();
     private List<String> serializedPrisonersState;
-
+    
+    
+    // Colors
+    private Color bgColor = new Color(119, 136, 153, 240);
+    private Color borderColor = new Color(192, 192, 192);
+    private Color transparentColor = new Color(0, 0, 0, 0);
+    private Color textColor = new Color(250, 249, 246);
+    
+    // Info
+    private SuperTextBox bruteInfo = new SuperTextBox("Buck: Brute", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox thiefInfo = new SuperTextBox("Wyatt: Thief", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox weaponsDealerInfo = new SuperTextBox("Leon: Weapons Dealer", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox scientistInfo = new SuperTextBox("Waldo: Scientist", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox explosiveExpertInfo = new SuperTextBox("Aron: Explosive Expert", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    private SuperTextBox builderInfo = new SuperTextBox("Reuben: Builder", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 300, 5, borderColor);
+    
     private GreenfootImage bgImage;
 
     /**
      * Constructor for objects of class SelectWorld.
-     * 
+     * Display each possible MC and their respective character information.
      */
     public SelectWorld()
     {
@@ -39,15 +54,14 @@ public class SelectWorld extends AllWorld
         addObject(mc4, 500, 550);
         addObject(mc5, 850, 250);
         addObject(mc6, 850, 550);
-
-        /*
-        mc1.createButton(150, 250);
-        mc2.createButton(150, 550);
-        mc3.createButton(500, 250);
-        mc4.createButton(500, 550);
-        mc5.createButton(850, 250);
-        mc6.createButton(850, 550);
-         */
+        
+        addObject(bruteInfo, 250, 340);
+        addObject(thiefInfo, 250, 640);
+        addObject(weaponsDealerInfo, 600, 340);
+        addObject(scientistInfo, 600, 640);
+        addObject(explosiveExpertInfo, 950, 340);
+        addObject(builderInfo, 950, 640);
+        
 
         SelectButton button1 = new SelectButton(this, mc1);
         addObject(button1, 150 + 150, 250);
@@ -67,34 +81,61 @@ public class SelectWorld extends AllWorld
 
         bgImage = new GreenfootImage("PrisonBg2.png");
         setBackground(bgImage);
-        prepare();
     }
 
+    /**
+     * Return a list of the prisoners that were selected.
+     * 
+     * @return selectedPrisoners    The prisoners that were selected.
+     */
     public List<SavedPrisoner> getSelectedPrisoners() {
-        //problem here
         return selectedPrisoners;
     }
-
+    
+    /**
+     * Return the amount of selected prisoners. (Max 4)
+     * 
+     * @return numSelectedPrisoners The number of prisoners that were selected.
+     */
     public int getNumSelectedPrisoners() {
         return numSelectedPrisoners;
     }
-
+    
+    /**
+     * Increment the number of selected prisoners by 1.
+     */
     public void incrementNumSelectedPrisoners() {
         numSelectedPrisoners++;
     }
-
+    
+    /**
+     * Decrement the number of selected prisoners by 1.
+     */
     public void decrementNumSelectedPrisoners() {
         numSelectedPrisoners--;
     }
-
+    
+    /**
+     * Add a prisoner to the selected prisoners.
+     * 
+     * @param prisoner  The prisoner to be added.
+     */
     public void addSelectedPrisoner(SavedPrisoner prisoner) {
         selectedPrisoners.add(prisoner);
     }
-
+    
+    /**
+     * Remove a prisoner from the selected prisoners.
+     * 
+     * @param prisoner The prisoner to be removed.
+     */
     public void removeSelectedPrisoner(SavedPrisoner prisoner) {
         selectedPrisoners.remove(prisoner);
     }
-
+    
+    /**
+     * Switch to the StatWorld and give it stats and values relating to the chosen MCs
+     */
     public void transitionWorld() {
         serializedPrisonersState = saveSelectedPrisonersState();
         System.out.println(serializedPrisonersState);
@@ -112,7 +153,11 @@ public class SelectWorld extends AllWorld
         }
         return serializedDataList;
     }
-
+    
+    /**
+     * The act method of SelectWorld.
+     * Once the number of selected prisoners equals 4 and the user wants to switch worlds, switch.
+     */
     public void act() {
         if (numSelectedPrisoners == 4) {
             if(NextButton.getSwitchWorld()) {
@@ -122,12 +167,5 @@ public class SelectWorld extends AllWorld
             }
 
         }
-    }
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
-    private void prepare()
-    {
     }
 }
