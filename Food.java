@@ -15,7 +15,12 @@ public class Food extends Item
         isMaterial = true;
     }
 
-    
+    /**
+     * Activate the item's effects, buff strength and speed.
+     * 
+     * @param w     The simulation world the MC exists in.
+     * @param p     The MC using the item.
+     */
     public void useItem(MyWorld w, MC p) {
         p.addStrength(10);
         p.setSpeed(p.getSpeed()+0.5);

@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * The tile is a class to visually show the nodes
+ * The tile is a class to visually show the nodes.
  * 
  * @author Bryan Y
  * @version April 2024
@@ -9,6 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Tile extends Actor
 {
     private int id;
+    /**
+     * Constructor of Tile
+     * 
+     * @param config    The x, y position and possible boundary size of the node.
+     */
     public Tile(String[] config) {
         setImage("images/BlackBG.jpeg");
         this.id = Integer.parseInt(config[0]);
@@ -17,12 +22,5 @@ public class Tile extends Actor
         } else {
             getImage().scale(9,9);
         }
-    }
-    public void act() {
-        // if (Greenfoot.mouseClicked(this))
-        // {
-        //     MyWorld.g.goToNode(id);
-        //     System.out.println(id);
-        // }
     }
 }

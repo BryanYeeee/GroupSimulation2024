@@ -1,5 +1,5 @@
 /**
- * The bomb item class
+ * The bomb item class.
  * 
  * @author Bryan Y
  * @version April 2024
@@ -7,7 +7,7 @@
 public class Bomb extends Item 
 {
     /**
-     * Constructor for objects of class Bryan
+     * Constructor for objects of class Bomb
      */
     public Bomb()
     {
