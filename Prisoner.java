@@ -13,10 +13,16 @@ public class Prisoner extends Person
     protected String jobTitle = "";
     
     // For cutscene/intro world by Jamison H
+    /**
+     * Constructor for Prisoner used for cutscene/intro world
+     */
     public Prisoner(int i, boolean inIntro){
         super(i, inIntro);
     }
     
+    /**
+     * Constructor for Prisoner
+     */
     public Prisoner(int i) {
         super(i);
         if(!jobList.isEmpty()) {
@@ -26,6 +32,9 @@ public class Prisoner extends Person
         }
         System.out.println(jobList);
     }
+    /**
+     * Constructor for Prisoner
+     */
     public Prisoner(int i, String jobTitle) {
         super(i);
         this.jobTitle = jobTitle;
@@ -33,7 +42,9 @@ public class Prisoner extends Person
         System.out.println(jobList);
     }
 
-    
+    /**
+     * Act Method for Prisoner
+     */
     public void act() {
         super.act();
         if(!inIntro){
@@ -54,14 +65,29 @@ public class Prisoner extends Person
     }
     
     
+    /**
+     * Takes in a list of jobs and sets the joblist of all Prisoners
+     * 
+     * @param jobs                      List of different jobs
+     */
     public static void setJobList(String[] jobs) {
         jobList = new ArrayList<String>(Arrays.asList(jobs));
     }
     
+    /**
+     * Return the job of Prisoner
+     * 
+     * @return jobTitle                 Job of Prisoners
+     */
     public String getJob() {
         return jobTitle;
     }
     
+    /**
+     * Returns if Prisoner has a job or not
+     * 
+     * @return !jobTitle.equals("None") Checks if Prisoner has a job or not
+     */
     public boolean hasJob() {
         return !jobTitle.equals("None");
     }
