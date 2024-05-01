@@ -10,18 +10,13 @@ import java.util.Map;
  */
 public class Accessory extends Entity
 {
-    /**
-     * Act - do whatever the Hair wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    
     GreenfootImage currentImage;
     private Person origin;
     private int xOffset=0;
     private int originalYOffset = -11;
     private int yOffset=-11;
     private int accessoryIndex=0;
-    private int actsLeft;
+    private int actsLeft;   
     private static final Map<String, Integer> offsetValues = initializeOffsetValues();
     
     /**

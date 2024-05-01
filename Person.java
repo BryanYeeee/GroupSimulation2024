@@ -55,7 +55,7 @@ public abstract class Person extends Entity
     private Color[] colors = {new Color(255,64,56), new Color(255,231,22),new Color(34,121,227), new Color(45,247,38)};
     protected ArrayList<Integer> accessoryIndices; //JEFF
     
-    private SoundManager sm;
+    protected SoundManager sm;
     // For cutscene/intro done by Jamison H
     /**
      * Constructor for Person used for cutscene/intro world
@@ -364,8 +364,10 @@ public abstract class Person extends Entity
     }
 
     /**
+     * Puts two Person's in a fight
      * 
-     * 
+     * @param opponent                      Opponent of the fighters
+     * @param inFight                       Set them in a fight
      */
     public void setInFight(Person opponent, boolean inFight) {
         this.inFight = inFight;
