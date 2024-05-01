@@ -25,7 +25,7 @@ public class SoundManager
         
         // Non-looped
         sounds.put("click", new Sound("click.mp3", 35, false));
-        sounds.put("bomb", new Sound("bomb.mp3", 40, false));
+        sounds.put("bomb", new Sound("bomb.mp3", 55, false));
         sounds.put("GeneratorOff", new Sound("GeneratorOff.mp3", 35, false));
         sounds.put("WoodBurning", new Sound("WoodBurning.mp3", 25, false));
         sounds.put("WallBreak", new Sound("WallBreak.mp3", 28, false));
@@ -45,7 +45,7 @@ public class SoundManager
         sounds.put("LightsOut", new Sound("LightsOut.mp3", 25, true));
         sounds.put("Fighting", new Sound("Fighting.mp3", 31, true));
         sounds.put("ShovelDirt", new Sound("ShovelDirt.mp3", 43, true));
-        sounds.put("CutFence", new Sound("CutFence.mp3", 43, true));
+        sounds.put("CutFence", new Sound("CutFence.mp3", 33, true));
         
     }
     

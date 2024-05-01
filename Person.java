@@ -141,15 +141,12 @@ public abstract class Person extends Entity
                 return;
             }
             if(inFight) {
-                if(actCount % 90 == 0) {
-                    sm.playSound("Fighting");
-                }
                 if (this instanceof MC) ((MC)this).setAction("In a Fight");
                 action="attack";
                 animationDelay=10;
                 animate(); //Call animate before return 
                 if (actCount % 30 == 0) {
-                    sm.playSound("Hit");
+                    //sm.playSound("Hit");
                     curHp -= opponentStrength;
                     opponentHealth -= str;
                     if(this instanceof MC) StatusBar.setUpdate(true);
@@ -347,6 +344,7 @@ public abstract class Person extends Entity
     public void setInFight(Person opponent, boolean inFight) {
         this.inFight = inFight;
         if (inFight) { // If starting fight then show healthBar and store the opponent's health and strength
+            sm.playSound("Fighting");
             onGoingFights++;
             opponentHealth = opponent.getHealth();
             opponentStrength = opponent.getStrength();
