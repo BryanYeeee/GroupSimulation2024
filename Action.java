@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 /**
  * The Action is a helper class that stores the functions for the prisoner's actions.
- * The actions are usually called by the Schedule class
+ * The actions are usually called by the Schedule class.
  * 
  * @author Bryan Y
  * @version April 2024
@@ -28,7 +28,11 @@ public class Action
     protected final static int CELL_2 = 136;
     
     private static SoundManager sm;
-    
+    /**
+     * Tell the people in the simulation world to do roll call actions.
+     * 
+     * @param w     The simulation world.
+     */
     public static void doRollCall(MyWorld w) {
         sm.playSound("RollCall");
         Person[] getPeople = w.getPeople();
@@ -37,6 +41,13 @@ public class Action
             Action.goToRollCall(w,p);
         }
     }
+    
+    /**
+     * Tell a person in the simluation to move to the roll call area.
+     * 
+     * @param w     The simulation world.
+     * @param p     The person to be moved.
+     */
     public static void goToRollCall(MyWorld w, Person p)
     {
         p.clearPath();
@@ -56,6 +67,11 @@ public class Action
         }
     }
     
+    /**
+     * Tell the people in the simulation world to do dining hall actions.
+     * 
+     * @param w     The simulation world.
+     */
     public static void doDiningHall(MyWorld w) {
         Person[] getPeople = w.getPeople();
         //System.out.println(Arrays.toString(getPeople));
@@ -63,6 +79,12 @@ public class Action
             Action.goToDiningHall(p);
         }
     }
+    
+    /**
+     * Tell a person in the simulation world to move to the dining hall area.
+     * 
+     * @param p     The person to be moved.
+     */
     public static void goToDiningHall(Person p)
     {
         if(p.getCurRoom() instanceof DiningHall) return;
@@ -70,12 +92,23 @@ public class Action
         p.goToNode(DININGHALL_NODE);
     }
     
+    /**
+     * Tell the people in the simulation world to do gym actions.
+     * 
+     * @param w     The simulation world.
+     */
     public static void doGym(MyWorld w) {
         Person[] getPeople = w.getPeople();
         for (Person p : getPeople) {
             Action.goToGym(p);
         }
     }
+    
+    /**
+     * Tell a person in the simulation world to move to the gym area. 
+     * 
+     * @param p     The person to move.
+     */
     public static void goToGym(Person p)
     {
         if(p.getCurRoom() instanceof Gym) return;
@@ -83,6 +116,11 @@ public class Action
         p.goToNode(GYM_NODE);
     }
     
+    /**
+     * Tell the people in the simulation world to do job actions.
+     * 
+     * @param w     The simulation world.
+     */
     public static void doJob(MyWorld w) {
         Person[] getPeople = w.getPeople();
         for (Person p : getPeople) {
@@ -103,6 +141,14 @@ public class Action
             }
         }
     }
+    
+    /**
+     * Tell a person in the simulation world to go their job area.
+     * 
+     * @param w         The simulation world.
+     * @param p         The person to move.
+     * @param jobTitle  The name of the job.
+     */
     public static void goToJob(MyWorld w, Person p, String jobTitle) {
         if(p.isWalking()) {
             p.clearPath();
@@ -135,6 +181,12 @@ public class Action
         if (p instanceof MC) ((MC)p).setAction("Going to " + ((MC)p).getJob() + " Job");
     }
     
+    /**
+     * Tell a person in the simulation world to go to the library.
+     * 
+     * @param w     The simulation world.
+     * @param p     The person to be moved.
+     */
     public static boolean goToLibrary(MyWorld w,Person p) {
         if(Library.canEnterLibrary()) {
             if (p instanceof MC) ((MC)p).setAction("Going to The Library");
@@ -145,12 +197,24 @@ public class Action
         return false;
     }
     
+    /**
+     * Tell the people in the simulation world to do free time actions.
+     * 
+     * @param w     The simulation world.
+     */
     public static void doFreeTime(MyWorld w) {
         Person[] getPeople = w.getPeople();
         for (Person p : getPeople) {
             Action.goToFreeTime(w, p);
         }
     }
+    
+    /**
+     * Tell a person in the simulation world to move to where they should spend their free time.
+     * 
+     * @param w     The simulation world.
+     * @param p     The person to be moved.
+     */
     public static void goToFreeTime(MyWorld w, Person p) {
         if(p.isWalking()) {
             p.clearPath();
@@ -218,6 +282,13 @@ public class Action
         }
     }
     
+    /**
+     * Generate a random path from the spawn to the top right node, or vice versa upon modifying the parameter toSpawn.
+     * In addition, tell a person to move through this path.
+     * 
+     * @param p         The person to be moved.
+     * @param toSpawn   True if the generated path shoudl be from spawn to top right, false if top right to spawn.
+     */
     public static void walkAround(Person p, boolean toSpawn) {
         if (toSpawn) {
             switch (Greenfoot.getRandomNumber(4)) {
@@ -258,6 +329,11 @@ public class Action
         }
     }
     
+    /**
+     * Tell the people in the simulation world to do lights out actions.
+     * 
+     * @param w     The simulation world.
+     */
     public static void doLightsOut(MyWorld w) {
         Person[] getPeople = w.getPeople();
         for (Person p : getPeople) {
@@ -267,6 +343,14 @@ public class Action
         w.addObject(keycardGuard, 0, 0);
         keycardGuard.goToNode(110);
     }
+    
+    /**
+     * Tell a person in the simulation world to move to their lights out area.
+     * This will be their own cell if they are an MC, or their starting area if they aren't.
+     * 
+     * @param w     The simulation world.
+     * @param p     The person to be moved.
+     */
     public static void goToLightsOut(MyWorld w, Person p) {
         if (p instanceof Prisoner && !(p instanceof MC)) {
             p.clearPath();
@@ -297,5 +381,4 @@ public class Action
             }
         }
     }
-
 }

@@ -14,7 +14,8 @@ public class SoundManager
     private static ArrayList<GreenfootSound> activeSounds;
     
     /**
-     * Constructor for objects of class SoundManager
+     * Constructor for objects of class SoundManager.
+     * Initalize all sounds into a map of names and respective sounds.
      */
     public static void initSounds()
     {
@@ -50,14 +51,14 @@ public class SoundManager
     }
     
     /**
-     * Method to play a sound or a sound loop
+     * Method to play a sound or a sound loop.
      */
     public static void playSound(String sound) {
         sounds.get(sound).playSound();
     }
     
     /**
-     * Method to pause all the currently playing sounds
+     * Method to pause all the currently playing sounds.
      */
     public static void pauseSounds() {
         // Loop through the sound types
@@ -72,7 +73,7 @@ public class SoundManager
     }
     
     /**
-     * Method to resume all the currently paused sounds
+     * Method to resume all the currently paused sounds.
      */
     public static void resumeSounds(){
         // Loop through the list of active sounds and resume them
@@ -82,7 +83,11 @@ public class SoundManager
         activeSounds.clear(); // Clear the arraylist
     }
     
-    //only stop loops
+    /**
+     * Stop the looping of a certain sound.
+     * 
+     * @param sound     The sound to be stopped.
+     */
     public static void stopSoundLoop(String sound) {
         sounds.get(sound).stopSound();
     }

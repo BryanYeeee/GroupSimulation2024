@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 /**
  * EscapeAction is the same as action, but mainly for the methods of escape. 
- * This subclass was mainly created for organization purposes
+ * This subclass was mainly created for organization purposes.
  * 
  * @author Bryan Y
  * @version April 2024
@@ -30,6 +30,14 @@ public class EscapeAction extends Action
     
     private static SoundManager sm;
     
+    /**
+     * Return whether an MC can proceed to the next step of the breaking wall escape.
+     * 
+     * @param w         The simulation world the MC is in.
+     * @param mc        The main character doing the escape.
+     * @param followers The followers of the MC that will follow along the MC's route.
+     * @return boolean  True if MC can proceed to the next step, and do that step, false if the requirements are not met.
+     */
     public static boolean breakWall(MyWorld w, MC mc, MC[] followers, int step) {
         switch(step) {
             case 0:
@@ -69,7 +77,14 @@ public class EscapeAction extends Action
         }
         return false;
     }
-    
+    /**
+     * Return whether an MC can proceed to the next step of the car escape.
+     * 
+     * @param w         The simulation world the MC is in.
+     * @param mc        The main character doing the escape.
+     * @param followers The followers of the MC that will follow along the MC's route.
+     * @return boolean  True if MC can proceed to the next step, and do that step, false if the requirements are not met.
+     */
     public static boolean driveCar(MyWorld w, MC mc, MC[] followers, int step) {
         switch(step) {
             case 0:
@@ -139,6 +154,14 @@ public class EscapeAction extends Action
         return false;
     }
     
+    /**
+     * Return whether an MC can proceed to the next step of the exploding wall escape.
+     * 
+     * @param w         The simulation world the MC is in.
+     * @param mc        The main character doing the escape.
+     * @param followers The followers of the MC that will follow along the MC's route.
+     * @return boolean  True if MC can proceed to the next step, and do that step, false if the requirements are not met.
+     */
     public static boolean explodeWall(MyWorld w, MC mc, MC[] followers, int step) {
         switch(step) {
             case 0:
@@ -180,6 +203,14 @@ public class EscapeAction extends Action
         return false;
     }
     
+    /**
+     * Return whether an MC can proceed to the next step of the cutting fence escape.
+     * 
+     * @param w         The simulation world the MC is in.
+     * @param mc        The main character doing the escape.
+     * @param followers The followers of the MC that will follow along the MC's route.
+     * @return boolean  True if MC can proceed to the next step, and do that step, false if the requirements are not met.
+     */
     public static boolean cutFence(MyWorld w, MC mc, MC[] followers, int step) {
         switch(step) {
             case 0:
@@ -227,6 +258,14 @@ public class EscapeAction extends Action
         return false;
     }
     
+    /**
+     * Return whether an MC can proceed to the next step of the digging hole escape.
+     * 
+     * @param w         The simulation world the MC is in.
+     * @param mc        The main character doing the escape.
+     * @param followers The followers of the MC that will follow along the MC's route.
+     * @return boolean  True if MC can proceed to the next step, and do that step, false if the requirements are not met.
+     */
     public static boolean digHole(MyWorld w, MC mc, int step) {
         switch(step) {
             case 0:
@@ -283,6 +322,14 @@ public class EscapeAction extends Action
         return false;
     }
     
+    /**
+     * Return an array of the MCs that are following an MC who is doing a main escape.
+     * 
+     * @param mcs           The array of main characters.
+     * @param chosenEscapes The array of escapes.
+     * @param index         The index of the main mc doing the main escape.
+     * @return followersArr An array of MCs that will follow the MC doing an escape.
+     */
     public static MC[] filterMC(MC[] mcs, String[] chosenEscapes, int index) {
         ArrayList<MC> followers = new ArrayList<>();
         for (int i = 0; i < 4; i++) {

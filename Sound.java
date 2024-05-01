@@ -13,7 +13,12 @@ public class Sound
     private boolean isLoop;
 
     /**
-     * Constructor for objects of class Sound
+     * Constructor for objects of class Sound.
+     * Create many sounds in an array so they can be simultaneously called.
+     * 
+     * @param soundFile     The sound file's name.
+     * @param volume        The volume of the sound.
+     * @param loop          True if the sound will loop, false if the sound will be played only once.
      */
     public Sound(String soundFile, int volume, boolean loop)
     {
@@ -31,6 +36,9 @@ public class Sound
         }
     }
     
+    /**
+     * Play a sound within the array of identical sounds, loop if required.
+     */
     public void playSound() {
         if (isLoop) { // If the sound is a loop, then run playLoop instead of playing it once
              sounds[soundIndex].playLoop();
@@ -40,16 +48,19 @@ public class Sound
             soundIndex = (soundIndex + 1) % sounds.length;
         }
     }
-
+    
+    /**
+     * Pause the sound.
+     */
     public void pauseSound(){
         sounds[soundIndex].pause();
     }
     
     /**
-     * This method is called when the simulation is paused. It will retrieve a list of the active sounds and pause them
+     * This method is called when the simulation is paused. It will retrieve a list of the active sounds and pause them.
      * 
-     * @param pause boolean if wanting to pause the active sounds or not
-     * @return ArrayList of GreenfootSounds to be stored by the sound manager
+     * @param pause                         True if the active sounds should be paused, false if not.
+     * @return ArrayList<GreenfootSounds>   Sounds to be stored by the sound manager.
      */
     public ArrayList<GreenfootSound> getListOfPlayingSounds(boolean pause){
         ArrayList<GreenfootSound> soundsPlaying = new ArrayList<>();
@@ -64,10 +75,18 @@ public class Sound
         return soundsPlaying;
     }
     
+    /**
+     * Return whether the sound should be played in a loop.
+     * 
+     * @return isLoop   True if sound should be played in loop, false if only once.
+     */
     public boolean isLoop() {
         return isLoop;
     }
     
+    /**
+     * Completely stop the sound.
+     */
     public void stopSound(){
         sounds[soundIndex].stop();
     }
