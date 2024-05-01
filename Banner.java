@@ -14,11 +14,6 @@ import java.awt.Font;
  */
 public class Banner extends SuperTextBox
 {
-    /**
-     * Act - do whatever the Banner wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-
     protected double secondsLeft;
     protected static int width = 600;
     protected static Color bannerBackgroundColor = new Color (84,84,84);
@@ -27,14 +22,36 @@ public class Banner extends SuperTextBox
     protected BannerIcon icon;
     protected String iconName;
 
+    /**
+     * Less Detailed constructor of Banner without colors
+     * 
+     * @param text              The text to be displayed.
+     * @param secondsLeft       The duration left in seconds for the display.
+     */
     public Banner(String text, double secondsLeft){
         this(text, secondsLeft,"announcement",bannerBackgroundColor, Color.WHITE);
     }
 
+    /**
+     * Less Detailed constructor of Banner without colors
+     * 
+     * @param text              The text to be displayed.
+     * @param secondsLeft       The duration left in seconds for the display.
+     * @param iconName          The file name of the icon.
+     */
     public Banner(String text, double secondsLeft, String iconName){
         this(text, secondsLeft,iconName, bannerBackgroundColor, Color.WHITE);
     }
-
+    
+    /**
+     * Primary constructor of Banner.
+     * 
+     * @param text              The text to be displayed.
+     * @param secondsLeft       The duration left in seconds for the display.
+     * @param iconName          The file name of the icon.
+     * @param backgroundColor   The color of the background.
+     * @param textColor         The color of the text.
+     */
     public Banner(String text, double secondsLeft, String iconName, Color backgroundColor, Color textColor){
         // Inline call to load the font and immediately pass to the super constructor.
         // Note that if loadCustomFont returns null, this will not prevent the NullPointerException.
@@ -50,21 +67,29 @@ public class Banner extends SuperTextBox
         this.secondsLeft = secondsLeft;
     }
 
+    /**
+     * Add a banner icon when Banner is added to the world.
+     */
     public void addedToWorld(World world){
         icon = new BannerIcon(iconName);
         world.addObject(icon,getX()-(width/2),getY());
     }
-
+    
+    /**
+     * The act method of Banner, remove self when duration is depeleted.
+     */
     public void act()
     {
         secondsLeft-=0.0166;
         if(secondsLeft<=0){
             getWorld().removeObject(icon);
             getWorld().removeObject(this);
-            
         }
     }   
-
+    
+    /**
+     * A local method to initalizing font.
+     */
     private void initalizeFont(){
         File f = new File("VT323-Regular.ttf");
         try {
