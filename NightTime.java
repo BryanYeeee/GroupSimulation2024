@@ -14,6 +14,7 @@ public class NightTime extends Actor
      * @param w     The world to be added to.
      */
     public void addedToWorld(World w) {
+        setImage("images/Nighttime.png");
         setLocation(w.getWidth()/2,w.getHeight()/2);
     }
 }

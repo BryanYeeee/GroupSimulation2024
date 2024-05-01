@@ -45,7 +45,6 @@ public class EndWorld extends AllWorld
         endingText1 = new SuperTextBox("SIMULATION END", transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 54), true, 1024, 0, transparentColor);
         endingText2 = new SuperTextBox("Return to Title Screen", bgColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 36), true, 600, 5, borderColor);
         displayEscapes = new SuperTextBox("Escapes Occured: " + mainPrisoners[0].getEscapeMethod() + ", " + mainPrisoners[1].getEscapeMethod() + ", " + mainPrisoners[2].getEscapeMethod() + ", " + mainPrisoners[3].getEscapeMethod(), transparentColor, textColor, SimulationFont.loadCustomFont("VT323-Regular.ttf", 28), true, 1000, 0, Color.BLACK); 
- 
         
         // Display values
         addObject(backImage, 600, 425);
