@@ -21,7 +21,7 @@ public class Node {
         /**
          * Constructor for the Node
          *
-         * @param config The config for the node as an string array
+         * @param config    The x, y position and possible boundary size of the node.
          */
         public Node(String[] config) {
             this.index = Integer.parseInt(config[0]);

@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * The Item super class
+ * The Item super class.
  * 
  * @author Jeff G
  * @version April 2024
@@ -24,6 +24,11 @@ public abstract class Item extends SuperSmoothMover
     protected MC origin;
     
     private SoundManager sm;
+    /**
+     * Constructor for Item
+     * 
+     * @param itemName  The item name, used for finding its file.
+     */
     public Item(String itemName){
         this.itemName = itemName;
         try {
@@ -36,7 +41,10 @@ public abstract class Item extends SuperSmoothMover
         setStaticRotation(true);
         pickupActs=-1;
     }
-
+    
+    /**
+     * If an MC touches the item, hover the item, then get sent to the status bar.
+     */
     public void act()
     {
         if(pickupActs==-1){
@@ -74,17 +82,31 @@ public abstract class Item extends SuperSmoothMover
         }
         actCount++;
     }
-
+    
+    /**
+     * Return whether this item is a material.
+     * 
+     * @return isMaterial   True if item is a material, false if not.
+     */
     public boolean isMaterial() {
         return isMaterial;
     }
 
+    /**
+     * Set the size of the item image.
+     * @param size  The width and height of the image.
+     */
     public void setSize(int size){
         GreenfootImage image = getImage();
         image.scale(size,size);
         setImage(image);
     }
 
+    /**
+     * Give an MC an item, add dialogue, and also add item to the status bar.
+     * 
+     * @param origin The MC that picked up the item.
+     */
     public void pickup(MC origin){
         this.origin=origin;
         sm.playSound("PickUp");
@@ -128,10 +150,18 @@ public abstract class Item extends SuperSmoothMover
         return;
     }
 
+    /**
+     * Set the action of collecting the item to be true.
+     */
     public void collect(){ 
         collecting=true;
     }
 
+    /**
+     * The hovering effect of the item after being picked up.
+     * 
+     * @param actCount  The acts to hover for.
+     */
     public void hover(int actCount){
         if(actCount%5==0){
             setLocation(getX(),getY()+hoverSpeed);
@@ -141,11 +171,21 @@ public abstract class Item extends SuperSmoothMover
         }
     }
 
+    /**
+     * Return the distance between myself and another (x,y) coordinate pair.
+     * 
+     * @param x         The other x coordinate.
+     * @param y         The other y coordinate.
+     * @return double   The distance between myself and another coordinate.
+     */
     public double distanceFrom(int x, int y) {
         int deltaX = getX() - x; 
         int deltaY = getY() - y; 
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY); 
     }
 
+    /**
+     * Implement the item's effect if applicable.
+     */
     public abstract void useItem(MyWorld w, MC p);
 }

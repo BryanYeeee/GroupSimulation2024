@@ -13,9 +13,10 @@ public class Clock extends SuperTextBox
     private int hour;
     private String display;
     /**
+     * Constructor of Clock.
      * Creates a clock that goes through 24 game hours in 120 real life seconds, 
      * 
-     * @param startTime is a String for example "7:30"
+     * @param startTime     The start time, for example "7:30"
      */
     public Clock(String startTime){
         super(startTime,new Color (84,84,84), Color.WHITE,new Font("Calibri",true,false,26),true,100,8,Color.BLACK);
@@ -28,6 +29,10 @@ public class Clock extends SuperTextBox
         
     }
     
+    /**
+     * The act method of Clock, update myself depending on real life time.
+     * 
+     */
     public void act()
     {
         preciseMinutes+=0.2;

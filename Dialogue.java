@@ -8,10 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Dialogue extends Banner
 {
-    /**
-     * Act - do whatever the Announcement wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     private int actCount;
     private int actsLeft;
     private static Color announcementBackgroundColor = new Color (255,255,255);
@@ -19,17 +15,33 @@ public class Dialogue extends Banner
     private String currText="";
     //private static GreenfootSound dialogueSound = new GreenfootSound("sounds/bannerSound_dialogue.mp3");
     private boolean soundPlaying;
+    /**
+     * Constructor for Dialogue
+     * 
+     * @param text      The dialogue text
+     * @param iconName  The name of the icon file.
+     */
     public Dialogue(String text, String iconName){
         this(text, 2, iconName); 
-        
     }
-    public Dialogue(String text,double seconds, String iconName){
+
+    /**
+     * Detailed constructor for Dialogue that includes seconds displayed.
+     * 
+     * @param text      The dialogue text.
+     * @param seconds   The duration of the dialogue display.
+     * @param iconName  The name of the icon file.
+     */
+    public Dialogue(String text, double seconds, String iconName){
         super(" ", seconds, iconName, announcementBackgroundColor, Color.BLACK); 
         this.text=text;
         secondsLeft = seconds;
         actCount=0;
     }
 
+    /**
+     * The act method of Dialogue, add text letter by letter.
+     */
     public void act()
     {
         actCount++;
